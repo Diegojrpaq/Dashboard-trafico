@@ -1,0 +1,45 @@
+{
+    "status": 200,
+    "descripcion":"ok",
+    "destinos":[
+        {
+            "id":"1",
+            "nombre" : "Guadalajara",
+            "total_mt3":200,
+            "sucursales" : [
+                {
+                    "nombreSucursal":"perisur",
+                    "prefijo":"PER",
+                    "guiasTotal":4,
+                    "total_mt3":44,
+                    "total_mt3_piso":30,
+                    "total_mt3_enbarque":10,
+                    "total_mt3_embarcado":20,
+
+                    "guias": [
+                        {
+                            "num_guia":"PER-80274",
+                            "status": 2,
+                            "url":"http://216.250.126.250/Rastreo_Get_Guias/PER-80274"
+                        },
+                        {
+                            "num_guia":"PER-80275",
+                            "status": 2,
+                            "url":"http://216.250.126.250/Rastreo_Get_Guias/PER-80275"
+                        },
+                        {
+                            "num_guia":"PER-80275",
+                            "status": 2,
+                            "url":"http://216.250.126.250/Rastreo_Get_Guias/PER-80275"
+                        },
+                        {
+                            "num_guia":"PER-80276",
+                            "status": 2,
+                            "url":"http://216.250.126.250/Rastreo_Get_Guias/PER-80276"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
