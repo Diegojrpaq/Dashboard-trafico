@@ -1,6 +1,6 @@
-import Swal from 'sweetalert2'
-/* import Graficalinea from './Componentes/Graficalinea'; */
-import Linechart from './Componentes/Linechart';
+/* import Swal from 'sweetalert2' */
+import Graficalinea from './Componentes/Graficalinea';
+import GraphChart from './Componentes/GraphChart';
 
 
 
@@ -9,7 +9,7 @@ import Linechart from './Componentes/Linechart';
 
 function App() {
 
-  const alerta1 = () => {
+/*   const alerta1 = () => {
 
     Swal.fire(
       'Welcome la libreria esta lista para usarse',
@@ -17,28 +17,32 @@ function App() {
       'success'
     )
 
-  }
+  } */
 
 
 
-  return (<>
-    {
-      alerta1()
-    }
+  return (
+  <>
+  {/* navbar bootstrap */}
+
+  {/* navbar bootstrap */}
+
+
+
 
     <div>
       <h1>graficas charts</h1>
       <div>
         <p className='m-2'><b>ejemplo #1 :</b> Grafico de lineas basicas</p>
         <div className="bg-ligth mx-auto px-2 border border-2 border-primary container-chart">
-          <Linechart></Linechart>
+          <Graficalinea></Graficalinea>
         </div>
       </div>
       <hr />
       <div>
         <p className='m-2'><b>ejemplo #1 :</b> Grafico de barras basicas</p>
         <div className="bg-ligth mx-auto px-2 border border-2 border-primary  container-chart">
-
+          <GraphChart></GraphChart>
         </div>
       </div>
       <hr />
@@ -51,6 +55,20 @@ function App() {
       </div>
       <hr />
     </div>
+
+    <div className="container">
+      <div className="row"><h1>tabla</h1></div>
+      <div className="row">
+      <div className="col-4">
+        <Graficalinea></Graficalinea>
+      </div>
+      <div className="col-4">
+        <GraphChart></GraphChart>
+      </div>
+      <div className="col-4"></div>
+      </div>
+    </div>
+
 
   </>
 

@@ -1,7 +1,6 @@
 import { Line } from 'react-chartjs-2';
-import React from 'react';
-import{
-    Chart as Chartjs,
+import {
+    Chart as ChartJS,
     CategoryScale,
     LinearScale,
     PointElement,
@@ -10,10 +9,9 @@ import{
     Tooltip,
     Legend,
     Filler,
-
 } from 'chart.js';
 
-Chartjs.register(
+ChartJS.register(
     CategoryScale,
     LinearScale,
     PointElement,
@@ -26,32 +24,47 @@ Chartjs.register(
 
 
 
-let beneficios =[0, 56, 20, 36, 80, 40, 30, -20, 35];
-let meses=["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre"];
-let myoptions=null;
+let beneficios = [0, 56, 20, 36, 80, 40, 30, -20, 35];
+let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre"];
+let myoptions = {
+    responsive: true,
+    animation: true,
+    plugins: {
+        legend: {
+            display: false
+        }
+    },
+    sacles: {
+        y: {
+            min: -25,
+            max: 100
+        },
+        x: {
+            ticks: {
+                color: 'rgb(0,220.195)'
+            }
+        }
+    }
+};
 
-let dataset={
-    labels:meses,
-    datasets:[
+let dataset = {
+    labels: meses,
+    datasets: [
         {
             label: '',
             data: beneficios,
             tension: .4,
-            fill: true, 
+            fill: true,
             borderColor: 'rgb(160, 235, 22)',
             backgroundColor: 'rgb(160, 235, 22, 0.5)',
             pointRadius: 5,
-            pointBorderColor:'rgb(45, 214, 4)',
+            pointBorderColor: 'rgb(45, 214, 4)',
             pointBackgrounColor: 'rgb(45, 214, 4)'
-        
+
         }
     ]
 }
 
 export default function Graficalinea() {
-  return (
-     <Line data={dataset} options={myoptions}>Linechart</Line> 
-  )
-}
-
-/*  */
+    return <Line data={dataset} options={myoptions}></Line>
+};
