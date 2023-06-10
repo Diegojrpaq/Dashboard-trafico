@@ -28,9 +28,10 @@ Chartjs.register(
 let color_chillout = 'rgb(160, 235, 22, 0.5)';
 let color_danger= 'rgb(217, 25, 0, .8)';
 
-let beneficios = ["40","50","27", "5","15","25"];
-let meses = ["Perisur","Lazaro Cardenas", "Gonzales Gallo", "Colli","Zapopan", "Cruz del sur"];
+let beneficios = [10, 5, 25 , 2 , 12];
+let meses = ["Colli", "Cruz del Sur", "Perisur", "Tesistan", "Zapopan"];
 let myoptions = {
+    
     responsive: true,
     animation: true,
     plugins: {
@@ -38,10 +39,13 @@ let myoptions = {
             display: true
         }
     },
+    indexAxis: 'y',
     scales: {
+        horizontal:true,
+        
         y: {
-            min: -25,
-            max: 100
+            min: 0,
+            max: 70
         },
         x: {
             ticks: {
@@ -55,7 +59,7 @@ let dataset = {
     labels: meses,
     datasets: [
         {
-            label: 'Beneficios',
+            label: 'mt3',
             data: beneficios,
             backgroundColor: color_chillout
         }
@@ -70,7 +74,7 @@ export default function GraphChart() {
         }
             <Bar
                 data={dataset}
-                Options={myoptions}
+                options={myoptions}
             />
 
        </>
