@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const SideBar = () => {
+
   const [collapseOneOpen, setCollapseOneOpen] = useState(true);
   const [collapseTwoOpen, setCollapseTwoOpen] = useState(false);
 
@@ -23,7 +24,7 @@ const SideBar = () => {
             aria-expanded={collapseOneOpen}
             aria-controls="collapseOne"
           >
-            Sucursales
+            Destinos
           </button>
         </h2>
         <div
