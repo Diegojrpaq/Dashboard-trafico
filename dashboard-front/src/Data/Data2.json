@@ -1,0 +1,154 @@
+{
+    "status": 200,
+    "descripcion": "ok",
+    "Destinos": [
+        {
+            "id":"1",
+            "destino": "Guadalajara",
+            "estado": "Jalisco",
+            "total_mt3_distino": 279,
+            "mt3_por_destino": {
+                "_comentario": "Este arreglo representa todos los mt3 que el origen por destino",
+                "Leon": 19,
+                "Morelia": 0
+            },
+            "sucursales": [
+                {
+                    "sucursal": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 236,
+                    "mt3_por_destino": {
+                        "_comentario": "Este arreglo representa todos los mt3 que vende esta sucursal por destino",
+                        "Leon": 16,
+                        "Morelia": 0
+                    },
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status":"2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [ {
+                        "numguia": "per-5160",
+                        "status":"2",
+                        "tipo": "paqueteria",
+                        "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                        "peso": 0,
+                        "mt3": 0,
+                        "cantidad_envios": 10
+                    }]
+                }
+            ]
+        },
+        {
+            "id":"2",
+            "destino": "Leon",
+            "estado": "Guanajuato",
+            "total_mt3_distino": 279,
+            "mt3_por_destino": {
+                "_comentario": "Este arreglo representa todos los mt3 que el origen por destino",
+                "Leon": 19,
+                "Morelia": 0
+            },
+            "sucursales": [
+                {
+                    "sucursal": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 236,
+                    "mt3_por_destino": {
+                        "_comentario": "Este arreglo representa todos los mt3 que vende esta sucursal por destino",
+                        "Leon": 16,
+                        "Morelia": 0
+                    },
+                    "guias_hoy": [
+                        {
+                            "numguia": "gua-5160",
+                            "status":"2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": []
+                }
+            ]
+        },
+        {
+            "id":"2",
+            "destino": "Tala",
+            "estado": "Jalisco",
+            "total_mt3_distino": 279,
+            "mt3_por_destino": {
+                "_comentario": "Este arreglo representa todos los mt3 que el origen por destino",
+                "Leon": 19,
+                "Morelia": 0
+            },
+            "sucursales": [
+                {
+                    "sucursal": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 236,
+                    "mt3_por_destino": {
+                        "_comentario": "Este arreglo representa todos los mt3 que vende esta sucursal por destino",
+                        "Leon": 16,
+                        "Morelia": 0
+                    },
+                    "guias_hoy": [
+                        {
+                            "numguia": "gua-5160",
+                            "status":"2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": []
+                }
+            ]
+        },
+        {
+            "id":"2",
+            "destino": "Bucerias",
+            "estado": "Nayarit",
+            "total_mt3_distino": 279,
+            "mt3_por_destino": {
+                "_comentario": "Este arreglo representa todos los mt3 que el origen por destino",
+                "Leon": 19,
+                "Morelia": 0
+            },
+            "sucursales": [
+                {
+                    "sucursal": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 236,
+                    "mt3_por_destino": {
+                        "_comentario": "Este arreglo representa todos los mt3 que vende esta sucursal por destino",
+                        "Leon": 16,
+                        "Morelia": 0
+                    },
+                    "guias_hoy": [
+                        {
+                            "numguia": "gua-5160",
+                            "status":"2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": []
+                }
+            ]
+        }
+    ]
+}
