@@ -46,7 +46,7 @@
             ]
         },
         {
-            "id":"2",
+            "id":"14",
             "destino": "Leon",
             "estado": "Guanajuato",
             "total_mt3_distino": 279,
@@ -81,7 +81,7 @@
             ]
         },
         {
-            "id":"2",
+            "id":"31",
             "destino": "Tala",
             "estado": "Jalisco",
             "total_mt3_distino": 279,
@@ -116,7 +116,7 @@
             ]
         },
         {
-            "id":"2",
+            "id":"29",
             "destino": "Bucerias",
             "estado": "Nayarit",
             "total_mt3_distino": 279,

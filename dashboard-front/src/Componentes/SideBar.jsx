@@ -35,13 +35,13 @@ export default function SideBar() {
 
 
               {
-                Data.Destinos.map((x, i) => {
+                Data.Destinos.map((Destinos, index) => {
                   return (
-                    <div className="accordion-body" id={i}>
+                    <div className="accordion-body" id={"checkNum"+Destinos.id} for={Destinos.id}>
                       <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                        <label className="form-check-label" for="flexCheckDefault">
-                          {x.destino}
+                        <input className="form-check-input" type="checkbox" value="" id={Destinos.id} />
+                        <label className="form-check-label" for={Destinos.id}>
+                          {Destinos.destino}
                         </label>
                       </div>
                     </div>
