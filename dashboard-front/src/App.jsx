@@ -1,21 +1,22 @@
 /* import Swal from 'sweetalert2' */
 import { createContext, useEffect, useState } from 'react';
-/* import Graficalinea from './Componentes/Graficalinea';
-import GraphChart from './Componentes/GraphChart'; */
+ import Graficalinea from './Componentes/Graficalinea';
+import GraphChart from './Componentes/GraphChart'; 
 import Navbar from './Componentes/Navbar';
 import SideBar from './Componentes/SideBar';
 import Data from './Data/Data2.json';
-/* import Swal from 'sweetalert2' */
 
+/* import Swal from 'sweetalert2' */
+console.log("Aqui ya esta listo el archivo ? " + Data);
 
 export const dataLogisticContext = createContext()
-
-
 
 function App() {
 
   
   const [dataLogisticState, setDataLogistic] = useState(null);
+  const [renderInicial, setRenderInicial ]=useState("hello word");
+ 
   
 
   /*  const urlApiJrTrafico = 'https://pokeapi.co/api/v2/pokemon/snorlax'; */
@@ -39,17 +40,45 @@ function App() {
    ) */
 
 
-    useEffect(() => {
+  
+
+   /* 
+   //rezgurdo de la funcion que ya tenemos para cargar los datos 
+
+   useEffect(() => {
       
      setDataLogistic(Data)
+
+     if(dataLogisticContext){
+      const destinos = dataLogisticContext.destinos;
+      const arrayIdsDestinos = destinos.map((destino, index )=>{
+        return Object.assign({id:destino.id, isSelected:false})
+      })
+
+      setArrayRenderizado(arrayIdsDestinos);
+     }
+
+    }, [Data]); */
+
+
+    useEffect(() => {
+      console.log("impresion desde el efecto " + Data);
+      const setData= async()=>{
+
+      }
+      
+     setDataLogistic(Data)
+     
     }, [Data]);
 
-
+ /*   const  updateRender=(infoupdate)=>{
+    setRenderInicial(infoupdate)
+   } */
 
     if(dataLogisticState!=null){
       return (
         <>
-          <dataLogisticContext.Provider value={dataLogisticState}>
+          <dataLogisticContext.Provider value={{dataLogisticState, renderInicial, setRenderInicial}}>
 
             {/* navbar bootstrap */}
             <Navbar></Navbar>
@@ -62,6 +91,7 @@ function App() {
                 </div>
                 <div className="col-10">
                   <div className="row"><h1>tabla</h1></div>
+                  <Pruebacheck></Pruebacheck>
                   <div className="row">
                     <div className="col-xl-6 col-12">
                       <div className="contenedordechart">
@@ -78,7 +108,6 @@ function App() {
                 </div>
               </div>
             </div>
-    
             {/* contenedor principal */}
     
     
@@ -89,49 +118,11 @@ function App() {
         </>
     
       );//fin del return 
-    }else{console.log("cargando los datos de la api")
     }
   
 }
 
 
-function apartadocodigo(){
- return(
-  <div className="container">
-  <div className="row">
-    <div className="col-2">
 
-    </div>
-    <div className="col-10">
-      <div>
-        <h1>graficas charts</h1>
-        <div>
-          <p className='m-2'><b>ejemplo #1 :</b> Grafico de lineas basicas</p>
-          <div className="bg-ligth mx-auto px-2 border border-2 border-primary container-chart">
-            {/*  <Graficalinea></Graficalinea> */}
-          </div>
-        </div>
-        <hr />
-        <div>
-          <p className='m-2'><b>ejemplo #1 :</b> Grafico de barras basicas</p>
-          <div className="bg-ligth mx-auto px-2 border border-2 border-primary  container-chart">
-            {/*   <GraphChart></GraphChart> */}
-          </div>
-        </div>
-        <hr />
-        <div>
-          <p className='m-2'><b>ejemplo #1 :</b> Grafico circular basicas</p>
-          <div className="bg-ligth mx-auto px-2 border border-2 border-primary container-chart">
-          </div>
-        </div>
-        <hr />
-      </div>
-
-
-    </div>
-  </div>
-</div>
- );
-}
 
 export default App;

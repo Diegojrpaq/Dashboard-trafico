@@ -2,3 +2,14 @@
   width: 450px;
   height: 230px;
 }
+
+.panel-dark{
+  background: darkgray;
+  color: white;
+  border-radius: .8rem;
+}
+
+.button-dark{
+  background: rgba(7, 170, 7, 0.829);
+  color : white;
+}

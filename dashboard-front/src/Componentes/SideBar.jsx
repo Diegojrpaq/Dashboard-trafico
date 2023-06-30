@@ -3,27 +3,15 @@ import { dataLogisticContext } from '../App';
 
 export default function SideBar() {
 
-  const Data = useContext(dataLogisticContext);
+  const {dataLogisticState, renderInicial, setRenderInicial} = useContext(dataLogisticContext);
 
-  console.log('cargando dattos')
-  
-
-
-
-  if (Data === undefined) {
-    console.log('ya recibimos' + Data)
+  const handleClick=(info)=>{
+    setRenderInicial(info);
+  }
     return (
       <>
-      </>
-    );
-  } else {
-    return (
-      <>
-        {
-          console.log('nunca llega ' + Data)
-        }
         <h1>SideBar</h1>
-        <div className="accordion" id="accordionExample">
+        <div className="accordion" id="accordionExample" >
           <div className="accordion-item">
             <h2 className="accordion-header" id="headingOne">
               <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">
@@ -31,26 +19,22 @@ export default function SideBar() {
               </button>
             </h2>
             <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
-
-
-              {
-                Data.Destinos.map((Destinos, index) => {
+              <div className="accordion-body">
+              {dataLogisticState.Destinos.map((Destino, index) => {
                   return (
-                    <div className="accordion-body" id={"checkNum"+Destinos.id} for={Destinos.id}>
-                      <div className="form-check">
-                        <input className="form-check-input" type="checkbox" value="" id={Destinos.id} />
-                        <label className="form-check-label" for={Destinos.id}>
-                          {Destinos.destino}
+                      <div className="form-check" key={Destino.id}>
+                        <input className="form-check-input" type="checkbox" value="" id={Destino.id}  />
+                        <label className="form-check-label" htmlFor={Destino.id}>
+                          {Destino.nombre}
                         </label>
                       </div>
-                    </div>
                   )
                 })
               }
 
 
 
+              </div>
             </div>
           </div>
           <div className="accordion-item">
@@ -68,5 +52,4 @@ export default function SideBar() {
         </div>
       </>
     );
-  }
 };

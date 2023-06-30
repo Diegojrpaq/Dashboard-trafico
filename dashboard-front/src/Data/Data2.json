@@ -4,7 +4,7 @@
     "Destinos": [
         {
             "id":"1",
-            "destino": "Guadalajara",
+            "nombre": "Guadalajara",
             "estado": "Jalisco",
             "total_mt3_distino": 279,
             "mt3_por_destino": {
@@ -47,7 +47,7 @@
         },
         {
             "id":"14",
-            "destino": "Leon",
+            "nombre": "Leon",
             "estado": "Guanajuato",
             "total_mt3_distino": 279,
             "mt3_por_destino": {
@@ -82,7 +82,7 @@
         },
         {
             "id":"31",
-            "destino": "Tala",
+            "nombre": "Tala",
             "estado": "Jalisco",
             "total_mt3_distino": 279,
             "mt3_por_destino": {
@@ -117,7 +117,7 @@
         },
         {
             "id":"29",
-            "destino": "Bucerias",
+            "nombre": "Bucerias",
             "estado": "Nayarit",
             "total_mt3_distino": 279,
             "mt3_por_destino": {
