@@ -10,23 +10,23 @@
             "mt3_vendidos_por_destino": [
                 {
                     "Destino": "Leon",
-                    "Mt3_vendido": 50
+                    "Mt3_vendido": 36
                 },
                 {
                     "Destino": "Guanajuato",
-                    "Mt3_vendido": 50
+                    "Mt3_vendido": 45
                 },
                 {
                     "Destino": "Queretaro",
-                    "Mt3_vendido": 50
+                    "Mt3_vendido": 24
                 },
                 {
                     "Destino": "Culiacan",
-                    "Mt3_vendido": 50
+                    "Mt3_vendido": 10
                 },
                 {
                     "Destino": "Colima ",
-                    "Mt3_vendido": 50
+                    "Mt3_vendido": 2
                 },
                 {
                     "Destino": "Bucerias",
@@ -41,23 +41,27 @@
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
-                            "Mt3_vendido": 50
+                            "Mt3_vendido": 0
                         },
                         {
                             "Destino": "Guanajuato",
-                            "Mt3_vendido": 50
+                            "Mt3_vendido": 24
                         },
                         {
                             "Destino": "Queretaro",
-                            "Mt3_vendido": 50
+                            "Mt3_vendido": 3
                         },
                         {
                             "Destino": "Culiacan",
-                            "Mt3_vendido": 50
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10 
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 50
+                            "Mt3_vendido": 9 
                         }
                     ],
                     "guias_hoy": [
@@ -87,11 +91,32 @@
                     "nombre": "Cruz del sur",
                     "prefijo": "GUA",
                     "total_mt3_sucursal": 236,
-                    "mt3_por_destino": {
-                        "_comentario": "Este arreglo representa todos los mt3 que vende esta sucursal por destino",
-                        "Leon": 16,
-                        "Morelia": 0
-                    },
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10 
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9 
+                        }
+                    ],
                     "guias_hoy": [
                         {
                             "numguia": "per-5160",
@@ -119,11 +144,32 @@
                     "nombre": "Perisur",
                     "prefijo": "GUA",
                     "total_mt3_sucursal": 236,
-                    "mt3_por_destino": {
-                        "_comentario": "Este arreglo representa todos los mt3 que vende esta sucursal por destino",
-                        "Leon": 16,
-                        "Morelia": 0
-                    },
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10 
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9 
+                        }
+                    ],
                     "guias_hoy": [
                         {
                             "numguia": "per-5160",
@@ -151,11 +197,32 @@
                     "nombre": "Gonzalez Gallo ",
                     "prefijo": "GUA",
                     "total_mt3_sucursal": 236,
-                    "mt3_por_destino": {
-                        "_comentario": "Este arreglo representa todos los mt3 que vende esta sucursal por destino",
-                        "Leon": 16,
-                        "Morelia": 0
-                    },
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10 
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9 
+                        }
+                    ],
                     "guias_hoy": [
                         {
                             "numguia": "per-5160",
@@ -183,11 +250,32 @@
                     "nombre": "Tesistan",
                     "prefijo": "GUA",
                     "total_mt3_sucursal": 236,
-                    "mt3_por_destino": {
-                        "_comentario": "Este arreglo representa todos los mt3 que vende esta sucursal por destino",
-                        "Leon": 16,
-                        "Morelia": 0
-                    },
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10 
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9 
+                        }
+                    ],
                     "guias_hoy": [
                         {
                             "numguia": "per-5160",

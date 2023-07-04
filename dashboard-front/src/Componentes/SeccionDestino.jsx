@@ -32,54 +32,58 @@ export default function SeccionDestino(props) {
 
 
 function Tabla(props) {
-  const Destino= props.Destino;
+  const Destino = props.Destino;
 
   return (
     <table className="table table-hover">
-    {/* Llenado de cabeceras */}
-    <thead>
+      {/* Llenado de cabeceras */}
+      <thead>
         <tr>
-          <th scope="col" key={"cabecera"}>Suma de M3 Sucursal X Destino</th>
+          <th scope="col" key={"cabecera"}>Suma de M3 Sucursal X Destino <h4>{"("+Destino.nombre+")"}</h4></th>
           {
-            Destino.mt3_vendidos_por_destino.map((Element, index)=>{
+            Destino.mt3_vendidos_por_destino.map((Element, index) => {
               return (
                 <th scope="col" key={index}>{Element.Destino}</th>
 
               )
-            
+
             })
           }
-          
+
         </tr>
       </thead>
 
-    {/* Llenado de cabeceras */}
+      {/* Llenado de cabeceras */}
 
 
       <tbody>
-          {
-            Destino.sucursales.map((Element, index)=>{
-              return( 
+        {
+          Destino.sucursales.map((Sucursal, index) => {
+            return (
               <tr key={index}>
-              <th scope="row" key={index}> {Element.nombre}</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+                <th scope="row" key={index}> {Sucursal.nombre}</th>
+                {
+                  Sucursal.mt3_por_destino.map((ventaxDestino, i) => {
+                    return (<td key={i}>{ventaxDestino.Mt3_vendido}</td>)
+                  })
+                }
+                
+
               </tr>
+            )
+          })
+        }
+        <tr>
+          <th scope='row'><h3>Total</h3> </th>
+          {
+            Destino.mt3_vendidos_por_destino.map((Element, index) => {
+              return (
+                <td key={index}>{Element.Mt3_vendido + " mt3"}</td>
               )
             })
           }
-          <tr>
-            <th scope='row'><h3>Total</h3> </th>
-            {
-              Destino.mt3_vendidos_por_destino.map((Element, index)=>{ 
-                return(
-                  <td key={index}>{Element.Mt3_vendido + " mt3"}</td>
-                )
-              })
-            }
-          </tr>
-         
+        </tr>
+
       </tbody>
     </table>
   );
@@ -89,7 +93,7 @@ function Tabla(props) {
 const buscarDestino = (arregloDestinos, idBuscado) => {
 
   for (let index = 0; index <= arregloDestinos.length; index++) {
-      if (arregloDestinos[index].id === idBuscado) {
+    if (arregloDestinos[index].id === idBuscado) {
       return arregloDestinos[index];
     }
   }
