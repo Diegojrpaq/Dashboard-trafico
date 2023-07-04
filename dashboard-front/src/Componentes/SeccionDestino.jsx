@@ -18,7 +18,7 @@ export default function SeccionDestino(props) {
         <div className="col-12">
           <Tabla Destino={infoDestino}></Tabla>
         </div>
-        <div className="col-10">{<GraphChart></GraphChart>}<h3>grafica de barras</h3></div>
+        <div className="col-10">{<GraphChart destino={infoDestino}></GraphChart>}<h3>grafica de barras</h3></div>
 
 
         {/* <div className="col-12 col-md-6 col-xl-4">{<GraphChart></GraphChart>}<h3>grafica de barras</h3></div>
