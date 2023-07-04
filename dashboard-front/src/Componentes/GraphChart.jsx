@@ -28,7 +28,7 @@ Chartjs.register(
 let color_chillout = 'rgb(160, 235, 22, 0.5)';
 let color_danger= 'rgb(217, 25, 0, .8)';
 
-let beneficios = [10, 5, 25 , 2 , 12];
+let beneficios = [10, 5, 10 , 2 , 12];
 let meses = ["Colli", "Cruz del Sur", "Perisur", "Tesistan", "Zapopan"];
 let myoptions = {
     
