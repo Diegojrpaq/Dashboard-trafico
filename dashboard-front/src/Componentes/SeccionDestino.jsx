@@ -18,9 +18,12 @@ export default function SeccionDestino(props) {
         <div className="col-12">
           <Tabla Destino={infoDestino}></Tabla>
         </div>
-        <div className="col-4">{<GraphChart></GraphChart>}<h3>grafica de barras</h3></div>
-        <div className="col-4"><Graficalinea></Graficalinea></div>
-        <div className="col-4"><Graficalinea></Graficalinea></div>
+        <div className="col-10">{<GraphChart></GraphChart>}<h3>grafica de barras</h3></div>
+
+
+        {/* <div className="col-12 col-md-6 col-xl-4">{<GraphChart></GraphChart>}<h3>grafica de barras</h3></div>
+        <div className="col-12 col-md-6 col-xl-4">{<GraphChart></GraphChart>}<h3>grafica de barras</h3></div>
+        <div className="col-12 col-md-6 col-xl-4">{<GraphChart></GraphChart>}<h3>grafica de barras</h3></div> */}
 
       </div>
     </>
@@ -39,7 +42,7 @@ function Tabla(props) {
       {/* Llenado de cabeceras */}
       <thead>
         <tr>
-          <th scope="col" key={"cabecera"}>Suma de M3 Sucursal X Destino <h4>{"("+Destino.nombre+")"}</h4></th>
+          <th scope="col" key={"cabecera"}>Suma de M3 Sucursal X Destino <h4>{"(" + Destino.nombre + ")"}</h4></th>
           {
             Destino.mt3_vendidos_por_destino.map((Element, index) => {
               return (
@@ -49,7 +52,7 @@ function Tabla(props) {
 
             })
           }
-
+          <th><h3>Total</h3></th>
         </tr>
       </thead>
 
@@ -67,12 +70,16 @@ function Tabla(props) {
                     return (<td key={i}>{ventaxDestino.Mt3_vendido}</td>)
                   })
                 }
-                
+                <th>{Sucursal.total_mt3_sucursal}</th>
+
 
               </tr>
             )
           })
         }
+
+
+
         <tr>
           <th scope='row'><h3>Total</h3> </th>
           {
@@ -82,8 +89,8 @@ function Tabla(props) {
               )
             })
           }
+          <td>{Destino.total_mt3_distino}</td>
         </tr>
-
       </tbody>
     </table>
   );

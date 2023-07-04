@@ -94,6 +94,7 @@ function App() {
 
 
                 <SeccionDestino idDestino={1} / >
+                <SeccionDestino idDestino={31} / >
 
 
                 <div className="row">
