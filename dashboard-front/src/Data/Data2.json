@@ -302,9 +302,9 @@
             ]
         },
         {
-            "id": 31,
-            "nombre": "Tala",
-            "estado": "Jalisco",
+            "id": 3,
+            "nombre": "Queretaro",
+            "estado": "Queretaro",
             "total_mt3_distino": 279,
             "mt3_vendidos_por_destino": [
                 {
@@ -336,7 +336,7 @@
                 {
                     "nombre": "Colli",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 25,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -389,7 +389,7 @@
                 {
                     "nombre": "Cruz del sur",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 23,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -442,7 +442,7 @@
                 {
                     "nombre": "Perisur",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 50,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -495,7 +495,7 @@
                 {
                     "nombre": "Gonzalez Gallo ",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 36,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -548,7 +548,7 @@
                 {
                     "nombre": "Tesistan",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 10,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -601,9 +601,9 @@
             ]
         },
         {
-            "id": 29,
-            "nombre": "Bucerias",
-            "estado": "Nayarit",
+            "id": 2,
+            "nombre": "Mexico",
+            "estado": "DF",
             "total_mt3_distino": 279,
             "mt3_vendidos_por_destino": [
                 {
@@ -635,7 +635,7 @@
                 {
                     "nombre": "Colli",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 25,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -688,7 +688,7 @@
                 {
                     "nombre": "Cruz del sur",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 23,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -741,7 +741,7 @@
                 {
                     "nombre": "Perisur",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 50,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -794,7 +794,7 @@
                 {
                     "nombre": "Gonzalez Gallo ",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 36,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
@@ -847,7 +847,7 @@
                 {
                     "nombre": "Tesistan",
                     "prefijo": "GUA",
-                    "total_mt3_sucursal": 236,
+                    "total_mt3_sucursal": 10,
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
