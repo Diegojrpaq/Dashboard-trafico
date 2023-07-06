@@ -1,7 +1,7 @@
 /* import Swal from 'sweetalert2' */
 import { createContext, useEffect, useState } from 'react';
 import Graficalinea from './Componentes/Graficalinea';
-import GraphChart from './Componentes/GraphChart';
+import GraficaMt3PorSucursal from './Componentes/GraficaMt3PorSucursal';
 import Navbar from './Componentes/Navbar';
 import SideBar from './Componentes/SideBar';
 import Data from './Data/Data2.json';
@@ -94,6 +94,8 @@ function App() {
 
 
                 <SeccionDestino idDestino={1} / >
+                <SeccionDestino idDestino={3} / >
+                <SeccionDestino idDestino={2} / >
                
 
 

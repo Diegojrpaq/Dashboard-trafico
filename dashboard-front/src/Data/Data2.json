@@ -41,15 +41,15 @@
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 2
                         },
                         {
                             "Destino": "Guanajuato",
-                            "Mt3_vendido": 24
+                            "Mt3_vendido": 2
                         },
                         {
                             "Destino": "Queretaro",
-                            "Mt3_vendido": 3
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Culiacan",
@@ -57,11 +57,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 15 
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 6 
                         }
                     ],
                     "guias_hoy": [
