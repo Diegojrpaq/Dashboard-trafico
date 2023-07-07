@@ -28,7 +28,7 @@ Chartjs.register(
 
 
 
-export default function GraficaMt3PorSucursal(props) {
+export default function GraficaRutas(props) {
     /* Variables de Estilo  */
     const color_chillout =
         [
@@ -58,45 +58,12 @@ export default function GraficaMt3PorSucursal(props) {
         ];
 
     
-    let color_danger = 'rgb(217, 25, 0, .8)';
 
     /* Variables de Estilo  */
 
     const Destino = props.destino;
-    let nameSucursales = [];
-    let totalVentaMt3 = [];
-
-    Destino.sucursales.map((Sucursal, index) => {
-        nameSucursales[index] = Sucursal.nombre;
-        totalVentaMt3[index] = Sucursal.total_mt3_sucursal;
-    })
-
-    const ConstruirEjeY = () => {
-        const dataSetConstruido = [];
-        let dataEjeY;
-        for (let i = 0; i < Destino.mt3_vendidos_por_destino.length; i++) {
-            dataEjeY = Destino.sucursales.map((Sucursal, index) => {
-                //console.log('Ciclo for: '+ i + ' ciclo map: '+index +', '+Sucursal.mt3_por_destino[i].Mt3_vendido)
-                return Sucursal.mt3_por_destino[i].Mt3_vendido
-            })
-            dataSetConstruido.push({
-                label: Destino.mt3_vendidos_por_destino[i].Destino,
-                data: dataEjeY,
-                backgroundColor: color_chillout[i],
-                borderColor: color_chillout_sin_transparencia[i],
-                borderWidth: 2
-            })
-          
-        }
-        return dataSetConstruido;
-    }
-
-
-    /* let maximoGrafica = Math.max(totalVentaMt3); */
-    let maximoEjeY =10+ Math.max(...totalVentaMt3);
-    ConstruirEjeY()
-
-    
+    const labels= ['Queretaro1','Queretaro2','Queretaro3']
+    console.log(labels)
     let myoptions = {
         responsive: true,
         animation: true,
@@ -107,10 +74,10 @@ export default function GraficaMt3PorSucursal(props) {
         },
         scales: {
             x: {
-                stacked: true,
+                stacked: false ,
                 beginAtZero: false, // Asegura que el eje X no empiece en 0
                 min: 0, // Establece el mínimo del eje X en 100
-                max: maximoEjeY,
+                max: 50,
                
             },
             y: {
@@ -123,8 +90,14 @@ export default function GraficaMt3PorSucursal(props) {
     };
 
     let data = {
-        labels: nameSucursales,
-        datasets: ConstruirEjeY()
+        labels: labels,
+        datasets: [{
+            label: 'Ronda_1',
+            data: [4,5,3],
+            backgroundColor: color_chillout[0],
+            borderColor: color_chillout_sin_transparencia[0],
+            borderWidth: 2
+        }]
     }
     return (
         <>

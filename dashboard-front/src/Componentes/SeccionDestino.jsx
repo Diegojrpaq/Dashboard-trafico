@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import GraficaMt3PorSucursal from './GraficaMt3PorSucursal';
 import Graficalinea from './Graficalinea';
 import { dataLogisticContext } from '../App';
+import GraficaRutas from './GraficaRutas';
 
 export default function SeccionDestino(props) {
 
@@ -18,11 +19,11 @@ export default function SeccionDestino(props) {
         <div className="col-12">
           <Tabla Destino={infoDestino}></Tabla>
         </div>
-        <div className="col-12 col-md-6 col-xl-4">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>grafica de barras</h3></div>
+        {/* <div className="col-12 col-md-6 col-xl-4">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>Venta en Tiempo Real</h3></div> */}
 
+        <div className="col-10">{<GraficaRutas destino={infoDestino}></GraficaRutas>}<h3>grafica Rutas</h3></div>
+        {/* <div className="col-12 col-md-10 col-xl-4">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>grafica de barras</h3></div> */}
 
-        <div className="col-12 col-md-6 col-xl-4">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>grafica de barras</h3></div>
-        <div className="col-12 col-md-6 col-xl-4">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>grafica de barras</h3></div>
 
       </div>
     </>
