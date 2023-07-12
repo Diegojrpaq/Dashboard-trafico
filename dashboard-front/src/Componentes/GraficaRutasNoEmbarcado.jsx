@@ -30,7 +30,7 @@ Chartjs.register(
 
 export default function GraficaRutas(props) {
     /* Variables de Estilo  */
-    const color_chillout =
+    /* const color_chillout =
         [
             'rgb(160, 235, 22, 0.5)',
             'rgb(255, 99, 132, 0.5)',
@@ -55,16 +55,16 @@ export default function GraficaRutas(props) {
             'rgb(153, 102, 255)',
             'rgb(160, 235, 22)',
             'rgb(201, 203, 207)'
-        ];
-      /*   const colorSinEmbarcar= 'rgb(230,1,15, .5)'
-        const colorSinEmbarcarBorder= 'rgb(230,1,15)' */
-        const colorEspacioLibre='rgb(175,203,246,.2)'
-        const colorEspacioLibreBorder='rgb(175,203,246)'
+        ]; */
+        const colorSinEmbarcar= 'rgb(230,1,15, .5)'
+        const colorSinEmbarcarBorder= 'rgb(230,1,15)'
+      /*   const colorEspacioLibre='rgb(175,203,246,.2)'
+        const colorEspacioLibreBorder='rgb(175,203,246)' */
 
     
 
     /* Variables de Estilo  */
-
+   
     const Destino = props.destino;
     const labels= ['Queretaro1','Queretaro2','Queretaro3']
     let myoptions = {
@@ -96,19 +96,12 @@ export default function GraficaRutas(props) {
         labels: labels,
         datasets: [
             {
-                label: "Free" ,
-                data: [27,25,26],
-                backgroundColor: colorEspacioLibre,
-                borderColor: colorEspacioLibreBorder,
+                label: "No Embarcado" ,
+                data: [10, 20, 30],
+                backgroundColor: colorSinEmbarcar,
+                borderColor: colorSinEmbarcarBorder,
                 borderWidth: 2
             },
-            {
-            label: 'Embarcado_Queretaro',
-            data: [8,10,9],
-            backgroundColor: color_chillout[0],
-            borderColor: color_chillout_sin_transparencia[0],
-            borderWidth: 2
-        },
            
        ]
     }

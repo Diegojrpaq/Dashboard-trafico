@@ -1,5 +1,6 @@
 
 import { Bar } from 'react-chartjs-2';
+import catalogoColores from '../Data/CatalogoColores.json'
 import React from 'react';
 import {
     Chart as Chartjs,
@@ -30,35 +31,11 @@ Chartjs.register(
 
 export default function GraficaMt3PorSucursal(props) {
     /* Variables de Estilo  */
-    const color_chillout =
-        [
-            'rgb(160, 235, 22, 0.5)',
-            'rgb(255, 99, 132, 0.5)',
-            'rgb(255, 159, 64, 0.5)',
-            'rgb(255, 205, 86, 0.5)',
-            'rgb(75, 192, 192, 0.5)',
-            'rgb(54, 162, 235, 0.5)',
-            'rgb(160, 235, 22, 0.5)',
-            'rgb(153, 102, 255, 0.5)',
-            'rgb(160, 235, 22, 0.5)',
-            'rgb(201, 203, 207, 0.5)'
-        ];
-        const color_chillout_sin_transparencia=
-        [
-            'rgb(160, 235, 22)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(160, 235, 22)',
-            'rgb(153, 102, 255)',
-            'rgb(160, 235, 22)',
-            'rgb(201, 203, 207)'
-        ];
-
+    const colores = catalogoColores.colores
+    const coloresBorder = catalogoColores.coloresBorder
+ 
+        
     
-    let color_danger = 'rgb(217, 25, 0, .8)';
 
     /* Variables de Estilo  */
 
@@ -75,15 +52,15 @@ export default function GraficaMt3PorSucursal(props) {
         const dataSetConstruido = [];
         let dataEjeY;
         for (let i = 0; i < Destino.mt3_vendidos_por_destino.length; i++) {
-            dataEjeY = Destino.sucursales.map((Sucursal, index) => {
-                //console.log('Ciclo for: '+ i + ' ciclo map: '+index +', '+Sucursal.mt3_por_destino[i].Mt3_vendido)
+            dataEjeY = Destino.sucursales.map((Sucursal) => {
+               
                 return Sucursal.mt3_por_destino[i].Mt3_vendido
             })
             dataSetConstruido.push({
                 label: Destino.mt3_vendidos_por_destino[i].Destino,
                 data: dataEjeY,
-                backgroundColor: color_chillout[i],
-                borderColor: color_chillout_sin_transparencia[i],
+                backgroundColor: colores[i].color,
+                borderColor: coloresBorder[i].color,
                 borderWidth: 2
             })
           
@@ -94,8 +71,8 @@ export default function GraficaMt3PorSucursal(props) {
 
     /* let maximoGrafica = Math.max(totalVentaMt3); */
     let maximoEjeY =10+ Math.max(...totalVentaMt3);
-    ConstruirEjeY()
-
+   
+    
     
     let myoptions = {
         responsive: true,
