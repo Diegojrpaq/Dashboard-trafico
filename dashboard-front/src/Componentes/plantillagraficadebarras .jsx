@@ -1,4 +1,4 @@
-import catalogoColores from '../Data/CatalogoColores.json'
+
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
 import {
@@ -29,21 +29,19 @@ Chartjs.register(
 
 
 export default function GraficaRutas(props) {
+    /* Variables de Estilo  */
    
-      /*  const colorSinEmbarcar= 'rgb(230,1,15, .5)'
+        const colorSinEmbarcar= 'rgb(230,1,15, .5)'
         const colorSinEmbarcarBorder= 'rgb(230,1,15)'
-      const colorEspacioLibre='rgb(175,203,246,.2)'
+      /*   const colorEspacioLibre='rgb(175,203,246,.2)'
         const colorEspacioLibreBorder='rgb(175,203,246)' */
-
-        const colores = catalogoColores.colores;
-        const coloresBorder = catalogoColores.coloresBorder;
 
     
 
-    /* Variables de Estilo  */
+    /* Variables de Estilo  fin */
    
     const Destino = props.destino;
-    const labels= ['colli','Cruz del sur','Perisur']
+    const labels= ['Queretaro1','Queretaro2','Queretaro3']
     let myoptions = {
         responsive: true,
         animation: true,
@@ -74,9 +72,9 @@ export default function GraficaRutas(props) {
         datasets: [
             {
                 label: "No Embarcado" ,
-                data: [10, 20, 10],
-                backgroundColor: colores[0].color,
-                borderColor: coloresBorder[0].color,
+                data: [10, 20, 30],
+                backgroundColor: colorSinEmbarcar,
+                borderColor: colorSinEmbarcarBorder,
                 borderWidth: 2
             },
            
