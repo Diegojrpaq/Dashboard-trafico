@@ -85,6 +85,25 @@
                             "mt3": 0,
                             "cantidad_envios": 10
                         }
+                    ],
+                    "viajes_activos": [
+                        {
+                            "id":51165,
+                            "nombre":"GDL-MTY",
+                            "fecha_registro":"2023-07-11"
+                        },
+                        {
+                            "id":51167,
+                            "nombre":"GDL-COL-MAN",
+                            "fecha_registro":"2023-07-11"
+
+                        },
+                        {
+                            "id":51168,
+                            "nombre":"GDL-MAZ-CUL-MCH-NAV-OBR",
+                            "fecha_registro":"2023-07-11"
+
+                        }
                     ]
                 },
                 {
@@ -138,7 +157,8 @@
                             "mt3": 0,
                             "cantidad_envios": 10
                         }
-                    ]
+                    ],
+                    "rutas_activas": null
                 },
                 {
                     "nombre": "Perisur",
