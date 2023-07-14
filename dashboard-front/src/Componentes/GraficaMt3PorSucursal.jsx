@@ -70,7 +70,7 @@ export default function GraficaMt3PorSucursal(props) {
 
 
     /* let maximoGrafica = Math.max(totalVentaMt3); */
-    let maximoEjeY =10+ Math.max(...totalVentaMt3);
+    let maximoEjeX =10+ Math.max(...totalVentaMt3);
    
     
     
@@ -87,7 +87,7 @@ export default function GraficaMt3PorSucursal(props) {
                 stacked: true,
                 beginAtZero: false, // Asegura que el eje X no empiece en 0
                 min: 0, // Establece el mínimo del eje X en 100
-                max: maximoEjeY,
+                max: maximoEjeX,
                
             },
             y: {

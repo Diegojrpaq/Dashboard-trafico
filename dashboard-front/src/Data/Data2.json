@@ -57,7 +57,7 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 1 
+                            "Mt3_vendido": 1
                         },
                         {
                             "Destino": "Bucerias",
@@ -72,8 +72,13 @@
                             "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
                             "peso": 0,
                             "mt3": 0,
-                            "cantidad_envios": 10
-                        }
+                            "cantidad_envios": 10 ,
+                            "embarcada": true,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                             
+                         }
                     ],
                     "guias_pasadas": [
                         {
@@ -84,25 +89,6 @@
                             "peso": 0,
                             "mt3": 0,
                             "cantidad_envios": 10
-                        }
-                    ],
-                    "viajes_activos": [
-                        {
-                            "id":51165,
-                            "nombre":"GDL-MTY",
-                            "fecha_registro":"2023-07-11"
-                        },
-                        {
-                            "id":51167,
-                            "nombre":"GDL-COL-MAN",
-                            "fecha_registro":"2023-07-11"
-
-                        },
-                        {
-                            "id":51168,
-                            "nombre":"GDL-MAZ-CUL-MCH-NAV-OBR",
-                            "fecha_registro":"2023-07-11"
-
                         }
                     ]
                 },
@@ -129,7 +115,7 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 0 
+                            "Mt3_vendido": 0
                         },
                         {
                             "Destino": "Bucerias",
@@ -144,8 +130,13 @@
                             "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
                             "peso": 0,
                             "mt3": 0,
-                            "cantidad_envios": 10
-                        }
+                            "cantidad_envios": 10 ,
+                            "embarcada": true ,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                            
+                         }
                     ],
                     "guias_pasadas": [
                         {
@@ -183,7 +174,7 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 0 
+                            "Mt3_vendido": 0
                         },
                         {
                             "Destino": "Bucerias",
@@ -198,8 +189,13 @@
                             "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
                             "peso": 0,
                             "mt3": 0,
-                            "cantidad_envios": 10
-                        }
+                            "cantidad_envios": 10 ,
+                            "embarcada": true ,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                            
+                         }
                     ],
                     "guias_pasadas": [
                         {
@@ -236,11 +232,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 0 
+                            "Mt3_vendido": 0
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -251,8 +247,13 @@
                             "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
                             "peso": 0,
                             "mt3": 0,
-                            "cantidad_envios": 10
-                        }
+                            "cantidad_envios": 10 ,
+                            "embarcada": true ,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                            
+                         }
                     ],
                     "guias_pasadas": [
                         {
@@ -304,8 +305,13 @@
                             "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
                             "peso": 0,
                             "mt3": 0,
-                            "cantidad_envios": 10
-                        }
+                            "cantidad_envios": 10 ,
+                            "embarcada": true ,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                            
+                         }
                     ],
                     "guias_pasadas": [
                         {
@@ -318,6 +324,32 @@
                             "cantidad_envios": 10
                         }
                     ]
+                }
+            ],
+            "viajes_activos": [
+                {
+                    "id": 51165,
+                    "nombre": "GDL-MTY",
+                    "fecha_registro": "2023-07-11",
+                    "unidad":"84",
+                    "capacidad_mt3": 10 ,
+                    "mt3_embarcados": 3
+                },
+                {
+                    "id": 51167,
+                    "nombre": "GDL-COL-MAN",
+                    "fecha_registro": "2023-07-11",
+                    "unidad":"",
+                    "capacidad_mt3": 30 ,
+                    "mt3_embarcados": 5
+                },
+                {
+                    "id": 51168,
+                    "nombre": "GDL-OBR",
+                    "fecha_registro": "2023-07-11",
+                    "unidad":"",
+                    "capacidad_mt3": 0,
+                    "mt3_embarcados": 0
                 }
             ]
         },
@@ -376,11 +408,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -429,11 +461,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -482,11 +514,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -535,11 +567,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -588,11 +620,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -618,7 +650,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "viajes_activos": null
         },
         {
             "id": 2,
@@ -675,11 +708,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -728,11 +761,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -781,11 +814,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -834,11 +867,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -887,11 +920,11 @@
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10 
+                            "Mt3_vendido": 10
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9 
+                            "Mt3_vendido": 9
                         }
                     ],
                     "guias_hoy": [
@@ -917,7 +950,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "viajes_activos": null
         }
     ]
 }

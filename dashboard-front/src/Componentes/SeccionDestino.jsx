@@ -13,16 +13,14 @@ export default function SeccionDestino(props) {
 
 
 
-
-
   return (
     <>
       <div className="row">
         <div className="col-12">
           <Tabla Destino={infoDestino}></Tabla>
         </div>
-        <div className="col-10">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>Venta en Tiempo Real</h3></div>
-
+        {/* <div className="col-10">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>Venta en Tiempo Real</h3></div> */}
+        <div className="col-11">{<GraficaRutas destino={infoDestino}></GraficaRutas>}<h3>Venta en Tiempo Real</h3></div>
         <div className="col-4">{<GraficaNoEmbarcadaXSucursal destino={infoDestino}></GraficaNoEmbarcadaXSucursal>}<h3>grafica sucursal no Embarcadas </h3></div>
         <div className="col-4">{<GraficaRutasNoEmbarcado destino={infoDestino}></GraficaRutasNoEmbarcado>}<h3>grafica Rutas  no Embarcadas </h3></div>
         <div className="col-4">{<GraficaRutas destino={infoDestino}></GraficaRutas>}<h3>grafica Rutas embarcadas</h3></div>

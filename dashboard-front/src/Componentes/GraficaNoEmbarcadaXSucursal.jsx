@@ -13,7 +13,6 @@ import {
     Filler,
 
 } from 'chart.js';
-import { dataLogisticContext } from '../App';
 
 Chartjs.register(
     CategoryScale,
@@ -29,11 +28,6 @@ Chartjs.register(
 
 
 export default function GraficaRutas(props) {
-   
-      /*  const colorSinEmbarcar= 'rgb(230,1,15, .5)'
-        const colorSinEmbarcarBorder= 'rgb(230,1,15)'
-      const colorEspacioLibre='rgb(175,203,246,.2)'
-        const colorEspacioLibreBorder='rgb(175,203,246)' */
 
         const colores = catalogoColores.colores;
         const coloresBorder = catalogoColores.coloresBorder;

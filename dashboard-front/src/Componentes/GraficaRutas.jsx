@@ -1,4 +1,4 @@
-
+import catalogoColores from '../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
 import {
@@ -30,95 +30,88 @@ Chartjs.register(
 
 export default function GraficaRutas(props) {
     /* Variables de Estilo  */
-    const color_chillout =
-        [
-            'rgb(160, 235, 22, 0.5)',
-            'rgb(255, 99, 132, 0.5)',
-            'rgb(255, 159, 64, 0.5)',
-            'rgb(255, 205, 86, 0.5)',
-            'rgb(75, 192, 192, 0.5)',
-            'rgb(54, 162, 235, 0.5)',
-            'rgb(160, 235, 22, 0.5)',
-            'rgb(153, 102, 255, 0.5)',
-            'rgb(160, 235, 22, 0.5)',
-            'rgb(201, 203, 207, 0.5)'
-        ];
-        const color_chillout_sin_transparencia=
-        [
-            'rgb(160, 235, 22)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 159, 64)',
-            'rgb(255, 205, 86)',
-            'rgb(75, 192, 192)',
-            'rgb(54, 162, 235)',
-            'rgb(160, 235, 22)',
-            'rgb(153, 102, 255)',
-            'rgb(160, 235, 22)',
-            'rgb(201, 203, 207)'
-        ];
-      /*   const colorSinEmbarcar= 'rgb(230,1,15, .5)'
-        const colorSinEmbarcarBorder= 'rgb(230,1,15)' */
-        const colorEspacioLibre='rgb(175,203,246,.2)'
-        const colorEspacioLibreBorder='rgb(175,203,246)'
+    const colorEspacioLibre = catalogoColores.colores[100].color;
+    const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
+    const colorChillout = catalogoColores.colores[101].color;
+    const colorChilloutBorder = catalogoColores.coloresBorder[101].color;
 
-    
 
     /* Variables de Estilo  */
+    const Destino= props.destino
 
-    const Destino = props.destino;
-    const labels= ['Queretaro1','Queretaro2','Queretaro3']
-    let myoptions = {
-        responsive: true,
-        animation: true,
-        plugins: {
-            legend: {
-                display: true
-            }
-        },
-        scales: {
-            x: {
-                stacked: true ,
-                beginAtZero: false, // Asegura que el eje X no empiece en 0
-                min: 0, // Establece el mínimo del eje X en 100
-                max: 50,
-               
-            },
-            y: {
-                stacked: true,
-                min: 0,
-                max: 100,
-            },
-        },
-        indexAxis: 'y',
-    };
+    if (Destino.viajes_activos !== null) {
+        
 
-    let data = {
-        labels: labels,
-        datasets: [
-            {
-                label: "Free" ,
-                data: [27,25,26],
-                backgroundColor: colorEspacioLibre,
-                borderColor: colorEspacioLibreBorder,
-                borderWidth: 2
+        const labelRutas=[];
+        const Cargasporruta=[];
+        const metros3Embarcados=[];
+        const metrosLibres=[]
+         Destino.viajes_activos.map((viaje, index)=>{
+            labelRutas[index]=viaje.nombre
+            Cargasporruta[index]=viaje.capacidad_mt3
+            metros3Embarcados[index]=viaje.mt3_embarcados
+            metrosLibres[index]=viaje.capacidad_mt3-viaje.mt3_embarcados
+        })
+         const maximoEjeX=10+ Math.max(...Cargasporruta)
+         console.log(metrosLibres)
+
+        let myoptions = {
+            responsive: true,
+            animation: true,
+            plugins: {
+                legend: {
+                    display: true
+                }
             },
-            {
-            label: 'Embarcado_Queretaro',
-            data: [8,10,9],
-            backgroundColor: color_chillout[0],
-            borderColor: color_chillout_sin_transparencia[0],
-            borderWidth: 2
-        },
-           
-       ]
+            scales: {
+                x: {
+                    stacked: true,
+                    beginAtZero: false, // Asegura que el eje X no empiece en 0
+                    min: 0, // Establece el mínimo del eje X en 100
+                    max: maximoEjeX,
+    
+                },
+                y: {
+                    stacked: true,
+                    min: 0,
+                    max: 100,
+                },
+            },
+            indexAxis: 'y',
+        };
+    
+        let data = {
+            labels: labelRutas,
+            datasets: [
+                {
+                    label: "Espacio libre del Contenedor",
+                    data: metrosLibres,
+                    backgroundColor: colorEspacioLibre,
+                    borderColor: colorEspacioLibreBorder,
+                    borderWidth: 2
+                },
+                {
+                    label: 'Embarcado_Queretaro',
+                    data: metros3Embarcados,
+                    backgroundColor: colorChillout,
+                    borderColor: colorChilloutBorder,
+                    borderWidth: 2
+                },
+    
+            ]
+        }
+
+
+        return (
+            <>
+                <Bar
+                    data={data}
+                    options={myoptions}
+                />
+
+            </>
+        )
+    } else {
+        return <h4>No existen viajes el dia de hoy y activos para este Origen, porfavor activa un viaje</h4>
     }
-    return (
-        <>
-            <Bar
-                data={data}
-                options={myoptions}
-            />
-
-        </>
-    )
 }

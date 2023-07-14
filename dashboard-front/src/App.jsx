@@ -94,8 +94,8 @@ function App() {
 
 
                 <SeccionDestino idDestino={1} / >
-              {/*   <SeccionDestino idDestino={3} / >
-                <SeccionDestino idDestino={2} / > */}
+                <SeccionDestino idDestino={3} / >
+                <SeccionDestino idDestino={2} / >
                
 
 
