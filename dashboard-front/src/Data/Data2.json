@@ -13,7 +13,7 @@
                     "Mt3_vendido": 15
                 },
                 {
-                    "Destino": "Guanajuato",
+                    "Destino": "Celaya",
                     "Mt3_vendido": 36
                 },
                 {
@@ -44,7 +44,7 @@
                             "Mt3_vendido": 2
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 5
                         },
                         {
@@ -76,7 +76,7 @@
                             "Mt3_vendido": 3
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 15
                         },
                         {
@@ -108,7 +108,7 @@
                             "Mt3_vendido": 10
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 6
                         },
                         {
@@ -139,7 +139,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 3
                         },
                         {
@@ -197,7 +197,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 7
                         },
                         {
@@ -229,15 +229,15 @@
                     "mt3_embarcados": 8,
                     "--comentario":"esta seccion al crear la consulta debemos contemplar el orden de escaneo para simular como se suben al camion", 
                     "mt3_embarcados_por_destino": [{
-                        "Destino":"Leon",
+                        "name":"Leon",
                         "mt3": 5
                     },
                     {
-                        "Destino":"MONTERREY",
+                        "name":"MONTERREY",
                         "mt3": 2
                     },
                     {
-                        "Destino":"AGUASCALIENTES",
+                        "name":"AGUASCALIENTES",
                         "mt3": 1
                     }
                 ]
@@ -1040,7 +1040,7 @@
                     "Mt3_vendido": 36
                 },
                 {
-                    "Destino": "Guanajuato",
+                    "Destino": "Celaya",
                     "Mt3_vendido": 45
                 },
                 {
@@ -1071,7 +1071,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1124,7 +1124,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1177,7 +1177,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1230,7 +1230,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1283,7 +1283,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1340,7 +1340,7 @@
                     "Mt3_vendido": 36
                 },
                 {
-                    "Destino": "Guanajuato",
+                    "Destino": "Celaya",
                     "Mt3_vendido": 45
                 },
                 {
@@ -1371,7 +1371,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1408,7 +1408,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1461,7 +1461,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1514,7 +1514,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {
@@ -1567,7 +1567,7 @@
                             "Mt3_vendido": 0
                         },
                         {
-                            "Destino": "Guanajuato",
+                            "Destino": "Celaya",
                             "Mt3_vendido": 24
                         },
                         {

@@ -47,7 +47,7 @@ export default function GraficaRutas(props) {
         const metrosLibres = []
         let cantiMaydeViajesActivos = 0;
         Destino.viajes_activos.map((viaje, index) => {
-            labelRutas[index] = viaje.nombre
+            labelRutas[index] = viaje.nombre+ "<br/>" + viaje.capacidad_mt3+" Mt3";
             capacidadesCarga[index] = viaje.capacidad_mt3
             metrosLibres[index] = viaje.capacidad_mt3 - viaje.mt3_embarcados
             /*este if es para sacar en la vuelta la posicion con mas elementos */
@@ -80,6 +80,7 @@ export default function GraficaRutas(props) {
 
         const ConstruirEjeY = () => {
             const dataSetConstruido = [];
+            const labelsDestinos=[];
             let dataEjeY = [];
             dataSetConstruido.push({
                 label: "Espacio libre del Contenedor",
@@ -97,16 +98,15 @@ export default function GraficaRutas(props) {
                        return 0
                     }
                 })
-
+                /* console.log(Destino.viajes_activos[1].mt3_embarcados_por_destino[i].Destino) */
                 dataSetConstruido.push({
-                label: "leon"+i,
+                label: Destino.viajes_activos[0].mt3_embarcados_por_destino[i].name ,
                 data: dataEjeY,
-                backgroundColor: colores[101].color,
-                borderColor: coloresBorder[100].color,
+                backgroundColor: colores[i].color,
+                borderColor: coloresBorder[i].color,
                 borderWidth: 2
                 })
                 
-                console.log(dataSetConstruido)
             }
             return dataSetConstruido;
 
