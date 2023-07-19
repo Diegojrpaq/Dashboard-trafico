@@ -1,0 +1,941 @@
+{
+    "status": 200,
+    "descripcion": "ok",
+    "Destinos": [
+        {
+            "id": 1,
+            "nombre": "Guadalajara",
+            "estado": "Jalisco",
+            "total_mt3_distino": 112,
+            "mt3_vendidos_por_destino": [
+                {
+                    "Destino": "Leon",
+                    "Mt3_vendido": 15
+                },
+                {
+                    "Destino": "Guanajuato",
+                    "Mt3_vendido": 36
+                },
+                {
+                    "Destino": "Queretaro",
+                    "Mt3_vendido": 24
+                },
+                {
+                    "Destino": "Culiacan",
+                    "Mt3_vendido": 10
+                },
+                {
+                    "Destino": "Colima ",
+                    "Mt3_vendido": 2
+                },
+                {
+                    "Destino": "Bucerias",
+                    "Mt3_vendido": 25
+                }
+            ],
+            "sucursales": [
+                {
+                    "nombre": "Colli",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 17,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 2
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 5
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 4
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 1
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 5
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10 ,
+                            "embarcada": true,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                             
+                         }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Cruz del sur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 23,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 15
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 2
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 0
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10 ,
+                            "embarcada": true ,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                            
+                         }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "rutas_activas": null
+                },
+                {
+                    "nombre": "Perisur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 33,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 6
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 6
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 11
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10 ,
+                            "embarcada": true ,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                            
+                         }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 20,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10 ,
+                            "embarcada": true ,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                            
+                         }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tesistan",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 19,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 7
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 11
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 1
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 0
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10 ,
+                            "embarcada": true ,
+                            "viaje_tipo": "Foraneo",
+                            "viaje_id":"51165", 
+                            "ubicacion_id": 1
+                            
+                         }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                }
+            ],
+            "viajes_activos": [
+                {
+                    "id": 51165,
+                    "nombre": "GDL-MTY",
+                    "fecha_registro": "2023-07-11",
+                    "unidad":"84",
+                    "capacidad_mt3": 10 ,
+                    "mt3_embarcados": 3
+                },
+                {
+                    "id": 51167,
+                    "nombre": "GDL-COL-MAN",
+                    "fecha_registro": "2023-07-11",
+                    "unidad":"",
+                    "capacidad_mt3": 30 ,
+                    "mt3_embarcados": 5
+                },
+                {
+                    "id": 51168,
+                    "nombre": "GDL-OBR",
+                    "fecha_registro": "2023-07-11",
+                    "unidad":"",
+                    "capacidad_mt3": 0,
+                    "mt3_embarcados": 0
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "nombre": "Queretaro",
+            "estado": "Queretaro",
+            "total_mt3_distino": 279,
+            "mt3_vendidos_por_destino": [
+                {
+                    "Destino": "Leon",
+                    "Mt3_vendido": 36
+                },
+                {
+                    "Destino": "Guanajuato",
+                    "Mt3_vendido": 45
+                },
+                {
+                    "Destino": "Queretaro",
+                    "Mt3_vendido": 24
+                },
+                {
+                    "Destino": "Culiacan",
+                    "Mt3_vendido": 10
+                },
+                {
+                    "Destino": "Colima ",
+                    "Mt3_vendido": 2
+                },
+                {
+                    "Destino": "Bucerias",
+                    "Mt3_vendido": 50
+                }
+            ],
+            "sucursales": [
+                {
+                    "nombre": "Colli",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 25,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Cruz del sur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 23,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Perisur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 50,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 36,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tesistan",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 10,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                }
+            ],
+            "viajes_activos": null
+        },
+        {
+            "id": 2,
+            "nombre": "Mexico",
+            "estado": "DF",
+            "total_mt3_distino": 279,
+            "mt3_vendidos_por_destino": [
+                {
+                    "Destino": "Leon",
+                    "Mt3_vendido": 36
+                },
+                {
+                    "Destino": "Guanajuato",
+                    "Mt3_vendido": 45
+                },
+                {
+                    "Destino": "Queretaro",
+                    "Mt3_vendido": 24
+                },
+                {
+                    "Destino": "Culiacan",
+                    "Mt3_vendido": 10
+                },
+                {
+                    "Destino": "Colima ",
+                    "Mt3_vendido": 2
+                },
+                {
+                    "Destino": "Bucerias",
+                    "Mt3_vendido": 50
+                }
+            ],
+            "sucursales": [
+                {
+                    "nombre": "Colli",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 25,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                       
+                    ],
+                    "guias_pasadas": [
+                  
+                    ]
+                },
+                {
+                    "nombre": "Cruz del sur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 23,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Perisur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 50,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 36,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tesistan",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 10,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0
+                        },
+                        {
+                            "Destino": "Guanajuato",
+                            "Mt3_vendido": 24
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 10
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9
+                        }
+                    ],
+                    "guias_hoy": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ],
+                    "guias_pasadas": [
+                        {
+                            "numguia": "per-5160",
+                            "status": "2",
+                            "tipo": "paqueteria",
+                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
+                            "peso": 0,
+                            "mt3": 0,
+                            "cantidad_envios": 10
+                        }
+                    ]
+                }
+            ],
+            "viajes_activos": null
+        }
+    ]
+}
