@@ -5,6 +5,7 @@ import { dataLogisticContext } from '../App';
 import GraficaRutas from './GraficaRutas';
 import GraficaRutasNoEmbarcado from './GraficaRutasNoEmbarcado';
 import GraficaNoEmbarcadaXSucursal from './GraficaNoEmbarcadaXSucursal';
+import GraficaCargasPorLlegar from './GraficaCargasPorLLegar';
 
 export default function SeccionDestino(props) {
 
@@ -19,12 +20,14 @@ export default function SeccionDestino(props) {
         <div className="col-12">
           <Tabla Destino={infoDestino}></Tabla>
         </div>
-       {/* <div className="col-10">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>Venta en Tiempo Real</h3></div>*/}
-        <div className="col-6">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>grafica Rutas embarcadas</h3></div>
-        <div className="col-6">{<GraficaRutas destino={infoDestino}></GraficaRutas>}<h3>Venta en Tiempo Real</h3></div>
+
+
+        <div className="col-12">{<GraficaCargasPorLlegar destino={infoDestino}></GraficaCargasPorLlegar>}<h3>Viajes por llegar</h3></div>
+        <div className="col-6">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>Venta en Tiempo Real</h3></div>
+        <div className="col-6">{<GraficaRutas destino={infoDestino}></GraficaRutas>}<h3>grafica Rutas embarcadas</h3></div>
         <div className="col-6">{<GraficaNoEmbarcadaXSucursal destino={infoDestino}></GraficaNoEmbarcadaXSucursal>}<h3>grafica sucursal no Embarcadas </h3></div>
-        <div className="col-6">{<GraficaRutasNoEmbarcado destino={infoDestino}></GraficaRutasNoEmbarcado>}<h3>grafica Rutas  no Embarcadas </h3></div>
-        {/* <div className="col-12 col-md-10 col-xl-4">{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}<h3>grafica de barras</h3></div> */}
+        {/* <div className="col-6">{<GraficaRutasNoEmbarcado destino={infoDestino}></GraficaRutasNoEmbarcado>}<h3>grafica Rutas  no Embarcadas </h3></div> */}
+        
 
 
       </div>

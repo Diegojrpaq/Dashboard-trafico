@@ -47,7 +47,7 @@ export default function GraficaRutas(props) {
         const metrosLibres = []
         let cantiMaydeViajesActivos = 0;
         Destino.viajes_activos.map((viaje, index) => {
-            labelRutas[index] = viaje.nombre+ "<br/>" + viaje.capacidad_mt3+" Mt3";
+            labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3";
             capacidadesCarga[index] = viaje.capacidad_mt3
             metrosLibres[index] = viaje.capacidad_mt3 - viaje.mt3_embarcados
             /*este if es para sacar en la vuelta la posicion con mas elementos */
@@ -57,27 +57,7 @@ export default function GraficaRutas(props) {
                 }
             }
         })
-        /* 
-         const ConstruirEjeY = () => {
-                const dataSetConstruido = [];
-                let dataEjeY;
-                for (let i = 0; i < Destino.mt3_vendidos_por_destino.length; i++) {
-                    dataEjeY = Destino.sucursales.map((Sucursal) => {
-                       
-                        return Sucursal.mt3_por_destino[i].Mt3_vendido
-                    })
-                    dataSetConstruido.push({
-                        label: Destino.mt3_vendidos_por_destino[i].Destino,
-                        data: dataEjeY,
-                        backgroundColor: colores[i].color,
-                        borderColor: coloresBorder[i].color,
-                        borderWidth: 2
-                    })
-                  
-                }
-                return dataSetConstruido;
-            } */
-
+    
         const ConstruirEjeY = () => {
             const dataSetConstruido = [];
             const labelsDestinos=[];

@@ -1,5 +1,6 @@
-import catalogoColores from '../Data/CatalogoColores.json'
+
 import { Bar } from 'react-chartjs-2';
+import catalogoColores from '../Data/CatalogoColores.json'
 import React from 'react';
 import {
     Chart as Chartjs,
@@ -13,6 +14,7 @@ import {
     Filler,
 
 } from 'chart.js';
+import { dataLogisticContext } from '../App';
 
 Chartjs.register(
     CategoryScale,
@@ -27,17 +29,49 @@ Chartjs.register(
 
 
 
-export default function GraficaRutas(props) {
-
-        const colores = catalogoColores.colores;
-        const coloresBorder = catalogoColores.coloresBorder;
-
+export default function GraficaMt3PorSucursal(props) {
+    /* Variables de Estilo  */
+    const colores = catalogoColores.colores
+    const coloresBorder = catalogoColores.coloresBorder
+ 
+        
     
 
     /* Variables de Estilo  */
-   
+
     const Destino = props.destino;
-    const labels= ['colli','Cruz del sur','Perisur']
+    let nameSucursales = [];
+    let totalVentaMt3 = [];
+
+    Destino.sucursales.map((Sucursal, index) => {
+        nameSucursales[index] = Sucursal.nombre;
+        totalVentaMt3[index] = Sucursal.total_mt3_sucursal;
+    })
+
+    const ConstruirEjeY = () => {
+        const dataSetConstruido = [];
+        let dataEjeY;
+        for (let i = 0; i < Destino.mt3_vendidos_por_destino.length; i++) {
+            dataEjeY = Destino.sucursales.map((Sucursal) => {
+               
+                return Sucursal.mt3_por_destino[i].Mt3_en_piso
+            })
+            dataSetConstruido.push({
+                label: Destino.mt3_vendidos_por_destino[i].Destino,
+                data: dataEjeY,
+                backgroundColor: colores[i].color,
+                borderColor: coloresBorder[102].color,
+                borderWidth: 1
+            })
+          
+        }
+        return dataSetConstruido;
+    }
+
+    let maximoEjeX =10+ Math.max(...totalVentaMt3);
+   
+    
+    
     let myoptions = {
         responsive: true,
         animation: true,
@@ -48,10 +82,10 @@ export default function GraficaRutas(props) {
         },
         scales: {
             x: {
-                stacked: true ,
+                stacked: true,
                 beginAtZero: false, // Asegura que el eje X no empiece en 0
                 min: 0, // Establece el mínimo del eje X en 100
-                max: 50,
+                max: maximoEjeX,
                
             },
             y: {
@@ -64,17 +98,8 @@ export default function GraficaRutas(props) {
     };
 
     let data = {
-        labels: labels,
-        datasets: [
-            {
-                label: "No Embarcado" ,
-                data: [10, 20, 10],
-                backgroundColor: colores[0].color,
-                borderColor: coloresBorder[0].color,
-                borderWidth: 2
-            },
-           
-       ]
+        labels: nameSucursales,
+        datasets: ConstruirEjeY()
     }
     return (
         <>
@@ -86,3 +111,20 @@ export default function GraficaRutas(props) {
         </>
     )
 }
+
+
+
+/* <?php
+define('GLPI_CONFIG_DIR', './etc/glpi');
+require './etc/glpi/local_define.php';
+if(file_exists('/etc/glpi/config_db.php')){
+echo "existo";
+}else{
+echo "no existo";
+}
+echo "console.log('estamos adentro del archivo de configuracion')";
+echo GLPI_CONFIG_DIR;
+if (file_exists(GLPI_CONFIG_DIR . '/local_define.php')) {
+   
+echo "console.log('estamos adentro ')";
+} */

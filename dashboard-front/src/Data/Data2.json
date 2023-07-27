@@ -41,27 +41,33 @@
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
-                            "Mt3_vendido": 2
+                            "Mt3_vendido": 2,
+                            "Mt3_en_piso": 2
                         },
                         {
                             "Destino": "Celaya",
-                            "Mt3_vendido": 5
+                            "Mt3_vendido": 5,
+                            "Mt3_en_piso": 5
                         },
                         {
                             "Destino": "Queretaro",
-                            "Mt3_vendido": 4
+                            "Mt3_vendido": 4,
+                            "Mt3_en_piso": 4
                         },
                         {
                             "Destino": "Culiacan",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 1
+                            "Mt3_vendido": 1,
+                            "Mt3_en_piso": 1
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 5
+                            "Mt3_vendido": 5,
+                            "Mt3_en_piso": 5
                         }
                     ]
                  
@@ -73,27 +79,33 @@
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
-                            "Mt3_vendido": 3
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
                         },
                         {
                             "Destino": "Celaya",
-                            "Mt3_vendido": 15
+                            "Mt3_vendido": 15,
+                            "Mt3_en_piso": 15
                         },
                         {
                             "Destino": "Queretaro",
-                            "Mt3_vendido": 3
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
                         },
                         {
                             "Destino": "Culiacan",
-                            "Mt3_vendido": 2
+                            "Mt3_vendido": 2,
+                            "Mt3_en_piso": 2
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         }
                     ],
                     "rutas_activas": null
@@ -105,27 +117,33 @@
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
-                            "Mt3_vendido": 10
+                            "Mt3_vendido": 10,
+                            "Mt3_en_piso": 10
                         },
                         {
                             "Destino": "Celaya",
-                            "Mt3_vendido": 6
+                            "Mt3_vendido": 6,
+                            "Mt3_en_piso": 6
                         },
                         {
                             "Destino": "Queretaro",
-                            "Mt3_vendido": 6
+                            "Mt3_vendido": 6,
+                            "Mt3_en_piso": 6
                         },
                         {
                             "Destino": "Culiacan",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 11
+                            "Mt3_vendido": 11,
+                            "Mt3_en_piso": 11
                         }
                     ]
                 },
@@ -136,54 +154,33 @@
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Celaya",
-                            "Mt3_vendido": 3
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
                         },
                         {
                             "Destino": "Queretaro",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Culiacan",
-                            "Mt3_vendido": 8
+                            "Mt3_vendido": 8,
+                            "Mt3_en_piso": 8
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9
-                        }
-                    ],
-                    "guias_hoy": [
-                        {
-                            "numguia": "per-5160",
-                            "status": "2",
-                            "tipo": "paqueteria",
-                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
-                            "peso": 0,
-                            "mt3": 0,
-                            "cantidad_envios": 10 ,
-                            "embarcada": true ,
-                            "viaje_tipo": "Foraneo",
-                            "viaje_id":"51165", 
-                            "ubicacion_id": 1
-                            
-                         }
-                    ],
-                    "guias_pasadas": [
-                        {
-                            "numguia": "per-5160",
-                            "status": "2",
-                            "tipo": "paqueteria",
-                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
-                            "peso": 0,
-                            "mt3": 0,
-                            "cantidad_envios": 10
+                            "Mt3_vendido": 9,
+                            "Mt3_en_piso": 9
                         }
                     ]
                 },
@@ -194,27 +191,33 @@
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Celaya",
-                            "Mt3_vendido": 7
+                            "Mt3_vendido": 7,
+                            "Mt3_en_piso": 7
                         },
                         {
                             "Destino": "Queretaro",
-                            "Mt3_vendido": 11
+                            "Mt3_vendido": 11,
+                            "Mt3_en_piso": 11
                         },
                         {
                             "Destino": "Culiacan",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 1
+                            "Mt3_vendido": 1,
+                            "Mt3_en_piso": 1
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         }
                     ]
                 }
@@ -224,808 +227,213 @@
                     "id": 51165,
                     "nombre": "GDL-MTY",
                     "fecha_registro": "2023-07-11",
-                    "unidad":"84",
-                    "capacidad_mt3": 20 ,
+                    "unidad": "84",
+                    "capacidad_mt3": 20,
                     "mt3_embarcados": 8,
-                    "--comentario":"esta seccion al crear la consulta debemos contemplar el orden de escaneo para simular como se suben al camion", 
-                    "mt3_embarcados_por_destino": [{
-                        "name":"Leon",
-                        "mt3": 5
-                    },
-                    {
-                        "name":"MONTERREY",
-                        "mt3": 2
-                    },
-                    {
-                        "name":"AGUASCALIENTES",
-                        "mt3": 1
-                    }
-                ]
+                    "--comentario": "esta seccion al crear la consulta debemos contemplar el orden de escaneo para simular como se suben al camion",
+                    "mt3_embarcados_por_destino": [
+                        {
+                            "name": "Leon",
+                            "mt3": 5
+                        },
+                        {
+                            "name": "MONTERREY",
+                            "mt3": 2
+                        },
+                        {
+                            "name": "AGUASCALIENTES",
+                            "mt3": 1
+                        }
+                    ]
                 },
                 {
                     "id": 51167,
                     "nombre": "GDL-COL-MAN",
                     "fecha_registro": "2023-07-11",
-                    "unidad":"",
-                    "capacidad_mt3": 30 ,
+                    "unidad": "",
+                    "capacidad_mt3": 30,
                     "mt3_embarcados": 0,
-                    "mt3_embarcados_por_destino":null
+                    "mt3_embarcados_por_destino": null
                 },
                 {
                     "id": 51168,
                     "nombre": "GDL-OBR",
                     "fecha_registro": "2023-07-11",
-                    "unidad":"",
+                    "unidad": "",
                     "capacidad_mt3": 0,
                     "mt3_embarcados": 0,
                     "mt3_embarcados_por_destino": null
                 }
             ],
-            "catalogo_Guias":[
+            "viajes_por_llegar": [
                 {
-                    "num_guia" : "CLI-7854",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 17,
-                    "Destino" : "MONTERREY",
-                    "cotizacion_principal_id" : 1339194,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 57,
-                    "Sucursal_origen" : "Colli",
-                    "sucursal_destino_id" : 32,
-                    "sucursal_destino" : "Monterrey  (Cedis)"
+                    "id" : 51688,
+                    "nombre" : "VTA-BUC-TPC",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "PUERTO VALLARTA",
+                    "id_Destino_origen" : 20,
+                    "Destino_termino" : "TEPIC",
+                    "id_Destino_termino" : 24,
+                    "Ubicacion_actual" : "PUERTO VALLARTA",
+                    "IdUbicacionActual" : 20,
+                    "orden_parada" : "29;24;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;21;22;23;25;26;27;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";20;29;24;1;",
+                    "completa" : ";20;29;24;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;21;22;23;25;26;27;32;33;34;35;36;37;38;39;40;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "R19",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
-                    "num_guia" : "CLI-7855",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339201,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 57,
-                    "Sucursal_origen" : "Colli",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
+                    "id" : 51677,
+                    "nombre" : "QRO-GDL 1",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "QUERETARO",
+                    "id_Destino_origen" : 3,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "1;29;7;8;10;11;12;13;16;15;19;20;24;32;34;33;17;41;22",
+                    "orden_parada_directa" : ";3;1;",
+                    "completa" : ";3;1;29;7;8;10;11;12;13;16;15;19;20;24;32;34;33;17;41;22;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR33",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino":null
                 },
                 {
-                    "num_guia" : "GUA-388359",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 6,
-                    "Destino" : "AGUASCALIENTES",
-                    "cotizacion_principal_id" : 1339182,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 18,
-                    "sucursal_destino" : "Aguascalientes"
+                    "id" : 51678,
+                    "nombre" : "QRO-GUA-2",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "QUERETARO",
+                    "id_Destino_origen" : 3,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "1;13;12;7;19;16;11;10;8;15;24;29;20;17;22;32;33;34;41;42",
+                    "orden_parada_directa" : ";3;1;",
+                    "completa" : ";3;1;13;12;7;19;16;11;10;8;15;24;29;20;17;22;32;33;34;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR28",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino":
+                    [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
-                    "num_guia" : "GUA-388360",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 13,
-                    "Destino" : "HERMOSILLO",
-                    "cotizacion_principal_id" : 1339183,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 24,
-                    "sucursal_destino" : "Hermosillo"
+                    "id" : 51689,
+                    "nombre" : "MANZ-COL-GUA",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "MANZANILLO",
+                    "id_Destino_origen" : 34,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "MANZANILLO",
+                    "IdUbicacionActual" : 34,
+                    "orden_parada" : "32;33;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";34;32;1;",
+                    "completa" : ";34;32;33;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;35;36;37;38;39;40;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "CR-111",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
-                    "num_guia" : "GUA-388350",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 13,
-                    "Destino" : "HERMOSILLO",
-                    "cotizacion_principal_id" : 1339151,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 24,
-                    "sucursal_destino" : "Hermosillo"
-                },
-                {
-                    "num_guia" : "GUA-388347",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 5,
-                    "Destino" : "IRAPUATO",
-                    "cotizacion_principal_id" : 1339124,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 25,
-                    "sucursal_destino" : "Irapuato"
-                },
-                {
-                    "num_guia" : "GUA-388366",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 14,
-                    "Destino" : "LEON",
-                    "cotizacion_principal_id" : 1339235,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 27,
-                    "sucursal_destino" : "León"
-                },
-                {
-                    "num_guia" : "GUA-388356",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 14,
-                    "Destino" : "LEON",
-                    "cotizacion_principal_id" : 1339150,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 27,
-                    "sucursal_destino" : "León"
-                },
-                {
-                    "num_guia" : "GUA-388355",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 14,
-                    "Destino" : "LEON",
-                    "cotizacion_principal_id" : 1339165,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 27,
-                    "sucursal_destino" : "León"
-                },
-                {
-                    "num_guia" : "GUA-388351",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 14,
-                    "Destino" : "LEON",
-                    "cotizacion_principal_id" : 1339153,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 27,
-                    "sucursal_destino" : "León"
-                },
-                {
-                    "num_guia" : "GUA-388335",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 14,
-                    "Destino" : "LEON",
-                    "cotizacion_principal_id" : 1339061,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 27,
-                    "sucursal_destino" : "León"
-                },
-                {
-                    "num_guia" : "GUA-388352",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 17,
-                    "Destino" : "MONTERREY",
-                    "cotizacion_principal_id" : 1339156,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 32,
-                    "sucursal_destino" : "Monterrey  (Cedis)"
-                },
-                {
-                    "num_guia" : "GUA-388353",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 21,
-                    "Destino" : "PUEBLA ",
-                    "cotizacion_principal_id" : 1339161,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 37,
-                    "sucursal_destino" : "Puebla"
-                },
-                {
-                    "num_guia" : "GUA-388349",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 21,
-                    "Destino" : "PUEBLA ",
-                    "cotizacion_principal_id" : 1339145,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 37,
-                    "sucursal_destino" : "Puebla"
-                },
-                {
-                    "num_guia" : "GUA-388348",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 21,
-                    "Destino" : "PUEBLA ",
-                    "cotizacion_principal_id" : 1339138,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 37,
-                    "sucursal_destino" : "Puebla"
-                },
-                {
-                    "num_guia" : "GUA-388363",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 3,
-                    "Destino" : "QUERETARO",
-                    "cotizacion_principal_id" : 1339202,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 14,
-                    "sucursal_destino" : "Queretaro"
-                },
-                {
-                    "num_guia" : "GUA-388358",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 3,
-                    "Destino" : "QUERETARO",
-                    "cotizacion_principal_id" : 1339173,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 14,
-                    "sucursal_destino" : "Queretaro"
-                },
-                {
-                    "num_guia" : "GUA-388336",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 3,
-                    "Destino" : "QUERETARO",
-                    "cotizacion_principal_id" : 1339064,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 14,
-                    "sucursal_destino" : "Queretaro"
-                },
-                {
-                    "num_guia" : "GUA-388361",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 24,
-                    "Destino" : "TEPIC",
-                    "cotizacion_principal_id" : 1339193,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 40,
-                    "sucursal_destino" : "Tepic"
-                },
-                {
-                    "num_guia" : "GUA-388340",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 24,
-                    "Destino" : "TEPIC",
-                    "cotizacion_principal_id" : 1339085,
-                    "viaje_ruta_id" : 51165,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 40,
-                    "sucursal_destino" : "Tepic"
-                },
-                {
-                    "num_guia" : "GUA-388342",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 25,
-                    "Destino" : "TOLUCA",
-                    "cotizacion_principal_id" : 1339090,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 41,
-                    "sucursal_destino" : "Toluca"
-                },
-                {
-                    "num_guia" : "GUA-388346",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 41,
-                    "Destino" : "TORREON",
-                    "cotizacion_principal_id" : 1339116,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 79,
-                    "sucursal_destino" : "TORREON"
-                },
-                {
-                    "num_guia" : "GUA-388357",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339172,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
-                },
-                {
-                    "num_guia" : "GUA-388354",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339164,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
-                },
-                {
-                    "num_guia" : "GUA-388344",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339103,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 1,
-                    "Sucursal_origen" : "Gonzalez Gallo",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
-                },
-                {
-                    "num_guia" : "LAC-75340",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 6,
-                    "Destino" : "AGUASCALIENTES",
-                    "cotizacion_principal_id" : 1339233,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 2,
-                    "Sucursal_origen" : "Lazaro Cardenas",
-                    "sucursal_destino_id" : 18,
-                    "sucursal_destino" : "Aguascalientes"
-                },
-                {
-                    "num_guia" : "LAC-75339",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 5,
-                    "Destino" : "IRAPUATO",
-                    "cotizacion_principal_id" : 1339112,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 2,
-                    "Sucursal_origen" : "Lazaro Cardenas",
-                    "sucursal_destino_id" : 25,
-                    "sucursal_destino" : "Irapuato"
-                },
-                {
-                    "num_guia" : "LAC-75335",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 14,
-                    "Destino" : "LEON",
-                    "cotizacion_principal_id" : 1339072,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 2,
-                    "Sucursal_origen" : "Lazaro Cardenas",
-                    "sucursal_destino_id" : 27,
-                    "sucursal_destino" : "León"
-                },
-                {
-                    "num_guia" : "LAC-75337",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 17,
-                    "Destino" : "MONTERREY",
-                    "cotizacion_principal_id" : 1339077,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 2,
-                    "Sucursal_origen" : "Lazaro Cardenas",
-                    "sucursal_destino_id" : 32,
-                    "sucursal_destino" : "Monterrey  (Cedis)"
-                },
-                {
-                    "num_guia" : "LAC-75336",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 18,
-                    "Destino" : "MORELIA",
-                    "cotizacion_principal_id" : 1339073,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 2,
-                    "Sucursal_origen" : "Lazaro Cardenas",
-                    "sucursal_destino_id" : 33,
-                    "sucursal_destino" : "Morelia"
-                },
-                {
-                    "num_guia" : "LAC-75338",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339099,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 2,
-                    "Sucursal_origen" : "Lazaro Cardenas",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
-                },
-                {
-                    "num_guia" : "PER-82143",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 34,
-                    "Destino" : "MANZANILLO",
-                    "cotizacion_principal_id" : 1339126,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 5,
-                    "Sucursal_origen" : "Perisur",
-                    "sucursal_destino_id" : 67,
-                    "sucursal_destino" : "Manzanillo"
-                },
-                {
-                    "num_guia" : "PER-82144",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 17,
-                    "Destino" : "MONTERREY",
-                    "cotizacion_principal_id" : 1339148,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 5,
-                    "Sucursal_origen" : "Perisur",
-                    "sucursal_destino_id" : 32,
-                    "sucursal_destino" : "Monterrey  (Cedis)"
-                },
-                {
-                    "num_guia" : "PER-82145",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 3,
-                    "Destino" : "QUERETARO",
-                    "cotizacion_principal_id" : 1339198,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 5,
-                    "Sucursal_origen" : "Perisur",
-                    "sucursal_destino_id" : 14,
-                    "sucursal_destino" : "Queretaro"
-                },
-                {
-                    "num_guia" : "PER-82142",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339083,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 5,
-                    "Sucursal_origen" : "Perisur",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
-                },
-                {
-                    "num_guia" : "PSL-2610",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 14,
-                    "Destino" : "LEON",
-                    "cotizacion_principal_id" : 1339219,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 68,
-                    "Sucursal_origen" : "Plan de San Luis",
-                    "sucursal_destino_id" : 27,
-                    "sucursal_destino" : "León"
-                },
-                {
-                    "num_guia" : "PSL-2608",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 18,
-                    "Destino" : "MORELIA",
-                    "cotizacion_principal_id" : 1339192,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 68,
-                    "Sucursal_origen" : "Plan de San Luis",
-                    "sucursal_destino_id" : 33,
-                    "sucursal_destino" : "Morelia"
-                },
-                {
-                    "num_guia" : "PSL-2609",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 3,
-                    "Destino" : "QUERETARO",
-                    "cotizacion_principal_id" : 1339214,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 68,
-                    "Sucursal_origen" : "Plan de San Luis",
-                    "sucursal_destino_id" : 14,
-                    "sucursal_destino" : "Queretaro"
-                },
-                {
-                    "num_guia" : "PSL-2607",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 25,
-                    "Destino" : "TOLUCA",
-                    "cotizacion_principal_id" : 1339070,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 68,
-                    "Sucursal_origen" : "Plan de San Luis",
-                    "sucursal_destino_id" : 41,
-                    "sucursal_destino" : "Toluca"
-                },
-                {
-                    "num_guia" : "PSL-2611",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339230,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 68,
-                    "Sucursal_origen" : "Plan de San Luis",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
-                },
-                {
-                    "num_guia" : "ZAP-46576",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 6,
-                    "Destino" : "AGUASCALIENTES",
-                    "cotizacion_principal_id" : 1339136,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 4,
-                    "Sucursal_origen" : "Zapopan",
-                    "sucursal_destino_id" : 18,
-                    "sucursal_destino" : "Aguascalientes"
-                },
-                {
-                    "num_guia" : "ZAP-46575",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 39,
-                    "Destino" : "CUERNAVACA",
-                    "cotizacion_principal_id" : 1339114,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 4,
-                    "Sucursal_origen" : "Zapopan",
-                    "sucursal_destino_id" : 61,
-                    "sucursal_destino" : "Cuernavaca"
-                },
-                {
-                    "num_guia" : "ZAP-46577",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339171,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 4,
-                    "Sucursal_origen" : "Zapopan",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
-                },
-                {
-                    "num_guia" : "ZAP-46574",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339111,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 4,
-                    "Sucursal_origen" : "Zapopan",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
-                },
-                {
-                    "num_guia" : "ZAP-46578",
-                    "fecha_registro" : "2023-07-15",
-                    "id_Origen" : 1,
-                    "Origen" : "GUADALAJARA",
-                    "id_destino" : 2,
-                    "Destino" : "MEXICO",
-                    "cotizacion_principal_id" : 1339226,
-                    "viaje_ruta_id" : 0,
-                    "id_ubicacion" : 1,
-                    "Ubicacion" : "GUADALAJARA",
-                    "viaje_ubicacion_id" : 1,
-                    "id_sucursal_origen" : 4,
-                    "Sucursal_origen" : "Zapopan",
-                    "sucursal_destino_id" : 6,
-                    "sucursal_destino" : "Vallejo"
+                    "id" : 51681,
+                    "nombre" : "OBR-NAV-MCH-CUL-MAZ-GDL.",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "CD. OBREGON ",
+                    "id_Destino_origen" : 7,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "LOS MOCHIS ",
+                    "IdUbicacionActual" : 16,
+                    "orden_parada" : "19;16;10;11;8;15;1;3;4;2;5;6;14;17;18;21;23;22;25;26;27;32;33;34;35;36;39;40;41;42;24;29;20",
+                    "orden_parada_directa" : ";7;19;16;8;15;1;",
+                    "completa" : ";7;19;16;10;11;8;15;1;3;4;2;5;6;14;17;18;21;23;22;25;26;27;32;33;34;35;36;39;40;41;42;24;29;20;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR44",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 }
             ]
         },
@@ -1068,49 +476,33 @@
                     "mt3_por_destino": [
                         {
                             "Destino": "Leon",
-                            "Mt3_vendido": 0
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Celaya",
-                            "Mt3_vendido": 24
+                            "Mt3_vendido": 24,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Queretaro",
-                            "Mt3_vendido": 3
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Culiacan",
-                            "Mt3_vendido": 8
+                            "Mt3_vendido": 8,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Colima",
-                            "Mt3_vendido": 10
+                            "Mt3_vendido": 10,
+                            "Mt3_en_piso": 0
                         },
                         {
                             "Destino": "Bucerias",
-                            "Mt3_vendido": 9
-                        }
-                    ],
-                    "guias_hoy": [
-                        {
-                            "numguia": "per-5160",
-                            "status": "2",
-                            "tipo": "paqueteria",
-                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
-                            "peso": 0,
-                            "mt3": 0,
-                            "cantidad_envios": 10
-                        }
-                    ],
-                    "guias_pasadas": [
-                        {
-                            "numguia": "per-5160",
-                            "status": "2",
-                            "tipo": "paqueteria",
-                            "url_rastreo": "http://216.250.126.250/Rastreo_Get_Guias/gts-5160",
-                            "peso": 0,
-                            "mt3": 0,
-                            "cantidad_envios": 10
+                            "Mt3_vendido": 9,
+                            "Mt3_en_piso": 0
                         }
                     ]
                 },
@@ -1327,7 +719,417 @@
                     ]
                 }
             ],
-            "viajes_activos": null
+            "viajes_activos": null,
+            "viajes_por_llegar":[
+                {
+                    "id" : 51664,
+                    "nombre" : "GUA-QRO-(BAJIO CENTRO)",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "GUADALAJARA",
+                    "id_Destino_origen" : 1,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;2;4;5;6;14;18;21;23;25;27;40;39;36;35;26",
+                    "orden_parada_directa" : ";1;3;",
+                    "completa" : ";1;3;2;4;5;6;14;18;21;23;25;27;40;39;36;35;26;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51658,
+                    "nombre" : "(PERI) GDL QRO ",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "GUADALAJARA",
+                    "id_Destino_origen" : 1,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;4;5;6;14;18;21;23;25;26;27;35;36;37;38",
+                    "orden_parada_directa" : ";1;3;",
+                    "completa" : ";1;3;4;5;6;14;18;21;23;25;26;27;35;36;37;38;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51654,
+                    "nombre" : "MOR-QRO",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "MORELIA",
+                    "id_Destino_origen" : 18,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;4;5;2;6;7;1;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;39;40;41;42",
+                    "orden_parada_directa" : ";18;3;",
+                    "completa" : ";18;3;4;5;2;6;7;1;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51647,
+                    "nombre" : "MEX-QRO-MTY ",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "MEXICO",
+                    "id_Destino_origen" : 2,
+                    "Destino_termino" : "MONTERREY",
+                    "id_Destino_termino" : 17,
+                    "Ubicacion_actual" : "MEXICO",
+                    "IdUbicacionActual" : 2,
+                    "orden_parada" : "3;1;4;5;6;7;8;10;11;12;13;14;15;16;18;19;20;21;23;24;25;26;27;29;32;33;34;35;36;37;38;17;22;42;41",
+                    "orden_parada_directa" : ";2;3;17;",
+                    "completa" : ";2;3;1;4;5;6;7;8;10;11;12;13;14;15;16;18;19;20;21;23;24;25;26;27;29;32;33;34;35;36;37;38;17;22;42;41;",
+                    "Clave vehiculo" : "JR39",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51662,
+                    "nombre" : "PUE-QRO",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "PUEBLA ",
+                    "id_Destino_origen" : 21,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;6;29;7;4;8;1;10;11;12;13;5;14;16;15;2;17;18;19;20;22;27;23;24;25;26;32;33;34;39;40;41;42",
+                    "orden_parada_directa" : ";21;3;",
+                    "completa" : ";21;3;6;29;7;4;8;1;10;11;12;13;5;14;16;15;2;17;18;19;20;22;27;23;24;25;26;32;33;34;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51663,
+                    "nombre" : "SLP-QRO",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "SAN LUIS POTOSI",
+                    "id_Destino_origen" : 23,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";23;3;",
+                    "completa" : ";23;3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51649,
+                    "nombre" : "TOLUCA-QRO*",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "TOLUCA",
+                    "id_Destino_origen" : 25,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;26;27;28;29;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";25;3;",
+                    "completa" : ";25;3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;26;27;28;29;32;33;34;35;36;37;38;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51657,
+                    "nombre" : "SJR-QRO",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "SAN JUAN DEL RIO",
+                    "id_Destino_origen" : 27,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;26;25;29;33;32;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";27;3;",
+                    "completa" : ";27;3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;26;25;29;33;32;34;35;36;37;38;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51661,
+                    "nombre" : "IRA-CEL-QRO",
+                    "fecha_registro" : "2023-07-24",
+                    "Destino_origen" : "IRAPUATO",
+                    "id_Destino_origen" : 5,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "4;3;1;2;6;7;10;12;13;8;11;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";5;4;3;",
+                    "completa" : ";5;4;3;1;2;6;7;10;12;13;8;11;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51613,
+                    "nombre" : "LEN-QRO",
+                    "fecha_registro" : "2023-07-22",
+                    "Destino_origen" : "LEON",
+                    "id_Destino_origen" : 14,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;4;2;18;21;27;23;25;1;6;7;8;10;11;12;13;15;16;17;19;20;22;24;26;29;32;33;34;35;36;37;38;39;40;41;42;5",
+                    "orden_parada_directa" : ";14;3;",
+                    "completa" : ";14;3;4;2;18;21;27;23;25;1;6;7;8;10;11;12;13;15;16;17;19;20;22;24;26;29;32;33;34;35;36;37;38;39;40;41;42;5;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51620,
+                    "nombre" : "MTY-QRO",
+                    "fecha_registro" : "2023-07-22",
+                    "Destino_origen" : "MONTERREY",
+                    "id_Destino_origen" : 17,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;21;25;4;18;27;23;35;36;14;37;38;6;5;26;7;8;9;10;11;12;13;15;16;1;19;20;22;24;29;32;33;34;2;39;40",
+                    "orden_parada_directa" : ";17;3;2;",
+                    "completa" : ";17;3;21;25;4;18;27;23;35;36;14;37;38;6;5;26;7;8;9;10;11;12;13;15;16;1;19;20;22;24;29;32;33;34;2;39;40;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51616,
+                    "nombre" : "MOR-QRO",
+                    "fecha_registro" : "2023-07-22",
+                    "Destino_origen" : "MORELIA",
+                    "id_Destino_origen" : 18,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;4;5;2;6;7;1;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;39;40;41;42",
+                    "orden_parada_directa" : ";18;3;",
+                    "completa" : ";18;3;4;5;2;6;7;1;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51624,
+                    "nombre" : "PUE-QRO",
+                    "fecha_registro" : "2023-07-22",
+                    "Destino_origen" : "PUEBLA ",
+                    "id_Destino_origen" : 21,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;6;29;7;4;8;1;10;11;12;13;5;14;16;15;2;17;18;19;20;22;27;23;24;25;26;32;33;34;39;40;41;42",
+                    "orden_parada_directa" : ";21;3;",
+                    "completa" : ";21;3;6;29;7;4;8;1;10;11;12;13;5;14;16;15;2;17;18;19;20;22;27;23;24;25;26;32;33;34;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51617,
+                    "nombre" : "AGS-QRO",
+                    "fecha_registro" : "2023-07-22",
+                    "Destino_origen" : "AGUASCALIENTES",
+                    "id_Destino_origen" : 6,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;21;23;25;27;18;1;8;10;11;12;13;15;16;17;19;20;22;24;29;32;7;33;34;35;36;37;38;39;40;41;42;2;5;14;4",
+                    "orden_parada_directa" : ";6;3;",
+                    "completa" : ";6;3;21;23;25;27;18;1;8;10;11;12;13;15;16;17;19;20;22;24;29;32;7;33;34;35;36;37;38;39;40;41;42;2;5;14;4;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51588,
+                    "nombre" : "(PERI) GDL QRO ",
+                    "fecha_registro" : "2023-07-21",
+                    "Destino_origen" : "GUADALAJARA",
+                    "id_Destino_origen" : 1,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;4;5;6;14;18;21;23;25;26;27;35;36;37;38",
+                    "orden_parada_directa" : ";1;3;",
+                    "completa" : ";1;3;4;5;6;14;18;21;23;25;26;27;35;36;37;38;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51568,
+                    "nombre" : "LEN-QRO",
+                    "fecha_registro" : "2023-07-21",
+                    "Destino_origen" : "LEON",
+                    "id_Destino_origen" : 14,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;4;2;18;21;27;23;25;1;6;7;8;10;11;12;13;15;16;17;19;20;22;24;26;29;32;33;34;35;36;37;38;39;40;41;42;5",
+                    "orden_parada_directa" : ";14;3;",
+                    "completa" : ";14;3;4;2;18;21;27;23;25;1;6;7;8;10;11;12;13;15;16;17;19;20;22;24;26;29;32;33;34;35;36;37;38;39;40;41;42;5;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51586,
+                    "nombre" : "SLP-QRO",
+                    "fecha_registro" : "2023-07-21",
+                    "Destino_origen" : "SAN LUIS POTOSI",
+                    "id_Destino_origen" : 23,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";23;3;",
+                    "completa" : ";23;3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51575,
+                    "nombre" : "IRA-CEL-QRO",
+                    "fecha_registro" : "2023-07-21",
+                    "Destino_origen" : "IRAPUATO",
+                    "id_Destino_origen" : 5,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "CELAYA",
+                    "IdUbicacionActual" : 4,
+                    "orden_parada" : "4;3;1;2;6;7;10;12;13;8;11;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";5;4;3;",
+                    "completa" : ";5;4;3;1;2;6;7;10;12;13;8;11;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51573,
+                    "nombre" : "AGS-QRO",
+                    "fecha_registro" : "2023-07-21",
+                    "Destino_origen" : "AGUASCALIENTES",
+                    "id_Destino_origen" : 6,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;21;23;25;27;18;1;8;10;11;12;13;15;16;17;19;20;22;24;29;32;7;33;34;35;36;37;38;39;40;41;42;2;5;14;4",
+                    "orden_parada_directa" : ";6;3;",
+                    "completa" : ";6;3;21;23;25;27;18;1;8;10;11;12;13;15;16;17;19;20;22;24;29;32;7;33;34;35;36;37;38;39;40;41;42;2;5;14;4;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51532,
+                    "nombre" : "(PERI) GDL QRO ",
+                    "fecha_registro" : "2023-07-20",
+                    "Destino_origen" : "GUADALAJARA",
+                    "id_Destino_origen" : 1,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;4;5;6;14;18;21;23;25;26;27;35;36;37;38",
+                    "orden_parada_directa" : ";1;3;",
+                    "completa" : ";1;3;4;5;6;14;18;21;23;25;26;27;35;36;37;38;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51518,
+                    "nombre" : "LEN-QRO",
+                    "fecha_registro" : "2023-07-20",
+                    "Destino_origen" : "LEON",
+                    "id_Destino_origen" : 14,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;4;2;18;21;27;23;25;1;6;7;8;10;11;12;13;15;16;17;19;20;22;24;26;29;32;33;34;35;36;37;38;39;40;41;42;5",
+                    "orden_parada_directa" : ";14;3;",
+                    "completa" : ";14;3;4;2;18;21;27;23;25;1;6;7;8;10;11;12;13;15;16;17;19;20;22;24;26;29;32;33;34;35;36;37;38;39;40;41;42;5;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51525,
+                    "nombre" : "PUE-QRO",
+                    "fecha_registro" : "2023-07-20",
+                    "Destino_origen" : "PUEBLA ",
+                    "id_Destino_origen" : 21,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;6;29;7;4;8;1;10;11;12;13;5;14;16;15;2;17;18;19;20;22;27;23;24;25;26;32;33;34;39;40;41;42",
+                    "orden_parada_directa" : ";21;3;",
+                    "completa" : ";21;3;6;29;7;4;8;1;10;11;12;13;5;14;16;15;2;17;18;19;20;22;27;23;24;25;26;32;33;34;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51524,
+                    "nombre" : "SLP-QRO",
+                    "fecha_registro" : "2023-07-20",
+                    "Destino_origen" : "SAN LUIS POTOSI",
+                    "id_Destino_origen" : 23,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";23;3;",
+                    "completa" : ";23;3;1;2;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                },
+                {
+                    "id" : 51527,
+                    "nombre" : "IRA-CEL-QRO",
+                    "fecha_registro" : "2023-07-20",
+                    "Destino_origen" : "IRAPUATO",
+                    "id_Destino_origen" : 5,
+                    "Destino_termino" : "QUERETARO",
+                    "id_Destino_termino" : 3,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "4;3;1;2;6;7;10;12;13;8;11;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";5;4;3;",
+                    "completa" : ";5;4;3;1;2;6;7;10;12;13;8;11;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;37;38;39;40;41;42;",
+                    "Clave vehiculo" : "VIRTUAL",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000
+                }
+            ]
         },
         {
             "id": 2,
@@ -1391,12 +1193,8 @@
                             "Mt3_vendido": 9
                         }
                     ],
-                    "guias_hoy": [
-                       
-                    ],
-                    "guias_pasadas": [
-                  
-                    ]
+                    "guias_hoy": [],
+                    "guias_pasadas": []
                 },
                 {
                     "nombre": "Cruz del sur",
@@ -1611,7 +1409,8 @@
                     ]
                 }
             ],
-            "viajes_activos": null
+            "viajes_activos": null,
+            "viajes_por_llegar":null
         }
     ]
 }
