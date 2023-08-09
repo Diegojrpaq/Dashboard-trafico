@@ -456,7 +456,7 @@
         },
         {
             "id": 3,
-            "nombre": "queretaro",
+            "nombre": "Queretaro",
             "estado": "Queretaro",
             "total_mt3_distino": 279,
             "mt3_vendidos_por_destino": [
@@ -753,8 +753,25 @@
                     "completa" : ";1;3;2;4;5;6;14;18;21;23;25;27;40;39;36;35;26;",
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
-                    "Volumen_carga_max" : 50,
-                    "volumen_por_destino": null
+                    "Volumen_carga_max" :90,
+                    "volumen_por_destino":[
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51658,
@@ -771,8 +788,25 @@
                     "completa" : ";1;3;4;5;6;14;18;21;23;25;26;27;35;36;37;38;",
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 20,
-                    "Volumen_carga_max" : 20,
-                    "volumen_por_destino": null
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51654,
@@ -789,8 +823,25 @@
                     "completa" : ";18;3;4;5;2;6;7;1;8;9;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;32;33;34;35;36;39;40;41;42;",
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
-                    "Volumen_carga_max" : 20,
-                    "volumen_por_destino": null
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51647,
@@ -808,7 +859,24 @@
                     "Clave vehiculo" : "JR39",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51662,
@@ -826,7 +894,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51663,
@@ -844,7 +929,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51649,
@@ -862,7 +964,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51657,
@@ -880,7 +999,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51661,
@@ -898,7 +1034,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51613,
@@ -916,7 +1069,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51620,
@@ -934,7 +1104,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51616,
@@ -952,7 +1139,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51624,
@@ -970,7 +1174,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51617,
@@ -988,7 +1209,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51588,
@@ -1006,7 +1244,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51568,
@@ -1024,7 +1279,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51586,
@@ -1042,7 +1314,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51575,
@@ -1060,7 +1349,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51573,
@@ -1078,7 +1384,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51532,
@@ -1096,7 +1419,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51518,
@@ -1114,7 +1454,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51525,
@@ -1132,7 +1489,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51524,
@@ -1150,7 +1524,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 },
                 {
                     "id" : 51527,
@@ -1168,7 +1559,24 @@
                     "Clave vehiculo" : "VIRTUAL",
                     "Peso_carga_max" : 0.0,
                     "Volumen_carga_max" : 0.000000,
-                    "volumen_por_destino": null
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
                 }
             ]
         },
@@ -1430,6 +1838,910 @@
             ],
             "viajes_activos": null,
             "viajes_por_llegar": null
+        },
+        {
+            "id": 20,
+            "nombre": "Bucerias",
+            "estado": "Jalisco",
+            "total_mt3_distino": 112,
+            "mt3_vendidos_por_destino": [
+                {
+                    "Destino": "Leon",
+                    "Mt3_vendido": 15
+                },
+                {
+                    "Destino": "Celaya",
+                    "Mt3_vendido": 36
+                },
+                {
+                    "Destino": "Queretaro",
+                    "Mt3_vendido": 24
+                },
+                {
+                    "Destino": "Culiacan",
+                    "Mt3_vendido": 10
+                },
+                {
+                    "Destino": "Colima ",
+                    "Mt3_vendido": 2
+                },
+                {
+                    "Destino": "Bucerias",
+                    "Mt3_vendido": 25
+                }
+            ],
+            "sucursales": [
+                {
+                    "nombre": "Colli",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 17,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 2,
+                            "Mt3_en_piso": 2
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 5,
+                            "Mt3_en_piso": 5
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 4,
+                            "Mt3_en_piso": 4
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 1,
+                            "Mt3_en_piso": 1
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 5,
+                            "Mt3_en_piso": 5
+                        }
+                    ]
+                 
+                },
+                {
+                    "nombre": "Cruz del sur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 23,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 15,
+                            "Mt3_en_piso": 15
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 2,
+                            "Mt3_en_piso": 2
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        }
+                    ],
+                    "rutas_activas": null
+                },
+                {
+                    "nombre": "Perisur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 33,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 10,
+                            "Mt3_en_piso": 10
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 6,
+                            "Mt3_en_piso": 6
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 6,
+                            "Mt3_en_piso": 6
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 11,
+                            "Mt3_en_piso": 11
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 20,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8,
+                            "Mt3_en_piso": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9,
+                            "Mt3_en_piso": 9
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tesistan",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 19,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 7,
+                            "Mt3_en_piso": 7
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 11,
+                            "Mt3_en_piso": 11
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 1,
+                            "Mt3_en_piso": 1
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        }
+                    ]
+                }
+            ],
+            "viajes_activos": [
+                {
+                    "id": 51165,
+                    "nombre": "GDL-MTY",
+                    "fecha_registro": "2023-07-11",
+                    "unidad": "84",
+                    "capacidad_mt3": 20,
+                    "mt3_embarcados": 8,
+                    "--comentario": "esta seccion al crear la consulta debemos contemplar el orden de escaneo para simular como se suben al camion",
+                    "mt3_embarcados_por_destino": [
+                        {
+                            "name": "Leon",
+                            "mt3": 5
+                        },
+                        {
+                            "name": "MONTERREY",
+                            "mt3": 2
+                        },
+                        {
+                            "name": "AGUASCALIENTES",
+                            "mt3": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 51167,
+                    "nombre": "GDL-COL-MAN",
+                    "fecha_registro": "2023-07-11",
+                    "unidad": "",
+                    "capacidad_mt3": 30,
+                    "mt3_embarcados": 0,
+                    "mt3_embarcados_por_destino": null
+                },
+                {
+                    "id": 51168,
+                    "nombre": "GDL-OBR",
+                    "fecha_registro": "2023-07-11",
+                    "unidad": "",
+                    "capacidad_mt3": 0,
+                    "mt3_embarcados": 0,
+                    "mt3_embarcados_por_destino": null
+                }
+            ],
+            "viajes_por_llegar": [
+                {
+                    "id" : 51688,
+                    "nombre" : "VTA-BUC-TPC",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "PUERTO VALLARTA",
+                    "id_Destino_origen" : 20,
+                    "Destino_termino" : "TEPIC",
+                    "id_Destino_termino" : 24,
+                    "Ubicacion_actual" : "PUERTO VALLARTA",
+                    "IdUbicacionActual" : 20,
+                    "orden_parada" : "29;24;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;21;22;23;25;26;27;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";20;29;24;1;",
+                    "completa" : ";20;29;24;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;21;22;23;25;26;27;32;33;34;35;36;37;38;39;40;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "R19",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                },
+                {
+                    "id" : 51677,
+                    "nombre" : "QRO-GDL 1",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "QUERETARO",
+                    "id_Destino_origen" : 3,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "1;29;7;8;10;11;12;13;16;15;19;20;24;32;34;33;17;41;22",
+                    "orden_parada_directa" : ";3;1;",
+                    "completa" : ";3;1;29;7;8;10;11;12;13;16;15;19;20;24;32;34;33;17;41;22;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR33",
+                    "Peso_carga_max" : 100,
+                    "Volumen_carga_max" :90,
+                    "volumen_por_destino":[
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                },
+                {
+                    "id" : 51678,
+                    "nombre" : "QRO-GUA-2",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "QUERETARO",
+                    "id_Destino_origen" : 3,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "1;13;12;7;19;16;11;10;8;15;24;29;20;17;22;32;33;34;41;42",
+                    "orden_parada_directa" : ";3;1;",
+                    "completa" : ";3;1;13;12;7;19;16;11;10;8;15;24;29;20;17;22;32;33;34;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR28",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 50,
+                    "volumen_por_destino":
+                    [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                },
+                {
+                    "id" : 51689,
+                    "nombre" : "MANZ-COL-GUA",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "MANZANILLO",
+                    "id_Destino_origen" : 34,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "MANZANILLO",
+                    "IdUbicacionActual" : 34,
+                    "orden_parada" : "32;33;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";34;32;1;",
+                    "completa" : ";34;32;33;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;35;36;37;38;39;40;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "CR-111",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                },
+                {
+                    "id" : 51681,
+                    "nombre" : "OBR-NAV-MCH-CUL-MAZ-GDL.",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "CD. OBREGON ",
+                    "id_Destino_origen" : 7,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "LOS MOCHIS ",
+                    "IdUbicacionActual" : 16,
+                    "orden_parada" : "19;16;10;11;8;15;1;3;4;2;5;6;14;17;18;21;23;22;25;26;27;32;33;34;35;36;39;40;41;42;24;29;20",
+                    "orden_parada_directa" : ";7;19;16;8;15;1;",
+                    "completa" : ";7;19;16;10;11;8;15;1;3;4;2;5;6;14;17;18;21;23;22;25;26;27;32;33;34;35;36;39;40;41;42;24;29;20;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR44",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                }
+            ]
+        },
+         {
+            "id": 16,
+            "nombre": "Guymas",
+            "estado": "Jalisco",
+            "total_mt3_distino": 112,
+            "mt3_vendidos_por_destino": [
+                {
+                    "Destino": "Leon",
+                    "Mt3_vendido": 15
+                },
+                {
+                    "Destino": "Celaya",
+                    "Mt3_vendido": 36
+                },
+                {
+                    "Destino": "Queretaro",
+                    "Mt3_vendido": 24
+                },
+                {
+                    "Destino": "Culiacan",
+                    "Mt3_vendido": 10
+                },
+                {
+                    "Destino": "Colima ",
+                    "Mt3_vendido": 2
+                },
+                {
+                    "Destino": "Bucerias",
+                    "Mt3_vendido": 25
+                }
+            ],
+            "sucursales": [
+                {
+                    "nombre": "Colli",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 17,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 2,
+                            "Mt3_en_piso": 2
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 5,
+                            "Mt3_en_piso": 5
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 4,
+                            "Mt3_en_piso": 4
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 1,
+                            "Mt3_en_piso": 1
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 5,
+                            "Mt3_en_piso": 5
+                        }
+                    ]
+                 
+                },
+                {
+                    "nombre": "Cruz del sur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 23,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 15,
+                            "Mt3_en_piso": 15
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 2,
+                            "Mt3_en_piso": 2
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        }
+                    ],
+                    "rutas_activas": null
+                },
+                {
+                    "nombre": "Perisur",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 33,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 10,
+                            "Mt3_en_piso": 10
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 6,
+                            "Mt3_en_piso": 6
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 6,
+                            "Mt3_en_piso": 6
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 11,
+                            "Mt3_en_piso": 11
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Gonzalez Gallo ",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 20,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 3,
+                            "Mt3_en_piso": 3
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 8,
+                            "Mt3_en_piso": 8
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 9,
+                            "Mt3_en_piso": 9
+                        }
+                    ]
+                },
+                {
+                    "nombre": "Tesistan",
+                    "prefijo": "GUA",
+                    "total_mt3_sucursal": 19,
+                    "mt3_por_destino": [
+                        {
+                            "Destino": "Leon",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Celaya",
+                            "Mt3_vendido": 7,
+                            "Mt3_en_piso": 7
+                        },
+                        {
+                            "Destino": "Queretaro",
+                            "Mt3_vendido": 11,
+                            "Mt3_en_piso": 11
+                        },
+                        {
+                            "Destino": "Culiacan",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        },
+                        {
+                            "Destino": "Colima",
+                            "Mt3_vendido": 1,
+                            "Mt3_en_piso": 1
+                        },
+                        {
+                            "Destino": "Bucerias",
+                            "Mt3_vendido": 0,
+                            "Mt3_en_piso": 0
+                        }
+                    ]
+                }
+            ],
+            "viajes_activos": [
+                {
+                    "id": 51165,
+                    "nombre": "GDL-MTY",
+                    "fecha_registro": "2023-07-11",
+                    "unidad": "84",
+                    "capacidad_mt3": 20,
+                    "mt3_embarcados": 8,
+                    "--comentario": "esta seccion al crear la consulta debemos contemplar el orden de escaneo para simular como se suben al camion",
+                    "mt3_embarcados_por_destino": [
+                        {
+                            "name": "Leon",
+                            "mt3": 5
+                        },
+                        {
+                            "name": "MONTERREY",
+                            "mt3": 2
+                        },
+                        {
+                            "name": "AGUASCALIENTES",
+                            "mt3": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 51167,
+                    "nombre": "GDL-COL-MAN",
+                    "fecha_registro": "2023-07-11",
+                    "unidad": "",
+                    "capacidad_mt3": 30,
+                    "mt3_embarcados": 0,
+                    "mt3_embarcados_por_destino": null
+                },
+                {
+                    "id": 51168,
+                    "nombre": "GDL-OBR",
+                    "fecha_registro": "2023-07-11",
+                    "unidad": "",
+                    "capacidad_mt3": 0,
+                    "mt3_embarcados": 0,
+                    "mt3_embarcados_por_destino": null
+                }
+            ],
+            "viajes_por_llegar": [
+                {
+                    "id" : 51688,
+                    "nombre" : "VTA-BUC-TPC",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "PUERTO VALLARTA",
+                    "id_Destino_origen" : 20,
+                    "Destino_termino" : "TEPIC",
+                    "id_Destino_termino" : 24,
+                    "Ubicacion_actual" : "PUERTO VALLARTA",
+                    "IdUbicacionActual" : 20,
+                    "orden_parada" : "29;24;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;21;22;23;25;26;27;32;33;34;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";20;29;24;1;",
+                    "completa" : ";20;29;24;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;21;22;23;25;26;27;32;33;34;35;36;37;38;39;40;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "R19",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                },
+                {
+                    "id" : 51677,
+                    "nombre" : "QRO-GDL 1",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "QUERETARO",
+                    "id_Destino_origen" : 3,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "1;29;7;8;10;11;12;13;16;15;19;20;24;32;34;33;17;41;22",
+                    "orden_parada_directa" : ";3;1;",
+                    "completa" : ";3;1;29;7;8;10;11;12;13;16;15;19;20;24;32;34;33;17;41;22;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR33",
+                    "Peso_carga_max" : 100,
+                    "Volumen_carga_max" :90,
+                    "volumen_por_destino":[
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                },
+                {
+                    "id" : 51678,
+                    "nombre" : "QRO-GUA-2",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "QUERETARO",
+                    "id_Destino_origen" : 3,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "QUERETARO",
+                    "IdUbicacionActual" : 3,
+                    "orden_parada" : "1;13;12;7;19;16;11;10;8;15;24;29;20;17;22;32;33;34;41;42",
+                    "orden_parada_directa" : ";3;1;",
+                    "completa" : ";3;1;13;12;7;19;16;11;10;8;15;24;29;20;17;22;32;33;34;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR28",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 50,
+                    "volumen_por_destino":
+                    [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                },
+                {
+                    "id" : 51689,
+                    "nombre" : "MANZ-COL-GUA",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "MANZANILLO",
+                    "id_Destino_origen" : 34,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "MANZANILLO",
+                    "IdUbicacionActual" : 34,
+                    "orden_parada" : "32;33;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;35;36;37;38;39;40;41;42",
+                    "orden_parada_directa" : ";34;32;1;",
+                    "completa" : ";34;32;33;1;2;3;4;5;6;7;8;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;29;35;36;37;38;39;40;41;42;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miércoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "CR-111",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 0.000000,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                },
+                {
+                    "id" : 51681,
+                    "nombre" : "OBR-NAV-MCH-CUL-MAZ-GDL.",
+                    "fecha_registro" : "2023-07-25",
+                    "Destino_origen" : "CD. OBREGON ",
+                    "id_Destino_origen" : 7,
+                    "Destino_termino" : "GUADALAJARA",
+                    "id_Destino_termino" : 1,
+                    "Ubicacion_actual" : "LOS MOCHIS ",
+                    "IdUbicacionActual" : 16,
+                    "orden_parada" : "19;16;10;11;8;15;1;3;4;2;5;6;14;17;18;21;23;22;25;26;27;32;33;34;35;36;39;40;41;42;24;29;20",
+                    "orden_parada_directa" : ";7;19;16;8;15;1;",
+                    "completa" : ";7;19;16;10;11;8;15;1;3;4;2;5;6;14;17;18;21;23;22;25;26;27;32;33;34;35;36;39;40;41;42;24;29;20;",
+                    "ID_DiasOperacion" : "1,2,3,4,5,6,7",
+                    "Text_DiasOperacion" : "Lunes,Martes,Miercoles,Jueves,Viernes,Sábado,Domingo",
+                    "Clave vehiculo" : "JR44",
+                    "Peso_carga_max" : 0.0,
+                    "Volumen_carga_max" : 80,
+                    "volumen_por_destino": [
+                        {
+                            "nombre":"GUADALAJARA",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"BUCERIAS",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUASAVE",
+                            "mt3_cargados":10
+                        },
+                        {
+                            "nombre":"GUAYMAS",
+                            "mt3_cargados":10
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

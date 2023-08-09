@@ -86,10 +86,12 @@ export default function GraficaRutasPorLlegar(props) {
         const etiquetaNomViajes = [];
         const pesosTotalesEmbarcados = [];
         const metrosLibres = [];
-        
+        const volumenCajas=[];
+
         listaViajes.map((viajeActivo, index) => {
             let label = [];
             label.push(viajeActivo.nombre + '-' + viajeActivo.fecha_registro)
+            /* label.push(viajeActivo.Volumen_carga_max+' '+'Mt3'); */
             etiquetaNomViajes.push(label)
 /*             console.log(viajeActivo.orden_parada_directa)
  */            if (viajeActivo.volumen_por_destino !== null) {
@@ -99,14 +101,15 @@ export default function GraficaRutasPorLlegar(props) {
                 }
                 pesosTotalesEmbarcados.push(volumen_total);
                 metrosLibres.push(viajeActivo.Volumen_carga_max - volumen_total)
-            } 
+                volumenCajas.push(viajeActivo.Volumen_carga_max)
+            }
         })
 
 
 
 
 
-      
+
 
         function constriurEjey() {
             const dataSetConstruido = [];
@@ -118,9 +121,9 @@ export default function GraficaRutasPorLlegar(props) {
                     borderColor: coloresBorder[100].color,
                     borderWidth: 2
                 })
-                for(let col=0; col<listaViajes[0].volumen_por_destino.length;col++){
+                for (let col = 0; col < listaViajes[0].volumen_por_destino.length; col++) {
                     let dataEjeY = [];
-                    listaViajes.map((viaje)=>{
+                    listaViajes.map((viaje) => {
                         dataEjeY.push(viaje.volumen_por_destino[col].mt3_cargados)
                     })
                     dataSetConstruido.push({
@@ -130,21 +133,21 @@ export default function GraficaRutasPorLlegar(props) {
                         borderColor: coloresBorder[col].color,
                         borderWidth: 2
                     })
-            
-        }
-              /*   for (let col = 0; col < listaViajes[0].volumen_por_destino.length; col++) {
 
-
-                    let dataEjeY = [];
-                    dataSetConstruido.push({
-                        label: listaViajes[0].nombre,
-                        data: metrosLibres,
-                        backgroundColor: colores[100].color,
-                        borderColor: coloresBorder[100].color,
-                        borderWidth: 2
-                    })
-
-                } */
+                }
+                /*   for (let col = 0; col < listaViajes[0].volumen_por_destino.length; col++) {
+  
+  
+                      let dataEjeY = [];
+                      dataSetConstruido.push({
+                          label: listaViajes[0].nombre,
+                          data: metrosLibres,
+                          backgroundColor: colores[100].color,
+                          borderColor: coloresBorder[100].color,
+                          borderWidth: 2
+                      })
+  
+                  } */
 
 
             } else {
@@ -159,33 +162,50 @@ export default function GraficaRutasPorLlegar(props) {
 
 
 
-            console.log(dataSetConstruido)
+            /* console.log(dataSetConstruido) */
             return dataSetConstruido
         }
 
-
-
-
+        console.log(volumenCajas)
+        let maximoEjeX =10+ Math.max(...volumenCajas);
+      /*   console.log('tamaño de la lista limpia para '+props.destino.nombre+' '+listaViajes.length) */
         let myoptions = {
             responsive: true,
             animation: true,
+            autoSkip: true,
             plugins: {
                 legend: {
                     display: true
                 }
             },
+           /*  barThickness: 45, */
+            /* barPercentage:.20, */
             scales: {
-                x: {
+                x: {  
                     stacked: true,
                     beginAtZero: false, // Asegura que el eje X no empiece en 0
                     min: 0, // Establece el mínimo del eje X en 100
-                    max: 100,
-
+                    max: maximoEjeX,
                 },
                 y: {
+                    
                     stacked: true,
                     min: 0,
-                    max: 100,
+                    max: 30,
+                    ticks: {
+                        display: true,
+                        font: {
+                            size: 13
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Viajes Activos',
+                        color: 'rgb(230,1,15)',
+                        font: {
+                            size: 25
+                        }
+                    },
                 },
             },
             indexAxis: 'y',
@@ -193,17 +213,6 @@ export default function GraficaRutasPorLlegar(props) {
 
         let data = {
             labels: etiquetaNomViajes,
-
-            /* datasets: [
-               {
-                   label: "",
-                   data: [40, 20, 40],
-                   backgroundColor: catalogoColores.colores[100].color,
-                   borderColor: catalogoColores.coloresBorder[100].color,
-                   borderWidth: 2
-               },
-              
-          ]  */
             datasets: constriurEjey()
 
         }

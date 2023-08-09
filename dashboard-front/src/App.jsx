@@ -4,10 +4,10 @@ import Graficalinea from './Componentes/Graficalinea';
 import GraficaMt3PorSucursal from './Componentes/GraficaMt3PorSucursal';
 import Navbar from './Componentes/Navbar';
 import SideBar from './Componentes/SideBar';
-import Data from './Data/Data2.json';
+/* import Data from './Data/Data2.json'; */
 import SeccionDestino from './Componentes/SeccionDestino';
 
-/* import Swal from 'sweetalert2' */
+import Swal from 'sweetalert2'
 
 export const dataLogisticContext = createContext()
 
@@ -19,28 +19,32 @@ function App() {
 
 
 
-  /*  const urlApiJrTrafico = 'https://pokeapi.co/api/v2/pokemon/snorlax'; */
-
-  /*   useEffect(() => {
-   */
-
-  /*  fetch(urlApiJrTrafico).then((resp) => {
-     return resp.json();
-   }).then((data) => {
-     setDataTraficoState(data)
-     if (data) {
-       Swal.fire(
-         'Good job!',
-         'Se recibio la informacion correctamente',
-         'success'
-       )
-     }
-   }).catch(
-     () => console.log('Error al cargar el rastreo ')
-   ) */
+  const urlApiJrTrafico = 'http://216.250.126.250/Rastreo_Get_Guias/PER-81956';
+ /*  const urlApiJrTrafico = 'http://localhost/trafico/get_data'; */
 
 
 
+  useEffect(() => {
+
+
+    fetch(urlApiJrTrafico)
+      .then((resp) => {
+        return resp.json();
+      }).then((data) => {
+        setDataLogistic(data)
+        if (data) {
+          console.log(data)
+          Swal.fire(
+            'Good job!',
+            'Se recibio la informacion correctamente',
+            'success'
+          )
+        }
+      }).catch(
+        () => console.log('Error al cargar el rastreo ')
+      )
+
+  }, []);
 
   /* 
   //rezgurdo de la funcion que ya tenemos para cargar los datos 
@@ -60,16 +64,16 @@ function App() {
 
    }, [Data]); */
 
-
-  useEffect(() => {
-
-    const setData = async () => {
-
-    }
-
-    setDataLogistic(Data)
-
-  }, []);
+  /* 
+     useEffect(() => {
+  
+      const setData = async () => {
+  
+      }
+  
+      setDataLogistic(Data)
+  
+    }, []);  */
 
   /*   const  updateRender=(infoupdate)=>{
      setRenderInicial(infoupdate)
@@ -93,10 +97,12 @@ function App() {
               <div className="col-10">
 
 
-                <SeccionDestino idDestino={1} / >
-                <SeccionDestino idDestino={3} / >
-                <SeccionDestino idDestino={2} / >
-               
+                <SeccionDestino idDestino={1} />
+                <SeccionDestino idDestino={3} />
+
+
+
+
 
 
                 <div className="row">
@@ -128,7 +134,6 @@ function App() {
   }
 
 }
-
 
 
 
