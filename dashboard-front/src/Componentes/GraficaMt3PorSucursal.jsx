@@ -70,7 +70,7 @@ export default function GraficaMt3PorSucursal(props) {
 
 
     /* let maximoGrafica = Math.max(totalVentaMt3); */
-    let maximoEjeX =10+ Math.max(...totalVentaMt3);
+    let maximoEjeX =3+ Math.max(...totalVentaMt3);
    
     
     

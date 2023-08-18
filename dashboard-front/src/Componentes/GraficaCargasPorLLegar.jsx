@@ -229,7 +229,7 @@ export default function GraficaRutasPorLlegar(props) {
     } else {
         /*  console.log('no tenemos registro de viajes'); */
         return <h3>No existen viajes por llegar a tu Destino: {props.destino.nombre}</h3>
-        console.log('ya sabes que no tenemos que entrar')
+       
     }
     /* Ejecucion de la lista si esque existe variables */
 }

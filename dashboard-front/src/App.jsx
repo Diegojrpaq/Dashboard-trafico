@@ -15,34 +15,36 @@ function App() {
 
 
   const [dataLogisticState, setDataLogistic] = useState(null);
-  const [renderInicial, setRenderInicial] = useState("hello word");
 
 
 
-  const urlApiJrTrafico = 'http://216.250.126.250/Rastreo_Get_Guias/PER-81956';
- /*  const urlApiJrTrafico = 'http://localhost/trafico/get_data'; */
+
+  const urlApiNextpack = '/trafico/get_data';
+ /*  const urlApiNextpack = 'http://localhost/trafico/get_data'; */
 
 
 
   useEffect(() => {
+  const peticiones= async()=>{
+   await fetch(urlApiNextpack)
+    .then((resp) => {
+      return resp.json();
+    }).then((data) => {
+      setDataLogistic(data)
+      if (data) {
+        console.log(data)
+        Swal.fire(
+          'Good job!',
+          'Se recibio la informacion correctamente Nextpack',
+          'success'
+        )
+      }
+    }).catch(
+      () => console.log('Error al cargar el rastreo ')
+    )
+  }
 
-
-    fetch(urlApiJrTrafico)
-      .then((resp) => {
-        return resp.json();
-      }).then((data) => {
-        setDataLogistic(data)
-        if (data) {
-          console.log(data)
-          Swal.fire(
-            'Good job!',
-            'Se recibio la informacion correctamente',
-            'success'
-          )
-        }
-      }).catch(
-        () => console.log('Error al cargar el rastreo ')
-      )
+  peticiones();
 
   }, []);
 
@@ -82,7 +84,7 @@ function App() {
   if (dataLogisticState != null) {
     return (
       <>
-        <dataLogisticContext.Provider value={{ dataLogisticState, renderInicial, setRenderInicial }}>
+        <dataLogisticContext.Provider value={{ dataLogisticState }}>
 
           {/* navbar bootstrap */}
           <Navbar></Navbar>
@@ -97,9 +99,13 @@ function App() {
               <div className="col-10">
 
 
-                <SeccionDestino idDestino={1} />
-                <SeccionDestino idDestino={3} />
-
+               {/*  <SeccionDestino idDestino={1} />
+                <SeccionDestino idDestino={} /> */}
+                <SeccionDestino idDestino={27} />
+                <SeccionDestino idDestino={17} />
+              {/*   <SeccionDestino idDestino={21} />
+                <SeccionDestino idDestino={17} /> */}
+               
 
 
 
