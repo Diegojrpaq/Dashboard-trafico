@@ -7,7 +7,8 @@ import SideBar from './Componentes/SideBar';
 /* import Data from './Data/Data2.json'; */
 import SeccionDestino from './Componentes/SeccionDestino';
 
-import Swal from 'sweetalert2'
+
+
 
 export const dataLogisticContext = createContext()
 
@@ -20,31 +21,32 @@ function App() {
 
 
   const urlApiNextpack = '/trafico/get_data';
- /*  const urlApiNextpack = 'http://localhost/trafico/get_data'; */
+  /*  const urlApiNextpack = 'http://localhost/trafico/get_data'; */
 
 
 
   useEffect(() => {
-  const peticiones= async()=>{
-   await fetch(urlApiNextpack)
-    .then((resp) => {
-      return resp.json();
-    }).then((data) => {
-      setDataLogistic(data)
-      if (data) {
-        console.log(data)
-        Swal.fire(
-          'Good job!',
-          'Se recibio la informacion correctamente Nextpack',
-          'success'
-        )
-      }
-    }).catch(
-      () => console.log('Error al cargar el rastreo ')
-    )
-  }
+    const peticiones = async () => {
+      await fetch(urlApiNextpack)
+        .then((resp) => {
+          return resp.json();
+        }).then((data) => {
+          setDataLogistic(data)
+          if (data) {
+            console.log(data)
+         /*    Swal.fire(
+              'Good job!',
+              'Se recibio la informacion correctamente Nextpack',
+              'success'
+            ) */
 
-  peticiones();
+          }
+        }).catch(
+          () => console.log('Error al cargar el rastreo ')
+        )
+    }
+
+    peticiones();
 
   }, []);
 
@@ -84,6 +86,7 @@ function App() {
   if (dataLogisticState != null) {
     return (
       <>
+     
         <dataLogisticContext.Provider value={{ dataLogisticState }}>
 
           {/* navbar bootstrap */}
@@ -96,16 +99,19 @@ function App() {
                 <SideBar>
                 </SideBar>
               </div>
-              <div className="col-10">
-
-
-               {/*  <SeccionDestino idDestino={1} />
-                <SeccionDestino idDestino={} /> */}
-                <SeccionDestino idDestino={27} />
+              <div className="col-12 col-md-12">
+                <SeccionDestino idDestino={1} />
+                <SeccionDestino idDestino={21} />
+                <SeccionDestino idDestino={2} />
+                <SeccionDestino idDestino={3} />
+                <SeccionDestino idDestino={4} />
                 <SeccionDestino idDestino={17} />
-              {/*   <SeccionDestino idDestino={21} />
-                <SeccionDestino idDestino={17} /> */}
+                <SeccionDestino idDestino={6} />
+                <SeccionDestino idDestino={8} />
+                <SeccionDestino idDestino={13} />
                
+              
+
 
 
 

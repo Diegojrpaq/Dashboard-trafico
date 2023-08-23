@@ -10,7 +10,8 @@ export default function SideBar() {
   }
     return (
       <>
-        <h1>SideBar</h1>
+       <div className="d-none d-md-block">
+       <h1>SideBar</h1>
         <div className="accordion" id="accordionExample" >
           <div className="accordion-item">
             <h2 className="accordion-header" id="headingOne">
@@ -50,6 +51,7 @@ export default function SideBar() {
             </div>
           </div>
         </div>
+       </div>
       </>
     );
 };

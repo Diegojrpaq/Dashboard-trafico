@@ -20,10 +20,7 @@ export default function SeccionDestino(props) {
         <div className="col-12">
           <Tabla Destino={infoDestino}></Tabla>
         </div>
-
-
-        
-        <div className="col-12"><h3>Grafica Venta en Tiempo Real mt3</h3>{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}</div>
+        <div className="col-12 col-xl-11"><h3>Grafica Venta en Tiempo Real mt3</h3>{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}</div>
        {/*  <div className="col-12"><h3>grafica sucursal no Embarcadas </h3>{<GraficaNoEmbarcadaXSucursal destino={infoDestino}></GraficaNoEmbarcadaXSucursal>}</div>
         <div className="col-12"><h3>grafica Viajes Embarcadas</h3>{<GraficaRutas destino={infoDestino}></GraficaRutas>}</div>
         <div className="col-12"><h3>Grafica Viajes por llegar</h3>{<GraficaCargasPorLlegar destino={infoDestino}></GraficaCargasPorLlegar>}</div> */}
@@ -43,8 +40,10 @@ export default function SeccionDestino(props) {
 function Tabla(props) {
   const Destino = props.Destino;
 
+ if(Destino.sucursales != null){
   return (
-    <table className="table table-hover">
+    <div className="table-responsive">
+      <table className="table table-hover">
       {/* Llenado de cabeceras */}
       <thead>
         <tr>
@@ -90,6 +89,7 @@ function Tabla(props) {
           <th scope='row'><h3>Total</h3> </th>
           {
             Destino.mt3_vendidos_por_destino.map((Element, index) => {
+              /* console.log(Element.Mt3_vendido) */
               return (
                 <td key={index}>{Element.Mt3_vendido + " mt3"}</td>
               )
@@ -99,7 +99,13 @@ function Tabla(props) {
         </tr>
       </tbody>
     </table>
+    </div>
   );
+ }else{
+  return(
+    <h1>Este Destino no tiene venta {Destino.nombre}</h1>
+  )
+ }
 
 }
 /* Funciones utileria */

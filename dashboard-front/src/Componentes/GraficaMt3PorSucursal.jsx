@@ -31,11 +31,12 @@ Chartjs.register(
 
 export default function GraficaMt3PorSucursal(props) {
     /* Variables de Estilo  */
+   if(props.destino.sucursales != null){
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder
  
         
-    
+   
 
     /* Variables de Estilo  */
 
@@ -53,7 +54,6 @@ export default function GraficaMt3PorSucursal(props) {
         let dataEjeY;
         for (let i = 0; i < Destino.mt3_vendidos_por_destino.length; i++) {
             dataEjeY = Destino.sucursales.map((Sucursal) => {
-               
                 return Sucursal.mt3_por_destino[i].Mt3_vendido
             })
             dataSetConstruido.push({
@@ -70,8 +70,17 @@ export default function GraficaMt3PorSucursal(props) {
 
 
     /* let maximoGrafica = Math.max(totalVentaMt3); */
-    let maximoEjeX =3+ Math.max(...totalVentaMt3);
-   
+    let maximoEjeX =.02 + Math.max(...totalVentaMt3);
+    let porcentajeAnchoBarra;
+    if(Destino.sucursales.length>=3){
+        porcentajeAnchoBarra = 1
+    }else if(Destino.sucursales.length=2){
+        porcentajeAnchoBarra = .5
+    }else{
+        porcentajeAnchoBarra = .3
+    }
+
+
     
     
     let myoptions = {
@@ -82,6 +91,8 @@ export default function GraficaMt3PorSucursal(props) {
                 display: true
             }
         },
+         /* barThickness: 150, */
+            barPercentage:porcentajeAnchoBarra,
         scales: {
             x: {
                 stacked: true,
@@ -112,4 +123,9 @@ export default function GraficaMt3PorSucursal(props) {
 
         </>
     )
+   }else {
+    return(
+        <h1>No existe venta en esta Unidad</h1>
+    )
+   }
 }
