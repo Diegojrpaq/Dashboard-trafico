@@ -44,9 +44,11 @@ export default function GraficaMt3PorSucursal(props) {
     let nameSucursales = [];
     let totalVentaMt3 = [];
 
-    Destino.sucursales.map((Sucursal, index) => {
-        nameSucursales[index] = Sucursal.nombre;
-        totalVentaMt3[index] = Sucursal.total_mt3_sucursal;
+    Destino.sucursales.map((Sucursal) => {
+       /*  nameSucursales[index] = Sucursal.nombre;
+        totalVentaMt3[index] = Sucursal.total_mt3_sucursal; */
+        nameSucursales.push(Sucursal.nombre) ;
+        totalVentaMt3.push(Sucursal.total_mt3_sucursal) ;
     })
 
     const ConstruirEjeY = () => {

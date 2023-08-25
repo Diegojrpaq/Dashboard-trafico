@@ -34,11 +34,11 @@ function App() {
           setDataLogistic(data)
           if (data) {
             console.log(data)
-         /*    Swal.fire(
-              'Good job!',
-              'Se recibio la informacion correctamente Nextpack',
-              'success'
-            ) */
+            /*    Swal.fire(
+                 'Good job!',
+                 'Se recibio la informacion correctamente Nextpack',
+                 'success'
+               ) */
 
           }
         }).catch(
@@ -86,7 +86,7 @@ function App() {
   if (dataLogisticState != null) {
     return (
       <>
-     
+
         <dataLogisticContext.Provider value={{ dataLogisticState }}>
 
           {/* navbar bootstrap */}
@@ -99,8 +99,12 @@ function App() {
                 <SideBar>
                 </SideBar>
               </div>
-              <div className="col-12 col-md-12">
-                <SeccionDestino idDestino={1} />
+              <div className="col-10 col-md-10">
+                {dataLogisticState.Destinos.map((Destino) => {
+                  return <SeccionDestino key={Destino.nombre} idDestino={Destino.id}/>; // Debes devolver algo en cada iteración
+                })}
+
+                {/*  <SeccionDestino idDestino={1} />
                 <SeccionDestino idDestino={21} />
                 <SeccionDestino idDestino={2} />
                 <SeccionDestino idDestino={3} />
@@ -108,9 +112,9 @@ function App() {
                 <SeccionDestino idDestino={17} />
                 <SeccionDestino idDestino={6} />
                 <SeccionDestino idDestino={8} />
-                <SeccionDestino idDestino={13} />
-               
-              
+                <SeccionDestino idDestino={13} /> */}
+
+
 
 
 
@@ -143,6 +147,8 @@ function App() {
       </>
 
     );//fin del return 
+  } else {
+    console.log("cargando ")
   }
 
 }

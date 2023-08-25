@@ -71,14 +71,15 @@ export default function GraficaRutas(props) {
             })
           
             for(let i =0;i<=cantiMaydeViajesActivos;i++){
-               dataEjeY=Destino.viajes_activos.map((viajeActivo,index)=>{
+               dataEjeY=Destino.viajes_activos.map((viajeActivo)=>{
                     if(viajeActivo.mt3_embarcados_por_destino!==null && i<viajeActivo.mt3_embarcados_por_destino.length ){
                         return viajeActivo.mt3_embarcados_por_destino[i].mt3
                     }else{
                        return 0
                     }
                 })
-                /* console.log(Destino.viajes_activos[1].mt3_embarcados_por_destino[i].Destino) */
+                console.log(Destino.nombre)
+                console.log(Destino.viajes_activos[0].mt3_embarcados_por_destino[i].Destino)
                 dataSetConstruido.push({
                 label: Destino.viajes_activos[0].mt3_embarcados_por_destino[i].name ,
                 data: dataEjeY,
