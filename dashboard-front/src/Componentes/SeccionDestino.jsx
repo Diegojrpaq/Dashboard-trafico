@@ -20,8 +20,8 @@ export default function SeccionDestino(props) {
         <div className="col-12">
           <Tabla Destino={infoDestino}></Tabla>
         </div>
-        <div className="col-12 col-xl-12"><h3>Grafica Venta en Tiempo Real mt3</h3>{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}</div>
-       {/*  <div className="col-12"><h3>grafica Viajes Embarcadas</h3>{<GraficaRutas destino={infoDestino}></GraficaRutas>}</div> */}
+        <div className="col-12"><h3>Grafica Venta en Tiempo Real mt3</h3>{<GraficaMt3PorSucursal destino={infoDestino}></GraficaMt3PorSucursal>}</div>
+        <div className="col-12"><h3>grafica Viajes Embarcadas</h3>{<GraficaRutas destino={infoDestino}></GraficaRutas>}</div>
        {/*  <div className="col-12"><h3>grafica sucursal no Embarcadas </h3>{<GraficaNoEmbarcadaXSucursal destino={infoDestino}></GraficaNoEmbarcadaXSucursal>}</div>
         <div className="col-12"><h3>Grafica Viajes por llegar</h3>{<GraficaCargasPorLlegar destino={infoDestino}></GraficaCargasPorLlegar>}</div> */}
         {/* <div className="col-6">{<GraficaRutasNoEmbarcado destino={infoDestino}></GraficaRutasNoEmbarcado>}<h3>grafica Rutas  no Embarcadas </h3></div> */}

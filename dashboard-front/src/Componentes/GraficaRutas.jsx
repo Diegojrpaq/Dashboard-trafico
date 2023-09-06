@@ -44,10 +44,19 @@ export default function GraficaRutas(props) {
     if (Destino.viajes_activos !== null) {
         const labelRutas = [];
         const capacidadesCarga = [];
-        const metrosLibres = []
+        const metrosLibres = [];
         let cantiMaydeViajesActivos = 0;
+        let label = [];
         Destino.viajes_activos.map((viaje, index) => {
-            labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3";
+            /* labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3"; */
+           /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
+           label.push(viaje.nombre)
+           label.push(viaje.fecha_registro)
+           /* label.push("Capacidad camion: "+viaje.capacidad_mt3)
+           label.push("embarcados: "+viaje.mt3_embarcados)
+           label.push(viaje.unidad) */
+           labelRutas[index] = label
+           label = [];
             capacidadesCarga[index] = viaje.capacidad_mt3
             metrosLibres[index] = viaje.capacidad_mt3 - viaje.mt3_embarcados
             /*este if es para sacar en la vuelta la posicion con mas elementos */
@@ -72,16 +81,18 @@ export default function GraficaRutas(props) {
           
             for(let i =0;i<=cantiMaydeViajesActivos;i++){
                dataEjeY=Destino.viajes_activos.map((viajeActivo)=>{
-                    if(viajeActivo.mt3_embarcados_por_destino!==null && i<viajeActivo.mt3_embarcados_por_destino.length ){
-                        return viajeActivo.mt3_embarcados_por_destino[i].mt3
+                    if(viajeActivo.mt3_embarcados_por_destino!==null && i < viajeActivo.mt3_embarcados_por_destino.length ){
+                       
+                        return  viajeActivo.mt3_embarcados_por_destino[i].mt3
                     }else{
                        return 0
                     }
                 })
+                /* console.log(Destino)
                 console.log(Destino.nombre)
-                console.log(Destino.viajes_activos[0].mt3_embarcados_por_destino[i].Destino)
+                console.log(Destino.viajes_activos[0].mt3_embarcados_por_destino[i].nombre) */
                 dataSetConstruido.push({
-                label: Destino.viajes_activos[0].mt3_embarcados_por_destino[i].name ,
+                /* label: Destino.viajes_activos[0].mt3_embarcados_por_destino[i].nombre, */ 
                 data: dataEjeY,
                 backgroundColor: colores[i].color,
                 borderColor: coloresBorder[i].color,
@@ -92,7 +103,7 @@ export default function GraficaRutas(props) {
             return dataSetConstruido;
 
         }
-        const maximoEjeX = 5 + Math.max(...capacidadesCarga)
+        const maximoEjeX = 40 + Math.max(...capacidadesCarga)
 
         let myoptions = {
             responsive: true,
