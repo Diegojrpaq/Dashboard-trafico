@@ -3,8 +3,10 @@ import { createContext, useEffect, useState } from 'react';
 import GraficaMt3PorSucursal from './Componentes/GraficaMt3PorSucursal';
 import Navbar from './Componentes/Navbar';
 import SideBar from './Componentes/SideBar';
+import SideBar2 from './Componentes/SideBar2';
 /* import Data from './Data/Data2.json'; */
 import SeccionDestino from './Componentes/SeccionDestino';
+import './Css/Sidebar2.css'
 
 
 
@@ -24,30 +26,65 @@ function App() {
 
 
 
+  //Este es el use efect original donde se genera la peticion sobre de todos los datos 
+  //correspondientes al json data2.json y pasar por props cada uno de los destinos a la seccion 
   useEffect(() => {
-    const peticiones = async () => {
-      await fetch(urlApiNextpack)
-        .then((resp) => {
-          return resp.json();
-        }).then((data) => {
-          setDataLogistic(data)
-          if (data) {
-            console.log(data)
-            /*    Swal.fire(
-                 'Good job!',
-                 'Se recibio la informacion correctamente Nextpack',
-                 'success'
-               ) */
 
-          }
-        }).catch(
-          () => console.log('Error al cargar el rastreo ')
-        )
+    const peticion = () => {
+
     }
-
-    peticiones();
+    /*   const peticiones = async () => {
+        await fetch(urlApiNextpack)
+          .then((resp) => {
+            return resp.json();
+          }).then((data) => {
+            setDataLogistic(data)
+            if (data) {
+              console.log(data)
+                 Swal.fire(
+                   'Good job!',
+                   'Se recibio la informacion correctamente Nextpack',
+                   'success'
+                 ) 
+  
+            }
+          }).catch(
+            () => console.log('Error al cargar el rastreo ')
+          )
+      }
+  
+      peticiones(); */
 
   }, []);
+  /*  //Este es el use efect original donde se genera la peticion sobre de todos los datos 
+   //correspondientes al json data2.json y pasar por props cada uno de los destinos a la seccion 
+   useEffect(() => {
+     const peticiones = async () => {
+       await fetch(urlApiNextpack)
+         .then((resp) => {
+           return resp.json();
+         }).then((data) => {
+           setDataLogistic(data)
+           if (data) {
+             console.log(data)
+                 Swal.fire(
+                  'Good job!',
+                  'Se recibio la informacion correctamente Nextpack',
+                  'success'
+                ) 
+ 
+           }
+         }).catch(
+           () => console.log('Error al cargar el rastreo ')
+         )
+     }
+ 
+     peticiones();
+ 
+   }, []); */
+
+
+  //------------------------------------------------------------------
 
   /* 
   //rezgurdo de la funcion que ya tenemos para cargar los datos 
@@ -100,7 +137,7 @@ function App() {
               </div>
               <div className="col-10 col-md-10">
                 {dataLogisticState.Destinos.map((Destino) => {
-                  return <SeccionDestino key={Destino.nombre} idDestino={Destino.id}/>; // Debes devolver algo en cada iteración
+                  return <SeccionDestino key={Destino.nombre} idDestino={Destino.id} />; // Debes devolver algo en cada iteración
                 })}
 
                 {/*  <SeccionDestino idDestino={1} />
@@ -147,9 +184,70 @@ function App() {
 
     );//fin del return 
   } else {
-    console.log("cargando ")
-  }
+    console.log("cargando....")
+    return (
+      <>
+        <div className="app">
+          <div className="NavBar">
+            <h1>Logo</h1>
+          </div>
+          <div className="SideBar d-none d-md-block">
+            <h1></h1>
+            <ul>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+              <li>Item</li>
+            </ul>
+          </div>
+        </div>
+        <div className="app">
+        <div className="container-fluid">
+          <h1>contenedor </h1>
+        </div>
+        </div>
+        {/*  <Navbar />
+        <div className="Sidebar">
+          <h3 className='green'>Sidebar</h3>
+          <ul>
+            <li>hola a todos </li>
+            <li>hola a todos </li>
+            <li>hola a todos </li>
+            <li>hola a todos </li>
+            <li>hola a todos </li>
+            <li>hola a todos </li>
 
+          </ul>
+        </div>
+       <div className="app">
+       <div className="container-fluid">
+          <div className="row">
+            <div className=" col-12 conte"><h3>contenedor</h3></div>
+          </div>
+        </div>
+       </div> */}
+      </>
+    )
+  }
 }
 
 

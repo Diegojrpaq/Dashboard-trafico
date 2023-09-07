@@ -52,7 +52,6 @@ function Tabla(props) {
             Destino.mt3_vendidos_por_destino.map((Element, index) => {
               return (
                 <th scope="col" key={index}>{Element.Destino}</th>
-
               )
 
             })

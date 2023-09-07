@@ -1,0 +1,42 @@
+.app{
+    background: grey;
+    width: auto;
+    height: auto;
+    margin: 0px ;
+    display: flex;
+}
+
+.NavBar{
+    border: black solid 2px;
+    background: gray;
+    color:white;
+    width: 100%;
+    height: 65px;
+    margin-left:250px;
+
+}
+
+.SideBar{
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+}
+
+/* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
+.Sidebar::-webkit-scrollbar {
+    width: 5px; /* Ancho del scrollbar vertical */
+}
+
+.Sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo del track */
+}
+
+.Sidebar::-webkit-scrollbar-thumb {
+    background: black; /* Color del thumb (la parte arrastrable) */
+    border-radius: 5px; /* Bordes redondeados para el thumb */
+}
+
+.Sidebar::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del thumb en hover */
+}

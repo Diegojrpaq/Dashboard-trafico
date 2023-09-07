@@ -1,3 +1,10 @@
+body{
+  margin: 0;
+}
+
+
+
+
 .container-chart{
   width: 450px;
   height: 230px;

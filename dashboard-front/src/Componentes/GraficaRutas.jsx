@@ -103,7 +103,7 @@ export default function GraficaRutas(props) {
             return dataSetConstruido;
 
         }
-        const maximoEjeX = 40 + Math.max(...capacidadesCarga)
+        const maximoEjeX = 70 + Math.max(...capacidadesCarga)
 
         let myoptions = {
             responsive: true,
