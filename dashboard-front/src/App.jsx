@@ -93,7 +93,7 @@ function App() {
       <>
 
         <dataLogisticContext.Provider value={{ dataLogisticState }}>
-
+          {console.log("url server: " + process.env.REACT_APP_SERVER_BACK)}
           <SideBar2 />
           <Navbar/>
           <MainContainer />
