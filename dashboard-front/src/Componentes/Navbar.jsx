@@ -3,7 +3,15 @@ import React, { Component } from 'react'
 export default class Navbar extends Component {
   render() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <>
+        {/* <!-- Navbar en la parte superior --> */}
+        <nav className="navbar navbar-expand-lg navbar-dark  fixed-top">
+          <button className="btn btn-primary">hola</button>
+          <a className="navbar-brand" href="#">Navbar</a>
+          {/*   <!-- Agrega elementos del navbar aquí --> */}
+        </nav>
+      </>
+       /*  <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="http://localhost:3000">Nextpack</a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +36,7 @@ export default class Navbar extends Component {
             </ul>
           </div>
         </div>
-      </nav>
+      </nav> */
     )
   }
 }

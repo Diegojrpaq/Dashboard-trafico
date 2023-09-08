@@ -124,17 +124,14 @@ function App() {
       <>
 
         <dataLogisticContext.Provider value={{ dataLogisticState }}>
-
+          <SideBar2/>
           {/* navbar bootstrap */}
           <Navbar></Navbar>
           {/* navbar bootstrap */}
           {/* contenedor principal */}
           <div className="container-fluid">
             <div className="row">
-              <div className="col-2">
-                <SideBar>
-                </SideBar>
-              </div>
+             
               <div className="col-10 col-md-10">
                 {dataLogisticState.Destinos.map((Destino) => {
                   return <SeccionDestino key={Destino.nombre} idDestino={Destino.id} />; // Debes devolver algo en cada iteración
@@ -187,64 +184,103 @@ function App() {
     console.log("cargando....")
     return (
       <>
-        <div className="app">
-          <div className="NavBar">
-            <h1>Logo</h1>
-          </div>
-          <div className="SideBar d-none d-md-block">
-            <h1></h1>
-            <ul>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-              <li>Item</li>
-            </ul>
-          </div>
-        </div>
-        <div className="app">
-        <div className="container-fluid">
-          <h1>contenedor </h1>
-        </div>
-        </div>
-        {/*  <Navbar />
-        <div className="Sidebar">
-          <h3 className='green'>Sidebar</h3>
-          <ul>
-            <li>hola a todos </li>
-            <li>hola a todos </li>
-            <li>hola a todos </li>
-            <li>hola a todos </li>
-            <li>hola a todos </li>
-            <li>hola a todos </li>
+        {/*  <!-- Sidebar fijo --> */}
+        <SideBar2 />
+        <Navbar/>
+        <div className="container-rigth d-flex">
+          {/*  <!-- Contenedor principal --> */}
+          <div className="main-container container-fluid">
+            {/*   <!-- Dos filas y tres columnas --> */}
+            <div className="row">
+              <div className="col-12">
+                <div className='col-item shadow p-3 mb-4 bg-body rounded'>
 
-          </ul>
-        </div>
-       <div className="app">
-       <div className="container-fluid">
-          <div className="row">
-            <div className=" col-12 conte"><h3>contenedor</h3></div>
+                  <h1>Trafico</h1>
+                </div>
+
+              </div>
+              <div className="col-md-6 ">
+                <div className="col-item  shadow p-3 mb-4 bg-body rounded">
+                  <h1>Cr-19</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
+                    earum
+                    delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
+                    eligendi
+                    vero? Est, provident.</p>
+                </div>
+              </div>
+              <div className="col-md-6 ">
+                <div className="col-item  shadow p-3 mb-5 bg-body rounded">
+                  <h1>Cr-19</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
+                    earum
+                    delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
+                    eligendi
+                    vero? Est, provident.</p>
+                </div>
+              </div>
+              <div className="col-md-4 ">
+                <div className="col-item  shadow p-3 mb-5 bg-body rounded">
+                  <h1>Cr-19</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
+                    earum
+                    delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
+                    eligendi
+                    vero? Est, provident.</p>
+                </div>
+              </div>
+
+            </div>
+            <div className="row">
+              <div className="col-md-4">
+                <h1>Chart.js 1</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
+                  earum
+                  delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
+                  eligendi
+                  vero? Est, provident.</p>
+              </div>
+              <div className="col-md-4">
+                <h2>hi fi</h2>
+              </div>
+              <div className="col-md-4">
+                <h2>hi fi</h2>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-4">
+                <h1>Cr-19</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
+                  earum
+                  delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
+                  eligendi
+                  vero? Est, provident.</p>
+              </div>
+              <div className="col-md-4">
+                <h2>hi fi</h2>
+              </div>
+              <div className="col-md-4">
+                <h2>hi fi</h2>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-4">
+                <h1>Cr-19</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
+                  earum
+                  delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
+                  eligendi
+                  vero? Est, provident.</p>
+              </div>
+              <div className="col-md-4">
+                <h2>hi fi</h2>
+              </div>
+              <div className="col-md-4">
+                <h2>hi fi</h2>
+              </div>
+            </div>
           </div>
         </div>
-       </div> */}
       </>
     )
   }
