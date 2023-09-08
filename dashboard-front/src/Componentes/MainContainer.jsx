@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Css/MainContainer.css'
 
 export default function MainContainer() {
   return (

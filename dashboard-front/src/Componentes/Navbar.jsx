@@ -1,6 +1,38 @@
 import React, { Component } from 'react'
+import '../Css/Navbar.css'
 
 export default class Navbar extends Component {
+
+ /*   //Este es el use efect original donde se genera la peticion sobre de todos los datos 
+   //correspondientes al json data2.json y pasar por props cada uno de los destinos a la seccion 
+   useEffect(() => {
+     const peticiones = async () => {
+       await fetch(urlApiNextpack)
+         .then((resp) => {
+           return resp.json();
+         }).then((data) => {
+           setDataLogistic(data)
+           if (data) {
+             console.log(data)
+             //     Swal.fire(
+               //   'Good job!',
+                 // 'Se recibio la informacion correctamente Nextpack',
+                  //'success'
+                //) 
+ 
+           }
+         }).catch(
+           () => console.log('Error al cargar el rastreo ')
+         )
+     }
+ 
+     peticiones();
+ 
+   }, []); */
+
+
+
+
   render() {
     return (
       <>

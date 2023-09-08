@@ -1,21 +1,18 @@
 import React, { useContext} from 'react';
+import '../Css/Sidebar2.css'
 import { dataLogisticContext } from '../App';
 
 export default function SideBar2() {
+
 
     return (
       <>
         <div className="sidebar d-none d-md-block">
           {/*  <!-- Contenido del sidebar --> */}
           <h2>Sidebar</h2>
-          <p>Contenido del sidebar aquí.</p>
+          <p>Contenido del sidebar</p>
           <ul>
-            <li>Hola Mundo</li>
-            <li>Hola Mundo</li>
-            <li>Hola Mundo</li>
-            <li>Hola Mundo</li>
-            <li>Hola Mundo</li>
-            <li>Hola Mundo</li>
+            
           </ul>
         </div>
       {/* <div className="accordion" id="accordionExample" >

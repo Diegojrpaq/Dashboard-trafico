@@ -6,7 +6,6 @@ import SideBar from './Componentes/SideBar';
 import SideBar2 from './Componentes/SideBar2';
 /* import Data from './Data/Data2.json'; */
 import SeccionDestino from './Componentes/SeccionDestino';
-import './Css/Sidebar2.css'
 import MainContainer from './Componentes/MainContainer';
 
 
@@ -26,7 +25,7 @@ function App() {
   /*  const urlApiNextpack = 'http://localhost/trafico/get_data'; */
 
 
-   //Este es el use efect original donde se genera la peticion sobre de todos los datos 
+ /*   //Este es el use efect original donde se genera la peticion sobre de todos los datos 
    //correspondientes al json data2.json y pasar por props cada uno de los destinos a la seccion 
    useEffect(() => {
      const peticiones = async () => {
@@ -37,11 +36,11 @@ function App() {
            setDataLogistic(data)
            if (data) {
              console.log(data)
-             /*     Swal.fire(
-                  'Good job!',
-                  'Se recibio la informacion correctamente Nextpack',
-                  'success'
-                ) */ 
+             //     Swal.fire(
+               //   'Good job!',
+                 // 'Se recibio la informacion correctamente Nextpack',
+                  //'success'
+                //) 
  
            }
          }).catch(
@@ -51,7 +50,7 @@ function App() {
  
      peticiones();
  
-   }, []);
+   }, []); */
 
 
   //------------------------------------------------------------------
@@ -89,21 +88,21 @@ function App() {
      setRenderInicial(infoupdate)
     } */
 
-  if (dataLogisticState != null) {
+  if (dataLogisticState == null) {
     return (
       <>
 
         <dataLogisticContext.Provider value={{ dataLogisticState }}>
 
           <SideBar2 />
-          <Navbar />
+          <Navbar/>
           <MainContainer />
-          <div className="container-fluid">
+         {/*  <div className="container-fluid">
             <div className="row">
               <div className="col-10 col-md-10">
                 {dataLogisticState.Destinos.map((Destino) => {
                   return <SeccionDestino key={Destino.nombre} idDestino={Destino.id} />; // Debes devolver algo en cada iteración
-                })}
+                })} */}
                 {/*  <SeccionDestino idDestino={1} />
                 <SeccionDestino idDestino={21} />
                 <SeccionDestino idDestino={2} />
@@ -113,9 +112,9 @@ function App() {
                 <SeccionDestino idDestino={6} />
                 <SeccionDestino idDestino={8} />
                 <SeccionDestino idDestino={13} /> */}
-              </div>
+          {/*     </div>
             </div>
-          </div>
+          </div> */}
         </dataLogisticContext.Provider>
       </>
 

@@ -1,0 +1,35 @@
+    /* Estilo para el sidebar fijo */
+    .sidebar {
+        height: 100vh;
+        /* Abarca todo el alto de la pantalla */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 220px;
+        /* Ancho del sidebar */
+        background-color:#405189;
+        background: #1C2C3F;
+        padding: 20px;
+        color: #fff;
+        overflow-y:auto;
+    }
+
+    /* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
+.sidebar::-webkit-scrollbar {
+    width: 4px; /* Ancho del scrollbar vertical */
+  }
+  
+  .sidebar::-webkit-scrollbar-track {
+    background: #1C2C3F; /* Color de fondo del track */
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb {
+    background: #E9B756; /* Color del thumb (la parte arrastrable) */
+    border-radius:  3px; /* Bordes redondeados para el thumb */
+  }
+  
+  .sidebar::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color del thumb en hover */
+  }
+  
+  

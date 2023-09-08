@@ -1,22 +1,6 @@
 body{
-  
+  margin:0px
 }
-
-        /* Estilo para el sidebar fijo */
-        .sidebar {
-          height: 100vh;
-          /* Abarca todo el alto de la pantalla */
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 220px;
-          /* Ancho del sidebar */
-          background-color:#405189;
-          background: #1C2C3F;
-          padding: 20px;
-          color: #fff;
-          overflow-y:auto;
-      }
 
       /* Estilo para el contenedor principal */
       .main-container {
@@ -30,24 +14,13 @@ body{
           margin-right: 0px;
       }
 
-      .navbar{
-          margin-left: 220px !important;
-          margin-top: 0px ;
-          background: #1c2c3fe7 !important;
-  
-         
-      }
-
       .container-fluid {
           margin-top: 56px;
           margin-left: 220px;
          /*  max-width: calc(100% - 250px); */
           /* Resta el ancho del sidebar */
       }
-      .btn{
-          margin-right: 10px ;
-      }
-
+     
       @media (max-width: 767.98px) {
       .container-fluid {
           display: flex;
@@ -64,30 +37,5 @@ body{
       }
   }
 
-  .col-item{
-      margin:5px;
-      padding:50px;
-      border-radius: 10px;
-      background: white;
-      color: black;
-     
-  }
-/* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
-.sidebar::-webkit-scrollbar {
-  width: 4px; /* Ancho del scrollbar vertical */
-}
-
-.sidebar::-webkit-scrollbar-track {
-  background: #1C2C3F; /* Color de fondo del track */
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background: #E9B756; /* Color del thumb (la parte arrastrable) */
-  border-radius:  3px; /* Bordes redondeados para el thumb */
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Color del thumb en hover */
-}
 
 
