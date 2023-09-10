@@ -1,6 +1,11 @@
+:root{
+    --Color-nextpack-orange : #E9B756;
+}
 body{
   margin:0px
 }
+
+
 
       /* Estilo para el contenedor principal */
       .main-container {

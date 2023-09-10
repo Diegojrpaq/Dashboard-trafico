@@ -1,4 +1,10 @@
-    /* Estilo para el sidebar fijo */
+/* Inicio Importaciones */
+@import 'App.css';
+/* Fin Importaciones */
+   
+   
+   
+   /* Estilo para el sidebar fijo */
     .sidebar {
         height: 100vh;
         /* Abarca todo el alto de la pantalla */
@@ -7,11 +13,23 @@
         left: 0;
         width: 220px;
         /* Ancho del sidebar */
-        background-color:#405189;
+        background-color:var(--Color-navbar-back);
         background: #1C2C3F;
         padding: 20px;
         color: #fff;
         overflow-y:auto;
+    }
+
+    .img-fluid{
+      padding-bottom: 15px;
+      border-bottom: var(--Color-nextpack-orange) solid 2px ;
+    }
+
+    .accordion-header{
+      background-color:  #1C2C3F !important;
+    }
+    .accordion-collapse{
+      background: var(--Color-navbar-back);
     }
 
     /* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
@@ -24,7 +42,7 @@
   }
   
   .sidebar::-webkit-scrollbar-thumb {
-    background: #E9B756; /* Color del thumb (la parte arrastrable) */
+    background: var(--Color-nextpack-orange); /* Color del thumb (la parte arrastrable) */
     border-radius:  3px; /* Bordes redondeados para el thumb */
   }
   

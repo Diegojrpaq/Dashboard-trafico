@@ -1,5 +1,6 @@
 import React from 'react'
 import '../Css/MainContainer.css'
+import Logo from '../assets/img/logo.png'
 
 export default function MainContainer() {
   return (
@@ -45,6 +46,17 @@ export default function MainContainer() {
                     eligendi
                     vero? Est, provident.</p>
                 </div>
+              </div>
+              <div className="col-4 ">
+               <div className="col-item shadow p-3 bg-body rounded">
+                <h1>imagen
+               </h1>
+               <img 
+               src={Logo} 
+               alt=""
+               className='img-fluid'
+               />
+               </div>
               </div>
             </div>
           </div>
