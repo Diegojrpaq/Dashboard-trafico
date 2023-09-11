@@ -1,7 +1,7 @@
 import React from 'react'
 import '../Css/MainContainer.css'
 import Logo from '../assets/img/logo.png'
-import GraficaBarrasPrueba from './GraficaBarrasPrueba'
+import GraficaBarrasPruebaTopher from './GraficaBarrasPruebaTopher'
 import Spinner from 'react-bootstrap/Spinner';
 
 export default function MainContainer() {
@@ -12,18 +12,18 @@ export default function MainContainer() {
         <div className="main-container container-fluid">
           {/*   <!-- Dos filas y tres columnas --> */}
           <div className="row">
-            <div className="col-12 col-md-5">
+            <div className="col-12 ">
               <div className='col-item shadow p-3 mb-4 bg-body rounded'>
 
                 <h1 className='mb-4'>Trafico</h1>
-                <Spinner animation="border" variant="primary" role="status">
+                {/* <Spinner animation="border" variant="primary" role="status">
                   <span className="visually-hidden">Loading...</span>
-                </Spinner>
-                <GraficaBarrasPrueba/>
+                </Spinner> */}
+                <GraficaBarrasPruebaTopher/>
               </div>
 
             </div>
-            <div className="col-md-5 ">
+            <div className=" ">
               <div className="col-item  shadow p-3 mb-4 bg-body rounded">
                 <h1>Cr-19</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
