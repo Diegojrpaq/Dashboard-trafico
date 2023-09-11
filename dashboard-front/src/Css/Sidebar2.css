@@ -32,6 +32,13 @@
       background: var(--Color-navbar-back);
     }
 
+    .Accordion-custom{
+      background: black !important;
+      color: white !important;
+    }
+
+
+
     /* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
 .sidebar::-webkit-scrollbar {
     width: 4px; /* Ancho del scrollbar vertical */
