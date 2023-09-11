@@ -14,7 +14,7 @@ export default function SideBar2() {
 
         <img src={Logo} alt="" className='img-fluid mb-4' />
         <p>Contenido del sidebar</p>
-    <Accordion defaultActiveKey="0"  >
+   {/*  <Accordion defaultActiveKey="0"  >
       <Accordion.Item eventKey="0">
         <Accordion.Header className='Accordion-custom' >Accordion Item #1</Accordion.Header>
         <Accordion.Body>
@@ -39,7 +39,7 @@ export default function SideBar2() {
           culpa qui officia deserunt mollit anim id est laborum.
         </Accordion.Body>
       </Accordion.Item>
-    </Accordion>
+    </Accordion> */}
   
         <ul>
 
