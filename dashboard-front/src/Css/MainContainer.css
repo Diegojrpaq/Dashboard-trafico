@@ -1,8 +1,26 @@
+
+
+
 .col-item{
     margin:5px;
     padding:50px;
-    border-radius: 10px;
-    background: white;
+    background: rgba(255, 255, 255, 0.514) !important;
     color: black;
    
+}
+
+.Spinner-Graph{
+    /* 
+    background: var(--Color-back); */
+    color: var(--Color-secondary);
+    width: 50px !important;
+    height: 50px !important;
+    
+}
+
+.container-graph{
+   height: 400px;
+  /*  max-height: 100vh; */
+   margin: 0;
+
 }

@@ -29,15 +29,34 @@ Chartjs.register(
 
 export default function GraficaBarrasPrueba() {
  const myoptions = {
-    responsive: false,
+   responsive: true,
+   maintainAspectRatio: false,
     animation: true,
-    autoSkip: true,
+    autoSkip: false,
     plugins: {
         legend: {
-            display: true
+            display: true,
+            position: 'bottom'
+        },
+        title: {
+          display: true,
+          text: 'Ruta: '+'QRO-GUA-1',
+          font: {
+            size: 25
+          }
         }
     },
-    
+    scales:{
+      x:{
+        stacked: true,
+                beginAtZero: false, // Asegura que el eje X no empiece en 0
+                min: 0, // Establece el mínimo del eje X en 100
+      },
+      y: { 
+        stacked: true,
+        min: 0,
+      }
+    },
     
         indexAxis: 'y',
         elements: {
@@ -45,16 +64,7 @@ export default function GraficaBarrasPrueba() {
             borderWidth: 2,
           },
         },
-        responsive: true,
-        plugins: {
-          legend: {
-            position: 'right',
-          },
-          title: {
-            display: true,
-            text: 'Chart.js Horizontal Bar Chart',
-          },
-        },
+       
       };
 
 
@@ -70,14 +80,14 @@ export default function GraficaBarrasPrueba() {
   },
   {
     label: "Espacio libre del Contenedor2",
-    data: [30,10,20],
+    data: [10,20,30],
     backgroundColor:  'rgba(255, 0, 132, 0.5)',
     borderColor:  'rgba(255, 99, 132, 0.5)',
     borderWidth: 2
   },
   {
     label: "Espacio libre del Contenedor3",
-    data: [20,30,10],
+    data: [10,20,30],
     backgroundColor:  'rgba(255, 190, 132, 0.5)',
     borderColor:  'rgba(255, 99, 132, 0.5)',
     borderWidth: 2
@@ -86,10 +96,12 @@ export default function GraficaBarrasPrueba() {
 
   return (
    <>
+   <div className="container-graph">
    <Bar
    data={data}
    options={myoptions}
    />
+   </div>
    </>
   )
 }
