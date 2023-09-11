@@ -14,7 +14,7 @@
         width: 220px;
         /* Ancho del sidebar */
         background-color:var(--Color-navbar-back);
-        background: #1C2C3F;
+        background: var(--Color-back);
         padding: 20px;
         color: #fff;
         overflow-y:auto;
@@ -22,22 +22,10 @@
 
     .img-fluid{
       padding-bottom: 15px;
-      border-bottom: var(--Color-nextpack-orange) solid 2px ;
+      border-bottom: var(--Color-secondary) solid 2px ;
     }
 
-    .accordion-header{
-      background-color:  #1C2C3F !important;
-    }
-    .accordion-collapse{
-      background: var(--Color-navbar-back);
-    }
-
-    .Accordion-custom{
-      background: black !important;
-      color: white !important;
-    }
-
-
+   
 
     /* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
 .sidebar::-webkit-scrollbar {
@@ -45,11 +33,11 @@
   }
   
   .sidebar::-webkit-scrollbar-track {
-    background: #1C2C3F; /* Color de fondo del track */
+    background: var(--Color-back) /* Color de fondo del track */
   }
   
   .sidebar::-webkit-scrollbar-thumb {
-    background: var(--Color-nextpack-orange); /* Color del thumb (la parte arrastrable) */
+    background: var(--Color-secondary); /* Color del thumb (la parte arrastrable) */
     border-radius:  3px; /* Bordes redondeados para el thumb */
   }
   
