@@ -18,90 +18,125 @@ export default function MainContainer() {
             <div className="col-12 col-md-12">
               <div className='col-item shadow p-3 mb-4  rounded'>
                 <h1 className='mb-4'>Trafico</h1>
-
-
-                <Spinner animation="border" variant="secundary" role="status" className='Spinner-Graph'>
-
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
+                <h3>ORIGEN: Guadalajara - Gonzalez gallo</h3>
+                
                 <GraficaBarrasPrueba />
-                <GraficaBarrasPruebaTopher/>
-              </div>
-
-            </div>
-            <div className="12">
-              <div className="col-item shadow p-3 rounded mb-4">
                 <h3>Detalles</h3>
-                import Accordion from 'react-bootstrap/Accordion';
-
-
-
                 <Accordion>
                   <Accordion.Item eventKey="0">
-                    <Accordion.Header>Tabla 1 </Accordion.Header>
+                    <Accordion.Header>METRICAS</Accordion.Header>
                     <Accordion.Body>
-                      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque quam mollitia eligendi odio, quas optio dignissimos incidunt consequuntur a! Labore numquam nulla fugit quos quidem neque vero nobis repellat iure ipsam dolores fuga molestias hic, aperiam magni dolore culpa nostrum accusantium necessitatibus. Vel optio, eius odit tempore unde deserunt totam!
-                      </p>
-
+                      <Table striped bordered hover size="sm">
+                        <thead>
+                          <tr>
+                            <th>Ruta</th>
+                            <th>Peso Planeado</th>
+                            <th>Volumen Planeado</th>
+                            <th>Flete Planeado</th>
+                            <th>Seguro</th>
+                            <th>Subtotal</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Planeacion GUA-QRO-1</td>
+                            <td>85,000 kg.</td>
+                            <td>85 mt3</td>
+                            <td>$ 25.800</td>
+                            <td>$ 2800.00</td>
+                            <td>$ 28,600.00</td>
+                          </tr>
+                        </tbody>
+                        <thead>
+                          <tr>
+                            <th>Ruta</th>
+                            <th>Peso Embarcada</th>
+                            <th>Volumen Embarcada</th>
+                            <th>Flete Embarcada</th>
+                            <th>Seguro</th>
+                            <th>Subtotal</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Embarcado </td>
+                            <td>55,000 kg.</td>
+                            <td>55 mt3</td>
+                            <td>$ 19,000.00</td>
+                            <td>$ 280.00</td>
+                            <td>$ 19,280.00</td>
+                          </tr>
+                        </tbody>
+                      </Table>
 
                     </Accordion.Body>
                   </Accordion.Item>
                   <Accordion.Item eventKey="1">
-                    <Accordion.Header>Accordion Item #2</Accordion.Header>
+                    <Accordion.Header>HISTORIAL DE GUIAS</Accordion.Header>
                     <Accordion.Body>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                      minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat. Duis aute irure dolor in
-                      reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                      pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                      culpa qui officia deserunt mollit anim id est laborum.
+                      <Table striped bordered hover size="sm">
+                        <thead>
+                          <tr>
+                            <th>Sucursal</th>
+                            <th>Guia</th>
+                            <th>Embarcadas</th>
+                            <th>Peso</th>
+                            <th>Volumen</th>
+                            <th>Flete</th>
+                            <th>Seguro</th>
+                            <th>SubTotal</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Pablo Valdez </td>
+                            <td></td>
+                            <td></td>
+                            <td>20,000kg</td>
+                            <td>20 mt3</td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td>PVD-001</td>
+                            <td>Si</td>
+                            <td>1 kg</td>
+                            <td>10 mt3</td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td>PVD-002</td>
+                            <td>No</td>
+                            <td>3 kg</td>
+                            <td>30 mt3</td>
+                          </tr>
+                          <tr>
+                            <td>Patria </td>
+                            <td></td>
+                            <td></td>
+                            <td>20,000kg</td>
+                            <td>20 mt3</td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td>PAT-001</td>
+                            <td>No</td>
+                            <td>1 kg</td>
+                            <td>10 mt3</td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td>PAT-002</td>
+                            <td>Si</td>
+                            <td>3 kg</td>
+                            <td>30 mt3</td>
+                          </tr>
+                          
+                        </tbody>
+                      </Table>
+
                     </Accordion.Body>
                   </Accordion.Item>
                 </Accordion>
-
-
-              </div>
-            </div>
-            <div className="col-md-5 ">
-
-              <div className="col-item  shadow p-3 mb-4 bg-body rounded">
-                <h1>Cr-19</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
-                  earum
-                  delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
-                  eligendi
-                  vero? Est, provident.</p>
-              </div>
-            </div>
-            <div className="col-md-2 ">
-              <div className="col-item  shadow p-3 mb-4 bg-body rounded">
-                <h1>Cr-19</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
-                  earum
-                  delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
-                  vero? Est, provident.</p>
-              </div>
-            </div>
-            <div className="col-md-4 ">
-              <div className="col-item  shadow p-3 mb-5 bg-body rounded">
-                <h1>Cr-19</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, debitis non. Adipisci omnis iste
-                  earum
-                  delectus quam magni accusantium eum architecto laboriosam placeat! Excepturi nisi quibusdam
-                  eligendi
-                  vero? Est, provident.</p>
-              </div>
-            </div>
-            <div className="col-4 ">
-              <div className="col-item shadow p-3 bg-body rounded">
-                <h1>imagen
-                </h1>
-                <img
-                  src={Logo}
-                  alt=""
-                  className='img-fluid'
-                />
               </div>
             </div>
           </div>

@@ -40,7 +40,7 @@ export default function GraficaBarrasPrueba() {
         },
         title: {
           display: true,
-          text: 'Ruta: '+'QRO-GUA-1',
+          text: 'Ruta: '+'GUA-QRO-1',
           font: {
             size: 25
           }
@@ -73,28 +73,52 @@ export default function GraficaBarrasPrueba() {
 
 
  const data = {
-  labels: ['January', 'February', 'March'],
+  labels: ['PLANEADO', 'EMBARCADOS'],
   datasets: [{
     label: "Espacio libre del Contenedor",
-    data: [10,20,30],
-    backgroundColor:  'rgba(255, 99, 132, 0.5)',
-    borderColor:  'rgba(255, 99, 132, 0.5)',
+    data: [15,45],
+    backgroundColor:  'rgb(114,176,228, .5)',
+    borderColor:  'rgb(114,176,228)',
     borderWidth: 2
   },
   {
-    label: "Espacio libre del Contenedor2",
-    data: [10,20,30],
-    backgroundColor:  'rgba(255, 0, 132, 0.5)',
-    borderColor:  'rgba(255, 99, 132, 0.5)',
+    label: "GONZALEZ GALLO",
+    data: [15,10],
+    backgroundColor:  'rgb(160, 235, 22, .6)',
+    borderColor:  'rgb(160, 235, 22)',
     borderWidth: 2
   },
   {
-    label: "Espacio libre del Contenedor3",
-    data: [10,20,30],
-    backgroundColor:  'rgba(255, 190, 132, 0.5)',
-    borderColor:  'rgba(255, 99, 132, 0.5)',
+    label: "PABLO VALDEZ",
+    data: [20, 15],
+    backgroundColor:  'rgb(255, 79, 13)',
+    borderColor:  'rgb(255, 79, 13)',
     borderWidth: 2
-  }]
+  },
+ 
+  {
+    label: "CRUZ DEL SUR",
+    data: [20,10],
+    backgroundColor:  'rgba(7, 158, 232)',
+    borderColor:  'rgba(7, 158, 232)',
+    borderWidth: 2
+  },
+
+  {
+    label: "PATRIA",
+    data: [20,10],
+    backgroundColor:  'rgba(188, 0, 255 )',
+    borderColor:  'rgba(188, 0, 255)',
+    borderWidth: 2
+  },
+  {
+    label: "PLAN DE SAN LUIS",
+    data: [10,10],
+    backgroundColor:  'rgba(26, 13, 255)',
+    borderColor:  'rgba(26, 13, 255)',
+    borderWidth: 2
+  }
+]
 };
 
   return (
