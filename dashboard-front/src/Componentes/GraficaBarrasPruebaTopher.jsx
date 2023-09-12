@@ -32,6 +32,7 @@ Chartjs.register(
 export default function GraficaBarrasPruebaTopher() {
  const myoptions = {
     responsive: false,
+    maintainAspectRatio: false,
     animation: true,
     autoSkip: true,
     // plugins: {
@@ -116,10 +117,12 @@ const nombre = "EEE"
   return (
    <>
    {
-    data.datasets.length > 0 ? <Bar
-    data={data}
-    options={myoptions}
-    />
+    data.datasets.length > 0 ? <div className="container-graph">
+      <Bar
+      data={data}
+      options={myoptions}
+      />
+    </div>
     : <div className='text-center'>
       <Spinner animation="border" variant="primary" role="status" >
     <span className="visually-hidden">Loading...</span>

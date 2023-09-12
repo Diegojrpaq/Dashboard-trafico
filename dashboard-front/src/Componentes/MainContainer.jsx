@@ -4,6 +4,7 @@ import Logo from '../assets/img/logo.png'
 import GraficaBarrasPruebaTopher from './GraficaBarrasPruebaTopher'
 import Spinner from 'react-bootstrap/Spinner';
 import { Accordion, Table } from 'react-bootstrap';
+import GraficaBarrasPrueba from './GraficaBarrasPrueba';
 
 export default function MainContainer() {
   return (
@@ -24,6 +25,7 @@ export default function MainContainer() {
                   <span className="visually-hidden">Loading...</span>
                 </Spinner>
                 <GraficaBarrasPrueba />
+                <GraficaBarrasPruebaTopher/>
               </div>
 
             </div>

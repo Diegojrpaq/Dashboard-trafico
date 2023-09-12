@@ -44,7 +44,10 @@ export default function GraficaBarrasPrueba() {
           font: {
             size: 25
           }
-        }
+        },
+        datalabels: {
+          display: false,
+        },
     },
     scales:{
       x:{
