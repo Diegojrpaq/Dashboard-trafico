@@ -1,6 +1,5 @@
 import React from 'react'
 import '../Css/MainContainer.css'
-import Logo from '../assets/img/logo.png'
 import GraficaBarrasPruebaTopher from './GraficaBarrasPruebaTopher'
 import Spinner from 'react-bootstrap/Spinner';
 import { Accordion, Table } from 'react-bootstrap';
