@@ -22,11 +22,11 @@ export default function MainContainer() {
                 
                 <GraficaBarrasPrueba />
                 <h3>Detalles</h3>
-                <Accordion>
+                <Accordion defaultActiveKey={['0']} alwaysOpen>
                   <Accordion.Item eventKey="0">
                     <Accordion.Header>METRICAS</Accordion.Header>
                     <Accordion.Body>
-                      <Table striped bordered hover size="sm">
+                      <Table striped bordered hover size='md'>
                         <thead>
                           <tr>
                             <th>Ruta</th>
@@ -74,12 +74,12 @@ export default function MainContainer() {
                   <Accordion.Item eventKey="1">
                     <Accordion.Header>HISTORIAL DE GUIAS</Accordion.Header>
                     <Accordion.Body>
-                      <Table striped bordered hover size="sm">
+                      <Table striped bordered hover>
                         <thead>
                           <tr>
                             <th>Sucursal</th>
-                            <th>Guia</th>
-                            <th>Embarcadas</th>
+                            <th>Num-Guia</th>
+                            <th></th>
                             <th>Peso</th>
                             <th>Volumen</th>
                             <th>Flete</th>

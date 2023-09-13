@@ -6,7 +6,7 @@
    
    /* Estilo para el sidebar fijo */
     .sidebar {
-        height: 100vh;
+        height: 100%;
         /* Abarca todo el alto de la pantalla */
         position: fixed;
         top: 0;

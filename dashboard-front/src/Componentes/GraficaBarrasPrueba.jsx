@@ -91,7 +91,7 @@ export default function GraficaBarrasPrueba() {
   {
     label: "PABLO VALDEZ",
     data: [20, 15],
-    backgroundColor:  'rgb(255, 79, 13)',
+    backgroundColor:  'rgb(255, 79, 13, .5)',
     borderColor:  'rgb(255, 79, 13)',
     borderWidth: 2
   },
@@ -99,7 +99,7 @@ export default function GraficaBarrasPrueba() {
   {
     label: "CRUZ DEL SUR",
     data: [20,10],
-    backgroundColor:  'rgba(7, 158, 232)',
+    backgroundColor:  'rgba(7, 158, 232, .5)',
     borderColor:  'rgba(7, 158, 232)',
     borderWidth: 2
   },
@@ -107,14 +107,14 @@ export default function GraficaBarrasPrueba() {
   {
     label: "PATRIA",
     data: [20,10],
-    backgroundColor:  'rgba(188, 0, 255 )',
+    backgroundColor:  'rgba(188, 0, 255, .5 )',
     borderColor:  'rgba(188, 0, 255)',
     borderWidth: 2
   },
   {
     label: "PLAN DE SAN LUIS",
     data: [10,10],
-    backgroundColor:  'rgba(26, 13, 255)',
+    backgroundColor:  'rgba(26, 13, 255, .5)',
     borderColor:  'rgba(26, 13, 255)',
     borderWidth: 2
   }
