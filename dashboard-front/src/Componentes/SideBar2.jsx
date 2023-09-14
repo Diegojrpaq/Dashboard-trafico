@@ -22,9 +22,10 @@ export default function SideBar2() {
             role="button"
             aria-expanded="false"
             aria-controls="collapseExample"
-          >Destinos</a>
+          >
+            <h5><i className="bi bi-speedometer2"></i>Destinos</h5></a>
         </p>
-        <div class="collapse" id="collapseExample">
+        <div className="collapse" id="collapseExample">
          <ul>
           <li><a href="#" className=' btn-collapse'>
             Item</a></li>
@@ -44,7 +45,7 @@ export default function SideBar2() {
             aria-controls="collapseExample2"
           >Destinos</a>
         </p>
-        <div class="collapse" id="collapseExample2">
+        <div className="collapse" id="collapseExample2">
          <ul>
           <li className='btn-collapse'><a href="#" >
             Item</a></li>
