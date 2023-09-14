@@ -14,59 +14,47 @@ export default function SideBar2() {
 
         <img src={Logo} alt="" className='img-fluid mb-4' />
         <p>Contenido del sidebar</p>
-        {/*  <Accordion defaultActiveKey="0"  >
-      <Accordion.Item eventKey="0">
-        <Accordion.Header className='Accordion-custom' >Accordion Item #1</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Accordion Item #2</Accordion.Header>
-        <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Accordion.Body>
-      </Accordion.Item>
-    </Accordion> */}
-
-        <ul className='nav nav-pills text-white my-1'>
-        {/*   <li className='nav-item text-white my-1'>
-            <a href="" className='nav-link'>
-             <i className="bi bi-grid">
-              <span className="ms-2">Destinos</span>
-             </i>
-            </a>
-          </li>*/}
-          <li>
-
-          </li>
-          <li> 
-            <a href="www.google.com.mx" className='nav-link'>
-              Item 2</a>
-          </li>
-          <li>
-            <a href="" className='nav-link'>
-              Item 3</a>
-          </li>
-          <li>
-            <a href="" className='nav-link'>
-              Item 4</a>
-          </li>
-        </ul>
+        <p>
+          <a
+            href="#collapseExample"
+            className='btn-collapse'
+            data-bs-toggle="collapse"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+          >Destinos</a>
+        </p>
+        <div class="collapse" id="collapseExample">
+         <ul>
+          <li><a href="#" className=' btn-collapse'>
+            Item</a></li>
+          <li><a href="#" className='btn btn-collapse'>
+            Item</a></li>
+          <li><a href="#" className='btn btn-collapse'>
+            Item</a></li>
+         </ul>
+        </div>
+        <p>
+          <a
+            href="#collapseExample2"
+            className='btn-collapse'
+            data-bs-toggle="collapse"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample2"
+          >Destinos</a>
+        </p>
+        <div class="collapse" id="collapseExample2">
+         <ul>
+          <li className='btn-collapse'><a href="#" >
+            Item</a></li>
+          <li className='btn-collapse'><a href="#" >
+            Item</a></li>
+          <li className='btn-collapse'><a href="#" >
+            Item</a></li>
+         </ul>
+        </div>
       </div>
-
     </>
   );
 };

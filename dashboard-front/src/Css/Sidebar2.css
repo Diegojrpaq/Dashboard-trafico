@@ -25,6 +25,13 @@
       border-bottom: var(--Color-secondary) solid 2px ;
     }
 
+    .btn-collapse, .btn-collapse a{
+      color: white !important;
+      background: rgba(255, 255, 255, 0);
+      border: none;
+      text-decoration: none !important;
+    }
+
    
 
     /* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
