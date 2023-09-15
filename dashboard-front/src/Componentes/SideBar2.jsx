@@ -18,14 +18,16 @@ export default function SideBar2() {
           <img src={Logo} alt="" className='img-fluid mb-4' />
           <h3>Dashboard</h3>
         </div>
-        <SHeaderList title="Destinos" icon='bi bi-geo' idcollapse='2'>
-          <SListItem>hello</SListItem>
-          <SListItem>hello</SListItem>
-          <SListItem>hello</SListItem>
-          <SListItem>hello</SListItem>
-          <SListItem>hello</SListItem>
-          <SListItem>hello</SListItem>
-          <SListItem>hello</SListItem>
+        <SHeaderList title="Origenes" icon='bi bi-geo' idcollapse='2'>
+          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
+          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
+          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
+          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
+          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
+          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
+          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
+          <SHeaderList title="Origenes">
+          </SHeaderList>
         </SHeaderList>
         <SHeaderList title="Ventas" icon='bi bi-coin' idcollapse='4'>
           <SListItem>hello</SListItem>

@@ -39,7 +39,7 @@ export default class Navbar extends Component {
         {/* <!-- Navbar en la parte superior --> */}
         <nav className="navbar navbar-expand-lg navbar-dark  fixed-top">
           <button className='btn btn-primary m-2'>
-            <i class="bi bi-list"></i>
+            <i className="bi bi-list"></i>
           </button>
           <a className="navbar-brand" href="#">Navbar</a>
           {/*   <!-- Agrega elementos del navbar aquí --> */}

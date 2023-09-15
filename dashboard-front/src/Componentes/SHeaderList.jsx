@@ -3,7 +3,7 @@ import React from 'react'
 export default function SHeaderList(props) {
     return (
         <>
-            <div>
+            <div className='headerlist'>
                 <a
                     href={'#' + props.idcollapse}
                     className='btn-collapse d-flex bd-highlight'
@@ -11,13 +11,13 @@ export default function SHeaderList(props) {
                     role="button"
 
                     aria-controls={props.idcollapse}>
-                    <i className={props.icon+' bd.highlight'} ></i>
+                    <i className={props.icon+' bd.highlight mx-2'} ></i>
                     <p className='bd.highlight'>{props.title}</p>
                     <i className="bi bi-chevron-right bd.highlight ms-auto"></i>
 
                 </a>
             </div>
-            <div className="collapse" id={props.idcollapse}>
+            <div className="collapse list" id={props.idcollapse}>
                 <ul>
                     {props.children}
                 </ul>
