@@ -19,15 +19,13 @@ export default function SideBar2() {
           <h3>Dashboard</h3>
         </div>
         <SHeaderList title="Origenes" icon='bi bi-geo' idcollapse='2'>
-          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
-          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
-          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
-          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
-          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
-          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
-          <SListItem icon='bi bi-dash mx-1'>Guadalajara</SListItem>
-          <SHeaderList title="Origenes">
-          </SHeaderList>
+          <SListItem icon='bi bi-geo-alt mx-1'>Guadalajara</SListItem>
+          <SListItem icon='bi bi-geo-alt mx-1'>Mexico</SListItem>
+          <SListItem icon='bi bi-geo-alt mx-1'>Queretaro</SListItem>
+          <SListItem icon='bi bi-geo-alt mx-1'>Celaya</SListItem>
+          <SListItem icon='bi bi-geo-alt mx-1'>Irapuato</SListItem>
+          <SListItem icon='bi bi-geo-alt mx-1'>Aguascalientes</SListItem>
+          <SListItem icon='bi bi-geo-alt mx-1'>CD. Obregon</SListItem>
         </SHeaderList>
         <SHeaderList title="Ventas" icon='bi bi-coin' idcollapse='4'>
           <SListItem>hello</SListItem>
