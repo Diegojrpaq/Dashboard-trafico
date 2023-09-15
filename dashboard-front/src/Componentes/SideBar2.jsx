@@ -3,6 +3,8 @@ import '../Css/Sidebar2.css'
 import { Accordion, Card } from 'react-bootstrap';
 import { dataLogisticContext } from '../App';
 import Logo from '../assets/img/logo.png'
+import SHeaderList from './SHeaderList';
+import SListItem from './SListItem';
 
 export default function SideBar2() {
 
@@ -12,30 +14,38 @@ export default function SideBar2() {
       <div className="sidebar d-none d-md-block">
         {/*  <!-- Contenido del sidebar --> */}
 
-        <img src={Logo} alt="" className='img-fluid mb-4' />
-        <p>Contenido del sidebar</p>
-        <p>
-          <a
-            href="#collapseExample"
-            className='btn-collapse'
-            data-bs-toggle="collapse"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-          >
-            <h5><i className="bi bi-speedometer2"></i>Destinos</h5></a>
-        </p>
-        <div className="collapse" id="collapseExample">
-         <ul>
-          <li><a href="#" className=' btn-collapse'>
-            Item</a></li>
-          <li><a href="#" className='btn btn-collapse'>
-            Item</a></li>
-          <li><a href="#" className='btn btn-collapse'>
-            Item</a></li>
-         </ul>
+        <div className="sidebar-header">
+          <img src={Logo} alt="" className='img-fluid mb-4' />
+          <h3>Dashboard</h3>
         </div>
-        <p>
+        <SHeaderList title="Destinos" icon='bi bi-geo' idcollapse='2'>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+        </SHeaderList>
+        <SHeaderList title="Ventas" icon='bi bi-coin' idcollapse='4'>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+        </SHeaderList>
+        <SHeaderList title="Sucursales" icon='bi bi-airplane' idcollapse='5'>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+          <SListItem>hello</SListItem>
+        </SHeaderList>
+       {/*  <div>
           <a
             href="#collapseExample2"
             className='btn-collapse'
@@ -44,17 +54,17 @@ export default function SideBar2() {
             aria-expanded="false"
             aria-controls="collapseExample2"
           >Destinos</a>
-        </p>
-        <div className="collapse" id="collapseExample2">
-         <ul>
-          <li className='btn-collapse'><a href="#" >
-            Item</a></li>
-          <li className='btn-collapse'><a href="#" >
-            Item</a></li>
-          <li className='btn-collapse'><a href="#" >
-            Item</a></li>
-         </ul>
         </div>
+        <div className="collapse" id="collapseExample2">
+          <ul>
+            <li className='btn-collapse'><a href="#" >
+              Item</a></li>
+            <li className='btn-collapse'><a href="#" >
+              Item</a></li>
+            <li className='btn-collapse'><a href="#" >
+              Item</a></li>
+          </ul>
+        </div> */}
       </div>
     </>
   );
