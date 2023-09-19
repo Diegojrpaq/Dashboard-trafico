@@ -7,7 +7,9 @@ import SideBar2 from './Componentes/SideBar2';
 /* import Data from './Data/Data2.json'; */
 import SeccionDestino from './Componentes/SeccionDestino';
 import MainContainer from './Componentes/MainContainer';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import DefaultLayout from './layout/DefaultLayout';
+import { routes_primary } from './routes';
 
 
 
@@ -93,28 +95,29 @@ function App() {
       <>
 
         <dataLogisticContext.Provider value={{ dataLogisticState }}>
-          {console.log("url server: " + process.env.REACT_APP_SERVER_BACK)}
-          <SideBar2 />
-          <Navbar/>
-          <MainContainer />
-         {/*  <div className="container-fluid">
-            <div className="row">
-              <div className="col-10 col-md-10">
-                {dataLogisticState.Destinos.map((Destino) => {
-                  return <SeccionDestino key={Destino.nombre} idDestino={Destino.id} />; // Debes devolver algo en cada iteración
-                })} */}
-                {/*  <SeccionDestino idDestino={1} />
-                <SeccionDestino idDestino={21} />
-                <SeccionDestino idDestino={2} />
-                <SeccionDestino idDestino={3} />
-                <SeccionDestino idDestino={4} />
-                <SeccionDestino idDestino={17} />
-                <SeccionDestino idDestino={6} />
-                <SeccionDestino idDestino={8} />
-                <SeccionDestino idDestino={13} /> */}
-          {/*     </div>
-            </div>
-          </div> */}
+          <BrowserRouter>
+            <Routes>
+              {/* <Route path='*' element={<DefaultLayout/>} /> */}
+              {
+                routes_primary.map((route, idx) => {
+                  return (
+                    route.element && (
+                      <Route
+                      key={idx}
+                      path={route.path}
+                      exact={route.exact} 
+                      name={route.name}
+                      element={<route.element />}
+                      />
+                    )
+                  )
+                })
+              }
+
+              {/* <Route path='/sideBar/:id' element={<DefaultLayout />} /> */}
+
+            </Routes>
+          </BrowserRouter>
         </dataLogisticContext.Provider>
       </>
 

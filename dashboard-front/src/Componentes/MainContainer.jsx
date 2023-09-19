@@ -1,18 +1,25 @@
 import React from 'react'
 import '../Css/MainContainer.css'
-import GraficaBarrasPruebaTopher from './GraficaBarrasPruebaTopher'
-import Spinner from 'react-bootstrap/Spinner';
-import { Accordion, Table } from 'react-bootstrap';
-import GraficaBarrasPrueba from './GraficaBarrasPrueba';
-import  Trafico  from './Trafico'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom';
+import { routes_secondary, routes_primary } from '../routes'
 export default function MainContainer() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/Trafico/:id' element={<Trafico />} />
-      </Routes>
-    </BrowserRouter>
-    
+    <Routes>
+      {
+        routes_secondary.map((route, idx) => {
+          return (
+            route.element && (
+              <Route
+                key={idx}
+                path={route.path}
+                exact={route.exact}
+                name={route.name}
+                element={<route.element />}
+              />
+            )
+          )
+        })
+      }
+    </Routes>
   )
 }
