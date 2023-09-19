@@ -7,6 +7,7 @@
    /* Estilo para el sidebar fijo */
     .sidebar {
         height: 100%;
+        margin: 0px;
         /* Abarca todo el alto de la pantalla */
         position: fixed;
         top: 0;
@@ -14,10 +15,20 @@
         width: 220px;
         /* Ancho del sidebar */
         background-color:var(--Color-navbar-back);
-        background: var(--Color-back);
-        padding: 20px;
-        color: #fff;
+        background: var(--Color-Back-primary);
+        padding: 0px;
+        color: var(--Color-Font-primary);
         overflow-y:auto;
+        /* font-family: 'Roboto','Poppins', sans-serif; */
+    }
+
+    .sidebar-header{
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .sidebar-header h3{
+      justify-content: center;
     }
 
     .img-fluid{
@@ -25,7 +36,52 @@
       border-bottom: var(--Color-secondary) solid 2px ;
     }
 
-   
+    .btn-collapse, .btn-collapse a{
+      border: none;
+      color: var(--Color-Font-gray) !important;
+      text-decoration: none !important;
+    }
+
+    .headerlist{
+      background: rgba(255, 255, 255, 0);
+      margin: 0px;
+      padding: 10px;
+      transition: background 0.2s ease;
+      /* transition: color 0.2s ease; */
+    
+    }
+    .headerlist:hover, .list li:hover{
+      background: var(--Color-Back-tertiary);
+      color: white;
+      /* color: var(--Color-secondary); */
+    }
+    .headerlist:active, .list li:active{
+      background: var(--Color-Back-tertiary);
+      color: white;
+      /* color: var(--Color-secondary); */
+    }
+    .headerlist:visited, .list li:visited{
+      background: var(--Color-Back-tertiary);
+      color: white;
+      /* color: var(--Color-secondary); */
+    }
+    
+
+    .headerlist p {
+      font-size: 17px;
+      margin-bottom: 0px;
+    }
+
+    .list ul{
+      list-style: none;
+      padding: 0 !important;
+    }
+
+    .list li{
+      padding: .5rem;
+      margin-bottom: 2px;
+    }
+    
 
     /* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
 .sidebar::-webkit-scrollbar {

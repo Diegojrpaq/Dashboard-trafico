@@ -1,10 +1,22 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 :root{
     --Color-secondary : #E9B756;
-    --Color-back : #1C2C3F;; 
-    --Color-back-gray : #F3F3F9 ;
+    --Color-Back-primary : #1C2C3F;
+    --Color-Back-secundary : #405189;
+    --Color-Back-tertiary: #4743A1;
+    --Color-Back-gray : #F3F3F9 ;
+    --Color-Font-primary: #a3a6b7; 
+    --Color-Font-primary : #A7B5E4;
+    --Color-Font-white: white; 
+    --Color-Font-black: black; 
 }
 body{
-  margin:0px
+  margin:0px;
+  font-family: 'Poppins', sans-serif;
 }
 
 
@@ -15,7 +27,7 @@ body{
          
           /* Margen igual al ancho del sidebar */
           padding: 20px;
-          background: var(--Color-back-gray);
+          background: var(--Color-Back-gray);
           color: white;
           margin-left: 220px !important;
           margin-right: 0px;
