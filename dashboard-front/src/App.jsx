@@ -1,50 +1,56 @@
 /* import Swal from 'sweetalert2' */
 import { Suspense, createContext, useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import { routes_primary } from './routes';
 import { Spinner } from 'react-bootstrap';
 
 
 
-export const destinosListContext = createContext()
+export const globalData = createContext()
 
 function App() {
 
 
-/*   const [dataLogisticState, setDataLogistic] = useState(null); */
-  const [sessionUser, setSessionUser] = useState({"id":"649", "nombre":"Diego Iran Gutierrez Contreras"});
+  /*   const [dataLogisticState, setDataLogistic] = useState(null); */
+  const [sessionUserState, setSessionUser] = useState({ "id": "649", "nombre": "Diego Iran Gutierrez Contreras" });
+  /* const [sessionUserState, setSessionUser] = useState({"id":"649", "nombre":"Diego Iran Gutierrez Contreras"}); */
   const [destinosListState, setDestinosList] = useState(null);
 
 
 
 
   /*  const urlApiNextpack = 'http://localhost/trafico/get_data'; */
-  const urlApiNextpack = '/trafico/get_destinos';
-     
-    useEffect(() => {
-      const peticiones = async () => {
-        await fetch(urlApiNextpack)
-          .then((resp) => {
-            return resp.json();
-          }).then((data) => {
-            setDestinosList(data)
-            if (data) {
-              console.log(data)
-              //     Swal.fire(
-                //   'Good job!',
-                  // 'Se recibio la informacion correctamente Nextpack',
-                   //'success'
-                 //) 
   
-            }
-          }).catch(
-            () => console.log('Error al cargar los destinos')
-          )
-      }
-  
-      peticiones();
 
-    }, []);
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenUser = urlParams.get('token');
+    
+    const peticiones = async (tokenUser) => {
+      const urlApiNextpack = '/trafico/get_session_user/' + tokenUser;
+      await fetch(urlApiNextpack)
+        .then((resp) => {
+          return resp.json();
+        }).then((data) => {
+          setDestinosList(data)
+          if (data) {
+            setSessionUser(data)
+          
+            //     Swal.fire(
+            //   'Good job!',
+            // 'Se recibio la informacion correctamente Nextpack',
+            //'success'
+            //) 
+
+          }
+        }).catch(
+          () => console.log('Error al cargar los destinos')
+        )
+    }
+
+    peticiones(tokenUser);
+
+  }, []);
 
 
 
@@ -116,7 +122,7 @@ function App() {
     return (
       <>
 
-        <destinosListContext.Provider value={{destinosListState, sessionUser}}>
+        <globalData.Provider value={{ destinosListState, sessionUserState }}>
           <BrowserRouter>
             <Suspense>
               <Routes>
@@ -138,16 +144,16 @@ function App() {
               </Routes>
             </Suspense>
           </BrowserRouter>
-        </destinosListContext.Provider>
+        </globalData.Provider>
       </>
 
     );//fin del return 
   } else {
-   return(
-    <>
-    <Spinner></Spinner>
-    </>
-   )
+    return (
+      <>
+        <Spinner></Spinner>
+      </>
+    )
   }
 }
 
