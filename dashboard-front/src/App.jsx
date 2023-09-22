@@ -12,6 +12,7 @@ function App() {
 
 
 /*   const [dataLogisticState, setDataLogistic] = useState(null); */
+  const [sessionUser, setSessionUser] = useState({"id":"649", "nombre":"Diego Iran Gutierrez Contreras"});
   const [destinosListState, setDestinosList] = useState(null);
 
 
@@ -115,7 +116,7 @@ function App() {
     return (
       <>
 
-        <destinosListContext.Provider value={destinosListState}>
+        <destinosListContext.Provider value={{destinosListState, sessionUser}}>
           <BrowserRouter>
             <Suspense>
               <Routes>

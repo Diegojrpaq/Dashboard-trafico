@@ -1,5 +1,4 @@
 import React from 'react';
-import { Spinner } from 'react-bootstrap';
 //En este archivo se definen las rutas de las dos secciones de ruteo con las que contamos
 //Se utiliza la funcion react.Lazy para importar los componentes una vez solicitados por el link,
 //esto mejora el rendimiento de la aplicacion.

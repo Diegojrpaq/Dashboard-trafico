@@ -4,12 +4,14 @@ import { destinosListContext } from '../App';
 import Logo from '../assets/img/logo.png'
 import SHeaderList from './SHeaderList';
 import SListItem from './SListItem';
+import { useParams } from 'react-router-dom';
 
 export default function SideBar2() {
 
+  const {id} = useParams()
+  console.log(id);
 
-
-  const destinosListState= useContext(destinosListContext)
+  const destinosListState = useContext(destinosListContext)
   const destinosList=destinosListState.Destinos;
   return (
     <>
@@ -35,8 +37,10 @@ export default function SideBar2() {
           <SListItem icon='bi bi-geo-alt mx-1'>Aguascalientes</SListItem>
           <SListItem icon='bi bi-geo-alt mx-1'>CD. Obregon</SListItem> */}
         </SHeaderList>
+        <SHeaderList title= 'ventas' idcollapse='3'>
+        <SListItem icon= 'bi bi-curso-fill' url='/planeacion'>Planeacion</SListItem>
+        </SHeaderList>
       {/*   <SHeaderList title="Ventas" icon='bi bi-coin' idcollapse='4'>
-          <SListItem>hello</SListItem>
           <SListItem>hello</SListItem>
           <SListItem>hello</SListItem>
           <SListItem>hello</SListItem>
