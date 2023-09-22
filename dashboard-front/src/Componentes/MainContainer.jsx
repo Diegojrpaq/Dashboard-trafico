@@ -12,9 +12,8 @@ export default function MainContainer() {
               <Route
                 key={idx}
                 path={route.path}
-                exact={route.exact}
                 name={route.name}
-                element={<route.element />}
+                element={<route.element/>}
               />
             )
           )

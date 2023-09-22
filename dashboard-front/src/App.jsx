@@ -1,58 +1,79 @@
 /* import Swal from 'sweetalert2' */
-import { createContext, useEffect, useState } from 'react';
-import GraficaMt3PorSucursal from './Componentes/GraficaMt3PorSucursal';
-import Navbar from './Componentes/Navbar';
-import SideBar from './Componentes/SideBar';
-import SideBar2 from './Componentes/SideBar2';
-/* import Data from './Data/Data2.json'; */
-import SeccionDestino from './Componentes/SeccionDestino';
-import MainContainer from './Componentes/MainContainer';
+import { Suspense, createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import DefaultLayout from './layout/DefaultLayout';
 import { routes_primary } from './routes';
+import { Spinner } from 'react-bootstrap';
 
 
 
-export const dataLogisticContext = createContext()
+export const destinosListContext = createContext()
 
 function App() {
 
 
-  const [dataLogisticState, setDataLogistic] = useState(null);
+/*   const [dataLogisticState, setDataLogistic] = useState(null); */
+  const [destinosListState, setDestinosList] = useState(null);
 
 
 
 
-  const urlApiNextpack = '/trafico/get_data';
   /*  const urlApiNextpack = 'http://localhost/trafico/get_data'; */
+  const urlApiNextpack = '/trafico/get_destinos';
+     
+    useEffect(() => {
+      const peticiones = async () => {
+        await fetch(urlApiNextpack)
+          .then((resp) => {
+            return resp.json();
+          }).then((data) => {
+            setDestinosList(data)
+            if (data) {
+              console.log(data)
+              //     Swal.fire(
+                //   'Good job!',
+                  // 'Se recibio la informacion correctamente Nextpack',
+                   //'success'
+                 //) 
+  
+            }
+          }).catch(
+            () => console.log('Error al cargar los destinos')
+          )
+      }
+  
+      peticiones();
+
+    }, []);
 
 
- /*   //Este es el use efect original donde se genera la peticion sobre de todos los datos 
-   //correspondientes al json data2.json y pasar por props cada uno de los destinos a la seccion 
-   useEffect(() => {
-     const peticiones = async () => {
-       await fetch(urlApiNextpack)
-         .then((resp) => {
-           return resp.json();
-         }).then((data) => {
-           setDataLogistic(data)
-           if (data) {
-             console.log(data)
-             //     Swal.fire(
-               //   'Good job!',
-                 // 'Se recibio la informacion correctamente Nextpack',
-                  //'success'
-                //) 
- 
-           }
-         }).catch(
-           () => console.log('Error al cargar el rastreo ')
-         )
-     }
- 
-     peticiones();
- 
-   }, []); */
+
+
+  /*   //Este es el use efect original donde se genera la peticion sobre de todos los datos 
+    //correspondientes al json data2.json y pasar por props cada uno de los destinos a la seccion 
+    useEffect(() => {
+      const peticiones = async () => {
+        await fetch(urlApiNextpack)
+          .then((resp) => {
+            return resp.json();
+          }).then((data) => {
+            setDataLogistic(data)
+            if (data) {
+              console.log(data)
+              //     Swal.fire(
+                //   'Good job!',
+                  // 'Se recibio la informacion correctamente Nextpack',
+                   //'success'
+                 //) 
+  
+            }
+          }).catch(
+            () => console.log('Error al cargar el rastreo ')
+          )
+      }
+  
+      peticiones();
+  
+    }, []); */
 
 
   //------------------------------------------------------------------
@@ -90,40 +111,42 @@ function App() {
      setRenderInicial(infoupdate)
     } */
 
-  if (dataLogisticState == null) {
+  if (destinosListState !== null) {
     return (
       <>
 
-        <dataLogisticContext.Provider value={{ dataLogisticState }}>
+        <destinosListContext.Provider value={destinosListState}>
           <BrowserRouter>
-            <Routes>
-              {/* <Route path='*' element={<DefaultLayout/>} /> */}
-              {
-                routes_primary.map((route, idx) => {
-                  return (
-                    route.element && (
-                      <Route
-                      key={idx}
-                      path={route.path}
-                      exact={route.exact} 
-                      name={route.name}
-                      element={<route.element />}
-                      />
+            <Suspense>
+              <Routes>
+                {
+                  routes_primary.map((route, index) => {
+                    return (
+                      route.element && (
+                        <Route
+                          key={index}
+                          path={route.path}
+                          exact={route.exact}
+                          name={route.name}
+                          element={<route.element />}
+                        />
+                      )
                     )
-                  )
-                })
-              }
-
-              {/* <Route path='/sideBar/:id' element={<DefaultLayout />} /> */}
-
-            </Routes>
+                  })
+                }
+              </Routes>
+            </Suspense>
           </BrowserRouter>
-        </dataLogisticContext.Provider>
+        </destinosListContext.Provider>
       </>
 
     );//fin del return 
   } else {
-    console.log("cargando....")
+   return(
+    <>
+    <Spinner></Spinner>
+    </>
+   )
   }
 }
 
