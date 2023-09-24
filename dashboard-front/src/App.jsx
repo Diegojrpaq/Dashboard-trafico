@@ -12,9 +12,10 @@ function App() {
 
 
   /*   const [dataLogisticState, setDataLogistic] = useState(null); */
-  const [sessionUserState, setSessionUser] = useState({ "id": "649", "nombre": "Diego Iran Gutierrez Contreras" });
+  const [sessionUserState, setSessionUser] = useState(null);
   /* const [sessionUserState, setSessionUser] = useState({"id":"649", "nombre":"Diego Iran Gutierrez Contreras"}); */
   const [destinosListState, setDestinosList] = useState(null);
+  const [tokenUserState, setTokenUser] = useState(null);
 
 
 
@@ -32,10 +33,11 @@ function App() {
         .then((resp) => {
           return resp.json();
         }).then((data) => {
-          setDestinosList(data)
+          /* setDestinosList(data) */
           if (data) {
             setSessionUser(data)
-          
+            setTokenUser(tokenUser)
+            
             //     Swal.fire(
             //   'Good job!',
             // 'Se recibio la informacion correctamente Nextpack',
@@ -47,8 +49,8 @@ function App() {
           () => console.log('Error al cargar los destinos')
         )
     }
-
-    peticiones(tokenUser);
+    tokenUser ? peticiones(tokenUser): window.location.href = 'http://216.250.126.250/jrpaqueteria';
+    
 
   }, []);
 
@@ -117,11 +119,14 @@ function App() {
   /*   const  updateRender=(infoupdate)=>{
      setRenderInicial(infoupdate)
     } */
-
-  if (destinosListState !== null) {
+    console.log(sessionUserState)
+            console.log(tokenUserState)
+  if (sessionUserState !== null && (tokenUserState !== null || typeof tokenUserState !== 'undefined')) {
+ 
     return (
       <>
-
+       {console.log(sessionUserState)}
+      {console.log(tokenUserState)}
         <globalData.Provider value={{ destinosListState, sessionUserState }}>
           <BrowserRouter>
             <Suspense>
@@ -151,6 +156,7 @@ function App() {
   } else {
     return (
       <>
+     
         <Spinner></Spinner>
       </>
     )
