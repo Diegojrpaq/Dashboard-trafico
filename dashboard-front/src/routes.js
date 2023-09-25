@@ -21,11 +21,15 @@ const routes_primary = [
 //importaciones
 const Grafica = React.lazy(() => import('../src/Componentes/Trafico'));
 const PlaneacionRutas = React.lazy(()=> import('./views/trafico/PlaneacionRutas'))
+const RutasActivas = React.lazy(()=> import('./views/trafico/RutasActivas'))
+const RutasXLlegar = React.lazy(()=> import('./views/trafico/RutasXLlegar'))
 
 //Arreglo de rutas
 const routes_secondary = [
     {path: '/trafico/:id', name: 'Hola', element: Grafica},
-    {path: '/planeacion', name: 'Planeacion', element: PlaneacionRutas}
+    {path: '/planeacion', name: 'Planeacion', element: PlaneacionRutas},
+    {path: '/rutasactivas', name: 'Rutas_Activas', element: RutasActivas },
+    {path: '/rutasxllegar', name: 'Rutas_por_llegar', element: RutasXLlegar}
 ]
 //-------------------------------------Fin segundo menu de rutas--------------------------------
 
