@@ -121,13 +121,13 @@ function App() {
     } */
     console.log(sessionUserState)
             console.log(tokenUserState)
-  if (sessionUserState !== null && (tokenUserState !== null || typeof tokenUserState !== 'undefined')) {
+  if (sessionUserState !== null ) {
  
     return (
       <>
        {console.log(sessionUserState)}
       {console.log(tokenUserState)}
-        <globalData.Provider value={{ destinosListState, sessionUserState }}>
+        <globalData.Provider value={{ destinosListState, sessionUserState, setDestinosList }}>
           <BrowserRouter>
             <Suspense>
               <Routes>
@@ -157,7 +157,7 @@ function App() {
     return (
       <>
      
-        <Spinner></Spinner>
+        <Spinner className='Spinner-Graph'></Spinner>
       </>
     )
   }

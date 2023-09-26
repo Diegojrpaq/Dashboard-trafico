@@ -10,6 +10,7 @@ export default function SideBar2() {
 
   const {sessionUserState} = useContext(globalData)
   const sessionUser=sessionUserState.User;
+  const {setDestinosList} = useContext(globalData)
   console.log(sessionUser)
   const [destinosList, setDestinoList] = useState(null)
 
@@ -26,6 +27,7 @@ export default function SideBar2() {
           if (data) {
             console.log(data)
             setDestinoList(data.Destinos)
+            setDestinosList(data.Destinos)
             //     Swal.fire(
               //   'Good job!',
                 // 'Se recibio la informacion correctamente Nextpack',
