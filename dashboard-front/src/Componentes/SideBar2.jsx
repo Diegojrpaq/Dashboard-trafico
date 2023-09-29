@@ -11,7 +11,6 @@ export default function SideBar2() {
   const {sessionUserState} = useContext(globalData)
   const sessionUser=sessionUserState.User;
   const {setDestinosList} = useContext(globalData)
-  console.log(sessionUser)
   const [destinosList, setDestinoList] = useState(null)
 
   const urlApiNextpack = '/trafico/get_destinos/'+ sessionUser.id;

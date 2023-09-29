@@ -27,7 +27,7 @@ Chartjs.register(
 
 
 
-export default function GraficaRutasActivas(props) {
+export default function GraficaRutasActivas() {
     /* Variables de Estilo  */
     const colorEspacioLibre = catalogoColores.colores[100].color;
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
@@ -36,7 +36,189 @@ export default function GraficaRutasActivas(props) {
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
     /* Variables de Estilo fin */
-    const Destino = props.destino
+    const Destino = {
+        "viajes_activos": [
+            {
+                "id": 54171,
+                "nombre": "GDL-MAZ-CUL-MCH-NAV-OBR",
+                "fecha_registro": "20230925",
+                "unidad": "JR43",
+                "capacidad_mt3": 0,
+                "mt3_embarcados_por_destino": [
+                    {
+                        "name": "CD. OBREGON ",
+                        "mt3": 1.399
+                    },
+                    {
+                        "name": "CULIACAN",
+                        "mt3": 20.10548
+                    },
+                    {
+                        "name": "GUAMUCHIL",
+                        "mt3": 0.027
+                    },
+                    {
+                        "name": "GUASAVE",
+                        "mt3": 0.091
+                    },
+                    {
+                        "name": "GUAYMAS",
+                        "mt3": 0.501
+                    },
+                    {
+                        "name": "HERMOSILLO",
+                        "mt3": 21.1288
+                    },
+                    {
+                        "name": "LOS MOCHIS ",
+                        "mt3": 11.957
+                    },
+                    {
+                        "name": "NAVOJOA",
+                        "mt3": 9.188
+                    }
+                ],
+                "mt3_embarcados": 64.39728
+            },
+            {
+                "id": 54170,
+                "nombre": "GDL-MTY",
+                "fecha_registro": "20230925",
+                "unidad": "JR33",
+                "capacidad_mt3": 0,
+                "mt3_embarcados_por_destino": [
+                    {
+                        "name": "MONTERREY",
+                        "mt3": 22.221236
+                    },
+                    {
+                        "name": "SALTILLO",
+                        "mt3": 1.555
+                    },
+                    {
+                        "name": "TORREON",
+                        "mt3": 14.461
+                    }
+                ],
+                "mt3_embarcados": 38.237236
+            },
+            {
+                "id": 54165,
+                "nombre": "(PERI)-MEX-DIRECTO",
+                "fecha_registro": "20230925",
+                "unidad": "JR41",
+                "capacidad_mt3": 0,
+                "mt3_embarcados_por_destino": [
+                    {
+                        "name": "MEXICO",
+                        "mt3": 45.057956
+                    },
+                    {
+                        "name": "PACHUCA",
+                        "mt3": 1.717
+                    }
+                ],
+                "mt3_embarcados": 46.774956
+            },
+            {
+                "id": 54164,
+                "nombre": "(PERI) GDL QRO ",
+                "fecha_registro": "20230925",
+                "unidad": "VIRTUAL",
+                "capacidad_mt3": 0,
+                "mt3_embarcados_por_destino": [
+                    {
+                        "name": "CELAYA",
+                        "mt3": 0.027
+                    }
+                ],
+                "mt3_embarcados": 0.027
+            },
+            {
+                "id": 54081,
+                "nombre": "(PERI) GDL QRO ",
+                "fecha_registro": "20230922",
+                "unidad": "VIRTUAL",
+                "capacidad_mt3": 0,
+                "mt3_embarcados_por_destino": [
+                    {
+                        "name": "QUERETARO",
+                        "mt3": 0.027
+                    },
+                    {
+                        "name": "IRAPUATO",
+                        "mt3": 0.054
+                    },
+                    {
+                        "name": "SAN LUIS POTOSI",
+                        "mt3": 0.054
+                    },
+                    {
+                        "name": "SAN JUAN DEL RIO",
+                        "mt3": 0.027
+                    }
+                ],
+                "mt3_embarcados": 0.162
+            },
+            {
+                "id": 53697,
+                "nombre": "GUA-QRO-(BAJIO CENTRO)",
+                "fecha_registro": "20230912",
+                "unidad": "VIRTUAL",
+                "capacidad_mt3": 0,
+                "mt3_embarcados_por_destino": [
+                    {
+                        "name": "MEXICO",
+                        "mt3": 0.495
+                    }
+                ],
+                "mt3_embarcados": 0.495
+            }
+        ]
+    }
+    /* const Destino = [
+        {
+            "id": 51165,
+            "nombre": "GDL-MTY",
+            "fecha_registro": "2023-07-11",
+            "unidad": "84",
+            "capacidad_mt3": 20,
+            "mt3_embarcados": 8,
+            "--comentario": "esta seccion al crear la consulta debemos contemplar el orden de escaneo para simular como se suben al camion",
+            "mt3_embarcados_por_destino": [
+                {
+                    "name": "Leon",
+                    "mt3": 5
+                },
+                {
+                    "name": "MONTERREY",
+                    "mt3": 2
+                },
+                {
+                    "name": "AGUASCALIENTES",
+                    "mt3": 1
+                }
+            ]
+        },
+        {
+            "id": 51167,
+            "nombre": "GDL-COL-MAN",
+            "fecha_registro": "2023-07-11",
+            "unidad": "",
+            "capacidad_mt3": 30,
+            "mt3_embarcados": 0,
+            "mt3_embarcados_por_destino": null
+        },
+        {
+            "id": 51168,
+            "nombre": "GDL-OBR",
+            "fecha_registro": "2023-07-11",
+            "unidad": "",
+            "capacidad_mt3": 0,
+            "mt3_embarcados": 0,
+            "mt3_embarcados_por_destino": null
+        }
+    ] */
 
 
     /* seccion de return  */
@@ -106,7 +288,9 @@ export default function GraficaRutasActivas(props) {
 
         let myoptions = {
             responsive: true,
+            maintainAspectRatio: false,
             animation: true,
+            autoSkip: false,
             plugins: {
                 legend: {
                     display: true
@@ -137,10 +321,12 @@ export default function GraficaRutasActivas(props) {
 
         return (
             <>
+                <div className="container-graph">
                 <Bar
                     data={data}
                     options={myoptions}
                 />
+                </div>
 
             </>
         )

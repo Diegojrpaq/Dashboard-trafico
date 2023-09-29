@@ -28,7 +28,7 @@ const RutasXLlegar = React.lazy(()=> import('./views/trafico/RutasXLlegar'))
 const routes_secondary = [
     {path: '/trafico/:id', name: 'Hola', element: Grafica},
     {path: '/planeacion', name: 'Planeacion', element: PlaneacionRutas},
-    {path: '/rutasactivas', name: 'Rutas_Activas', element: RutasActivas },
+    {path: '/rutasactivas/:idDestino', name: 'Rutas_Activas', element: RutasActivas },
     {path: '/rutasxllegar', name: 'Rutas_por_llegar', element: RutasXLlegar}
 ]
 //-------------------------------------Fin segundo menu de rutas--------------------------------

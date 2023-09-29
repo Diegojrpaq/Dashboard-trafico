@@ -1,0 +1,308 @@
+PROCEDURE get_Data()
+
+
+vResponse is Variant
+CountDestinos is  int = 1
+nCountSucursales is int = 1
+nCountDestinosFinales is int =1
+nBanderaSucursal is int
+nBanderaDestino is int
+vRespaldo is Variant
+xTemporal is numeric
+nBandera is int 
+
+
+
+
+IF ErrorOccurred THEN 
+	vResponse.status = 498
+	vResponse.Descripcion = "No se pudo obtener datos de validacion"
+	RESULT VariantToJSON(vResponse, psdFormatting)
+END
+
+IF ggbConexion = False THEN 
+	RESULT ResponseNotConnection()
+END
+
+
+vResponse.status = 200 
+vResponse.descripcion = "ok"
+
+sQryDestinos is string =[
+SELECT dp.id, dp.nombre, dp.descripcion estado, nvl(sum(cmd.volumen),0)  total_mt3_destino
+FROM destino_principal dp
+LEFT JOIN (SELECT vg.* FROM  viaje_guia vg
+WHERE vg.fecha_registro = CURRENT_DATE()
+AND vg.referencia NOT LIKE 'MEI%') vg ON dp.id = vg.cotizacion_principal_origen_id
+LEFT JOIN cotizacion_monto_detalle cmd ON cmd.cotizacion_principal_id = vg.cotizacion_principal_id
+where dp.ubicacion_estatus_id = 1
+GROUP BY dp.id
+]
+
+sQryCargasXDestino is string= [
+select dp.nombre as 'Destino', sum(cmd.volumen) as 'Mt3_vendido'
+from viaje_guia vg
+inner join destino_principal dp 
+on dp.id = vg.cotizacion_prinicpal_destino_id 
+inner join cotizacion_monto_detalle cmd 
+on cmd.cotizacion_principal_id = vg.cotizacion_principal_id 
+where vg.fecha_registro = current_date() 
+and vg.cotizacion_principal_origen_id = ? 
+and vg.referencia  not like 'mei%'
+group by dp.nombre 
+]
+
+//sQrySucursales is string=[
+//select cp.origen_id as 'destino_id', 
+//cp.sucursal_principal_id as id, 
+//sp.nombre  as nombre,
+//sp.prefijo,
+//sum(cmd.volumen) as total_mt3_sucursal
+//from cotizacion_principal cp 
+//inner join sucursal_principal sp on sp.id = cp.sucursal_principal_id 
+//left join cotizacion_monto_detalle cmd on cmd.cotizacion_principal_id =cp.id
+//where cp.fecha_registro = current_date() 
+//and cotizacion_estatus_id in (4)
+//and  cp.num_guia not like 'mei%'
+//group by cp.sucursal_principal_id 
+//order by cp.origen_id, sp.id
+//]
+
+sQrymt3SucursalacadaDestino is string=[
+select cp.origen_id,
+cp.sucursal_principal_id,
+cp.destino_id,
+dp.nombre destino_final,
+sum(cmd.volumen) as Volumen_por_destino
+from cotizacion_principal cp 
+inner join cotizacion_monto_detalle cmd on cmd.cotizacion_principal_id = cp.id 
+inner join destino_principal dp on dp.id= cp.destino_id 
+where cp.fecha_registro = current_date()...
+and cp.cotizacion_estatus_id = 4
+and cp.num_guia not like "mei%"
+group by cp.destino_id , cp.sucursal_principal_id 
+order by cp.origen_id, cp.sucursal_principal_id, cp.destino_id 
+]
+
+
+sQrySucursales is string=[
+select 
+cp.origen_id as destino_origen_id,
+cp.sucursal_principal_id, 
+sp.nombre as sucursal_origen,
+sp.prefijo,
+SUM(SUM(cmd.volumen)) OVER(PARTITION BY cp.sucursal_principal_id) AS volumen_total_sucursal,
+cp.destino_id,
+dp.nombre as destino_final,
+sum(cmd.volumen) as volumen_por_destino
+from cotizacion_principal cp 
+inner join cotizacion_monto_detalle cmd on cmd.cotizacion_principal_id = cp.id 
+inner join sucursal_principal sp on sp.id = cp.sucursal_principal_id 
+inner join destino_principal dp on dp.id =cp.destino_id 
+where cp.fecha_registro = current_date()
+and cp.cotizacion_estatus_id = 4 
+and cp.num_guia not like 'mei%' 
+group by cp.destino_id, cp.sucursal_principal_id 
+order by cp.origen_id, cp.sucursal_principal_id , dp.nombre 
+]
+
+sQryViajesActivos is string=[
+select
+    rp.destino_principal_origenid AS "Origen_desde_ruta",
+    vr.id,
+    vr.nombre,
+    vr.fecha_registro,
+    av.clave AS "Clave_vehiculo",
+    av.Peso_carga_max,
+    av.Volumen_carga_max,
+    vg.cotizacion_prinicpal_destino_id,
+    dp.nombre as nombre_destino,
+    nvl(Sum(cmd.volumen),0) as volumen
+FROM viaje_ruta vr
+INNER JOIN ruta_principal rp ON rp.id = vr.ruta_principal_id
+INNER JOIN activo_vehiculo av ON av.id = vr.activo_vehiculo_id
+LEFT JOIN viaje_guia vg ON vg.viaje_ruta_id = vr.id
+LEFT JOIN cotizacion_monto_detalle cmd ON cmd.cotizacion_principal_id = vg.cotizacion_principal_id
+left join destino_principal dp on vg.cotizacion_prinicpal_destino_id = dp.id
+WHERE vr.viaje_estatus_id = 1
+AND vr.fecha_registro BETWEEN ADDDATE(CURRENT_DATE(), INTERVAL -30 DAY) AND CURRENT_DATE()
+AND vr.viaje_tipo_id = 2
+GROUP BY vr.id, vg.cotizacion_prinicpal_destino_id
+ORDER by  rp.destino_principal_origenid,  vr.id DESC, vr.fecha_registro desc, vg.cotizacion_prinicpal_destino_id 
+]
+
+clQry is QryExec = new QryExec
+clQry.qry=sQryDestinos
+clQry.exec()
+
+IF clQry.HayError THEN
+	vResponse.status		= 499
+	vResponse.description	= "la consulta no contiene datos"
+	
+	RESULT VariantToJSON(vResponse,psdFormatting) 
+END
+
+
+/*aqui hacemos el llenado de cada destino activo en el variant*/
+FOR EACH clQry.dsDataResult
+	 	vResponse.Destinos[CountDestinos].id = clQry.dsDataResult.id 
+	 	vResponse.Destinos[CountDestinos].nombre = clQry.dsDataResult.nombre 
+	 	vResponse.Destinos[CountDestinos].estado = clQry.dsDataResult.estado 
+	 	vResponse.Destinos[CountDestinos].total_mt3_destino = clQry.dsDataResult.total_mt3_destino
+	CountDestinos++
+END
+
+
+/*aqui ingresamos la carga de cada destino consultando unidad por unidad*/
+FOR EACH destino OF vResponse.Destinos
+	IF destino.total_mt3_destino <> 0 THEN
+		CountDestinos		= 1
+		clQry.qry			=  Replace(sQryCargasXDestino, "?", destino.id)
+		clQry.exec()
+		FOR EACH clQry.dsDataResult
+			destino.mt3_vendidos_por_destino[CountDestinos].Destino=clQry.dsDataResult.Destino
+			destino.mt3_vendidos_por_destino[CountDestinos].Mt3_vendido=clQry.dsDataResult.Mt3_vendido
+			CountDestinos++
+		END
+		
+	ELSE 
+		destino.mt3_vendidos_por_destino=Null
+		
+	END
+	
+END
+
+clQry.qry=sQrySucursales
+clQry.exec()
+
+IF clQry.HayError THEN
+	vResponse.status		= 499
+	vResponse.description	= "la consulta no contiene datos"
+	
+	RESULT VariantToJSON(vResponse,psdFormatting) 
+END
+
+
+nTotalindex is int 
+
+IF HReadFirst(clQry.dsDataResult) THEN
+	nBanderaDestino = clQry.dsDataResult.destino_origen_id
+	nBanderaSucursal= clQry.dsDataResult.sucursal_principal_id
+	FOR EACH destino OF vResponse.Destinos
+		
+		nCountSucursales		= 1
+		nCountDestinosFinales	= 1
+		IF destino.total_mt3_destino <> 0 THEN
+			WHILE nBanderaDestino = clQry.dsDataResult.destino_origen_id AND HOut()=False
+				IF nBanderaSucursal = clQry.dsDataResult.sucursal_principal_id THEN
+					WHILE nBanderaSucursal=clQry.dsDataResult.sucursal_principal_id AND HOut()=False
+						nTotalindex++
+						destino.sucursales[nCountSucursales].id													= clQry.dsDataResult.sucursal_principal_id
+						destino.sucursales[nCountSucursales].nombre												= clQry.dsDataResult.sucursal_origen
+						destino.sucursales[nCountSucursales].prefijo											= clQry.dsDataResult.prefijo
+						destino.sucursales[nCountSucursales].total_mt3_sucursal									= clQry.dsDataResult.volumen_total_sucursal
+						destino.sucursales[nCountSucursales].mt3_por_destino[nCountDestinosFinales].Destino		= clQry.dsDataResult.destino_final
+						destino.sucursales[nCountSucursales].mt3_por_destino[nCountDestinosFinales].Mt3_vendido	= clQry.dsDataResult.volumen_por_destino
+
+							HReadNext(clQry.dsDataResult)
+							nCountDestinosFinales++
+					END
+					nBanderaSucursal= clQry.dsDataResult.sucursal_principal_id
+					nCountSucursales++
+					nCountDestinosFinales=1
+					
+				ELSE
+					nCountSucursales=1
+					nCountDestinosFinales=1
+				END
+				
+			END
+			nBanderaDestino=clQry.dsDataResult.destino_origen_id	
+		ELSE 
+			nCountDestinosFinales=1
+			nCountSucursales=1
+			destino.sucursales=Null
+		END
+	END
+END 
+
+
+FOR EACH Destino OF vResponse.Destinos
+	IF Destino.total_mt3_destino <> 0 THEN
+		IF Destino.sucursales..Count > 1  THEN
+			FOR EACH Sucursal OF Destino.sucursales
+				IF Sucursal.mt3_por_destino..Count <> Destino.mt3_vendidos_por_destino..count THEN
+					vRespaldo=Sucursal.mt3_por_destino
+					Sucursal.mt3_por_destino=Null
+					CountDestinos=1
+					xTemporal = 0
+					nBandera = 0 
+					FOR EACH destinofinal OF Destino.mt3_vendidos_por_destino
+						Sucursal.mt3_por_destino[CountDestinos].Destino=destinofinal.Destino
+						FOR EACH destinofinalsucursal OF vRespaldo
+							IF destinofinalsucursal.destino = destinofinal.Destino THEN
+								xTemporal=destinofinalsucursal.Mt3_vendido
+								nBandera ++
+								BREAK
+							END
+						END
+						IF nBandera = 0 THEN
+							Sucursal.mt3_por_destino[CountDestinos].Mt3_vendido=0
+							ELSE 
+							Sucursal.mt3_por_destino[CountDestinos].Mt3_vendido=xTemporal
+							nBandera=0
+						END
+						CountDestinos++
+					END
+				END
+			END
+		END
+	END
+END
+
+clQry.qry=sQryViajesActivos
+clQry.exec()
+
+IF clQry.HayError THEN
+	vResponse.status		= 499
+	vResponse.description	= "la consulta no contiene datos"
+	
+	RESULT VariantToJSON(vResponse,psdFormatting) 
+END
+
+nContador is int 
+xCarga_Total is numeric
+IF HReadFirst(clQry.dsDataResult) THEN
+	FOR EACH Destino OF vResponse.Destinos
+		nContador = 1
+		WHILE Destino.id = clQry.dsDataResult.Origen_desde_ruta AND HOut()=False
+			CountDestinos= 1 
+			xCarga_Total=0
+			Destino.viajes_activos[nContador].id=clQry.dsDataResult.id
+			Destino.viajes_activos[nContador].nombre=clQry.dsDataResult.nombre
+			Destino.viajes_activos[nContador].fecha_registro=clQry.dsDataResult.fecha_registro
+			Destino.viajes_activos[nContador].unidad=clQry.dsDataResult.Clave_vehiculo
+			Destino.viajes_activos[nContador].capacidad_mt3=clQry.dsDataResult.Volumen_carga_max
+			WHILE Destino.viajes_activos[nContador].id = clQry.dsDataResult.id AND HOut()=False
+				IF clQry.dsDataResult.volumen <> 0 THEN
+					Destino.viajes_activos[nContador].mt3_embarcados_por_destino[CountDestinos].name	= clQry.dsDataResult.nombre_destino
+					Destino.viajes_activos[nContador].mt3_embarcados_por_destino[CountDestinos].mt3	= clQry.dsDataResult.volumen
+					xCarga_Total																	= xCarga_Total+clQry.dsDataResult.volumen
+					ELSE
+					Destino.viajes_activos[nContador].mt3_embarcados_por_destino=Null
+				END
+				HReadNext(clQry.dsDataResult)
+				CountDestinos++
+			END
+			Destino.viajes_activos[nContador].mt3_embarcados=xCarga_Total
+			nContador++
+		END
+		IF nContador = 1 THEN
+			Destino.viajes_activos=Null
+		END
+	END	
+END
+
+
+
+RESULT VariantToJSON(vResponse, psdFormatting)
