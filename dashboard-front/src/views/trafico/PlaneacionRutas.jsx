@@ -5,8 +5,8 @@ import { Accordion, Table } from 'react-bootstrap';
 export default function PlaneacionRutas() {
     return (
         <>
-            <div className="col-12 col-md-12">
-                <div className="col-item shadow p-3 mb-4 rounded">
+            <div className="col-12 col-md-12 p-1">
+                <div className="col-item shadow p-3 mb-4 mx-0 rounded">
                     <h1 className="mb-4">Trafico</h1>
                     <GraficaBarrasPrueba />
                     <h3>Detalles</h3>
@@ -14,6 +14,7 @@ export default function PlaneacionRutas() {
                         <Accordion.Item eventKey="0">
                             <Accordion.Header>METRICAS</Accordion.Header>
                             <Accordion.Body>
+                                <div className="table-responsive">
                                 <Table striped bordered hover size='md'>
                                     <thead>
                                         <tr>
@@ -56,13 +57,15 @@ export default function PlaneacionRutas() {
                                         </tr>
                                     </tbody>
                                 </Table>
+                                </div>
 
                             </Accordion.Body>
                         </Accordion.Item>
                         <Accordion.Item eventKey="1">
                             <Accordion.Header>HISTORIAL DE GUIAS</Accordion.Header>
                             <Accordion.Body>
-                                <Table striped bordered hover>
+                             <div className="table-responsive">
+                             <Table striped bordered hover>
                                     <thead>
                                         <tr>
                                             <th>Sucursal</th>
@@ -121,6 +124,7 @@ export default function PlaneacionRutas() {
 
                                     </tbody>
                                 </Table>
+                             </div>
 
                             </Accordion.Body>
                         </Accordion.Item>

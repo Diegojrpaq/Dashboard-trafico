@@ -10,7 +10,7 @@ export default function SideBar2() {
 
   const {sessionUserState} = useContext(globalData)
   const sessionUser=sessionUserState.User;
-  console.log(sessionUser)
+  const {setDestinosList} = useContext(globalData)
   const [destinosList, setDestinoList] = useState(null)
 
   const urlApiNextpack = '/trafico/get_destinos/'+ sessionUser.id;
@@ -26,6 +26,7 @@ export default function SideBar2() {
           if (data) {
             console.log(data)
             setDestinoList(data.Destinos)
+            setDestinosList(data.Destinos)
             //     Swal.fire(
               //   'Good job!',
                 // 'Se recibio la informacion correctamente Nextpack',

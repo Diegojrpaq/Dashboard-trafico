@@ -25,7 +25,8 @@ function App() {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const tokenUser = urlParams.get('token');
+    /* const tokenUser = urlParams.get('token'); */
+    const tokenUser = 649;
     
     const peticiones = async (tokenUser) => {
       const urlApiNextpack = '/trafico/get_session_user/' + tokenUser;
@@ -121,13 +122,13 @@ function App() {
     } */
     console.log(sessionUserState)
             console.log(tokenUserState)
-  if (sessionUserState !== null && (tokenUserState !== null || typeof tokenUserState !== 'undefined')) {
+  if (sessionUserState !== null ) {
  
     return (
       <>
-       {console.log(sessionUserState)}
+      {console.log(sessionUserState)}
       {console.log(tokenUserState)}
-        <globalData.Provider value={{ destinosListState, sessionUserState }}>
+        <globalData.Provider value={{ destinosListState, sessionUserState, setDestinosList}}>
           <BrowserRouter>
             <Suspense>
               <Routes>
@@ -142,6 +143,7 @@ function App() {
                           name={route.name}
                           element={<route.element />}
                         />
+                        
                       )
                     )
                   })
@@ -157,7 +159,14 @@ function App() {
     return (
       <>
      
-        <Spinner></Spinner>
+        <div className="container-fluid">
+          <div className="row align-items-center justify-content-center">
+            <div className="col-2">
+            <Spinner className='Spinner-Graph'></Spinner>
+            </div>
+          </div>
+        
+        </div>
       </>
     )
   }
