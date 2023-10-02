@@ -1,12 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import '../Css/Sidebar2.css'
-import { destinosListContext, globalData } from '../App';
+import { Accordion, Card } from 'react-bootstrap';
+import { dataLogisticContext } from '../App';
 import Logo from '../assets/img/logo.png'
 import SHeaderList from './SHeaderList';
 import SListItem from './SListItem';
-import { useParams } from 'react-router-dom';
 
 export default function SideBar2() {
+
 
   const {sessionUserState} = useContext(globalData)
   const sessionUser=sessionUserState.User;
@@ -54,10 +55,12 @@ export default function SideBar2() {
     <>
       <div className="sidebar d-none d-md-block">
         {/*  <!-- Contenido del sidebar --> */}
+
         <div className="sidebar-header">
           <img src={Logo} alt="" className='img-fluid mb-4' />
           <h3>Dashboard</h3>
         </div>
+
         <SHeaderList title="Trafico" icon='bi bi-globe-americas' idcollapse='1'>
           <SHeaderList title="Planeacion de Rutas" icon='bi bi-truck' idcollapse='2'>
           {
@@ -94,6 +97,7 @@ export default function SideBar2() {
           <SListItem icon='bi bi-geo-alt mx-1'>Aguascalientes</SListItem>
           <SListItem icon='bi bi-geo-alt mx-1'>CD. Obregon</SListItem> */}
         </SHeaderList>
+
        
       {/*   <SHeaderList title="Ventas" icon='bi bi-coin' idcollapse='4'>
           <SListItem>hello</SListItem>
@@ -111,7 +115,7 @@ export default function SideBar2() {
           <SListItem>hello</SListItem>
           <SListItem>hello</SListItem>
           <SListItem>hello</SListItem>
-        </SHeaderList> */}
+        </SHeaderList>
        {/*  <div>
           <a
             href="#collapseExample2"
