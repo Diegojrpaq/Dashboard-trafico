@@ -1,6 +1,7 @@
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
+import CalcularAnchoBarra from '../../utileria/utils';
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -286,6 +287,8 @@ export default function GraficaRutasActivas() {
         }
         const maximoEjeX = 70 + Math.max(...capacidadesCarga)
 
+        const {porcentajeAnchoBarra, heightGraph} = CalcularAnchoBarra(Destino.viajes_activos.length)
+
         let myoptions = {
             responsive: true,
             maintainAspectRatio: false,
@@ -296,6 +299,7 @@ export default function GraficaRutasActivas() {
                     display: true
                 }
             },
+             barPercentage: porcentajeAnchoBarra,
             scales: {
                 x: {
                     stacked: true,
@@ -321,7 +325,7 @@ export default function GraficaRutasActivas() {
 
         return (
             <>
-                <div className="container-graph">
+                <div className="container-graph"  style={{height: heightGraph}}>
                 <Bar
                     data={data}
                     options={myoptions}
