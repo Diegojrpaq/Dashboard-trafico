@@ -8,9 +8,8 @@ function Trafico() {
         1: 'Guadalajara',
         2: 'Queretaro',
     }
-    const {id} = useParams();
-    console.log(id);
 
+    const { id } = useParams();
     return (
         <>
             <div className="container-rigth d-flex">

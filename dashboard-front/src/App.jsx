@@ -90,11 +90,13 @@ function App() {
      setRenderInicial(infoupdate)
     } */
 
-  if (dataLogisticState == null) {
+   
+  if (sessionUserState !== null ) {
+ 
     return (
       <>
+        <globalData.Provider value={{ destinosListState, sessionUserState, setDestinosList}}>
 
-        <dataLogisticContext.Provider value={{ dataLogisticState }}>
           <BrowserRouter>
             <Routes>
               {/* <Route path='*' element={<DefaultLayout/>} /> */}
