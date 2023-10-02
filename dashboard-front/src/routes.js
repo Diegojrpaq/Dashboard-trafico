@@ -26,10 +26,10 @@ const RutasXLlegar = React.lazy(()=> import('./views/trafico/RutasXLlegar'))
 
 //Arreglo de rutas
 const routes_secondary = [
-    {path: '/trafico/:id', name: 'Hola', element: Grafica},
-    {path: '/planeacion', name: 'Planeacion', element: PlaneacionRutas},
-    {path: '/rutasactivas/:idDestino', name: 'Rutas_Activas', element: RutasActivas },
-    {path: '/rutasxllegar', name: 'Rutas_por_llegar', element: RutasXLlegar}
+   /*  {path: '/trafico/:id', name: 'Hola', element: Grafica}, */
+    {path: '/trafico/planeacion/:idDestino', name: 'Planeacion', element: PlaneacionRutas},
+    {path: '/trafico/viajesactivos/:idDestino', name: 'Rutas_Activas', element: RutasActivas },
+    {path: '/trafico/viajesxllegar/:idDestino', name: 'Rutas_por_llegar', element: RutasXLlegar}
 ]
 //-------------------------------------Fin segundo menu de rutas--------------------------------
 

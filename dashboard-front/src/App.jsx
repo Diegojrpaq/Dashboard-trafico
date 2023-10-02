@@ -120,14 +120,11 @@ function App() {
   /*   const  updateRender=(infoupdate)=>{
      setRenderInicial(infoupdate)
     } */
-    console.log(sessionUserState)
-            console.log(tokenUserState)
+   
   if (sessionUserState !== null ) {
  
     return (
       <>
-      {console.log(sessionUserState)}
-      {console.log(tokenUserState)}
         <globalData.Provider value={{ destinosListState, sessionUserState, setDestinosList}}>
           <BrowserRouter>
             <Suspense>
