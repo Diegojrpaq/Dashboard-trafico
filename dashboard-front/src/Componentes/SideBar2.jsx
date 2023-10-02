@@ -94,11 +94,7 @@ export default function SideBar2() {
           <SListItem icon='bi bi-geo-alt mx-1'>Aguascalientes</SListItem>
           <SListItem icon='bi bi-geo-alt mx-1'>CD. Obregon</SListItem> */}
         </SHeaderList>
-        <SHeaderList title= 'ventas' idcollapse='3'>
-        <SListItem icon= 'bi bi-curso-fill' url='/planeacion'>Planeacion</SListItem>
-        <SListItem icon= 'bi bi-curso-fill' url='/rutasxllegar'>Rutas por Llegar</SListItem>
-        <SListItem icon= 'bi bi-curso-fill' url='/rutasactivas/7'>Rutas Activas</SListItem>
-        </SHeaderList>
+       
       {/*   <SHeaderList title="Ventas" icon='bi bi-coin' idcollapse='4'>
           <SListItem>hello</SListItem>
           <SListItem>hello</SListItem>
