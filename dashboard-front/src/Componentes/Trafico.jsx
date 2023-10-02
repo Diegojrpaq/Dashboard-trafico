@@ -9,7 +9,6 @@ function Trafico() {
         2: 'Queretaro',
     }
     const { id } = useParams();
-    console.log(id);
 
     return (
         <>
