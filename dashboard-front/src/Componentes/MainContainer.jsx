@@ -1,25 +1,17 @@
-import React from 'react'
+import React, { Children } from 'react'
 import '../Css/MainContainer.css'
-import { Routes, Route } from 'react-router-dom';
-import { routes_secondary, routes_primary } from '../routes'
-export default function MainContainer() {
+export default function MainContainer(props) {
   return (
-    <Routes>
-      {
-        routes_secondary.map((route, idx) => {
-          return (
-            route.element && (
-              <Route
-                key={idx}
-                path={route.path}
-                exact={route.exact}
-                name={route.name}
-                element={<route.element />}
-              />
-            )
-          )
-        })
-      }
-    </Routes>
+    <>
+      <div className="container-rigth d-flex">
+        {/*  <!-- Contenedor principal --> */}
+        <div className="main-container container-fluid">
+          {/*   <!-- Dos filas y tres columnas --> */}
+          <div className="row">
+                {props.children}
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
