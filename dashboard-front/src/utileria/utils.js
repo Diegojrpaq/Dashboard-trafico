@@ -1,4 +1,4 @@
-export default function CalcularAnchoBarra(cantRutas) {
+export function CalcularAnchoBarra(cantRutas) {
     let porcentajeAnchoBarra;
     let heightGraph;
     if (cantRutas >= 4) {
@@ -18,4 +18,13 @@ export default function CalcularAnchoBarra(cantRutas) {
         porcentajeAnchoBarra,
         heightGraph
     }
+}
+
+export function ConvertirFecha(fechaText) {
+    const year = fechaText.substring(0, 4);
+    const month = fechaText.substring(4, 6);
+    const day = fechaText.substring(6, 8);
+
+    const fecha = `${day}/${month}/${year}`;
+    return fecha;
 }

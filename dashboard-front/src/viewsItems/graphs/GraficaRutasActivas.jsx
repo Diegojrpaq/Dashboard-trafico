@@ -1,7 +1,7 @@
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
-import CalcularAnchoBarra from '../../utileria/utils';
+import { CalcularAnchoBarra } from '../../utileria/utils';
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -81,100 +81,6 @@ export default function GraficaRutasActivas() {
                 ],
                 "mt3_embarcados": 64.39728
             },
-            {
-                "id": 54170,
-                "nombre": "GDL-MTY",
-                "fecha_registro": "20230925",
-                "unidad": "JR33",
-                "capacidad_mt3": 0,
-                "mt3_embarcados_por_destino": [
-                    {
-                        "name": "MONTERREY",
-                        "mt3": 22.221236
-                    },
-                    {
-                        "name": "SALTILLO",
-                        "mt3": 1.555
-                    },
-                    {
-                        "name": "TORREON",
-                        "mt3": 14.461
-                    }
-                ],
-                "mt3_embarcados": 38.237236
-            },
-            {
-                "id": 54165,
-                "nombre": "(PERI)-MEX-DIRECTO",
-                "fecha_registro": "20230925",
-                "unidad": "JR41",
-                "capacidad_mt3": 0,
-                "mt3_embarcados_por_destino": [
-                    {
-                        "name": "MEXICO",
-                        "mt3": 45.057956
-                    },
-                    {
-                        "name": "PACHUCA",
-                        "mt3": 1.717
-                    }
-                ],
-                "mt3_embarcados": 46.774956
-            },
-            {
-                "id": 54164,
-                "nombre": "(PERI) GDL QRO ",
-                "fecha_registro": "20230925",
-                "unidad": "VIRTUAL",
-                "capacidad_mt3": 0,
-                "mt3_embarcados_por_destino": [
-                    {
-                        "name": "CELAYA",
-                        "mt3": 0.027
-                    }
-                ],
-                "mt3_embarcados": 0.027
-            },
-            {
-                "id": 54081,
-                "nombre": "(PERI) GDL QRO ",
-                "fecha_registro": "20230922",
-                "unidad": "VIRTUAL",
-                "capacidad_mt3": 0,
-                "mt3_embarcados_por_destino": [
-                    {
-                        "name": "QUERETARO",
-                        "mt3": 0.027
-                    },
-                    {
-                        "name": "IRAPUATO",
-                        "mt3": 0.054
-                    },
-                    {
-                        "name": "SAN LUIS POTOSI",
-                        "mt3": 0.054
-                    },
-                    {
-                        "name": "SAN JUAN DEL RIO",
-                        "mt3": 0.027
-                    }
-                ],
-                "mt3_embarcados": 0.162
-            },
-            {
-                "id": 53697,
-                "nombre": "GUA-QRO-(BAJIO CENTRO)",
-                "fecha_registro": "20230912",
-                "unidad": "VIRTUAL",
-                "capacidad_mt3": 0,
-                "mt3_embarcados_por_destino": [
-                    {
-                        "name": "MEXICO",
-                        "mt3": 0.495
-                    }
-                ],
-                "mt3_embarcados": 0.495
-            }
         ]
     }
     /* const Destino = [
@@ -231,27 +137,27 @@ export default function GraficaRutasActivas() {
         let label = [];
         Destino.viajes_activos.map((viaje, index) => {
             /* labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3"; */
-           /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
-           label.push(viaje.nombre)
-           label.push(viaje.fecha_registro)
-           /* label.push("Capacidad camion: "+viaje.capacidad_mt3)
-           label.push("embarcados: "+viaje.mt3_embarcados)
-           label.push(viaje.unidad) */
-           labelRutas[index] = label
-           label = [];
+            /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
+            label.push(viaje.nombre)
+            label.push(viaje.fecha_registro)
+            /* label.push("Capacidad camion: "+viaje.capacidad_mt3)
+            label.push("embarcados: "+viaje.mt3_embarcados)
+            label.push(viaje.unidad) */
+            labelRutas[index] = label
+            label = [];
             capacidadesCarga[index] = viaje.capacidad_mt3
             metrosLibres[index] = viaje.capacidad_mt3 - viaje.mt3_embarcados
             /*este if es para sacar en la vuelta la posicion con mas elementos */
             if (viaje.mt3_embarcados_por_destino !== null) {
                 if (cantiMaydeViajesActivos < viaje.mt3_embarcados_por_destino.length) {
-                    cantiMaydeViajesActivos = viaje.mt3_embarcados_por_destino.length-1 
+                    cantiMaydeViajesActivos = viaje.mt3_embarcados_por_destino.length - 1
                 }
             }
         })
-    
+
         const ConstruirEjeY = () => {
             const dataSetConstruido = [];
-            const labelsDestinos=[];
+            const labelsDestinos = [];
             let dataEjeY = [];
             dataSetConstruido.push({
                 label: "Espacio libre del Contenedor",
@@ -260,34 +166,34 @@ export default function GraficaRutasActivas() {
                 borderColor: colorEspacioLibreBorder,
                 borderWidth: 2
             })
-          
-            for(let i =0;i<=cantiMaydeViajesActivos;i++){
-               dataEjeY=Destino.viajes_activos.map((viajeActivo)=>{
-                    if(viajeActivo.mt3_embarcados_por_destino!==null && i < viajeActivo.mt3_embarcados_por_destino.length ){
-                       
-                        return  viajeActivo.mt3_embarcados_por_destino[i].mt3
-                    }else{
-                       return 0
+
+            for (let i = 0; i <= cantiMaydeViajesActivos; i++) {
+                dataEjeY = Destino.viajes_activos.map((viajeActivo) => {
+                    if (viajeActivo.mt3_embarcados_por_destino !== null && i < viajeActivo.mt3_embarcados_por_destino.length) {
+
+                        return viajeActivo.mt3_embarcados_por_destino[i].mt3
+                    } else {
+                        return 0
                     }
                 })
                 /* console.log(Destino)
                 console.log(Destino.nombre)
                 console.log(Destino.viajes_activos[0].mt3_embarcados_por_destino[i].nombre) */
                 dataSetConstruido.push({
-                /* label: Destino.viajes_activos[0].mt3_embarcados_por_destino[i].nombre, */ 
-                data: dataEjeY,
-                backgroundColor: colores[i].color,
-                borderColor: coloresBorder[i].color,
-                borderWidth: 2
+                    /* label: Destino.viajes_activos[0].mt3_embarcados_por_destino[i].nombre, */
+                    data: dataEjeY,
+                    backgroundColor: colores[i].color,
+                    borderColor: coloresBorder[i].color,
+                    borderWidth: 2
                 })
-                
+
             }
             return dataSetConstruido;
 
         }
         const maximoEjeX = 70 + Math.max(...capacidadesCarga)
 
-        const {porcentajeAnchoBarra, heightGraph} = CalcularAnchoBarra(Destino.viajes_activos.length)
+        const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(Destino.viajes_activos.length)
 
         let myoptions = {
             responsive: true,
@@ -299,7 +205,7 @@ export default function GraficaRutasActivas() {
                     display: true
                 }
             },
-             barPercentage: porcentajeAnchoBarra,
+            barPercentage: porcentajeAnchoBarra,
             scales: {
                 x: {
                     stacked: true,
@@ -325,11 +231,11 @@ export default function GraficaRutasActivas() {
 
         return (
             <>
-                <div className="container-graph"  style={{height: heightGraph}}>
-                <Bar
-                    data={data}
-                    options={myoptions}
-                />
+                <div className="container-graph" style={{ height: heightGraph }}>
+                    <Bar
+                        data={data}
+                        options={myoptions}
+                    />
                 </div>
 
             </>
