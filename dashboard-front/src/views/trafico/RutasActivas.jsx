@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import TableViajesActivos from '../../viewsItems/tables/TableViajesActivos'
 import SpinnerMain from '../../viewsItems/SpinnerMain'
 import { Accordion } from 'react-bootstrap';
+import { ConvertirFecha } from '../../utileria/utils'
 
 export default function RutasActivas() {
 
@@ -41,7 +42,6 @@ export default function RutasActivas() {
   }, [idDestino]);
 
   if (viajesActivos != null) {
-    console.log(viajesActivos)
     return (
       <>
         <div className="col-12 col-md-12  p-1">
@@ -50,16 +50,20 @@ export default function RutasActivas() {
             {
               viajesActivos && viajesActivos.viajes_activos.map((ruta, index) => {
                 let guias;
-                console.log('Map', ruta)
+                const fecha = ConvertirFecha(ruta.fecha_registro)
                 if (ruta.catalogoGuias != null) {
-                  console.log(ruta.catalogoGuias)
                   guias = ruta.catalogoGuias;
-                  console.log('Guiaaas', guias)
                   return (
-                    <Accordion>
+                    <Accordion key={index}>
                       <Accordion.Item eventKey={index}>
                         <Accordion.Header>
-                          {ruta.nombre}
+                          <div className='container'>
+                            <div className='row'>
+                              <div className='col'>{ruta.nombre}</div>
+                              <div className='col'>Vehículo: {ruta.Clave_vehiculo}</div>
+                              <div className='col'>Fecha: {fecha}</div>
+                            </div>
+                          </div>
                         </Accordion.Header>
                         <Accordion.Body>
                           <TableViajesActivos
@@ -86,7 +90,6 @@ export default function RutasActivas() {
                 }
               })
             }
-
           </div>
         </div>
       </>
