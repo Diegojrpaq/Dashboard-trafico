@@ -1,7 +1,6 @@
 import React from 'react'
 import { Table } from 'react-bootstrap';
 export default function TableViajesActivos({ guias }) {
-    console.log('Holaaa', guias)
     return (
         <>
             <div className='table-responsive'>
@@ -20,9 +19,9 @@ export default function TableViajesActivos({ guias }) {
                     </thead>
                     <tbody>
                         {
-                            guias.map((guia) => {
+                            guias.map((guia, index) => {
                                 return (
-                                    <tr>
+                                    <tr key={index}>
                                         <td>{guia.numGuia}</td>
                                         <td>{guia.origen}</td>
                                         <td>{guia.destino}</td>

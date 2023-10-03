@@ -42,7 +42,6 @@ export default function RutasActivas() {
   }, [idDestino]);
 
   if (viajesActivos != null) {
-    console.log(viajesActivos)
     return (
       <>
         <div className="col-12 col-md-12  p-1">
@@ -52,13 +51,10 @@ export default function RutasActivas() {
               viajesActivos && viajesActivos.viajes_activos.map((ruta, index) => {
                 let guias;
                 const fecha = ConvertirFecha(ruta.fecha_registro)
-                console.log('Map', ruta)
                 if (ruta.catalogoGuias != null) {
-                  console.log(ruta.catalogoGuias)
                   guias = ruta.catalogoGuias;
-                  console.log('Guiaaas', guias)
                   return (
-                    <Accordion>
+                    <Accordion key={index}>
                       <Accordion.Item eventKey={index}>
                         <Accordion.Header>
                           <div className='container'>
@@ -94,7 +90,6 @@ export default function RutasActivas() {
                 }
               })
             }
-
           </div>
         </div>
       </>
