@@ -1,6 +1,7 @@
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
+import { CalcularAnchoBarra } from '../../utileria/utils';
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -44,7 +45,7 @@ export default function GraficaRutasActivas(props) {
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
     /* Variables de Estilo fin */
-   
+
 
     /* seccion de return  */
     if ( viajeList !== null) {
@@ -57,6 +58,7 @@ export default function GraficaRutasActivas(props) {
         viajeList.map((viaje, index) => {
             const mt3_embarcados= viaje.catalogoGuias.reduce((total, guia)=> total + guia.volumen,0 )
             /* labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3"; */
+
            /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
            label.push(viaje.nombre)
            label.push(formatearFecha(viaje.fecha_registro))
@@ -65,11 +67,12 @@ export default function GraficaRutasActivas(props) {
            label = [];
             capacidadesCarga.push(viaje.Volumen_carga_maxima)
             metrosLibres.push(viaje.Volumen_carga_maxima - mt3_embarcados)
+
         })
 
         const ConstruirEjeY = () => {
             const dataSetConstruido = [];
-            const labelsDestinos=[];
+            const labelsDestinos = [];
             let dataEjeY = [];
             dataSetConstruido.push({
                 label: "Espacio libre del Contenedor",
@@ -78,12 +81,13 @@ export default function GraficaRutasActivas(props) {
                 borderColor: colorEspacioLibreBorder,
                 borderWidth: 2
             })
-          
-        
+
             return dataSetConstruido;
 
         }
         const maximoEjeX = 10 + Math.max(...capacidadesCarga)
+
+        const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(Destino.viajes_activos.length)
 
         let myoptions = {
             responsive: true,
@@ -95,6 +99,7 @@ export default function GraficaRutasActivas(props) {
                     display: true
                 }
             },
+            barPercentage: porcentajeAnchoBarra,
             scales: {
                 x: {
                     stacked: true,
@@ -120,11 +125,11 @@ export default function GraficaRutasActivas(props) {
 
         return (
             <>
-                <div className="container-graph">
-                <Bar
-                    data={data}
-                    options={myoptions}
-                />
+                <div className="container-graph" style={{ height: heightGraph }}>
+                    <Bar
+                        data={data}
+                        options={myoptions}
+                    />
                 </div>
 
             </>

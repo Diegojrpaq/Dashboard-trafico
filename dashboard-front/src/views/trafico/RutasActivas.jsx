@@ -5,6 +5,7 @@ import { useParams } from 'react-router'
 import TableViajesActivos from '../../viewsItems/tables/TableViajesActivos'
 import SpinnerMain from '../../viewsItems/SpinnerMain'
 import { Accordion } from 'react-bootstrap';
+import { ConvertirFecha } from '../../utileria/utils'
 
 export default function RutasActivas() {
 
@@ -52,16 +53,21 @@ export default function RutasActivas() {
             {
               viajesActivos && viajesActivos.map((ruta, index) => {
                 let guias;
-            
+
+                const fecha = ConvertirFecha(ruta.fecha_registro)
                 if (ruta.catalogoGuias != null) {
-                  
                   guias = ruta.catalogoGuias;
-                  
                   return (
                     <Accordion key={index}>
                       <Accordion.Item eventKey={index}>
                         <Accordion.Header>
-                          {ruta.nombre}
+                          <div className='container'>
+                            <div className='row'>
+                              <div className='col'>{ruta.nombre}</div>
+                              <div className='col'>Vehículo: {ruta.Clave_vehiculo}</div>
+                              <div className='col'>Fecha: {fecha}</div>
+                            </div>
+                          </div>
                         </Accordion.Header>
                         <Accordion.Body>
                           <TableViajesActivos
@@ -88,7 +94,6 @@ export default function RutasActivas() {
                 }
               })
             }
-
           </div>
         </div>
       </>
