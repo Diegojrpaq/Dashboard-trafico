@@ -39,7 +39,7 @@ export default function RutasActivas() {
         )
     }
     peticiones(idDestino)
-    return()=>{
+    return () => {
       setViajesActivos(null)
     };
   }, [idDestino]);
@@ -49,7 +49,7 @@ export default function RutasActivas() {
       <>
         <div className="col-12 col-md-12  p-1">
           <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-            <GraficaRutasActivas viajesList={viajesActivos}/>
+            <GraficaRutasActivas viajesList={viajesActivos} />
             {
               viajesActivos && viajesActivos.map((ruta, index) => {
                 let guias;
@@ -83,7 +83,13 @@ export default function RutasActivas() {
                     <Accordion key={index}>
                       <Accordion.Item eventKey={index}>
                         <Accordion.Header>
-                          {ruta.nombre}
+                          <div className='container'>
+                            <div className='row'>
+                              <div className='col'>{ruta.nombre}</div>
+                              <div className='col'>Vehículo: {ruta.Clave_vehiculo}</div>
+                              <div className='col'>Fecha: {fecha}</div>
+                            </div>
+                          </div>
                         </Accordion.Header>
                         <Accordion.Body>
                           <h6>No hay guías en este viaje</h6>
