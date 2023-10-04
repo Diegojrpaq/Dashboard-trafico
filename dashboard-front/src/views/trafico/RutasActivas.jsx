@@ -25,7 +25,7 @@ export default function RutasActivas() {
         }).then((data) => {
           /* setDestinosList(data) */
           if (data) {
-            setViajesActivos(data)
+            setViajesActivos(data.viajes_activos)
 
             //     Swal.fire(
             //   'Good job!',
@@ -39,6 +39,9 @@ export default function RutasActivas() {
         )
     }
     peticiones(idDestino)
+    return()=>{
+      setViajesActivos(null)
+    };
   }, [idDestino]);
 
   if (viajesActivos != null) {
@@ -46,10 +49,11 @@ export default function RutasActivas() {
       <>
         <div className="col-12 col-md-12  p-1">
           <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-            <GraficaRutasActivas />
+            <GraficaRutasActivas viajesList={viajesActivos}/>
             {
-              viajesActivos && viajesActivos.viajes_activos.map((ruta, index) => {
+              viajesActivos && viajesActivos.map((ruta, index) => {
                 let guias;
+
                 const fecha = ConvertirFecha(ruta.fecha_registro)
                 if (ruta.catalogoGuias != null) {
                   guias = ruta.catalogoGuias;
@@ -76,8 +80,8 @@ export default function RutasActivas() {
                 } else {
                   console.log("No hay viajes")
                   return (
-                    <Accordion>
-                      <Accordion.Item>
+                    <Accordion key={index}>
+                      <Accordion.Item eventKey={index}>
                         <Accordion.Header>
                           {ruta.nombre}
                         </Accordion.Header>

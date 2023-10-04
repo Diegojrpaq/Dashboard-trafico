@@ -26,10 +26,18 @@ Chartjs.register(
     Filler
 );
 
+function formatearFecha(fechaSinFormato) {
+    const año = fechaSinFormato.slice(0, 4);
+    const mes = fechaSinFormato.slice(4, 6);
+    const día = fechaSinFormato.slice(6, 8);
+    
+    return `${día}/${mes}/${año}`;
+  }
 
 
-export default function GraficaRutasActivas() {
+export default function GraficaRutasActivas(props) {
     /* Variables de Estilo  */
+    const  viajeList= props.viajesList
     const colorEspacioLibre = catalogoColores.colores[100].color;
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
     const colorChillout = catalogoColores.colores[101].color;
@@ -37,122 +45,29 @@ export default function GraficaRutasActivas() {
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
     /* Variables de Estilo fin */
-    const Destino = {
-        "viajes_activos": [
-            {
-                "id": 54171,
-                "nombre": "GDL-MAZ-CUL-MCH-NAV-OBR",
-                "fecha_registro": "20230925",
-                "unidad": "JR43",
-                "capacidad_mt3": 0,
-                "mt3_embarcados_por_destino": [
-                    {
-                        "name": "CD. OBREGON ",
-                        "mt3": 1.399
-                    },
-                    {
-                        "name": "CULIACAN",
-                        "mt3": 20.10548
-                    },
-                    {
-                        "name": "GUAMUCHIL",
-                        "mt3": 0.027
-                    },
-                    {
-                        "name": "GUASAVE",
-                        "mt3": 0.091
-                    },
-                    {
-                        "name": "GUAYMAS",
-                        "mt3": 0.501
-                    },
-                    {
-                        "name": "HERMOSILLO",
-                        "mt3": 21.1288
-                    },
-                    {
-                        "name": "LOS MOCHIS ",
-                        "mt3": 11.957
-                    },
-                    {
-                        "name": "NAVOJOA",
-                        "mt3": 9.188
-                    }
-                ],
-                "mt3_embarcados": 64.39728
-            },
-        ]
-    }
-    /* const Destino = [
-        {
-            "id": 51165,
-            "nombre": "GDL-MTY",
-            "fecha_registro": "2023-07-11",
-            "unidad": "84",
-            "capacidad_mt3": 20,
-            "mt3_embarcados": 8,
-            "--comentario": "esta seccion al crear la consulta debemos contemplar el orden de escaneo para simular como se suben al camion",
-            "mt3_embarcados_por_destino": [
-                {
-                    "name": "Leon",
-                    "mt3": 5
-                },
-                {
-                    "name": "MONTERREY",
-                    "mt3": 2
-                },
-                {
-                    "name": "AGUASCALIENTES",
-                    "mt3": 1
-                }
-            ]
-        },
-        {
-            "id": 51167,
-            "nombre": "GDL-COL-MAN",
-            "fecha_registro": "2023-07-11",
-            "unidad": "",
-            "capacidad_mt3": 30,
-            "mt3_embarcados": 0,
-            "mt3_embarcados_por_destino": null
-        },
-        {
-            "id": 51168,
-            "nombre": "GDL-OBR",
-            "fecha_registro": "2023-07-11",
-            "unidad": "",
-            "capacidad_mt3": 0,
-            "mt3_embarcados": 0,
-            "mt3_embarcados_por_destino": null
-        }
-    ] */
 
 
     /* seccion de return  */
-    if (Destino.viajes_activos !== null) {
+    if ( viajeList !== null) {
         const labelRutas = [];
         const capacidadesCarga = [];
         const metrosLibres = [];
         let cantiMaydeViajesActivos = 0;
         let label = [];
-        Destino.viajes_activos.map((viaje, index) => {
+
+        viajeList.map((viaje, index) => {
+            const mt3_embarcados= viaje.catalogoGuias.reduce((total, guia)=> total + guia.volumen,0 )
             /* labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3"; */
-            /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
-            label.push(viaje.nombre)
-            label.push(viaje.fecha_registro)
-            /* label.push("Capacidad camion: "+viaje.capacidad_mt3)
-            label.push("embarcados: "+viaje.mt3_embarcados)
-            label.push(viaje.unidad) */
-            labelRutas[index] = label
-            label = [];
-            capacidadesCarga[index] = viaje.capacidad_mt3
-            metrosLibres[index] = viaje.capacidad_mt3 - viaje.mt3_embarcados
-            /*este if es para sacar en la vuelta la posicion con mas elementos */
-            if (viaje.mt3_embarcados_por_destino !== null) {
-                if (cantiMaydeViajesActivos < viaje.mt3_embarcados_por_destino.length) {
-                    cantiMaydeViajesActivos = viaje.mt3_embarcados_por_destino.length - 1
-                }
-            }
+
+           /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
+           label.push(viaje.nombre)
+           label.push(formatearFecha(viaje.fecha_registro))
+           label.push(viaje.Clave_vehiculo)
+           labelRutas.push(label) 
+           label = [];
+            capacidadesCarga.push(viaje.Volumen_carga_maxima)
+            metrosLibres.push(viaje.Volumen_carga_maxima - mt3_embarcados)
+
         })
 
         const ConstruirEjeY = () => {
@@ -167,31 +82,10 @@ export default function GraficaRutasActivas() {
                 borderWidth: 2
             })
 
-            for (let i = 0; i <= cantiMaydeViajesActivos; i++) {
-                dataEjeY = Destino.viajes_activos.map((viajeActivo) => {
-                    if (viajeActivo.mt3_embarcados_por_destino !== null && i < viajeActivo.mt3_embarcados_por_destino.length) {
-
-                        return viajeActivo.mt3_embarcados_por_destino[i].mt3
-                    } else {
-                        return 0
-                    }
-                })
-                /* console.log(Destino)
-                console.log(Destino.nombre)
-                console.log(Destino.viajes_activos[0].mt3_embarcados_por_destino[i].nombre) */
-                dataSetConstruido.push({
-                    /* label: Destino.viajes_activos[0].mt3_embarcados_por_destino[i].nombre, */
-                    data: dataEjeY,
-                    backgroundColor: colores[i].color,
-                    borderColor: coloresBorder[i].color,
-                    borderWidth: 2
-                })
-
-            }
             return dataSetConstruido;
 
         }
-        const maximoEjeX = 70 + Math.max(...capacidadesCarga)
+        const maximoEjeX = 10 + Math.max(...capacidadesCarga)
 
         const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(Destino.viajes_activos.length)
 
