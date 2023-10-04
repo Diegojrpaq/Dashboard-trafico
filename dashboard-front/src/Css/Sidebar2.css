@@ -19,6 +19,7 @@
         padding: 0px;
         color: var(--Color-Font-primary);
         overflow-y:auto;
+        z-index:1000;
         /* font-family: 'Roboto','Poppins', sans-serif; */
     }
 

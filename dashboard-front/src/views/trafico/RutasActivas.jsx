@@ -12,6 +12,7 @@ export default function RutasActivas() {
   const { idDestino } = useParams()
 
   const [viajesActivos, setViajesActivos] = useState(null)
+  const [catalogoDestinoFinal, setCatalogoDestinoFinal] = useState(null)
 
   useEffect(() => {
 
@@ -26,6 +27,7 @@ export default function RutasActivas() {
           /* setDestinosList(data) */
           if (data) {
             setViajesActivos(data.viajes_activos)
+            setCatalogoDestinoFinal(data.catalogoDestinos)
 
             //     Swal.fire(
             //   'Good job!',
@@ -49,7 +51,7 @@ export default function RutasActivas() {
       <>
         <div className="col-12 col-md-12  p-1">
           <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-            <GraficaRutasActivas viajesList={viajesActivos}/>
+            <GraficaRutasActivas viajesList={viajesActivos} catalogoDestinoFinal={catalogoDestinoFinal}/>
             {
               viajesActivos && viajesActivos.map((ruta, index) => {
                 let guias;

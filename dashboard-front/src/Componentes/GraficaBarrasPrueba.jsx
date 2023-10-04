@@ -77,7 +77,7 @@ export default function GraficaBarrasPrueba() {
   datasets: [{
     label: "Espacio libre del Contenedor",
     data: [15,45],
-    backgroundColor:  'rgb(114,176,228, .5)',
+    backgroundColor:  'rgb(114,176,228,0.5)',
     borderColor:  'rgb(114,176,228)',
     borderWidth: 2
   },
