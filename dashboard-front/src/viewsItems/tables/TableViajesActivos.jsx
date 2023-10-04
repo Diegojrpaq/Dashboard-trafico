@@ -1,6 +1,33 @@
 import React from 'react'
 import { Table } from 'react-bootstrap';
 export default function TableViajesActivos({ guias }) {
+
+    const sumaVolumen = guias.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.volumen;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0);
+    const sumaPeso = guias.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.peso;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0); 
+    const sumaFlete = guias.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.flete;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0); 
+    const sumaMonto = guias.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.monto_seguro;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0); 
+    const sumaSubtotal = guias.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.subtotal;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0); 
+
     return (
         <>
             <div className='table-responsive'>
@@ -34,6 +61,16 @@ export default function TableViajesActivos({ guias }) {
                                 )
                             })
                         }
+                         <tr>
+                            <td></td>
+                            <td></td>
+                            <td><b>TOTALES</b></td>
+                            <td><b>{sumaVolumen} mt3</b></td>
+                            <td><b>{sumaPeso} Kg</b></td>
+                            <td><b>{sumaFlete} $</b></td>
+                            <td><b>{sumaMonto} $</b></td>
+                            <td><b>{sumaSubtotal} $</b></td>
+                        </tr>
                     </tbody>
                 </Table>
             </div>
