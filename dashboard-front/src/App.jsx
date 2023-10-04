@@ -140,7 +140,6 @@ function App() {
                           name={route.name}
                           element={<route.element />}
                         />
-                        
                       )
                     )
                   })
