@@ -37,7 +37,7 @@ function formatearFecha(fechaSinFormato) {
 
 export default function GraficaRutasActivas(props) {
     /* Variables de Estilo  */
-    const  viajeList= props.viajesList
+    const  viajesList= props.viajesList
     const colorEspacioLibre = catalogoColores.colores[100].color;
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
     const colorChillout = catalogoColores.colores[101].color;
@@ -48,15 +48,20 @@ export default function GraficaRutasActivas(props) {
 
 
     /* seccion de return  */
-    if ( viajeList !== null) {
+    if ( viajesList !== null) {
         const labelRutas = [];
         const capacidadesCarga = [];
         const metrosLibres = [];
         let cantiMaydeViajesActivos = 0;
         let label = [];
+        let mt3_embarcados;
 
-        viajeList.map((viaje, index) => {
-            const mt3_embarcados= viaje.catalogoGuias.reduce((total, guia)=> total + guia.volumen,0 )
+        viajesList.map((viaje, index) => {
+            if (viaje.catalogoGuias !== null){
+                 mt3_embarcados= viaje.catalogoGuias.reduce((total, guia)=> total + guia.volumen,0 )
+            }else{
+                mt3_embarcados= 0 
+            }
             /* labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3"; */
 
            /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
@@ -87,7 +92,7 @@ export default function GraficaRutasActivas(props) {
         }
         const maximoEjeX = 10 + Math.max(...capacidadesCarga)
 
-        const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(Destino.viajes_activos.length)
+        const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(viajesList.length)
 
         let myoptions = {
             responsive: true,
