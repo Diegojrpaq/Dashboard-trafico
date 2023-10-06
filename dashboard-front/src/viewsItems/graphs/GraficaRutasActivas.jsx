@@ -37,7 +37,8 @@ function formatearFecha(fechaSinFormato) {
 
 export default function GraficaRutasActivas(props) {
     /* Variables de Estilo  */
-    const  viajesList= props.viajesList
+    const viajesList= props.viajesList
+    const catalogoDestinoFinal= props.catalogoDestinoFinal
     const colorEspacioLibre = catalogoColores.colores[100].color;
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
     const colorChillout = catalogoColores.colores[101].color;
@@ -48,7 +49,7 @@ export default function GraficaRutasActivas(props) {
 
 
     /* seccion de return  */
-    if ( viajesList !== null) {
+    if ( viajesList.length !== 0) {
         const labelRutas = [];
         const capacidadesCarga = [];
         const metrosLibres = [];
@@ -61,6 +62,7 @@ export default function GraficaRutasActivas(props) {
                  mt3_embarcados= viaje.catalogoGuias.reduce((total, guia)=> total + guia.volumen,0 )
             }else{
                 mt3_embarcados= 0 
+                viaje.catalogoGuias=[];
             }
             /* labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3"; */
 
@@ -74,7 +76,7 @@ export default function GraficaRutasActivas(props) {
             metrosLibres.push(viaje.Volumen_carga_maxima - mt3_embarcados)
 
         })
-
+      
         const ConstruirEjeY = () => {
             const dataSetConstruido = [];
             const labelsDestinos = [];
@@ -87,6 +89,23 @@ export default function GraficaRutasActivas(props) {
                 borderWidth: 2
             })
 
+            catalogoDestinoFinal.map((destinoFinal, index)=>{
+                viajesList.map((viaje)=>{
+                    const guiasXDestino = viaje.catalogoGuias.filter(guia => guia.destino === destinoFinal.nombre)
+                    const volumenXDestino= guiasXDestino.reduce((total, guia)=> total + guia.volumen, 0)
+                    dataEjeY.push(volumenXDestino)
+                })
+                dataSetConstruido.push({
+                    label: destinoFinal.nombre ,
+                    data: dataEjeY ,
+                    backgroundColor: colores[index].color,
+                    borderColor: colores[index].color,
+                    borderWidth: 2
+                })
+                dataEjeY=[]
+
+            })
+            console.log(dataSetConstruido)
             return dataSetConstruido;
 
         }
@@ -101,7 +120,8 @@ export default function GraficaRutasActivas(props) {
             autoSkip: false,
             plugins: {
                 legend: {
-                    display: true
+                    display: true,
+                    position: 'bottom'
                 }
             },
             barPercentage: porcentajeAnchoBarra,
@@ -144,20 +164,3 @@ export default function GraficaRutasActivas(props) {
     }
     /* seccion de return fim */
 }
-/* [
-                {
-                    label: "Espacio libre del Contenedor",
-                    data: metrosLibres,
-                    backgroundColor: colorEspacioLibre,
-                    borderColor: colorEspacioLibreBorder,
-                    borderWidth: 2
-                },
-                {
-                    label: 'Embarcado',
-                    data: null,
-                    backgroundColor: colorChillout,
-                    borderColor: colorChilloutBorder,
-                    borderWidth: 2
-                },
-    
-            ] */
