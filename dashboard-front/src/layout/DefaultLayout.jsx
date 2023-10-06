@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../Componentes/Navbar'
+import Navbar from '../Componentes/NavBar2'
 import SideBar2 from '../Componentes/SideBar2'
 import MainContainer from '../Componentes/MainContainer'
 import { Routes, Route } from 'react-router-dom';
@@ -7,8 +7,6 @@ import { routes_secondary, routes_primary } from '../routes'
 
 
 export default function DefaultLayout() {
-    // const {id} = useParams();
-    // console.log(id)
     return (
         <>
             <Navbar />
