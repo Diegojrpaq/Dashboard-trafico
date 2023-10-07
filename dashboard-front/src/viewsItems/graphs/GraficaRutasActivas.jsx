@@ -89,7 +89,7 @@ export default function GraficaRutasActivas(props) {
                 borderWidth: 2
             })
 
-            catalogoDestinoFinal.map((destinoFinal, index)=>{
+            catalogoDestinoFinal?.map((destinoFinal, index)=>{
                 viajesList.map((viaje)=>{
                     const guiasXDestino = viaje.catalogoGuias.filter(guia => guia.destino === destinoFinal.nombre)
                     const volumenXDestino= guiasXDestino.reduce((total, guia)=> total + guia.volumen, 0)
