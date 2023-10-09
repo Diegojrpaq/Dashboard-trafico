@@ -53,6 +53,7 @@ export default function RutasActivas() {
         <div className="col-12 col-md-12  p-1">
           <div className="col-item shadow p-3 mb-4 mx-0 rounded">
             <GraficaRutasActivas viajesList={viajesActivos} catalogoDestinoFinal={catalogoDestinoFinal}/>
+
             {
               viajesActivos && viajesActivos.map((ruta, index) => {
                 let guias;
@@ -67,9 +68,9 @@ export default function RutasActivas() {
                           <div className='container'>
                             <div className='row'>
                               <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>{ruta.nombre}</div>
-                              <div className='col'>Vehículo: {ruta.Clave_vehiculo}</div>
-                              <div className='col'>Fecha: {fecha}</div>
-                              <div className='col'>Total guías: {totalGuias}</div>
+                              <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Vehículo: {ruta.Clave_vehiculo}</div>
+                              <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Fecha: {fecha}</div>
+                              <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Total guías: {totalGuias}</div>
                             </div>
                           </div>
                         </Accordion.Header>
