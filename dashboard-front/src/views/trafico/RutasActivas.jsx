@@ -51,6 +51,7 @@ export default function RutasActivas() {
 
   const idDestinos = useMemo(() => [], [])
   const [indexAct, setIndexAct] = useState(0);
+  const timer = 60000 // Duración de 1min, para 5 min son 300,000
   destinosListState?.map((destino) => {
     idDestinos.push(destino.id)
   })
@@ -61,7 +62,7 @@ export default function RutasActivas() {
         setIndexAct((prevIndex) =>
           prevIndex === idDestinos.length - 1 ? 0 : prevIndex + 1
         );
-      }, 6000);
+      }, timer);
       console.log(intervalId)
       return () => clearInterval(intervalId)
     }
