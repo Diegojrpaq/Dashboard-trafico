@@ -5,7 +5,7 @@ import { globalData } from '../App'
 
 export default function Navbar() {
 
-    const { sessionUserState, rutaActual } = useContext(globalData);
+    const { sessionUserState, rutaActual, btnSwitch, setBtnSwitch } = useContext(globalData);
     const userData = sessionUserState.User;
     let tituloNav = "";
     if (rutaActual === "Trafico" || rutaActual === null) {
@@ -14,6 +14,10 @@ export default function Navbar() {
         tituloNav = `Trafico/${rutaActual}`;
     }
 
+    const handleClic = () => {
+        console.log(!btnSwitch)
+        setBtnSwitch(!btnSwitch)
+    }
     return (
         <>
             {/* <!-- Navbar en la parte superior --> */}
@@ -27,6 +31,10 @@ export default function Navbar() {
 
                 <div className='col-7 d-none d-lg-flex flex-column justify-content-center align-items-end'>
                     <div className='row'>
+                        <div className="col-1 form-check form-switch d-flex justify-content-center align-items-center fs-4 me-4">
+                            <input onClick={handleClic} className="form-check-input align-self-center" type="checkbox" id="flexSwitchCheckDefault" />
+                            <span className='fs-6 align-self-center text-light ps-2 pt-1'>{btnSwitch ? "ON" : "OFF"}</span>
+                        </div>
                         <div className='col-1 d-flex justify-content-center align-items-center'>
                             <i className="bi bi-person-circle fs-2 text-light"></i>
                         </div>
