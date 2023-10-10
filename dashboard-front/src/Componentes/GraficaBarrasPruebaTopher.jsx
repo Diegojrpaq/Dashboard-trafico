@@ -73,14 +73,18 @@ export default function GraficaBarrasPruebaTopher() {
 const nombre = "EEE"
  const confDataLabels = {
   formatter: function(value) {
-    return `Ejemplo Label ${value} mt3`;
+return `GUA\n ${value} mt3 \n 10 TN`;
   },
-  color: 'white',
+  
+  align: 'center',
+  display: 'auto',
+  rotation: -45,
   labels: {
     title: {
       font: {
+        family:'Poppins',
         weight: 'bold',
-        size: 14
+        size: 16
       }
     }
   }
@@ -99,7 +103,7 @@ const nombre = "EEE"
   },
   {
     label: "Espacio libre del Contenedor2",
-    data: [30,10,20],
+    data: [15,10,20],
     backgroundColor:  'rgba(255, 0, 132, 0.5)',
     borderColor:  'rgba(255, 99, 132, 0.5)',
     datalabels: confDataLabels,

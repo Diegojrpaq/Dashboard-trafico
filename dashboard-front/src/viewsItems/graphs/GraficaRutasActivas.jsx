@@ -70,6 +70,7 @@ export default function GraficaRutasActivas(props) {
            label.push(viaje.nombre)
            label.push(formatearFecha(viaje.fecha_registro))
            label.push(viaje.Clave_vehiculo)
+           viaje.Caja && label.push(viaje.Caja)
            labelRutas.push(label) 
            label = [];
             capacidadesCarga.push(viaje.Volumen_carga_maxima)

@@ -4,13 +4,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Roboto:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
 :root{
-    
     --Color-secondary : #E9B756;
     --Color-Back-primary : #1C2C3F;
-    --Color-Back-secundary : #405189;
+    --Color-Back-opcional : #405189;
     --Color-Back-tertiary: #4743A1;
     --Color-Back-gray : #F3F3F9 ;
-    --Color-Font-primary: #a3a6b7; 
+    --Color-Font-opcional: #a3a6b7; 
     --Color-Font-primary : #A7B5E4;
     --Color-Font-white: white; 
     --Color-Font-black: black; 

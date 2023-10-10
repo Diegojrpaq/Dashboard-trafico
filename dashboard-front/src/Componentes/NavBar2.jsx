@@ -31,18 +31,18 @@ export default function Navbar() {
 
                 <div className='col-7 d-none d-lg-flex flex-column justify-content-center align-items-end'>
                     <div className='row'>
-                        <div className="col-1 form-check form-switch d-flex justify-content-center align-items-center fs-4 me-4">
+                        <div className="col-1 form-check form-switch d-flex justify-content-center align-items-center fs-4 me-5">
                             <input onClick={handleClic} className="form-check-input align-self-center" type="checkbox" id="flexSwitchCheckDefault" />
-                            <span className='fs-6 align-self-center text-light ps-2 pt-1'>{btnSwitch ? "ON" : "OFF"}</span>
+                            <span className='fs-6 align-self-center text-light ps-2 pt-1 '>{btnSwitch ? "ON" : "OFF"}</span>
                         </div>
                         <div className='col-1 d-flex justify-content-center align-items-center'>
                             <i className="bi bi-person-circle fs-2 text-light"></i>
                         </div>
                         <div className='col d-none d-lg-flex flex-column justify-content-center align-items-start'>
-                            <span style={{ "color": "rgb(194 202 230)", "fontSize": "14px", "fontWeight": "500", "marginBottom": "3px", "borderBottom": "1px solid #ffc107" }}>
+                            <span className='spanUser' style={{"color":"white"}}>
                                 {userData ? userData.nombre : ""}
                             </span>
-                            <span style={{ "color": "#a7b5e4", "fontSize": "13px", "marginBottom": "4px" }}>
+                            <span className='spanPuesto'>
                                 {userData ? userData.puesto : ""}
                             </span>
                         </div>

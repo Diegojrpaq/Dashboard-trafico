@@ -9,9 +9,11 @@ import React from 'react';
 //importaciones
 const DefaultLayout = React.lazy(() => import('../src/layout/DefaultLayout'))
 
+
 //Arreglo de rutas
 const routes_primary = [
     {path: '*', name: 'Trafico', element: DefaultLayout},
+
 ]
 //-------------------------------------Fin primer menu de rutas--------------------------------
 
@@ -23,13 +25,15 @@ const Grafica = React.lazy(() => import('../src/Componentes/Trafico'));
 const PlaneacionRutas = React.lazy(()=> import('./views/trafico/PlaneacionRutas'))
 const RutasActivas = React.lazy(()=> import('./views/trafico/RutasActivas'))
 const RutasXLlegar = React.lazy(()=> import('./views/trafico/RutasXLlegar'))
+const Rutaprueba = React.lazy(()=> import('./Componentes/GraficaBarrasPruebaTopher'))
 
 //Arreglo de rutas
 const routes_secondary = [
    /*  {path: '/trafico/:id', name: 'Hola', element: Grafica}, */
     {path: '/trafico/planeacion/:idDestino', name: 'Planeacion', element: PlaneacionRutas},
     {path: '/trafico/viajesactivos/:idDestino', name: 'Rutas_Activas', element: RutasActivas },
-    {path: '/trafico/viajesxllegar/:idDestino', name: 'Rutas_por_llegar', element: RutasXLlegar}
+    {path: '/trafico/viajesxllegar/:idDestino', name: 'Rutas_por_llegar', element: RutasXLlegar},
+    {path: '/prueba', name: 'Rutas_por_llegar', element: Rutaprueba}
 ]
 //-------------------------------------Fin segundo menu de rutas--------------------------------
 
