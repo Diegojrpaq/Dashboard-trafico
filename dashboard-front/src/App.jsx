@@ -17,6 +17,7 @@ function App() {
   const [destinosListState, setDestinosList] = useState(null);
   const [tokenUserState, setTokenUser] = useState(null);
   const [rutaActual, setRutaActual] = useState(null);
+  const [btnSwitch, setBtnSwitch] = useState(false);
 
 
 
@@ -125,7 +126,7 @@ function App() {
  
     return (
       <>
-        <globalData.Provider value={{ destinosListState, sessionUserState, setDestinosList, rutaActual, setRutaActual}}>
+        <globalData.Provider value={{ destinosListState, sessionUserState, setDestinosList, rutaActual, setRutaActual, btnSwitch, setBtnSwitch}}>
           <BrowserRouter>
             <Suspense>
               <Routes>

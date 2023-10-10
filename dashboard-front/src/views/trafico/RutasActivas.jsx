@@ -1,12 +1,12 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext, useMemo } from 'react'
 import GraficaRutasActivas from '../../viewsItems/graphs/GraficaRutasActivas'
-import { useParams } from 'react-router'
+import { useParams, useNavigate } from 'react-router'
 import TableViajesActivos from '../../viewsItems/tables/TableViajesActivos'
 import SpinnerMain from '../../viewsItems/SpinnerMain'
 import { Accordion } from 'react-bootstrap';
 import { ConvertirFecha } from '../../utileria/utils'
 import { diferenciaFechas } from '../../utileria/utils'
+import { globalData } from '../../App'
 
 export default function RutasActivas() {
 
@@ -14,6 +14,8 @@ export default function RutasActivas() {
 
   const [viajesActivos, setViajesActivos] = useState(null)
   const [catalogoDestinoFinal, setCatalogoDestinoFinal] = useState(null)
+  const { destinosListState, btnSwitch } = useContext(globalData)
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -47,12 +49,30 @@ export default function RutasActivas() {
     };
   }, [idDestino]);
 
+  const idDestinos = useMemo(() => [], [])
+  const [indexAct, setIndexAct] = useState(0);
+  destinosListState?.map((destino) => {
+    idDestinos.push(destino.id)
+  })
+  useEffect(() => {
+    if (btnSwitch) {
+      const intervalId = setInterval(() => {
+        navigate(`/trafico/viajesactivos/${idDestinos[indexAct]}`);
+        setIndexAct((prevIndex) =>
+          prevIndex === idDestinos.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 6000);
+      console.log(intervalId)
+      return () => clearInterval(intervalId)
+    }
+  }, [navigate, indexAct, idDestinos, btnSwitch])
+
   if (viajesActivos != null) {
     return (
       <>
         <div className="col-12 col-md-12  p-1">
           <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-            <GraficaRutasActivas viajesList={viajesActivos} catalogoDestinoFinal={catalogoDestinoFinal}/>
+            <GraficaRutasActivas viajesList={viajesActivos} catalogoDestinoFinal={catalogoDestinoFinal} />
 
             {
               viajesActivos && viajesActivos.map((ruta, index) => {
