@@ -63,7 +63,6 @@ export default function RutasActivas() {
           prevIndex === idDestinos.length - 1 ? 0 : prevIndex + 1
         );
       }, timer);
-      console.log(intervalId)
       return () => clearInterval(intervalId)
     }
   }, [navigate, indexAct, idDestinos, btnSwitch])

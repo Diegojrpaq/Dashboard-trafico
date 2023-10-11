@@ -15,7 +15,6 @@ export default function Navbar() {
     }
 
     const handleClic = () => {
-        console.log(!btnSwitch)
         setBtnSwitch(!btnSwitch)
     }
     return (
