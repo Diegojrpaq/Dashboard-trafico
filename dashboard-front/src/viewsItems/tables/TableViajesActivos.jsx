@@ -67,9 +67,9 @@ export default function TableViajesActivos({ guias }) {
                             <td><b>TOTALES</b></td>
                             <td><b>{sumaVolumen} mt3</b></td>
                             <td><b>{sumaPeso} Kg</b></td>
-                            <td><b>{sumaFlete} $</b></td>
-                            <td><b>{sumaMonto} $</b></td>
-                            <td><b>{sumaSubtotal} $</b></td>
+                            <td><b>$ {sumaFlete}</b></td>
+                            <td><b>$ {sumaMonto}</b></td>
+                            <td><b>$ {sumaSubtotal}</b></td>
                         </tr>
                     </tbody>
                 </Table>
