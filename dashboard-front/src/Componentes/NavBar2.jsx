@@ -5,7 +5,14 @@ import { globalData } from '../App'
 
 export default function Navbar() {
 
-    const { sessionUserState, rutaActual, btnSwitch, setBtnSwitch } = useContext(globalData);
+    const {
+        sessionUserState,
+        rutaActual,
+        btnSwitch,
+        setBtnSwitch,
+        toggleSidebar,
+        setToggleSidebar
+    } = useContext(globalData);
     const userData = sessionUserState.User;
     let tituloNav = "";
     if (rutaActual === "Trafico" || rutaActual === null) {
@@ -17,15 +24,18 @@ export default function Navbar() {
     const handleClic = () => {
         setBtnSwitch(!btnSwitch)
     }
+    const toggle = () => {
+        setToggleSidebar(!toggleSidebar)
+    }
     return (
         <>
             {/* <!-- Navbar en la parte superior --> */}
-            <nav className="navbar navbar-expand-lg navbar-dark row fixed-top">
+            <nav className={toggleSidebar ? "toggle-navbar navbar-expand-lg navbar-dark row fixed-top" : "navbar navbar-expand-lg navbar-dark row fixed-top"}>
                 <div className='col d-flex align-items-center'>
-                    <button className='btn btn-primary m-2'>
+                    <button onClick={toggle} className='btn btn-primary m-2'>
                         <i className="bi bi-list"></i>
                     </button>
-                    <a className="navbar-brand" href="#">{tituloNav}</a>
+                    <a className="navbar-brand fs-5" href="#">{tituloNav}</a>
                 </div>
                 <div className="col-3 form-check form-switch d-none d-lg-flex justify-content-end align-items-center fs-4">
                     <input onClick={handleClic} className="form-check-input align-self-center" type="checkbox" id="flexSwitchCheckDefault" />

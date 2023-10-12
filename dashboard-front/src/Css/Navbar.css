@@ -1,9 +1,17 @@
 @import 'App.css';
 
 .navbar {
-    margin-left: 220px !important;
+    margin-left: 220px;
     margin-top: 0px;
     background: #1c2c3fe7 !important;
+}
+
+.toggle-navbar {
+    /* margin-left: 220px !important; */
+    margin-top: 0px;
+    background: #1c2c3fe7 !important;
+    height: 69.6px;
+    transition: transform .3s
 }
 
 .btn {

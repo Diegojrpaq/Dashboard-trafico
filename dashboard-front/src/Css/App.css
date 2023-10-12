@@ -40,6 +40,20 @@ body{
          /*  max-width: calc(100% - 250px); */
           /* Resta el ancho del sidebar */
       }
+
+      .toggle-main-container {
+        width: 100%;
+        padding: 20px;
+        background: var(--Color-Back-gray);
+        color: white;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+      .toggle-container-fluid {
+        margin-top: 56px;
+        margin-left: 0px;
+    }
      
       @media (max-width: 767.98px) {
       .container-fluid {

@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 export default function SideBar2() {
 
-  const { sessionUserState } = useContext(globalData)
+  const { sessionUserState, toggleSidebar } = useContext(globalData)
   const sessionUser = sessionUserState.User;
   const { setDestinosList } = useContext(globalData)
   const [destinosList, setDestinoList] = useState(null)
@@ -52,7 +52,7 @@ export default function SideBar2() {
 
   return (
     <>
-      <div className="sidebar d-none d-md-block">
+      <div className={toggleSidebar ? "sidebar-hidden" : "sidebar d-none d-md-block"}>
         {/*  <!-- Contenido del sidebar --> */}
         <div className="sidebar-header">
           <img src={Logo} alt="" className='img-fluid mb-4' />
