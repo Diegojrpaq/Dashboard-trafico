@@ -100,13 +100,12 @@ export default function GraficaRutasActivas(props) {
                     label: destinoFinal.nombre ,
                     data: dataEjeY ,
                     backgroundColor: colores[index].color,
-                    borderColor: colores[index].color,
+                    borderColor: coloresBorder[index].color,
                     borderWidth: 2
                 })
                 dataEjeY=[]
 
             })
-            console.log(dataSetConstruido)
             return dataSetConstruido;
 
         }
