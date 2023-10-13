@@ -8,19 +8,15 @@ import { useParams } from 'react-router-dom';
 
 export default function SideBar2() {
 
+
   const { destinosListState} = useContext(globalData)
   const destinosList=destinosListState
-
-
-console.log(destinosList)
-
-
 
 
 
   return (
     <>
-      <div className="sidebar d-none d-md-block">
+      <div className={toggleSidebar ? "sidebar-hidden" : "sidebar d-none d-md-block"}>
         {/*  <!-- Contenido del sidebar --> */}
         <div className="sidebar-header">
           <img src={Logo} alt="" className='img-fluid mb-4' />
