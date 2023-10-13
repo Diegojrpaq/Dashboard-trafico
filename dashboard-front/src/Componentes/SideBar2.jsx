@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 export default function SideBar2() {
 
 
-  const { destinosListState} = useContext(globalData)
+  const { destinosListState, toggleSidebar} = useContext(globalData)
   const destinosList=destinosListState
 
 
