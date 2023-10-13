@@ -26,21 +26,20 @@ function App() {
   
 
   useEffect(() => {
+    
     const urlParams = new URLSearchParams(window.location.search);
     /* const tokenUser = urlParams.get('token'); */
     const tokenUser = 649;
-    
-    const peticiones = async (tokenUser) => {
-      const urlApiNextpack = '/trafico/get_session_user/' + tokenUser;
-      await fetch(urlApiNextpack)
+
+    const peticionSidebar = async (tokenUser) => {
+      const urlApiNextpackSidebar = '/trafico/get_destinos/' + tokenUser;
+      await fetch(urlApiNextpackSidebar)
         .then((resp) => {
           return resp.json();
         }).then((data) => {
-          /* setDestinosList(data) */
           if (data) {
-            setSessionUser(data)
-            setTokenUser(tokenUser)
-            
+
+            setDestinosList(data.Destinos)
             //     Swal.fire(
             //   'Good job!',
             // 'Se recibio la informacion correctamente Nextpack',
@@ -52,8 +51,37 @@ function App() {
           () => console.log('Error al cargar los destinos')
         )
     }
-    tokenUser ? peticiones(tokenUser): window.location.href = 'http://216.250.126.250/jrpaqueteria';
     
+    const peticiones = async (tokenUser) => {
+      const urlApiNextpack = '/trafico/get_session_user/' + tokenUser;
+      await fetch(urlApiNextpack)
+        .then((resp) => {
+          return resp.json();
+        }).then((data) => {
+          /* setDestinosList(data) */
+          if (data) {
+            setSessionUser(data)
+            setTokenUser(tokenUser)
+           
+            //     Swal.fire(
+            //   'Good job!',
+            // 'Se recibio la informacion correctamente Nextpack',
+            //'success'
+            //) 
+
+          }
+        
+
+         
+        }).catch(
+          () => console.log('Error al cargar los destinos')
+        )
+    }
+    tokenUser ? peticiones(tokenUser) : window.location.href = 'http://216.250.126.250/jrpaqueteria';
+    tokenUser ? peticionSidebar(tokenUser) : console.log('cargando...')
+    
+    
+
 
   }, []);
 
@@ -122,8 +150,7 @@ function App() {
   /*   const  updateRender=(infoupdate)=>{
      setRenderInicial(infoupdate)
     } */
-   
-  if (sessionUserState !== null ) {
+  if (sessionUserState !== null && destinosListState !== null) {
  
     return (
       <>

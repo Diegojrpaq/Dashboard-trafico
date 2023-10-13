@@ -8,45 +8,9 @@ import { useParams } from 'react-router-dom';
 
 export default function SideBar2() {
 
-  const { sessionUserState, toggleSidebar } = useContext(globalData)
-  const sessionUser = sessionUserState.User;
-  const { setDestinosList } = useContext(globalData)
-  const [destinosList, setDestinoList] = useState(null)
 
-  const urlApiNextpack = '/trafico/get_destinos/' + sessionUser.id;
-
-
-  useEffect(() => {
-    const peticiones = async () => {
-      await fetch(urlApiNextpack)
-        .then((resp) => {
-          return resp.json();
-        }).then((data) => {
-          if (data) {
-
-            setDestinoList(data.Destinos)
-            setDestinosList(data.Destinos)
-            //     Swal.fire(
-            //   'Good job!',
-            // 'Se recibio la informacion correctamente Nextpack',
-            //'success'
-            //) 
-
-          }
-        }).catch(
-          () => console.log('Error al cargar los destinos')
-        )
-    }
-
-    peticiones();
-
-  }, []);
-
-
-
-
-
-
+  const { destinosListState} = useContext(globalData)
+  const destinosList=destinosListState
 
 
 
@@ -59,20 +23,28 @@ export default function SideBar2() {
           <h3>Dashboard</h3>
         </div>
         <SHeaderList title="Trafico" icon='bi bi-globe-americas' idcollapse='1'>
-          {/* <SHeaderList title="Planeacion de Rutas" icon='bi bi-truck' idcollapse='2'>
+          <SHeaderList title="Planeacion de Rutas" icon='bi bi-map' idcollapse='2'>
             {
               destinosList && destinosList.map((destino) => {
-                return (
-                  <SListItem icon='bi bi-geo-alt mx-1' key={destino.id} url={'/trafico/planeacion/' + destino.id}>{destino.destino}</SListItem>
+                
+                return ( 
+                  destino.rutas_configuradas &&
+                  <>
+                  <SHeaderList title={destino.nombre} icon='bi bi-geo-alt mx-1' idcollapse={destino.id+100}>
+                    {destino.rutas_configuradas.map((ruta)=>{
+                      return <SListItem icon='bi bi-bus-front mx-1' key={ruta.id+'suc'} url={'/trafico/planeacion/' + destino.id+'/'+ruta.id_ruta}>{ruta.nombre_ruta}</SListItem>
+                    })}
+                  </SHeaderList>
+                  </>
                 )
               })
             }
-          </SHeaderList> */}
+          </SHeaderList>
           <SHeaderList title="Viajes Activos" icon='bi bi-geo-alt-fill' idcollapse='3'>
             {
               destinosList && destinosList.map((destino) => {
                 return (
-                  <SListItem icon='bi bi-geo-alt mx-1' key={destino.id} url={'/trafico/viajesactivos/' + destino.id}>{destino.destino}</SListItem>
+                  <SListItem icon='bi bi-geo-alt mx-1' key={destino.id} url={'/trafico/viajesactivos/' + destino.id}>{destino.nombre}</SListItem>
                 )
               })
             }
