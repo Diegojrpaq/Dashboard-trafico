@@ -56,17 +56,12 @@
       color: white;
       /* color: var(--Color-secondary); */
     }
-    .headerlist:active, .list li:active{
-      background: var(--Color-Back-tertiary);
+   
+      .li-blue:hover{
+      background: var(blue) !important;
       color: white;
       /* color: var(--Color-secondary); */
     }
-    .headerlist:visited, .list li:visited{
-      background: var(--Color-Back-tertiary);
-      color: white;
-      /* color: var(--Color-secondary); */
-    }
-    
 
     .headerlist p {
       font-size: 17px;

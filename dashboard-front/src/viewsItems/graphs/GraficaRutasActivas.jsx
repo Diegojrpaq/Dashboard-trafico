@@ -132,9 +132,11 @@ export default function GraficaRutasActivas(props) {
                     data: dataEjeY,
                     backgroundColor: colores[index].color,
                     borderColor: coloresBorder[index].color,
+
                     borderWidth: 2,
                     datalabels: confDataLabels,
                     peso: pesoXDestino
+
                 })
                 dataEjeY = []
                 pesoXDestino = []
