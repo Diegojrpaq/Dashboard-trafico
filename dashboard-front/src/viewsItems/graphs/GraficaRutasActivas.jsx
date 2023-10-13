@@ -2,6 +2,7 @@ import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
 import { CalcularAnchoBarra } from '../../utileria/utils';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -23,22 +24,23 @@ Chartjs.register(
     Title,
     Tooltip,
     Legend,
-    Filler
+    Filler,
+    ChartDataLabels
 );
 
 function formatearFecha(fechaSinFormato) {
     const año = fechaSinFormato.slice(0, 4);
     const mes = fechaSinFormato.slice(4, 6);
     const día = fechaSinFormato.slice(6, 8);
-    
+
     return `${día}/${mes}/${año}`;
-  }
+}
 
 
 export default function GraficaRutasActivas(props) {
     /* Variables de Estilo  */
-    const viajesList= props.viajesList
-    const catalogoDestinoFinal= props.catalogoDestinoFinal
+    const viajesList = props.viajesList
+    const catalogoDestinoFinal = props.catalogoDestinoFinal
     const colorEspacioLibre = catalogoColores.colores[100].color;
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
     const colorChillout = catalogoColores.colores[101].color;
@@ -47,9 +49,35 @@ export default function GraficaRutasActivas(props) {
     const coloresBorder = catalogoColores.coloresBorder;
     /* Variables de Estilo fin */
 
-
+    //Configuración de los datalabels
+    const confDataLabels = {
+        formatter: function (value, context) {
+            const index = context.dataIndex
+            const nombre = context.dataset.label
+            const peso = context.dataset.peso
+            const volumen = value.toFixed(2)
+            if (value > 4) {
+                return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
+            } else {
+                return ""
+            }
+        },
+        align: 'center',
+        display: 'auto',
+        rotation: 0,
+        labels: {
+            title: {
+                color: '#3c3c3d',
+                font: {
+                    family: 'Poppins',
+                    weight: 'bold',
+                    size: 13
+                }
+            }
+        }
+    }
     /* seccion de return  */
-    if ( viajesList.length !== 0) {
+    if (viajesList.length !== 0) {
         const labelRutas = [];
         const capacidadesCarga = [];
         const metrosLibres = [];
@@ -58,53 +86,60 @@ export default function GraficaRutasActivas(props) {
         let mt3_embarcados;
 
         viajesList.map((viaje, index) => {
-            if (viaje.catalogoGuias !== null){
-                 mt3_embarcados= viaje.catalogoGuias.reduce((total, guia)=> total + guia.volumen,0 )
-            }else{
-                mt3_embarcados= 0 
-                viaje.catalogoGuias=[];
+            if (viaje.catalogoGuias !== null) {
+                mt3_embarcados = viaje.catalogoGuias.reduce((total, guia) => total + guia.volumen, 0)
+            } else {
+                mt3_embarcados = 0
+                viaje.catalogoGuias = [];
             }
             /* labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3"; */
 
-           /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
-           label.push(viaje.nombre)
-           label.push(formatearFecha(viaje.fecha_registro))
-           label.push(viaje.Clave_vehiculo)
-           viaje.Caja && label.push(viaje.Caja)
-           labelRutas.push(label) 
-           label = [];
+            /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
+            label.push(viaje.nombre)
+            label.push(formatearFecha(viaje.fecha_registro))
+            label.push(viaje.Clave_vehiculo)
+            viaje.Caja && label.push(viaje.Caja)
+            labelRutas.push(label)
+            label = [];
             capacidadesCarga.push(viaje.Volumen_carga_maxima)
             metrosLibres.push(viaje.Volumen_carga_maxima - mt3_embarcados)
 
         })
-      
+        
         const ConstruirEjeY = () => {
             const dataSetConstruido = [];
             const labelsDestinos = [];
             let dataEjeY = [];
+            let pesoXDestino = [];
             dataSetConstruido.push({
                 label: "Espacio libre del Contenedor",
                 data: metrosLibres,
                 backgroundColor: colorEspacioLibre,
                 borderColor: colorEspacioLibreBorder,
-                borderWidth: 2
+                borderWidth: 2,
+                datalabels: confDataLabels,
             })
-
-            catalogoDestinoFinal?.map((destinoFinal, index)=>{
-                viajesList.map((viaje)=>{
+            catalogoDestinoFinal?.map((destinoFinal, index) => {
+                viajesList.map((viaje) => {
                     const guiasXDestino = viaje.catalogoGuias.filter(guia => guia.destino === destinoFinal.nombre)
-                    const volumenXDestino= guiasXDestino.reduce((total, guia)=> total + guia.volumen, 0)
+                    const volumenXDestino = guiasXDestino.reduce((total, guia) => total + guia.volumen, 0)
+                    const pesoGuia = guiasXDestino.reduce((total, guia) => total + guia.peso, 0)
                     dataEjeY.push(volumenXDestino)
+                    pesoXDestino.push(pesoGuia)
                 })
                 dataSetConstruido.push({
-                    label: destinoFinal.nombre ,
-                    data: dataEjeY ,
+                    label: destinoFinal.nombre,
+                    data: dataEjeY,
                     backgroundColor: colores[index].color,
                     borderColor: coloresBorder[index].color,
-                    borderWidth: 2
-                })
-                dataEjeY=[]
 
+                    borderWidth: 2,
+                    datalabels: confDataLabels,
+                    peso: pesoXDestino
+
+                })
+                dataEjeY = []
+                pesoXDestino = []
             })
             return dataSetConstruido;
 

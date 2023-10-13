@@ -1,7 +1,13 @@
 export function CalcularAnchoBarra(cantRutas) {
     let porcentajeAnchoBarra;
     let heightGraph;
-    if (cantRutas >= 4) {
+    if (cantRutas >= 10) {
+        porcentajeAnchoBarra = .8
+        heightGraph = "1500px"
+    } else if (cantRutas >= 7 && cantRutas < 10) {
+        porcentajeAnchoBarra = .7
+        heightGraph = "1200px"
+    } else if (cantRutas >= 4 && cantRutas < 8 ) {
         porcentajeAnchoBarra = .8
         heightGraph = "700px"
     } else if (cantRutas === 3) {
