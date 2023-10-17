@@ -1,12 +1,11 @@
-//import React from 'react'
-import { Table } from 'react-bootstrap';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { Button } from 'primereact/button';
-import { ProductService } from '../../Data/ProductService';
+import { ColumnGroup } from 'primereact/columngroup';
+import { Row } from 'primereact/row';
+import { FilterMatchMode } from 'primereact/api';
 export default function TableViajesActivos({ guias }) {
 
     const sumaVolumen = guias.reduce((acumulador, elemento) => {
@@ -36,6 +35,27 @@ export default function TableViajesActivos({ guias }) {
     }, 0);
 
     const dt = useRef(null);
+
+    const [filters, setFilters] = useState({
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+        name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+        'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+        representative: { value: null, matchMode: FilterMatchMode.IN },
+        status: { value: null, matchMode: FilterMatchMode.EQUALS },
+        verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+    });
+
+    const [globalFilterValue, setGlobalFilterValue] = useState('');
+
+    const onGlobalFilterChange = (e) => {
+        const value = e.target.value;
+        let _filters = { ...filters };
+
+        _filters['global'].value = value;
+
+        setFilters(_filters);
+        setGlobalFilterValue(value);
+    };
 
     const cols = [
         { field: "numGuia", header: "Numero Guía" },
@@ -95,102 +115,49 @@ export default function TableViajesActivos({ guias }) {
         color: "white"
     }
     const header = (
-        // <div className="d-flex align-items-center justify-content-end"  style={{fontFamily: "Poppins"}}>
-        //     <button className='d-flex flex-row align-items-center justify-content-center rounded bg-success text-light px-2 py-1 border-0 mx-1' onClick={exportExcel}>
-        //     <span className='mx-1'>Exportar</span>
-        //     <i class="bi bi-file-earmark-excel fs-6 "></i>
-        //     </button>
-        // </div>
-       <div>
-        {/* <div>
-            <span>Volumen total: {sumaVolumen}</span>
-            <span>Peso total: {sumaPeso}</span>
-            <span>Flete total: {sumaFlete}</span>
-            <span>Monto total: {sumaMonto}</span>
-            <span>Subtotal total: {sumaSubtotal}</span>
-        </div> */}
-         <div className="dropdown d-flex align-items-center justify-content-end" style={{ fontFamily: "Poppins" }}>
-            
-            <button className="dropdown-toggle border-0 rounded px-3 py-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={styleDropdown}>
-                Exportar
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style={{cursor: "pointer"}}>
-                <li class="dropdown-item" onClick={exportExcel}>Excel <i class="bi bi-file-earmark-excel"></i></li>
-                <li class="dropdown-item" onClick={() => exportCSV(false)}>CSV <i class="bi bi-filetype-csv"></i></li>
-                <li class="dropdown-item" onClick={exportPdf}>PDF <i class="bi bi-file-earmark-pdf"></i></li>
-            </ul>
+        <div className='d-flex justify-content-between align-items-center'>
+            <div className="d-flex justify-content-center align-items-center">
+                <span className="d-flex flex-row justify-content-center align-items-center">
+                    <label className='w-100'>Búsqueda general:</label>
+                    <input type="text" value={globalFilterValue} onChange={onGlobalFilterChange} class="ms-2 p-2 pe-5 border-1 rounded" placeholder="Keyword Search"></input>
+                </span>
+            </div>
+            <div className="dropdown d-flex align-items-center justify-content-end" style={{ fontFamily: "Poppins" }}>
+                <button className="dropdown-toggle border-0 rounded px-3 py-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={styleDropdown}>
+                    Exportar
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style={{ cursor: "pointer" }}>
+                    <li class="dropdown-item" onClick={exportExcel}>Excel <i class="bi bi-file-earmark-excel"></i></li>
+                    <li class="dropdown-item" onClick={() => exportCSV(false)}>CSV <i class="bi bi-filetype-csv"></i></li>
+                    <li class="dropdown-item" onClick={exportPdf}>PDF <i class="bi bi-file-earmark-pdf"></i></li>
+                </ul>
+            </div>
         </div>
-       </div>
+    );
+    const footerGroup = (
+        <ColumnGroup>
+            <Row>
+                <Column footer="Totales" colSpan={3} footerStyle={{ textAlign: 'right' }} />
+                <Column footer={`${sumaVolumen} mt3`} />
+                <Column footer={`${sumaPeso} Kg`} />
+                <Column footer={`$${sumaFlete}`} />
+                <Column footer={`$${sumaMonto}`} />
+                <Column footer={`$${sumaSubtotal}`} />
+            </Row>
+        </ColumnGroup>
     );
 
-   
     return (
         <>
-            {/* <div className='table-responsive'>
-                <Table striped bordered hover size='md'>
-                    <thead>
-                        <tr>
-                            <th>Numero Guía</th>
-                            <th>Origen</th>
-                            <th>Destino</th>
-                            <th>Volumen</th>
-                            <th>Peso</th>
-                            <th>Flete</th>
-                            <th>Monto Seguro</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            guias.map((guia, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{guia.numGuia}</td>
-                                        <td>{guia.origen}</td>
-                                        <td>{guia.destino}</td>
-                                        <td>{guia.volumen}</td>
-                                        <td>{guia.peso}</td>
-                                        <td>{guia.flete}</td>
-                                        <td>{guia.monto_seguro}</td>
-                                        <td>{guia.subtotal}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                         <tr className='text-center'>
-                            <td></td>
-                            <td></td>
-                            <td colSpan={3} className='text-center'><b>TOTALES</b></td>
-                            <td><b>{sumaVolumen} mt3</b></td>
-                            <td><b>{sumaPeso} Kg</b></td>
-                            <td><b>$ {sumaFlete}</b></td>
-                            <td><b>$ {sumaMonto}</b></td>
-                            <td><b>$ {sumaSubtotal}</b></td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </div> */}
-
             <div className="card">
-                <DataTable ref={dt} value={guias} header={header} showGridlines stripedRows sortMode='multiple' tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}>
-                    {/* <Column field="numGuia" header="Numero Guía" sortable></Column>
-                    <Column field="origen" header="Origen" sortable></Column>
-                    <Column field="destino" header="Destino" sortable></Column>
-                    <Column field="volumen" header="Volumen" sortable></Column>
-                    <Column field="peso" header="Peso" sortable></Column>
-                    <Column field="flete" header="Flete" sortable></Column>
-                    <Column field="monto_seguro" header="Monto seguro" sortable></Column>
-                    <Column field="subtotal" header="Subtotal" sortable></Column> */}
+                <DataTable ref={dt} value={guias} filters={filters} header={header} footerColumnGroup={footerGroup} showGridlines stripedRows sortMode='multiple' tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}>
                     {
                         cols.map((col, index) => (
                             <Column key={index} field={col.field} header={col.header} sortable></Column>
                         ))
                     }
                 </DataTable>
-
-                
             </div>
-
         </>
     )
 }
