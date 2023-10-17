@@ -6,8 +6,9 @@ import { Column } from 'primereact/column';
 import { ColumnGroup } from 'primereact/columngroup';
 import { Row } from 'primereact/row';
 import { FilterMatchMode } from 'primereact/api';
-export default function TableViajesActivos({ guias }) {
+export default function TableViajesActivos({ guias, infoRuta }) {
 
+    //Sumas para el apartado de totales
     const sumaVolumen = guias.reduce((acumulador, elemento) => {
         const suma = acumulador + elemento.volumen;
         const totalRedondeado = Number(suma.toFixed(2));
@@ -35,14 +36,10 @@ export default function TableViajesActivos({ guias }) {
     }, 0);
 
     const dt = useRef(null);
-
+    //funciones para filtrar
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-        'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-        representative: { value: null, matchMode: FilterMatchMode.IN },
-        status: { value: null, matchMode: FilterMatchMode.EQUALS },
-        verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+        numGuia: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
     });
 
     const [globalFilterValue, setGlobalFilterValue] = useState('');
@@ -57,6 +54,7 @@ export default function TableViajesActivos({ guias }) {
         setGlobalFilterValue(value);
     };
 
+    //Columnas de la tabla
     const cols = [
         { field: "numGuia", header: "Numero Guía" },
         { field: 'origen', header: 'Origen' },
@@ -68,23 +66,24 @@ export default function TableViajesActivos({ guias }) {
         { field: 'subtotal', header: 'Subtotal' }
     ];
 
+    const nombreArchivo = `${infoRuta.nombreRuta}-${infoRuta.fecha}`;
     const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
-
+    //exportar en CSV
     const exportCSV = (selectionOnly) => {
         dt.current.exportCSV({ selectionOnly });
     };
-
+    //exportar en PDF
     const exportPdf = () => {
         import('jspdf').then((jsPDF) => {
             import('jspdf-autotable').then(() => {
                 const doc = new jsPDF.default(0, 0);
 
                 doc.autoTable(exportColumns, guias);
-                doc.save('guias.pdf');
+                doc.save(`${nombreArchivo}.pdf`);
             });
         });
     };
-
+    //exportar en Excel
     const exportExcel = () => {
         import('xlsx').then((xlsx) => {
             const worksheet = xlsx.utils.json_to_sheet(guias);
@@ -94,7 +93,7 @@ export default function TableViajesActivos({ guias }) {
                 type: 'array'
             });
 
-            saveAsExcelFile(excelBuffer, 'guias');
+            saveAsExcelFile(excelBuffer, nombreArchivo);
         });
     };
     const saveAsExcelFile = (buffer, fileName) => {
@@ -106,20 +105,22 @@ export default function TableViajesActivos({ guias }) {
                     type: EXCEL_TYPE
                 });
 
-                module.default.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+                module.default.saveAs(data, fileName + EXCEL_EXTENSION);
             }
         });
     };
+    //Style para boton dropdown
     const styleDropdown = {
         background: "#405189",
         color: "white"
     }
+    //Header de la tabla, contiene la barra de búsqueda y el boton de exportar
     const header = (
-        <div className='d-flex justify-content-between align-items-center'>
-            <div className="d-flex justify-content-center align-items-center">
-                <span className="d-flex flex-row justify-content-center align-items-center">
-                    <label className='w-100'>Búsqueda general:</label>
-                    <input type="text" value={globalFilterValue} onChange={onGlobalFilterChange} class="ms-2 p-2 pe-5 border-1 rounded" placeholder="Keyword Search"></input>
+        <div className='d-flex flex-column flex-md-row justify-content-between align-items-center'>
+            <div className="d-flex justify-content-center align-items-center responsive">
+                <span className="d-lg-flex flex-row justify-content-center align-items-center mb-2 mb-md-0">
+                    <label className='d-none w-100'>Búsqueda general:</label>
+                    <input type="text" value={globalFilterValue} onChange={onGlobalFilterChange} class="ms-lg-2 p-2 pe-lg-5 border-1 rounded w-55" placeholder="Keyword Search"></input>
                 </span>
             </div>
             <div className="dropdown d-flex align-items-center justify-content-end" style={{ fontFamily: "Poppins" }}>
@@ -134,6 +135,7 @@ export default function TableViajesActivos({ guias }) {
             </div>
         </div>
     );
+    //Footer de la tabla, contiene los totales
     const footerGroup = (
         <ColumnGroup>
             <Row>
@@ -150,7 +152,18 @@ export default function TableViajesActivos({ guias }) {
     return (
         <>
             <div className="card">
-                <DataTable ref={dt} value={guias} filters={filters} header={header} footerColumnGroup={footerGroup} showGridlines stripedRows sortMode='multiple' tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}>
+                <DataTable 
+                    ref={dt}
+                    value={guias} 
+                    filters={filters} 
+                    header={header} 
+                    footerColumnGroup={footerGroup} 
+                    showGridlines 
+                    stripedRows 
+                    sortMode='multiple' 
+                    tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}                 
+                    emptyMessage="No se encontraron resultados"
+                >
                     {
                         cols.map((col, index) => (
                             <Column key={index} field={col.field} header={col.header} sortable></Column>
