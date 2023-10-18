@@ -119,8 +119,7 @@ export default function TableViajesActivos({ guias, infoRuta }) {
         <div className='d-flex flex-column flex-md-row justify-content-between align-items-center'>
             <div className="d-flex justify-content-center align-items-center responsive">
                 <span className="d-lg-flex flex-row justify-content-center align-items-center mb-2 mb-md-0">
-                    <label className='d-none w-100'>Búsqueda general:</label>
-                    <input type="text" value={globalFilterValue} onChange={onGlobalFilterChange} class="ms-lg-2 p-2 pe-lg-5 border-1 rounded w-55" placeholder="Keyword Search"></input>
+                    <input type="text" value={globalFilterValue} onChange={onGlobalFilterChange} class="ms-lg-2 p-2 pe-lg-5 border-1 rounded w-55" placeholder="Búsqueda general"></input>
                 </span>
             </div>
             <div className="dropdown d-flex align-items-center justify-content-end" style={{ fontFamily: "Poppins" }}>
