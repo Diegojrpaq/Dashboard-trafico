@@ -18,9 +18,6 @@ export default function RutasActivas() {
   const navigate = useNavigate();
 
   useEffect(() => {
-
-
-
     const peticiones = async (id) => {
       const urlApiNextpack = '/trafico/get_viajeActivo/' + id;
       await fetch(urlApiNextpack)
