@@ -1,72 +1,69 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
-import { ColumnGroup } from 'primereact/columngroup';
-import { Row } from 'primereact/row';
-import { FilterMatchMode } from 'primereact/api';
-import { Accordion, Spinner, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
 export default function TablePlaneacion({ nombreRuta, guiasPlaneadas, guiasEmbarcadas }) {
-  console.log(guiasPlaneadas, "Plan")
-  console.log(guiasEmbarcadas, "Embarc")
-  console.log(nombreRuta)
   //Sumas para el apartado de totales de lo planeado
-  const sumaVolumenPlaneado = guiasPlaneadas.reduce((acumulador, elemento) => {
+  const sumaVolumenPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.cotizacion_principal_volumen;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
-  const sumaPesoPlaneado = guiasPlaneadas.reduce((acumulador, elemento) => {
+  const sumaPesoPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.cotizacion_principal_peso;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
-  const sumaFletePlaneado = guiasPlaneadas.reduce((acumulador, elemento) => {
+  const sumaFletePlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.flete;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
-  const sumaMontoPlaneado = guiasPlaneadas.reduce((acumulador, elemento) => {
+  const sumaMontoPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.monto_seguro;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
-  const sumaSubtotalPlaneado = guiasPlaneadas.reduce((acumulador, elemento) => {
+  const sumaSubtotalPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.subtotal;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
 
-  if(guiasEmbarcadas != null) {
-    const sumaVolumenEmbarcado = guiasEmbarcadas.reduce((acumulador, elemento) => {
-      const suma = acumulador + elemento.cotizacion_principal_volumen;
+  //Suma para los totales de lo embarcado
+  let sumaVolumenEmbarcado;
+  let sumaPesoEmbarcado;
+  let sumaFleteEmbarcado;
+  let sumaMontoEmbarcado;
+  let sumaSubtotalEmbarcado;
+  if (guiasEmbarcadas != null) {
+    sumaVolumenEmbarcado = guiasEmbarcadas?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.volumen;
       const totalRedondeado = Number(suma.toFixed(2));
       return totalRedondeado;
     }, 0);
-    const sumaPesoEmbarcado = guiasEmbarcadas.reduce((acumulador, elemento) => {
-      const suma = acumulador + elemento.cotizacion_principal_peso;
+    sumaPesoEmbarcado = guiasEmbarcadas?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.peso;
       const totalRedondeado = Number(suma.toFixed(2));
       return totalRedondeado;
     }, 0);
-    const sumaFleteEmbarcado = guiasEmbarcadas.reduce((acumulador, elemento) => {
+    sumaFleteEmbarcado = guiasEmbarcadas?.reduce((acumulador, elemento) => {
       const suma = acumulador + elemento.flete;
       const totalRedondeado = Number(suma.toFixed(2));
       return totalRedondeado;
     }, 0);
-    const sumaMontoEmbarcado = guiasEmbarcadas.reduce((acumulador, elemento) => {
+    sumaMontoEmbarcado = guiasEmbarcadas?.reduce((acumulador, elemento) => {
       const suma = acumulador + elemento.monto_seguro;
       const totalRedondeado = Number(suma.toFixed(2));
       return totalRedondeado;
     }, 0);
-    const sumaSubtotalEmbarcado = guiasEmbarcadas.reduce((acumulador, elemento) => {
+    sumaSubtotalEmbarcado = guiasEmbarcadas?.reduce((acumulador, elemento) => {
       const suma = acumulador + elemento.subtotal;
       const totalRedondeado = Number(suma.toFixed(2));
       return totalRedondeado;
     }, 0);
   }
-
 
   return (
     <div className="table-responsive">
@@ -104,11 +101,11 @@ export default function TablePlaneacion({ nombreRuta, guiasPlaneadas, guiasEmbar
         <tbody>
           <tr>
             <td>Embarcado</td>
-            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : 10 } kg.</td>
-            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : 10 } mt3</td>
-            <td>$ {guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : 10 }</td>
-            <td>$ {guiasEmbarcadas === null ? 0 : 10 }</td>
-            <td>$ {guiasEmbarcadas === null ? 0 : 10 }</td>
+            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaPesoEmbarcado} kg.</td>
+            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaVolumenEmbarcado} mt3</td>
+            <td>$ {guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaFleteEmbarcado}</td>
+            <td>$ {guiasEmbarcadas === null ? 0 : sumaMontoEmbarcado}</td>
+            <td>$ {guiasEmbarcadas === null ? 0 : sumaSubtotalEmbarcado}</td>
           </tr>
         </tbody>
       </Table>

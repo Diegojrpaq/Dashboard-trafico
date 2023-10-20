@@ -1,7 +1,6 @@
 import React from 'react';
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
-import { CalcularAnchoBarra, ConvertirFecha } from '../../utileria/utils';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {
   Chart as Chartjs,
@@ -42,8 +41,8 @@ export default function Graph(props) {
       const index = context.dataIndex
       const nombre = context.dataset.label
       const peso = context.dataset.peso
-      const volumen = value.toFixed(2)
-      if (value > 0) {
+      const volumen = value?.toFixed(2)
+      if (value > 2) {
         return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
       } else {
         return ""
@@ -87,37 +86,21 @@ export default function Graph(props) {
     })
 
     planRutasList?.map((ruta) => {
-      if (ruta.catalogoGuiasEmbarcadas !== null) {
-        mt3_embarcados = ruta.catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
-      } else {
-        mt3_embarcados = 0;
-        ruta.catalogoGuiasEmbarcadas = [];
+      if(ruta.id_viaje_act !== null) {
+        if (ruta.catalogoGuiasEmbarcadas !== null) {
+          mt3_embarcados = ruta.catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
+        } else {
+          mt3_embarcados = 0;
+          ruta.catalogoGuiasEmbarcadas = [];
+        }
+  
+        label.push("Embarcado");
+        labelRutas.push(label);
+        label = [];
+        capacidadesCarga.push(ruta.Volumen_carga_maxima);
+        metrosLibres.push(100 - mt3_embarcados);
       }
-
-      label.push("Embarcado");
-      labelRutas.push(label);
-      label = [];
-      capacidadesCarga.push(ruta.Volumen_carga_maxima);
-      metrosLibres.push(100 - mt3_embarcados);
     })
-
-  //  if(planRutasList.id_viaje_act != null) {
-  //   planRutasList?.map((ruta) => {
-  //     if (ruta.catalogoGuiasEmbarcadas !== null) {
-  //       mt3_embarcados = ruta.catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
-  //     } else {
-  //       mt3_embarcados = 0;
-  //       ruta.catalogoGuiasEmbarcadas = [];
-  //     }
-
-  //     label.push("Embarcado");
-  //     labelRutas.push(label);
-  //     label = [];
-  //     capacidadesCarga.push(ruta.Volumen_carga_maxima);
-  //     metrosLibres.push(ruta.Volumen_carga_maxima - mt3_embarcados);
-  //   })
-  //  }
-    console.log(planRutasList.rutas?.Volumen_carga_max)
 
     const ConstruirEjeY = () => {
       const dataSetConstruido = [];
@@ -134,20 +117,19 @@ export default function Graph(props) {
       catalogoSucursales?.map((sucursalFinal, index) => {
         planRutasList.map((ruta) => {
           const guiasXsucursal = ruta.catalogoGuiasPlaneadas.filter(guia => guia.sucursal_ubicacion_id === sucursalFinal.id);
-          console.log(guiasXsucursal, sucursalFinal.nombre)
           const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.cotizacion_principal_volumen, 0);
           const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.cotizacion_principal_peso, 0);
           dataEjeY.push(volumenXsucursal);
           pesoXsucursal.push(pesoGuia.toFixed(2));
 
           // if (ruta.catalogoGuiasEmbarcadas != null) {
-          //   const guiasXsucursal = ruta.catalogoGuiasEmbarcadas;
-          //   console.log(guiasXsucursal, sucursalFinal.nombre)
-          //   const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.cotizacion_principal_volumen, 0);
-          //   const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.cotizacion_principal_peso, 0);
+          //   const guiasXsucursal = ruta.catalogoGuiasEmbarcadas.filter(guia => guia.id_sucursal === sucursalFinal.id);
+          //   const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
+          //   const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
           //   dataEjeY.push(volumenXsucursal);
           //   pesoXsucursal.push(pesoGuia);
           // }
+
         })
         dataSetConstruido.push({
           label: sucursalFinal.nombre,
@@ -161,10 +143,44 @@ export default function Graph(props) {
         dataEjeY = [];
         pesoXsucursal = [];
       })
+      let sucursales;
+      planRutasList?.map((ruta) => {
+        if (ruta.catalogoGuiasEmbarcadas != null) {
+          const sucursalesSet = new Set();
+          // Recorrer los datos y agregar cada sucursal al Set
+          ruta.catalogoGuiasEmbarcadas.forEach((guia) => {
+            sucursalesSet.add(guia.nombre_sucursal);
+          });
+          // Convertir el Set a un arreglo
+          sucursales = Array.from(sucursalesSet);
+          //console.log(sucursales);
+        }
+      })
+
+      sucursales?.map((sucursal, index) => {
+        planRutasList.map((ruta) => {
+          const guiasXsucursal = ruta.catalogoGuiasEmbarcadas.filter(guia => guia.nombre_sucursal === sucursal.nombre_sucursal);
+        const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
+        const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
+        dataEjeY.push(volumenXsucursal);
+        pesoXsucursal.push(pesoGuia);
+        })
+        dataSetConstruido.push({
+          label: sucursal.nombre_sucursal,
+          data: dataEjeY,
+          backgroundColor: colores[index].color,
+          borderColor: coloresBorder[index].color,
+          borderWidth: 2,
+          datalabels: confDataLabels,
+          peso: pesoXsucursal
+        })
+        dataEjeY = [];
+        pesoXsucursal = [];
+      })
+      
       return dataSetConstruido;
     }
-    const maximoEjeX = 10 + Math.max(...capacidadesCarga)
-    //const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(planRutasList?.catalogoGuiasPlaneadas?.length)
+    const maximoEjeX = 100
 
     let myoptions = {
       responsive: true,
