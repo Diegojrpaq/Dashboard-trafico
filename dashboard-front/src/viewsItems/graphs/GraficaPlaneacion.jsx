@@ -35,6 +35,59 @@ export default function Graph(props) {
   const colores = catalogoColores.colores
   const coloresBorder = catalogoColores.coloresBorder;
   const nombreRuta = props.planRuta?.rutas[0]?.nombre
+
+  const catalogoGuiasEmbarcadas = [
+    {
+      "numGuia": "PAT-7674",
+      "id_sucursal": 55,
+      "nombre_sucursal": "Patria",
+      "volumen": 1.326,
+      "peso": 539.6,
+      "flete": 1849.42,
+      "monto_seguro": 30,
+      "subtotal": 2389.96
+    },
+    {
+      "numGuia": "GUA-405709",
+      "id_sucursal": 1,
+      "nombre_sucursal": "Gonzalez Gallo",
+      "volumen": 0.8,
+      "peso": 130,
+      "flete": 429,
+      "monto_seguro": 30,
+      "subtotal": 568.56
+    },
+    {
+      "numGuia": "GUA-405707",
+      "id_sucursal": 1,
+      "nombre_sucursal": "Gonzalez Gallo",
+      "volumen": 0.05,
+      "peso": 10,
+      "flete": 208.54,
+      "monto_seguro": 30,
+      "subtotal": 334.87
+    },
+    {
+      "numGuia": "PER-85145",
+      "id_sucursal": 5,
+      "nombre_sucursal": "Perisur",
+      "volumen": 1.255,
+      "peso": 216,
+      "flete": 1235.6,
+      "monto_seguro": 30,
+      "subtotal": 1347.23
+    },
+    {
+      "numGuia": "GUA-405642",
+      "id_sucursal": 1,
+      "nombre_sucursal": "Gonzalez Gallo",
+      "volumen": 0.053,
+      "peso": 26.8,
+      "flete": 278.05,
+      "monto_seguro": 30,
+      "subtotal": 408.55
+    }
+  ];
   //Configuración de los datalabels
   const confDataLabels = {
     formatter: function (value, context) {
@@ -42,7 +95,8 @@ export default function Graph(props) {
       const nombre = context.dataset.label
       const peso = context.dataset.peso
       const volumen = value?.toFixed(2)
-      if (value > 2) {
+      const val = value / 100;
+      if (val > 0.08) {
         return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
       } else {
         return ""
@@ -85,15 +139,27 @@ export default function Graph(props) {
       metrosLibres.push(100 - mt3_embarcados);
     })
 
+    let sucursales = [];
     planRutasList?.map((ruta) => {
       if(ruta.id_viaje_act !== null) {
-        if (ruta.catalogoGuiasEmbarcadas !== null) {
-          mt3_embarcados = ruta.catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
+        if (catalogoGuiasEmbarcadas !== null) {
+          mt3_embarcados = catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
+          //obtener sucursales de las guias embarcadas
+          sucursales = catalogoGuiasEmbarcadas.reduce((result, guia) => {
+            const { id_sucursal, nombre_sucursal } = guia;
+            const existent = result.find((item) => item.id === id_sucursal);
+    
+            if (!existent) {
+              result.push({ id: id_sucursal, nombre: nombre_sucursal });
+            }
+    
+            return result;
+          }, []);
         } else {
           mt3_embarcados = 0;
           ruta.catalogoGuiasEmbarcadas = [];
         }
-  
+
         label.push("Embarcado");
         labelRutas.push(label);
         label = [];
@@ -102,6 +168,16 @@ export default function Graph(props) {
       }
     })
 
+    let todasSucursales;
+    let sucSinRepetir;
+    if(sucursales.length > 0) {
+      //obtnener todas las sucursales y que no se repitan
+      todasSucursales = [...catalogoSucursales, ...sucursales]
+      sucSinRepetir = Array.from(new Set(todasSucursales.map(JSON.stringify))).map(JSON.parse);
+    } else {
+      sucSinRepetir =  [...catalogoSucursales];
+    }
+   
     const ConstruirEjeY = () => {
       const dataSetConstruido = [];
       let dataEjeY = [];
@@ -114,7 +190,7 @@ export default function Graph(props) {
         borderWidth: 2,
         datalabels: confDataLabels,
       })
-      catalogoSucursales?.map((sucursalFinal, index) => {
+      sucSinRepetir?.map((sucursalFinal, index) => {
         planRutasList.map((ruta) => {
           const guiasXsucursal = ruta.catalogoGuiasPlaneadas.filter(guia => guia.sucursal_ubicacion_id === sucursalFinal.id);
           const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.cotizacion_principal_volumen, 0);
@@ -122,14 +198,13 @@ export default function Graph(props) {
           dataEjeY.push(volumenXsucursal);
           pesoXsucursal.push(pesoGuia.toFixed(2));
 
-          // if (ruta.catalogoGuiasEmbarcadas != null) {
-          //   const guiasXsucursal = ruta.catalogoGuiasEmbarcadas.filter(guia => guia.id_sucursal === sucursalFinal.id);
-          //   const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
-          //   const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
-          //   dataEjeY.push(volumenXsucursal);
-          //   pesoXsucursal.push(pesoGuia);
-          // }
-
+          if (catalogoGuiasEmbarcadas != null) {
+            const guiasXsucursal = catalogoGuiasEmbarcadas.filter(guia => guia.id_sucursal === sucursalFinal.id);
+            const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
+            const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
+            dataEjeY.push(volumenXsucursal);
+            pesoXsucursal.push(pesoGuia);
+          }
         })
         dataSetConstruido.push({
           label: sucursalFinal.nombre,
@@ -143,41 +218,7 @@ export default function Graph(props) {
         dataEjeY = [];
         pesoXsucursal = [];
       })
-      let sucursales;
-      planRutasList?.map((ruta) => {
-        if (ruta.catalogoGuiasEmbarcadas != null) {
-          const sucursalesSet = new Set();
-          // Recorrer los datos y agregar cada sucursal al Set
-          ruta.catalogoGuiasEmbarcadas.forEach((guia) => {
-            sucursalesSet.add(guia.nombre_sucursal);
-          });
-          // Convertir el Set a un arreglo
-          sucursales = Array.from(sucursalesSet);
-          //console.log(sucursales);
-        }
-      })
 
-      sucursales?.map((sucursal, index) => {
-        planRutasList.map((ruta) => {
-          const guiasXsucursal = ruta.catalogoGuiasEmbarcadas.filter(guia => guia.nombre_sucursal === sucursal.nombre_sucursal);
-        const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
-        const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
-        dataEjeY.push(volumenXsucursal);
-        pesoXsucursal.push(pesoGuia);
-        })
-        dataSetConstruido.push({
-          label: sucursal.nombre_sucursal,
-          data: dataEjeY,
-          backgroundColor: colores[index].color,
-          borderColor: coloresBorder[index].color,
-          borderWidth: 2,
-          datalabels: confDataLabels,
-          peso: pesoXsucursal
-        })
-        dataEjeY = [];
-        pesoXsucursal = [];
-      })
-      
       return dataSetConstruido;
     }
     const maximoEjeX = 100
@@ -225,7 +266,7 @@ export default function Graph(props) {
 
     return (
       <>
-        <div className="container-graph" style={{ height: "500px" }}>
+        <div className="container-graph" style={{ height: "460px" }}>
           <Bar
             data={data}
             options={myoptions}
