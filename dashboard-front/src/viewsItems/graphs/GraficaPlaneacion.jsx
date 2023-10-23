@@ -36,58 +36,59 @@ export default function Graph(props) {
   const coloresBorder = catalogoColores.coloresBorder;
   const nombreRuta = props.planRuta?.rutas[0]?.nombre
 
-  const catalogoGuiasEmbarcadas = [
-    {
-      "numGuia": "PAT-7674",
-      "id_sucursal": 55,
-      "nombre_sucursal": "Patria",
-      "volumen": 1.326,
-      "peso": 539.6,
-      "flete": 1849.42,
-      "monto_seguro": 30,
-      "subtotal": 2389.96
-    },
-    {
-      "numGuia": "GUA-405709",
-      "id_sucursal": 1,
-      "nombre_sucursal": "Gonzalez Gallo",
-      "volumen": 0.8,
-      "peso": 130,
-      "flete": 429,
-      "monto_seguro": 30,
-      "subtotal": 568.56
-    },
-    {
-      "numGuia": "GUA-405707",
-      "id_sucursal": 1,
-      "nombre_sucursal": "Gonzalez Gallo",
-      "volumen": 0.05,
-      "peso": 10,
-      "flete": 208.54,
-      "monto_seguro": 30,
-      "subtotal": 334.87
-    },
-    {
-      "numGuia": "PER-85145",
-      "id_sucursal": 5,
-      "nombre_sucursal": "Perisur",
-      "volumen": 1.255,
-      "peso": 216,
-      "flete": 1235.6,
-      "monto_seguro": 30,
-      "subtotal": 1347.23
-    },
-    {
-      "numGuia": "GUA-405642",
-      "id_sucursal": 1,
-      "nombre_sucursal": "Gonzalez Gallo",
-      "volumen": 0.053,
-      "peso": 26.8,
-      "flete": 278.05,
-      "monto_seguro": 30,
-      "subtotal": 408.55
-    }
-  ];
+  //Datos de prueba
+  // const catalogoGuiasEmbarcadas = [
+  //   {
+  //     "numGuia": "PAT-7674",
+  //     "id_sucursal": 55,
+  //     "nombre_sucursal": "Patria",
+  //     "volumen": 1.326,
+  //     "peso": 539.6,
+  //     "flete": 1849.42,
+  //     "monto_seguro": 30,
+  //     "subtotal": 2389.96
+  //   },
+  //   {
+  //     "numGuia": "GUA-405709",
+  //     "id_sucursal": 1,
+  //     "nombre_sucursal": "Gonzalez Gallo",
+  //     "volumen": 0.8,
+  //     "peso": 130,
+  //     "flete": 429,
+  //     "monto_seguro": 30,
+  //     "subtotal": 568.56
+  //   },
+  //   {
+  //     "numGuia": "GUA-405707",
+  //     "id_sucursal": 1,
+  //     "nombre_sucursal": "Gonzalez Gallo",
+  //     "volumen": 0.05,
+  //     "peso": 10,
+  //     "flete": 208.54,
+  //     "monto_seguro": 30,
+  //     "subtotal": 334.87
+  //   },
+  //   {
+  //     "numGuia": "PER-85145",
+  //     "id_sucursal": 5,
+  //     "nombre_sucursal": "Perisur",
+  //     "volumen": 1.255,
+  //     "peso": 216,
+  //     "flete": 1235.6,
+  //     "monto_seguro": 30,
+  //     "subtotal": 1347.23
+  //   },
+  //   {
+  //     "numGuia": "GUA-405642",
+  //     "id_sucursal": 1,
+  //     "nombre_sucursal": "Gonzalez Gallo",
+  //     "volumen": 0.053,
+  //     "peso": 26.8,
+  //     "flete": 278.05,
+  //     "monto_seguro": 30,
+  //     "subtotal": 408.55
+  //   }
+  // ];
   //Configuración de los datalabels
   const confDataLabels = {
     formatter: function (value, context) {
@@ -142,10 +143,10 @@ export default function Graph(props) {
     let sucursales = [];
     planRutasList?.map((ruta) => {
       if(ruta.id_viaje_act !== null) {
-        if (catalogoGuiasEmbarcadas !== null) {
-          mt3_embarcados = catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
+        if (ruta.catalogoGuiasEmbarcadas !== null) {
+          mt3_embarcados = ruta.catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
           //obtener sucursales de las guias embarcadas
-          sucursales = catalogoGuiasEmbarcadas.reduce((result, guia) => {
+          sucursales = ruta.catalogoGuiasEmbarcadas.reduce((result, guia) => {
             const { id_sucursal, nombre_sucursal } = guia;
             const existent = result.find((item) => item.id === id_sucursal);
     
@@ -198,8 +199,8 @@ export default function Graph(props) {
           dataEjeY.push(volumenXsucursal);
           pesoXsucursal.push(pesoGuia.toFixed(2));
 
-          if (catalogoGuiasEmbarcadas != null) {
-            const guiasXsucursal = catalogoGuiasEmbarcadas.filter(guia => guia.id_sucursal === sucursalFinal.id);
+          if (ruta.catalogoGuiasEmbarcadas != null) {
+            const guiasXsucursal = ruta.catalogoGuiasEmbarcadas.filter(guia => guia.id_sucursal === sucursalFinal.id);
             const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
             const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
             dataEjeY.push(volumenXsucursal);
