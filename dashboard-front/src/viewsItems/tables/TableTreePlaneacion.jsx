@@ -3,11 +3,19 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
+import { ConvertirFecha } from '../../utileria/utils';
 
 export default function TableTreePlaneacion({ guiasPlaneadas, guiasEmbarcadas, catalogoSuc }) {
     // Calcular la suma del peso y volumen por sucursal
     const sumaPesoVolumenPorSucursal = guiasPlaneadas?.reduce((result, guia) => {
-        const { sucursal_ubicacion, cotizacion_principal_peso, cotizacion_principal_volumen, flete, monto_seguro, subtotal, destino_origen } = guia;
+        const { sucursal_ubicacion,
+                cotizacion_principal_peso,
+                cotizacion_principal_volumen, 
+                flete, 
+                monto_seguro,
+                subtotal, 
+                destino_origen,
+                fecha_registro } = guia;
         if (!result[sucursal_ubicacion]) {
             result[sucursal_ubicacion] = {
                 totalPeso: 0,
@@ -17,12 +25,14 @@ export default function TableTreePlaneacion({ guiasPlaneadas, guiasEmbarcadas, c
                 totalSub: 0
             };
         }
+        const fecha = ConvertirFecha(fecha_registro);
         result[sucursal_ubicacion].totalPeso += cotizacion_principal_peso;
         result[sucursal_ubicacion].totalVolumen += cotizacion_principal_volumen;
         result[sucursal_ubicacion].totalFlete += flete;
         result[sucursal_ubicacion].totalSeguro += monto_seguro;
         result[sucursal_ubicacion].totalSub += subtotal;
         result[sucursal_ubicacion].origen = destino_origen;
+        //result[sucursal_ubicacion].fecha = fecha;
         return result;
     }, {});
 
@@ -46,6 +56,9 @@ export default function TableTreePlaneacion({ guiasPlaneadas, guiasEmbarcadas, c
                     key: `${index}-${childIndex}`,
                     data: {
                         numG: guia.numGuia,
+                        origen: guia.sucursal_principal,
+                        destino: guia.sucursal_destino,
+                        fecha: ConvertirFecha(guia.fecha_registro),
                         emb: 'Si',
                         peso: `${guia.cotizacion_principal_peso.toFixed(2)} kg`,
                         volumen: `${guia.cotizacion_principal_volumen.toFixed(2)} mt3`,
@@ -61,6 +74,8 @@ export default function TableTreePlaneacion({ guiasPlaneadas, guiasEmbarcadas, c
         { field: 'sucursal', header: 'Sucursal', expander: true },
         { field: 'numG', header: 'Num-Guía' },
         { field: 'origen', header: 'Origen' },
+        { field: 'destino', header: 'Destino' },
+        { field: 'fecha', header: 'Fecha' },
         // { field: 'emb', header: 'Embarcada' },
         { field: 'peso', header: 'Peso' },
         { field: 'volumen', header: 'Volumen' },
