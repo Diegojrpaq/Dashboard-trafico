@@ -54,3 +54,11 @@ export function diferenciaFechas(fechaRuta) {
       return "text-danger"
     }
   }
+
+ export function formatearFecha(fechaSinFormato) {
+    const año = fechaSinFormato.slice(0, 4);
+    const mes = fechaSinFormato.slice(4, 6);
+    const día = fechaSinFormato.slice(6, 8);
+
+    return `${día}/${mes}/${año}`;
+}

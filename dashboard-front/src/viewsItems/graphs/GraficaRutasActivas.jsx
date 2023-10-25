@@ -43,8 +43,7 @@ export default function GraficaRutasActivas(props) {
     const catalogoDestinoFinal = props.catalogoDestinoFinal
     const colorEspacioLibre = catalogoColores.colores[100].color;
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
-    const colorChillout = catalogoColores.colores[101].color;
-    const colorChilloutBorder = catalogoColores.coloresBorder[101].color;
+    
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
     /* Variables de Estilo fin */
@@ -81,7 +80,6 @@ export default function GraficaRutasActivas(props) {
         const labelRutas = [];
         const capacidadesCarga = [];
         const metrosLibres = [];
-        let cantiMaydeViajesActivos = 0;
         let label = [];
         let mt3_embarcados;
 

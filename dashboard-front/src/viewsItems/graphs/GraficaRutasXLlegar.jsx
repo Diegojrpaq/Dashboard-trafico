@@ -2,6 +2,7 @@
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
+import {formatearFecha, CalcularAnchoBarra} from '../../utileria/utils'
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -26,19 +27,52 @@ Chartjs.register(
     Filler
 );
 
+
 export default function GraficaRutasXLlegar(props) {
     /* Variables de Estilo  */
+  
+    const viajesList = props.viajesList
+    const catalogoDestinoFinal = props.catalogoDestinoFinal
+    const colorEspacioLibre = catalogoColores.colores[100].color;
+    const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
     const colores = catalogoColores.colores
-    const coloresBorder = catalogoColores.coloresBorder
-    const colorSinEmbarcar = 'rgb(230,1,15, .5)'
-    const colorSinEmbarcarBorder = 'rgb(230,1,15)'
+    const coloresBorder = catalogoColores.coloresBorder;
     /*   const colorEspacioLibre='rgb(175,203,246,.2)'
       const colorEspacioLibreBorder='rgb(175,203,246)' */
 
     /* Variables de Estilo  fin */
+       //Configuración de los datalabels
+       const confDataLabels = {
+        formatter: function (value, context) {
+            console.log("entramos etiquetas")
+            const index = context.dataIndex
+            const nombre = context.dataset.label
+            const peso = context.dataset.peso
+            const volumen = value.toFixed(2)
+            if (value > 4) {
+                return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
+            } else {
+                return ""
+            }
+        },
+        align: 'center',
+        display: 'auto',
+        rotation: 0,
+        labels: {
+            title: {
+                color: '#3c3c3d',
+                font: {
+                    family: 'Poppins',
+                    weight: 'bold',
+                    size: 13
+                }
+            }
+        }
+    }
 
     /* Ejecucion de la lista si esque existe variables */
     if (props.viajesList != null) {
+        
         function limpiado_de_viajes(viajesActivos, idDestino) {
             /* en esta funcion se va a hacer un filtrado de los viajes ya que solo 
             se van a mostrar los que estan en curso pero solo los que estan en la ubicacion
@@ -79,78 +113,140 @@ export default function GraficaRutasXLlegar(props) {
 
 
         const listaViajes = limpiado_de_viajes(props.viajesList, props.idDestino);
-        console.log(listaViajes, "lista viajes limpia")
-        const etiquetaNomViajes = [];
-        const pesosTotalesEmbarcados = [];
+        const labelRutas = [];
+        const capacidadesCarga = [];
         const metrosLibres = [];
-        const volumenCajas = [];
+        //se arma un catalogo de destinos para poder iterar sobre el en la grafica ya que se necesitan todos los destinos de todas las barras
+        let catalogoDestinos = [];
+        let label = [];
+        let mt3_embarcados;
 
 
         //actualizar las necesidades de la lista primero creemos el catalogo de destinos para asi rellenar la grafica
         //en conforme a cada viaje en individual.
-        listaViajes.map((viajeActivo, index) => {
-            let label = [];
-            label.push(viajeActivo.nombre + '-' + viajeActivo.fecha_registro)
-            /* label.push(viajeActivo.Volumen_carga_max+' '+'Mt3'); */
-            etiquetaNomViajes.push(label)
-/*             console.log(viajeActivo.orden_parada_directa)
-*/            if (viajeActivo.catalogoGuias !== null) {
-                let volumen_total = 0;
-                for (let x = 0; x < viajeActivo.volumen_por_destino.length; x++) {
-                    volumen_total = volumen_total + viajeActivo.volumen_por_destino[x].mt3_cargados;
-                }
-                pesosTotalesEmbarcados.push(volumen_total);
-                metrosLibres.push(viajeActivo.Volumen_carga_max - volumen_total)
-                volumenCajas.push(viajeActivo.Volumen_carga_max)
+        listaViajes.map((viaje) => {
+
+            if (viaje.catalogoGuias !== null) {
+                mt3_embarcados = viaje.catalogoGuias.reduce((total, guia) => total + guia.volumen, 0)
+            } else {
+                mt3_embarcados = 0
+                viaje.catalogoGuias = [];
             }
+            label.push(viaje.nombre)
+            label.push(formatearFecha(viaje.fecha_registro))
+            label.push(viaje.Clave_vehiculo)
+            viaje.Caja && label.push(viaje.Caja)
+            labelRutas.push(label)
+            label = [];
+            capacidadesCarga.push(viaje.Volumen_carga_maxima)
+            metrosLibres.push(viaje.Volumen_carga_maxima - mt3_embarcados)
+            
+        /*     
+            label.push(viaje.nombre)
+            label.push(viaje.fecha_registro)
+            label.push(viaje.Clave_vehiculo)
+            viaje.Caja && label.push(viaje.Caja)
+            /* label.push(viajeActivo.Volumen_carga_max+' '+'Mt3'); */
+           /* etiquetaNomViajes.push(label) */
+
+            if (viaje.catalogoGuias !== null) {
+                viaje.catalogoGuias.map((guia) => {
+                    if (!catalogoDestinos.includes(guia.destino)) {
+                        catalogoDestinos.push(guia.destino)
+                    }
+                })
+            }
+
+            /*  if (viaje.catalogoGuias !== null) {
+                  let volumen_total = 0;
+                  for (let x = 0; x < viaje.volumen_por_destino.length; x++) {
+                      volumen_total = volumen_total + viaje.volumen_por_destino[x].mt3_cargados;
+                  }
+                  pesosTotalesEmbarcados.push(volumen_total);
+                  metrosLibres.push(viaje.Volumen_carga_max - volumen_total)
+                  volumenCajas.push(viaje.Volumen_carga_max) }*/
         })
 
 
-
-
-
-
-
-        function constriurEjey() {
+        const ConstruirEjeY = () => {
             const dataSetConstruido = [];
-            if (listaViajes[0].volumen_por_destino !== null) {
-                dataSetConstruido.push({
-                    label: "Espacio libre del Contenedor",
-                    data: metrosLibres,
-                    backgroundColor: colores[100].color,
-                    borderColor: coloresBorder[100].color,
-                    borderWidth: 2
+            const labelsDestinos = [];
+            let dataEjeY = [];
+            let pesoXDestino = [];
+            dataSetConstruido.push({
+                label: "Espacio libre del Contenedor",
+                data: metrosLibres,
+                backgroundColor: colorEspacioLibre,
+                borderColor: colorEspacioLibreBorder,
+                borderWidth: 2,
+                datalabels: confDataLabels,
+            })
+            catalogoDestinos?.map((destinoFinal, index) => {
+                listaViajes.map((viaje) => {
+                    const guiasXDestino = viaje.catalogoGuias.filter(guia => guia.destino === destinoFinal)
+                    const volumenXDestino = guiasXDestino.reduce((total, guia) => total + guia.volumen, 0)
+                    const pesoGuia = guiasXDestino.reduce((total, guia) => total + guia.peso, 0)
+                    dataEjeY.push(volumenXDestino)
+                    pesoXDestino.push(pesoGuia)
                 })
-                for (let col = 0; col < listaViajes[0].volumen_por_destino.length; col++) {
-                    let dataEjeY = [];
-                    listaViajes.map((viaje) => {
-                        dataEjeY.push(viaje.volumen_por_destino[col].mt3_cargados)
-                    })
+                dataSetConstruido.push({
+                    label: destinoFinal,
+                    data: dataEjeY,
+                    backgroundColor: colores[index].color,
+                    borderColor: coloresBorder[index].color,
+
+                    borderWidth: 2,
+                    datalabels: confDataLabels,
+                    peso: pesoXDestino
+
+                })
+                dataEjeY = []
+                pesoXDestino = []
+            })
+            return dataSetConstruido;
+
+        }
+
+        /*     function constriurEjey() {
+                const dataSetConstruido = [];
+                if (listaViajes[0].volumen_por_destino !== null) {
                     dataSetConstruido.push({
-                        label: listaViajes[0].volumen_por_destino[col].nombre,
-                        data: dataEjeY,
-                        backgroundColor: colores[col].color,
-                        borderColor: coloresBorder[col].color,
+                        label: "Espacio libre del Contenedor",
+                        data: metrosLibres,
+                        backgroundColor: colores[100].color,
+                        borderColor: coloresBorder[100].color,
                         borderWidth: 2
                     })
+                    for (let col = 0; col < listaViajes[0].volumen_por_destino.length; col++) {
+                        let dataEjeY = [];
+                        listaViajes.map((viaje) => {
+                            dataEjeY.push(viaje.volumen_por_destino[col].mt3_cargados)
+                        })
+                        dataSetConstruido.push({
+                            label: listaViajes[0].volumen_por_destino[col].nombre,
+                            data: dataEjeY,
+                            backgroundColor: colores[col].color,
+                            borderColor: coloresBorder[col].color,
+                            borderWidth: 2
+                        })
+    
+                    }
+                    /*   for (let col = 0; col < listaViajes[0].volumen_por_destino.length; col++) {
+      
+      
+                          let dataEjeY = [];
+                          dataSetConstruido.push({
+                              label: listaViajes[0].nombre,
+                              data: metrosLibres,
+                              backgroundColor: colores[100].color,
+                              borderColor: coloresBorder[100].color,
+                              borderWidth: 2
+                          })
+      
+                      } */
 
-                }
-                /*   for (let col = 0; col < listaViajes[0].volumen_por_destino.length; col++) {
-  
-  
-                      let dataEjeY = [];
-                      dataSetConstruido.push({
-                          label: listaViajes[0].nombre,
-                          data: metrosLibres,
-                          backgroundColor: colores[100].color,
-                          borderColor: coloresBorder[100].color,
-                          borderWidth: 2
-                      })
-  
-                  } */
 
-
-            } else {
+        /*     } else {
                 dataSetConstruido.push({
                     label: "",
                     data: [],
@@ -159,72 +255,64 @@ export default function GraficaRutasXLlegar(props) {
                     borderWidth: 2
                 })
             }
+ */
+
+
+        /* console.log(dataSetConstruido) */
+        /*  return dataSetConstruido }*/
 
 
 
-            /* console.log(dataSetConstruido) */
-            return dataSetConstruido
-        }
+        const maximoEjeX = 10 + Math.max(...capacidadesCarga)
 
-        
-        let maximoEjeX = 10 + Math.max(...volumenCajas);
-        /*   console.log('tamaño de la lista limpia para '+props.destino.nombre+' '+listaViajes.length) */
+        const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(listaViajes.length)
+
         let myoptions = {
             responsive: true,
+            maintainAspectRatio: false,
             animation: true,
-            autoSkip: true,
+            autoSkip: false,
             plugins: {
                 legend: {
-                    display: true
+                    display: true,
+                    position: 'bottom'
                 }
             },
-            /*  barThickness: 45, */
-            /* barPercentage:.20, */
+            barPercentage: porcentajeAnchoBarra,
             scales: {
                 x: {
                     stacked: true,
                     beginAtZero: false, // Asegura que el eje X no empiece en 0
                     min: 0, // Establece el mínimo del eje X en 100
                     max: maximoEjeX,
+
                 },
                 y: {
-
                     stacked: true,
                     min: 0,
-                    max: 30,
-                    ticks: {
-                        display: true,
-                        font: {
-                            size: 13
-                        }
-                    },
-                    title: {
-                        display: true,
-                        text: 'Viajes Activos',
-                        color: 'rgb(230,1,15)',
-                        font: {
-                            size: 25
-                        }
-                    },
+                    max: 100,
                 },
             },
             indexAxis: 'y',
         };
 
         let data = {
-            labels: etiquetaNomViajes,
-            datasets: constriurEjey()
-
+            labels: labelRutas,
+            datasets: ConstruirEjeY()
         }
+
+
         return (
             <>
-                <Bar
-                    data={data}
-                    options={myoptions}
-                />
+                <div className="container-graph" style={{ height: heightGraph }}>
+                    <Bar
+                        data={data}
+                        options={myoptions}
+                    />
+                </div>
 
             </>
-        );
+        )
 
     } else {
         /*  console.log('no tenemos registro de viajes'); */
