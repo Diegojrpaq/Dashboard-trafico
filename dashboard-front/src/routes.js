@@ -35,7 +35,7 @@ const routes_secondary = [
     {path: '/trafico/viajesactivos/:idDestino', name: 'Rutas_Activas', element: RutasActivas },
     {path: '/trafico/viajesxllegar/:idDestino', name: 'Rutas_por_llegar', element: RutasXLlegar},
     {path: '/prueba', name: 'Rutas_por_llegar', element: Rutaprueba},
-    {path: '/trafico/planeacion/:idDestino/:idRuta', name: 'Planeacion', element: planRutas},
+    {path: '/trafico/planeacion/:idSucursal/:idRuta', name: 'Planeacion', element: planRutas},
 ]
 //-------------------------------------Fin segundo menu de rutas--------------------------------
 
