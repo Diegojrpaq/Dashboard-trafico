@@ -76,6 +76,10 @@ export default function RutasActivas() {
                 let guias;
                 const totalGuias = ruta.catalogoGuias?.length
                 const fecha = ConvertirFecha(ruta.fecha_registro)
+                const infoRuta = {
+                  nombreRuta: ruta.nombre,
+                  fecha: fecha,
+                }
                 if (ruta.catalogoGuias != null) {
                   guias = ruta.catalogoGuias;
                   return (
@@ -94,6 +98,7 @@ export default function RutasActivas() {
                         <Accordion.Body>
                           <TableViajesActivos
                             guias={guias}
+                            infoRuta={infoRuta}
                           />
                         </Accordion.Body>
                       </Accordion.Item>
