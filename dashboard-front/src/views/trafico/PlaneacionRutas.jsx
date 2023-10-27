@@ -34,39 +34,39 @@ export default function PlaneacionRutas() {
         };
     }, [idRuta]);
 
-    //Obtener las sucursales que tengan rutas
-    let sucursalesConRutas = [];
-    destinosList.map((destino) => {
-      for( let i=0; i < destino.sucursales.length; i++) {
-        const sucursal = destino.sucursales[i];
-        if(sucursal.rutas_configuradas != null) {
-          sucursalesConRutas.push(sucursal)
-        }
-      }
-    })
-    //Iterar las rutas de cada sucursal
-    const idRutas = []
-    const [indexAct, setIndexAct] = useState(0);
-    const timer = 10000 // Duración de 1min, para 5 min son 300,000
-    sucursalesConRutas?.map((sucursal) => {
-        const idSuc = Number(idSucursal);
-        if(sucursal.id_sucursal === idSuc) {
-          sucursal.rutas_configuradas.map((ruta) => {
-            idRutas.push(ruta.id_ruta)
-          })
-        }
-    })
-    useEffect(() => {
-        if (btnSwitch && idRutas.length > 1) {
-            const intervalId = setInterval(() => {
-                navigate(`/trafico/planeacion/${idSucursal}/${idRutas[indexAct]}`);
-                setIndexAct((prevIndex) =>
-                    prevIndex === idRutas.length - 1 ? 0 : prevIndex + 1
-                );
-            }, timer);
-            return () => clearInterval(intervalId)
-        }
-    }, [navigate, indexAct, idRutas, btnSwitch])
+    // //Obtener las sucursales que tengan rutas
+    // let sucursalesConRutas = [];
+    // destinosList.map((destino) => {
+    //   for( let i=0; i < destino.sucursales.length; i++) {
+    //     const sucursal = destino.sucursales[i];
+    //     if(sucursal.rutas_configuradas != null) {
+    //       sucursalesConRutas.push(sucursal)
+    //     }
+    //   }
+    // })
+    // //Iterar las rutas de cada sucursal
+    // const idRutas = []
+    // const [indexAct, setIndexAct] = useState(0);
+    // const timer = 10000 // Duración de 1min, para 5 min son 300,000
+    // sucursalesConRutas?.map((sucursal) => {
+    //     const idSuc = Number(idSucursal);
+    //     if(sucursal.id_sucursal === idSuc) {
+    //       sucursal.rutas_configuradas.map((ruta) => {
+    //         idRutas.push(ruta.id_ruta)
+    //       })
+    //     }
+    // })
+    // useEffect(() => {
+    //     if (btnSwitch && idRutas.length > 1) {
+    //         const intervalId = setInterval(() => {
+    //             navigate(`/trafico/planeacion/${idSucursal}/${idRutas[indexAct]}`);
+    //             setIndexAct((prevIndex) =>
+    //                 prevIndex === idRutas.length - 1 ? 0 : prevIndex + 1
+    //             );
+    //         }, timer);
+    //         return () => clearInterval(intervalId)
+    //     }
+    // }, [navigate, indexAct, idRutas, btnSwitch])
 
     return (
         <>
