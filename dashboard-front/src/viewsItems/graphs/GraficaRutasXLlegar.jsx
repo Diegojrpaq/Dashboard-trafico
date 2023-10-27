@@ -2,6 +2,7 @@
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {formatearFecha, CalcularAnchoBarra} from '../../utileria/utils'
 import {
     Chart as Chartjs,
@@ -24,7 +25,8 @@ Chartjs.register(
     Title,
     Tooltip,
     Legend,
-    Filler
+    Filler,
+    ChartDataLabels
 );
 
 
@@ -138,7 +140,7 @@ export default function GraficaRutasXLlegar(props) {
             viaje.Caja && label.push(viaje.Caja)
             labelRutas.push(label)
             label = [];
-            capacidadesCarga.push(viaje.Volumen_carga_maxima)
+            viaje.Volumen_carga_maxima === 0 ? capacidadesCarga.push(mt3_embarcados):capacidadesCarga.push(viaje.Volumen_carga_maxima)
             metrosLibres.push(viaje.Volumen_carga_maxima - mt3_embarcados)
             
         /*     
@@ -263,7 +265,8 @@ export default function GraficaRutasXLlegar(props) {
 
 
 
-        const maximoEjeX = 10 + Math.max(...capacidadesCarga)
+        let maximoEjeX = 4 + Math.max(...capacidadesCarga)
+       
 
         const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(listaViajes.length)
 
