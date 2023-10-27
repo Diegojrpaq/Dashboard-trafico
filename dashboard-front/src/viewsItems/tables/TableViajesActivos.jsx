@@ -119,17 +119,17 @@ export default function TableViajesActivos({ guias, infoRuta }) {
         <div className='d-flex flex-column flex-md-row justify-content-between align-items-center'>
             <div className="d-flex justify-content-center align-items-center responsive">
                 <span className="d-lg-flex flex-row justify-content-center align-items-center mb-2 mb-md-0">
-                    <input type="text" value={globalFilterValue} onChange={onGlobalFilterChange} class="ms-lg-2 p-2 pe-lg-5 border-1 rounded w-55" placeholder="Búsqueda general"></input>
+                    <input type="text" value={globalFilterValue} onChange={onGlobalFilterChange} className="ms-lg-2 p-2 pe-lg-5 border-1 rounded w-55" placeholder="Búsqueda general"></input>
                 </span>
             </div>
             <div className="dropdown d-flex align-items-center justify-content-end" style={{ fontFamily: "Poppins" }}>
                 <button className="dropdown-toggle border-0 rounded px-3 py-1" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={styleDropdown}>
                     Exportar
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style={{ cursor: "pointer" }}>
-                    <li class="dropdown-item" onClick={exportExcel}>Excel <i class="bi bi-file-earmark-excel"></i></li>
-                    <li class="dropdown-item" onClick={() => exportCSV(false)}>CSV <i class="bi bi-filetype-csv"></i></li>
-                    <li class="dropdown-item" onClick={exportPdf}>PDF <i class="bi bi-file-earmark-pdf"></i></li>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1" style={{ cursor: "pointer" }}>
+                    <li className="dropdown-item" onClick={exportExcel}>Excel <i className="bi bi-file-earmark-excel"></i></li>
+                    <li className="dropdown-item" onClick={() => exportCSV(false)}>CSV <i className="bi bi-filetype-csv"></i></li>
+                    <li className="dropdown-item" onClick={exportPdf}>PDF <i className="bi bi-file-earmark-pdf"></i></li>
                 </ul>
             </div>
         </div>
