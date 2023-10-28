@@ -1,18 +1,37 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import '../Css/Sidebar2.css'
-import { destinosListContext, globalData } from '../App';
+import { globalData } from '../App';
 import Logo from '../assets/img/logo.png'
 import SHeaderList from './SHeaderList';
 import SListItem from './SListItem';
-import { useParams } from 'react-router-dom';
+
 
 export default function SideBar2() {
-
-
-  const { destinosListState, toggleSidebar} = useContext(globalData)
-  const destinosList=destinosListState
-
-
+  const { destinosListState, toggleSidebar, sessionUserState } = useContext(globalData);
+  const destinosList = destinosListState;
+  let permisos = [];
+  if (sessionUserState.User.permisos != null) { // Si el usuario tiene permisos que se agreguen al arreglo permisos
+    permisos = [...sessionUserState.User.permisos];
+  }
+  let destinosConRutas = [];
+  let sucursalesConRutas = [];
+  destinosList.map((destino) => {
+    //Obtener los destinos que sus sucursales tengan rutas configuradas
+    for (let i = 0; i < destino.sucursales.length; i++) {
+      const sucursal = destino.sucursales[i];
+      if (sucursal.rutas_configuradas != null) {
+        destinosConRutas.push(destino);
+        break;
+      }
+    }
+    //Obtener las sucursales que tengan rutas
+    for (let i = 0; i < destino.sucursales.length; i++) {
+      const sucursal = destino.sucursales[i];
+      if (sucursal.rutas_configuradas != null) {
+        sucursalesConRutas.push(sucursal)
+      }
+    }
+  })
 
   return (
     <>
@@ -23,41 +42,63 @@ export default function SideBar2() {
           <h3>Dashboard</h3>
         </div>
         <SHeaderList title="Trafico" icon='bi bi-globe-americas' idcollapse='1'>
-          <SHeaderList title="Planeacion de Rutas" icon='bi bi-map' idcollapse='2'>
-            {
-              destinosList && destinosList.map((destino) => {
-                
-                return ( 
-                  destino.rutas_configuradas &&
-                  <>
-                  <SHeaderList title={destino.nombre} icon='bi bi-geo-alt mx-1' idcollapse={destino.id+100}>
-                    {destino.rutas_configuradas.map((ruta)=>{
-                      return <SListItem icon='bi bi-bus-front mx-1' key={ruta.id+'suc'} url={'/trafico/planeacion/' + destino.id+'/'+ruta.id_ruta}>{ruta.nombre_ruta}</SListItem>
-                    })}
-                  </SHeaderList>
-                  </>
-                )
-              })
-            }
-          </SHeaderList>
-          <SHeaderList title="Viajes Activos" icon='bi bi-geo-alt-fill' idcollapse='3'>
-            {
-              destinosList && destinosList.map((destino) => {
-                return (
-                  <SListItem icon='bi bi-geo-alt mx-1' key={destino.id} url={'/trafico/viajesactivos/' + destino.id}>{destino.nombre}</SListItem>
-                )
-              })
-            }
-          </SHeaderList>
-      {/*     <SHeaderList title="Viajes por Llegar" icon='bi bi-geo-alt-fill' idcollapse='4'>
-            {
-              destinosList && destinosList.map((destino) => {
-                return (
-                  <SListItem icon='bi bi-geo-alt mx-1' key={destino.id} url={'/trafico/viajesxllegar/' + destino.id}>{destino.destino}</SListItem>
-                )
-              })
-            }
-          </SHeaderList> */}
+          {
+            permisos?.includes(31) ?
+              <SHeaderList title="Planeacion de Rutas" icon='bi bi-map' key={2} idcollapse='2'>
+                {
+                  destinosConRutas && destinosConRutas.map((destino, index) => {
+                    return (
+                      destino.sucursales &&
+                      <SHeaderList title={destino.nombre} icon='bi bi-geo-alt mx-1' key={destino.id + 100 + index} idcollapse={destino.id + 100}>
+                        {
+                          destino?.sucursales?.map((sucursal) => {
+                            if (sucursal.rutas_configuradas) {
+                              return (
+                                <SHeaderList title={sucursal.nombre_sucursal} icon='bi bi-shop-window mx-1' key={sucursal.id_sucursal + 200} idcollapse={sucursal.id_sucursal + 200}>
+                                  {sucursal?.rutas_configuradas?.map((ruta) => {
+                                    return <SListItem icon='bi bi-bus-front mx-3' key={ruta.id_ruta + 'suc'} url={'/trafico/planeacion/' + sucursal.id_sucursal + '/' + ruta.id_ruta}>{ruta.nombre_ruta}</SListItem>
+                                  })}
+                                </SHeaderList>
+                              )
+                            }
+                          })
+                        }
+                      </SHeaderList>
+                    )
+                  })
+                }
+              </SHeaderList>
+              :
+              <></>
+          }
+
+          {
+            permisos.includes(32) ?
+              <SHeaderList title="Viajes Activos" icon='bi bi-geo-alt-fill' key={3} idcollapse='3'>
+                {
+                  destinosList && destinosList.map((destino) => {
+                    return (
+                      <SListItem icon='bi bi-geo-alt mx-1' key={destino.id + destino.nombre} url={'/trafico/viajesactivos/' + destino.id}>{destino.nombre}</SListItem>
+                    )
+                  })
+                }
+              </SHeaderList>
+              : <></>
+          }
+
+          {
+            permisos.includes(33) ?
+              <SHeaderList title="Viajes por Llegar" icon='bi bi-airplane-fill' key={4} idcollapse='4'>
+                {
+                  destinosList && destinosList.map((destino) => {
+                    return (
+                      <SListItem icon='bi bi-geo-alt mx-1' key={destino.id} url={'/trafico/viajesxllegar/' + destino.id}>{destino.nombre}</SListItem>
+                    )
+                  })
+                }
+              </SHeaderList>
+              : <></>
+          }
           {/*   <SListItem icon='bi bi-geo-alt mx-1' url={'/trafico/' + id_destino}>Guadalajara</SListItem>
           <SListItem icon='bi bi-geo-alt mx-1' url='/ventas/2'>Mexico</SListItem>
           <SListItem icon='bi bi-geo-alt mx-1' url='/trafico'>Queretaro</SListItem>
