@@ -3,6 +3,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
+import { formattedNumber } from '../../utileria/utils';
 
 export default function TableTreeEmbarcadas({ guiasPlaneadas, guiasEmbarcadas, catalogoSuc }) {
     // Calcular la suma del peso y volumen por sucursal
@@ -34,9 +35,9 @@ export default function TableTreeEmbarcadas({ guiasPlaneadas, guiasEmbarcadas, c
                 sucursal,
                 peso: `${totalPeso.toFixed(2)} kg`,
                 volumen: `${totalVolumen.toFixed(2)} mt3`,
-                flete: `$ ${totalFlete.toFixed(2)}`,
-                seguro: `$ ${totalSeguro.toFixed(2)}`,
-                subtotal: `$ ${totalSub.toFixed(2)}`
+                flete: formattedNumber(totalFlete),
+                seguro: formattedNumber(totalSeguro),
+                subtotal: formattedNumber(totalSub)
             },
             children: guiasEmbarcadas
                 .filter((guia) => guia.nombre_sucursal === sucursal)
@@ -47,9 +48,9 @@ export default function TableTreeEmbarcadas({ guiasPlaneadas, guiasEmbarcadas, c
                         emb: 'Si',
                         peso: `${guia.peso.toFixed(2)} kg`,
                         volumen: `${guia.volumen.toFixed(2)} mt3`,
-                        flete: `$ ${guia.flete.toFixed(2)}`,
-                        seguro: `$ ${guia.monto_seguro.toFixed(2)}`,
-                        subtotal: `$ ${guia.subtotal.toFixed(2)}`
+                        flete: formattedNumber(guia.flete),
+                        seguro: formattedNumber(guia.monto_seguro),
+                        subtotal: formattedNumber(guia.subtotal)
                     },
                 })),
         };
