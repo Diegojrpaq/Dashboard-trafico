@@ -6,6 +6,7 @@ import TablePlaneacion from '../../viewsItems/tables/TablePlaneacion';
 import TableTreePlaneacion from '../../viewsItems/tables/TableTreePlaneacion';
 import TableTreeEmbarcadas from '../../viewsItems/tables/TableTreeEmbarcadas';
 import { globalData } from '../../App'
+import { urlapi } from '../../utileria/config';
 
 export default function PlaneacionRutas() {
     const { idSucursal, idRuta } = useParams();
@@ -15,7 +16,7 @@ export default function PlaneacionRutas() {
     const destinosList = destinosListState;
     useEffect(() => {
         const peticiones = async (id) => {
-            const urlApiNextpack = '/trafico/get_planRuta/' + id;
+            const urlApiNextpack =urlapi + '/trafico/get_planRuta/' + id;
             await fetch(urlApiNextpack)
                 .then((resp) => {
                     return resp.json();

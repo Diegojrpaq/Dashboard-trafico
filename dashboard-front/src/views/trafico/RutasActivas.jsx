@@ -7,6 +7,7 @@ import { Accordion } from 'react-bootstrap';
 import { ConvertirFecha } from '../../utileria/utils'
 import { diferenciaFechas } from '../../utileria/utils'
 import { globalData } from '../../App'
+import { urlapi } from '../../utileria/config'
 
 export default function RutasActivas() {
 
@@ -19,7 +20,7 @@ export default function RutasActivas() {
 
   useEffect(() => {
     const peticiones = async (id) => {
-      const urlApiNextpack = '/trafico/get_viajeActivo/' + id;
+      const urlApiNextpack = urlapi +'/trafico/get_viajeActivo/' + id;
       await fetch(urlApiNextpack)
         .then((resp) => {
           return resp.json();

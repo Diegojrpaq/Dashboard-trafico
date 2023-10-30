@@ -3,6 +3,7 @@ import { Suspense, createContext, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import { routes_primary } from './routes';
 import { Spinner } from 'react-bootstrap';
+import { urlapi } from './utileria/config';
 
 
 
@@ -30,9 +31,12 @@ function App() {
     const urlParams = new URLSearchParams(window.location.search);
     /* const tokenUser = urlParams.get('token'); */
     const tokenUser = 649;
+  
 
     const peticionSidebar = async (tokenUser) => {
-      const urlApiNextpackSidebar = '/trafico/get_destinos/' + tokenUser;
+      /* const urlApiNextpackSidebar = '/trafico/get_destinos/' + tokenUser; */
+      const urlApiNextpackSidebar = urlapi+'/trafico/get_destinos/' + tokenUser;
+      console.log(urlApiNextpackSidebar)
       await fetch(urlApiNextpackSidebar)
         .then((resp) => {
           return resp.json();
@@ -53,7 +57,7 @@ function App() {
     }
     
     const peticiones = async (tokenUser) => {
-      const urlApiNextpack = '/trafico/get_session_user/' + tokenUser;
+      const urlApiNextpack = urlapi + '/trafico/get_session_user/' + tokenUser;
       await fetch(urlApiNextpack)
         .then((resp) => {
           return resp.json();
