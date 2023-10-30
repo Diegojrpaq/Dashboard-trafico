@@ -2,6 +2,7 @@ import React from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { Table } from 'react-bootstrap';
+import { formattedNumber } from '../../utileria/utils';
 
 export default function TablePlaneacion({ nombreRuta, guiasPlaneadas, guiasEmbarcadas }) {
   //Sumas para el apartado de totales de lo planeado
@@ -83,9 +84,9 @@ export default function TablePlaneacion({ nombreRuta, guiasPlaneadas, guiasEmbar
             <td>Planeado</td>
             <td>{sumaPesoPlaneado} kg.</td>
             <td>{sumaVolumenPlaneado} mt3</td>
-            <td>$ {sumaFletePlaneado}</td>
-            <td>$ {sumaMontoPlaneado}</td>
-            <td>$ {sumaSubtotalPlaneado}</td>
+            <td>{formattedNumber(sumaFletePlaneado)}</td>
+            <td>{formattedNumber(sumaMontoPlaneado)}</td>
+            <td>{formattedNumber(sumaSubtotalPlaneado)}</td>
           </tr>
         </tbody>
         <thead>
@@ -103,9 +104,9 @@ export default function TablePlaneacion({ nombreRuta, guiasPlaneadas, guiasEmbar
             <td>Embarcado</td>
             <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaPesoEmbarcado} kg.</td>
             <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaVolumenEmbarcado} mt3</td>
-            <td>$ {guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaFleteEmbarcado}</td>
-            <td>$ {guiasEmbarcadas === null ? 0 : sumaMontoEmbarcado}</td>
-            <td>$ {guiasEmbarcadas === null ? 0 : sumaSubtotalEmbarcado}</td>
+            <td>$ {guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : formattedNumber(sumaFleteEmbarcado)}</td>
+            <td>$ {guiasEmbarcadas === null ? 0 : formattedNumber(sumaMontoEmbarcado)}</td>
+            <td>$ {guiasEmbarcadas === null ? 0 : formattedNumber(sumaSubtotalEmbarcado)}</td>
           </tr>
         </tbody>
       </Table>
