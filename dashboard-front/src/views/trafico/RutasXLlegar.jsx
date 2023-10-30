@@ -7,6 +7,7 @@ import SpinnerMain from '../../viewsItems/SpinnerMain'
 import { Accordion } from 'react-bootstrap';
 import { ConvertirFecha } from '../../utileria/utils'
 import { diferenciaFechas } from '../../utileria/utils'
+import { urlapi } from '../../utileria/config'
 
 export default function RutasXLlegar() {
 
@@ -15,7 +16,7 @@ export default function RutasXLlegar() {
 
   useEffect(() => {
     const peticiones = async (id) => {
-      const urlApiNextpack = '/trafico/get_viajesxllegar/' + idDestino;
+      const urlApiNextpack =urlapi + '/trafico/get_viajesxllegar/' + idDestino;
       await fetch(urlApiNextpack)
         .then((resp) => {
           return resp.json();
