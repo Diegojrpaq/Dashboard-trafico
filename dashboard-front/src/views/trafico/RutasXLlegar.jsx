@@ -8,6 +8,7 @@ import { Accordion } from 'react-bootstrap';
 import { ConvertirFecha } from '../../utileria/utils'
 import { diferenciaFechas } from '../../utileria/utils'
 import { urlapi } from '../../utileria/config'
+import { limpiado_de_viajes } from '../../utileria/utils'
 
 export default function RutasXLlegar() {
 
@@ -22,7 +23,7 @@ export default function RutasXLlegar() {
           return resp.json();
         }).then((data) => {
           if (data) {
-            setViajesList(data.viajes_activos) 
+            setViajesList(limpiado_de_viajes(data.viajes_activos, idDestino)) 
            //codigo si llego la info 
 
           }
@@ -41,7 +42,7 @@ if(viajesList !=null){
     <>
      <div className="col-12 col-md-12  p-1">
           <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-       <GraficaRutasXLlegar viajesList={viajesList } idDestino={idDestino}/>
+       <GraficaRutasXLlegar viajesList={viajesList} idDestino={idDestino}/>
        {
               viajesList && viajesList.map((ruta, index) => {
                 let guias;

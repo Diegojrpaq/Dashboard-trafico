@@ -70,3 +70,44 @@ export const formattedNumber = (number) => {
         currency: 'MXN'
       });
 }
+
+
+
+//funcion limpiadora de viajes solo posicion actual y una anterior destino
+export function limpiado_de_viajes(viajesActivos, idDestino) {
+    /* en esta funcion se va a hacer un filtrado de los viajes ya que solo 
+    se van a mostrar los que estan en curso pero solo los que estan en la ubicacion
+    o una posicion anterior a la posicion a continuacion esta la loguica que se sigue para
+    el split*/
+
+    /* // Supongamos que tienes el objeto JSON con el parámetro "orden_parada_directa"
+const dataFromJson = {
+// ... otras propiedades ...
+orden_parada_directa: ";3;1;",
+// ... otras propiedades ...
+};
+
+// Paso 1: Eliminar los caracteres ";" al principio y al final de la cadena
+const ordenParadaDirectaString = dataFromJson.orden_parada_directa;
+const ordenParadaDirectaCleaned = ordenParadaDirectaString.replace(/^;+|;+$/g, '');
+
+// Paso 2: Dividir la cadena en un arreglo utilizando ";" como separador
+const ordenParadaDirectaArray = ordenParadaDirectaCleaned.split(';');
+
+console.log(ordenParadaDirectaArray);
+// El resultado será un arreglo ['3', '1'] */
+    const viajes_filtrados = [];
+    let posicionSucursal = null;
+    for (let i = 0; i < viajesActivos.length; i++) {
+        const ordenParadaCleaned = viajesActivos[i].orden_parada_directa.replace(/^;+|;+$/g, '');
+        const ordenParadaDirectaArray = ordenParadaCleaned.split(';');
+        for (let j = 0; j < ordenParadaDirectaArray.length; j++) {
+            if (idDestino == ordenParadaDirectaArray[j]) {
+                posicionSucursal = j;
+            }
+        }
+        if (viajesActivos[i].IdUbicacionActual == ordenParadaDirectaArray[posicionSucursal] || viajesActivos[i].IdUbicacionActual == ordenParadaDirectaArray[posicionSucursal - 1])
+            viajes_filtrados.push(viajesActivos[i]);
+    }
+    return viajes_filtrados;
+}
