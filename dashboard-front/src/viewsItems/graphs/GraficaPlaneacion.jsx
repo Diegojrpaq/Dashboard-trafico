@@ -147,11 +147,11 @@ export default function Graph(props) {
           mt3_embarcados = ruta.catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
           //obtener sucursales de las guias embarcadas
           sucursales = ruta.catalogoGuiasEmbarcadas.reduce((result, guia) => {
-            const { id_sucursal, nombre_sucursal } = guia;
-            const existent = result.find((item) => item.id === id_sucursal);
+            const { sucursal_principal_id, sucursal_principal } = guia;
+            const existent = result.find((item) => item.id === sucursal_principal_id);
     
             if (!existent) {
-              result.push({ id: id_sucursal, nombre: nombre_sucursal });
+              result.push({ id: sucursal_principal_id, nombre: sucursal_principal });
             }
     
             return result;
@@ -200,7 +200,7 @@ export default function Graph(props) {
           pesoXsucursal.push(pesoGuia.toFixed(2));
 
           if (ruta.catalogoGuiasEmbarcadas != null) {
-            const guiasXsucursal = ruta.catalogoGuiasEmbarcadas.filter(guia => guia.id_sucursal === sucursalFinal.id);
+            const guiasXsucursal = ruta.catalogoGuiasEmbarcadas.filter(guia => guia.sucursal_principal_id === sucursalFinal.id);
             const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
             const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
             dataEjeY.push(volumenXsucursal);
