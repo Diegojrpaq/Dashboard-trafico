@@ -7,8 +7,9 @@ import SListItem from './SListItem';
 
 
 export default function SideBar2() {
-  const { destinosListState, toggleSidebar, sessionUserState } = useContext(globalData);
+  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar } = useContext(globalData);
   const destinosList = destinosListState;
+  const destinosXllegar = destinosListXllegar;
   let permisos = [];
   if (sessionUserState.User.permisos != null) { // Si el usuario tiene permisos que se agreguen al arreglo permisos
     permisos = [...sessionUserState.User.permisos];
@@ -90,7 +91,7 @@ export default function SideBar2() {
             permisos.includes(33) ?
               <SHeaderList title="Viajes por Llegar" icon='bi bi-airplane-fill' key={4} idcollapse='4'>
                 {
-                  destinosList && destinosList.map((destino) => {
+                  destinosXllegar && destinosXllegar.map((destino) => {
                     return (
                       <SListItem icon='bi bi-geo-alt mx-1' key={destino.id} url={'/trafico/viajesxllegar/' + destino.id}>{destino.nombre}</SListItem>
                     )

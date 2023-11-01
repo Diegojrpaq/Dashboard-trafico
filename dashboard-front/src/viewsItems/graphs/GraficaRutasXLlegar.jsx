@@ -50,8 +50,9 @@ export default function GraficaRutasXLlegar(props) {
             const nombre = context.dataset.label
             const peso = context.dataset.peso
             const volumen = value.toFixed(2)
-            if (value > 4) {
-                return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
+            const val = value/126;
+            if (val > 0.08) {
+                return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index].toFixed(2) + " Kg"}`
             } else {
                 return ""
             }

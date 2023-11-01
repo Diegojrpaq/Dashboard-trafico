@@ -20,6 +20,7 @@ function App() {
   const [rutaActual, setRutaActual] = useState(null);
   const [btnSwitch, setBtnSwitch] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [destinosListXllegar, setDestinosListXllegar] = useState(null);
 
 
 
@@ -43,6 +44,7 @@ function App() {
           if (data) {
 
             setDestinosList(data.Destinos)
+            setDestinosListXllegar(data.DestinosXllegar)
             //     Swal.fire(
             //   'Good job!',
             // 'Se recibio la informacion correctamente Nextpack',
@@ -166,7 +168,8 @@ function App() {
           btnSwitch, 
           setBtnSwitch, 
           toggleSidebar, 
-          setToggleSidebar
+          setToggleSidebar,
+          destinosListXllegar
         }}>
           <BrowserRouter>
             <Suspense>
