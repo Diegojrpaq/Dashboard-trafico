@@ -36,7 +36,6 @@ function App() {
     const peticionSidebar = async (tokenUser) => {
       /* const urlApiNextpackSidebar = '/trafico/get_destinos/' + tokenUser; */
       const urlApiNextpackSidebar = urlapi+'/trafico/get_destinos/' + tokenUser;
-      console.log(urlApiNextpackSidebar)
       await fetch(urlApiNextpackSidebar)
         .then((resp) => {
           return resp.json();
