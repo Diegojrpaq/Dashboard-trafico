@@ -82,7 +82,7 @@ export default function TableTreeEmbarcadas({ guiasPlaneadas, guiasEmbarcadas, c
     }
 
     return (
-        <div className="table-responsive">
+        <div className="card table-responsive">
             <TreeTable
                 value={dataGuias}
                 rowClassName={rowClassName}
