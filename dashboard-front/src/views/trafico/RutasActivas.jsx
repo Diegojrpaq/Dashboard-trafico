@@ -17,39 +17,50 @@ export default function RutasActivas() {
   const [catalogoDestinoFinal, setCatalogoDestinoFinal] = useState(null)
   const { destinosListState, btnSwitch } = useContext(globalData)
   const navigate = useNavigate();
+  const timer = 300000 // Duración de 1min, para 5 min son 300,000
+  const peticiones = async (id) => {
+    const urlApiNextpack = urlapi + '/trafico/get_viajeActivo/' + id;
+    await fetch(urlApiNextpack)
+      .then((resp) => {
+        return resp.json();
+      }).then((data) => {
+        /* setDestinosList(data) */
+        if (data) {
+          setViajesActivos(data.viajes_activos)
+          setCatalogoDestinoFinal(data.catalogoDestinos)
+
+          //     Swal.fire(
+          //   'Good job!',
+          // 'Se recibio la informacion correctamente Nextpack',
+          //'success'
+          //) 
+
+        }
+      }).catch(
+        () => console.log('Error al cargar los destinos')
+      )
+  }
 
   useEffect(() => {
-    const peticiones = async (id) => {
-      const urlApiNextpack = urlapi +'/trafico/get_viajeActivo/' + id;
-      await fetch(urlApiNextpack)
-        .then((resp) => {
-          return resp.json();
-        }).then((data) => {
-          /* setDestinosList(data) */
-          if (data) {
-            setViajesActivos(data.viajes_activos)
-            setCatalogoDestinoFinal(data.catalogoDestinos)
-
-            //     Swal.fire(
-            //   'Good job!',
-            // 'Se recibio la informacion correctamente Nextpack',
-            //'success'
-            //) 
-
-          }
-        }).catch(
-          () => console.log('Error al cargar los destinos')
-        )
-    }
     peticiones(idDestino)
+    if (!btnSwitch) {
+      const interval = setInterval(() => {
+        //console.log("Interval", idDestino)
+        peticiones(idDestino)
+      }, timer)
+      return () => {
+        clearInterval(interval)
+        setViajesActivos(null)
+      };
+    }
     return () => {
       setViajesActivos(null)
     };
-  }, [idDestino]);
+  }, [idDestino, btnSwitch]);
 
   const idDestinos = useMemo(() => [], [])
   const [indexAct, setIndexAct] = useState(0);
-  const timer = 60000 // Duración de 1min, para 5 min son 300,000
+
   destinosListState?.map((destino) => {
     idDestinos.push(destino.id)
   })

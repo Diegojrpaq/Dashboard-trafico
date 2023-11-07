@@ -7,6 +7,7 @@ import TableTreePlaneacion from '../../viewsItems/tables/TableTreePlaneacion';
 import TableTreeEmbarcadas from '../../viewsItems/tables/TableTreeEmbarcadas';
 import { globalData } from '../../App'
 import { urlapi } from '../../utileria/config';
+//import usePeriodicDataFetching from '../../utileria/usePeriodicDataFetching';
 
 export default function PlaneacionRutas() {
     const { idSucursal, idRuta } = useParams();
@@ -14,26 +15,77 @@ export default function PlaneacionRutas() {
     const [planRuta, setPlanRuta] = useState(null);
     const { destinosListState, btnSwitch } = useContext(globalData);
     const destinosList = destinosListState;
-    useEffect(() => {
-        const peticiones = async (id) => {
-            const urlApiNextpack = urlapi + '/trafico/get_planRuta/' + id;
-            await fetch(urlApiNextpack)
-                .then((resp) => {
-                    return resp.json();
-                }).then((data) => {
-                    if (data) {
-                        //console.log(data)
-                        setPlanRuta(data)
-                    }
-                }).catch(
-                    () => console.log('Error al cargar los destinos')
-                )
+    const timer = 300000 // Duración de 1min, para 5 min son 300,000
+    const peticiones = async (id) => {
+        const urlApiNextpack = urlapi + '/trafico/get_planRuta/' + id;
+        await fetch(urlApiNextpack)
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+                if (data) {
+                    //console.log(data)
+                    setPlanRuta(data)
+                }
+            }).catch(
+                () => console.log('Error al cargar los destinos')
+            )
+    }
+
+    const getData = async (rutaApi, id) => {
+        const urlApiNextpack = `${urlapi}${rutaApi}${id}`;
+        try {
+            const resp = await fetch(urlApiNextpack);
+            const data = await resp.json();
+            console.log(data);
+            if (data) {
+                return data;
+            }
+        } catch (error) {
+            console.log("Error al hacer la petición", error)
         }
+    }
+
+    // const actualizarData = async (btn, rutaApi, id, setter) => {
+        
+    //     if (btn !== true) {
+    //         const interval = setInterval(() => {
+    //             console.log(btn, "Boton")
+    //             console.log("Interval", id)
+    //             getData(rutaApi, id).then((data) => {
+    //                 console.log(data, "data");
+    //                 setter(data);
+    //             })
+    //         }, 10000)
+            
+    //             clearInterval(interval)
+    //             setter(null)
+            
+    //     }
+    // }
+    useEffect(() => {
         peticiones(idRuta)
+        // getData('/trafico/get_planRuta/', idRuta).then((data) => {
+        //     console.log(data, "data");
+        //     setPlanRuta(data);
+        // })
+        // if(!btnSwitch) {
+        //     actualizarData(btnSwitch, '/trafico/get_planRuta/', idRuta, setPlanRuta)
+        // }
+        if(!btnSwitch) {
+            const interval = setInterval(() => {
+                //console.log("Interval", idRuta)
+                peticiones(idRuta)
+            }, timer)
+            return () => {
+                clearInterval(interval)
+                setPlanRuta(null)
+            };
+        }
         return () => {
             setPlanRuta(null)
         };
-    }, [idRuta]);
+       
+    }, [idRuta, btnSwitch]);
 
     // //Obtener las sucursales que tengan rutas
     let sucursalesConRutas = [];
@@ -48,7 +100,7 @@ export default function PlaneacionRutas() {
     //Iterar las rutas de cada sucursal
     const idRutas = []
     const [indexAct, setIndexAct] = useState(0);
-    const timer = 10000 // Duración de 1min, para 5 min son 300,000
+
     sucursalesConRutas?.map((sucursal) => {
         const idSuc = Number(idSucursal);
         if (sucursal.id_sucursal === idSuc) {
