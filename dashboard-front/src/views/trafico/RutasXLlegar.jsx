@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext, useMemo} from 'react'
 import { useParams, useNavigate } from 'react-router'
 import GraficaRutasXLlegar from '../../viewsItems/graphs/GraficaRutasXLlegar'
 import TableViajesActivos from '../../viewsItems/tables/TableViajesActivos'
-import TableRutaXLlegar from '../../viewsItems/tables/TableRutaXLlegar'
 import SpinnerMain from '../../viewsItems/SpinnerMain'
 import { Accordion } from 'react-bootstrap';
 import { ConvertirFecha } from '../../utileria/utils'
