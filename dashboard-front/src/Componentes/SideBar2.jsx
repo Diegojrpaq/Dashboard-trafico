@@ -107,7 +107,9 @@ export default function SideBar2() {
           <SListItem icon='bi bi-geo-alt mx-1'>Irapuato</SListItem>
           <SListItem icon='bi bi-geo-alt mx-1'>Aguascalientes</SListItem>
           <SListItem icon='bi bi-geo-alt mx-1'>CD. Obregon</SListItem> */}
+          <SListItem icon='bi bi-geo-alt mx-2' url={'/trafico/viajesHistorico'}>Historico</SListItem>
         </SHeaderList>
+        
 
         {/*   <SHeaderList title="Ventas" icon='bi bi-coin' idcollapse='4'>
           <SListItem>hello</SListItem>

@@ -27,6 +27,7 @@ const RutasActivas = React.lazy(()=> import('./views/trafico/RutasActivas'))
 const RutasXLlegar = React.lazy(()=> import('./views/trafico/RutasXLlegar'))
 const Rutaprueba = React.lazy(()=> import('./Componentes/GraficaBarrasPruebaTopher'))
 const planRutas = React.lazy(()=> import('./views/trafico/PlaneacionRutas'))
+const viajesHistorico = React.lazy(()=> import('./views/trafico/ViajesHistorico'))
 
 //Arreglo de rutas
 const routes_secondary = [
@@ -36,6 +37,7 @@ const routes_secondary = [
     {path: '/trafico/viajesxllegar/:idDestino', name: 'Rutas_por_llegar', element: RutasXLlegar},
     {path: '/prueba', name: 'Rutas_por_llegar', element: Rutaprueba},
     {path: '/trafico/planeacion/:idSucursal/:idRuta', name: 'Planeacion', element: planRutas},
+    {path: '/trafico/viajesHistorico', name: 'viajeHistorico', element: viajesHistorico},
 ]
 //-------------------------------------Fin segundo menu de rutas--------------------------------
 

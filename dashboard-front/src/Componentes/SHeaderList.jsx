@@ -8,7 +8,7 @@ export default function SHeaderList(props) {
     }
     return (
         <>
-            <div onClick={handleClic} className='headerlist'>
+            <div onClick={handleClic} className='headerlist my-2'>
                 <a
                     href={'#' + props.idcollapse}
                     className='btn-collapse d-flex bd-highlight'
