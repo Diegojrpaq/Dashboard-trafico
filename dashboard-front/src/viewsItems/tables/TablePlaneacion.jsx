@@ -4,15 +4,15 @@ import 'primereact/resources/primereact.css';
 import { Table } from 'react-bootstrap';
 import { formattedNumber } from '../../utileria/utils';
 
-export default function TablePlaneacion({ nombreRuta, guiasPlaneadas, guiasEmbarcadas }) {
+export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas }) {
   //Sumas para el apartado de totales de lo planeado
   const sumaVolumenPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
-    const suma = acumulador + elemento.cotizacion_principal_volumen;
+    const suma = acumulador + elemento.volumen;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
   const sumaPesoPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
-    const suma = acumulador + elemento.cotizacion_principal_peso;
+    const suma = acumulador + elemento.peso;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
@@ -104,9 +104,9 @@ export default function TablePlaneacion({ nombreRuta, guiasPlaneadas, guiasEmbar
             <td>Embarcado</td>
             <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaPesoEmbarcado} kg.</td>
             <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaVolumenEmbarcado} mt3</td>
-            <td>$ {guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : formattedNumber(sumaFleteEmbarcado)}</td>
-            <td>$ {guiasEmbarcadas === null ? 0 : formattedNumber(sumaMontoEmbarcado)}</td>
-            <td>$ {guiasEmbarcadas === null ? 0 : formattedNumber(sumaSubtotalEmbarcado)}</td>
+            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? "$0" : formattedNumber(sumaFleteEmbarcado)}</td>
+            <td>{guiasEmbarcadas === null ? "$0" : formattedNumber(sumaMontoEmbarcado)}</td>
+            <td>{guiasEmbarcadas === null ? "$0" : formattedNumber(sumaSubtotalEmbarcado)}</td>
           </tr>
         </tbody>
       </Table>
