@@ -6,6 +6,7 @@ import 'primereact/resources/primereact.css';
 import '../../Css/viewViajesHistorico.css';
 import { urlapi } from '../../utileria/config';
 import { Dropdown } from 'primereact/dropdown';
+import { addLocale } from 'primereact/api';
 
 export default function ViajesHistorico() {
 
@@ -14,16 +15,18 @@ export default function ViajesHistorico() {
   const [selectedDestino, setselectedDestino] = useState(null);
   const [selectedViaje, setselectedViaje] = useState(null);
   const [peticionBackEnd, setPeticionBackend] = useState(null);
+  const [optionDestino, setOptionDestino]= useState(null);
 
 
   const peticiones = async () => {
-    const urlApiNextpack = urlapi + '/trafico/get_destinos/';
+    const urlApiNextpack = urlapi + '/trafico/get_destinos';
     await fetch(urlApiNextpack)
       .then((resp) => {
         return resp.json();
       }).then((data) => {
         if (data) {
           console.log(data)
+          setOptionDestino(data.Destinos)
         }
 
       }).catch(
@@ -32,7 +35,7 @@ export default function ViajesHistorico() {
   }
 
   useEffect(() => {
-
+    peticiones();
   }, []);
 
 
@@ -49,25 +52,13 @@ export default function ViajesHistorico() {
     console.log(selectedViaje, "Viaje")
     
     setPeticionBackend(true);
-    setselectedViaje(null);
   }, [selectedViaje]);
 
   useEffect(() => {
     
   }, [peticionBackEnd]);
 
-  const optionDestino = [
-    { name: 'Australia', code: 'AU' },
-    { name: 'Brazil', code: 'BR' },
-    { name: 'China', code: 'CN' },
-    { name: 'Egypt', code: 'EG' },
-    { name: 'France', code: 'FR' },
-    { name: 'Germany', code: 'DE' },
-    { name: 'India', code: 'IN' },
-    { name: 'Japan', code: 'JP' },
-    { name: 'Spain', code: 'ES' },
-    { name: 'United States', code: 'US' }
-  ];
+  
 
   const optionViajes = [
     { name: 'Australia', code: 'AU' },
@@ -86,7 +77,7 @@ export default function ViajesHistorico() {
     if (option) {
       return (
         <div className="flex align-items-center">
-          <div>{option.name}</div>
+          <div>{option.nombre}</div>
         </div>
       );
     }
@@ -96,27 +87,37 @@ export default function ViajesHistorico() {
   const countryOptionTemplate = (option) => {
     return (
       <div className="flex align-items-center">
-        <div>{option.name}</div>
+        <div>{option.nombre}</div>
       </div>
     );
   };
 
+  addLocale('es', {
+    firstDayOfWeek: 1,
+    showMonthAfterYear: true,
+    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+    today: 'Hoy',
+    clear: 'Limpiar'
+});
 
 
   return (
     <>
       <div className="col-sm-12 col-md-6 col-lg-4 py-3 px-3">
         <div className="card shadow justify-content-center">
-          <Calendar value={date} onChange={(e) => setDate(e.value)} dateFormat="dd/MM/yy" showIcon />
+          <Calendar locale="es" value={date} onChange={(e) => setDate(e.value)} dateFormat="dd/MM/yy" showIcon readOnlyInput  />
         </div>
       </div>
       <div className="col-sm-12 col-md-6 col-lg-4 py-3 px-3">
 
       <div className="card flex shadow justify-content-center">
-          <Dropdown disabled={date === null}  value={selectedDestino} onChange={(e) => setselectedDestino(e.value)} options={optionDestino} optionLabel="name"
+          <Dropdown disabled={date === null}  value={selectedDestino} onChange={(e) => setselectedDestino(e.value)} options={optionDestino} optionLabel="nombre"
             placeholder="Selecciona un Destino" className="w-full md:w-14rem" filter  />
         </div>
-
       </div>
       <div className="col-sm-12 col-md-12 col-lg-4 py-3 px-3">
         <div className="card flex shadow justify-content-center">
