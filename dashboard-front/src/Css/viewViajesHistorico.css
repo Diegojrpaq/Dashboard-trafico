@@ -1,0 +1,19 @@
+@import 'App.css';
+
+.p-calendar{
+    height: 2.3rem;
+}
+
+#dropdownMenu2{
+    width: 100%;
+    background-color: white;
+    color: black;
+}
+
+.p-dropdown{
+    height: 2.3rem;
+}
+.p-dropdown-label{
+    padding-top: .4rem !important;     
+}
+
