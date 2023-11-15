@@ -35,7 +35,8 @@ export default function Graph(props) {
   const colores = catalogoColores.colores
   const coloresBorder = catalogoColores.coloresBorder;
   const nombreRuta = props.planRuta?.rutas[0]?.nombre
-
+  const volumenMaxRuta = props.planRuta?.rutas[0]?.volumenMaxRuta;
+  //const volumenMaxRuta = 20;
   //Configuración de los datalabels
   const confDataLabels = {
     formatter: function (value, context) {
@@ -83,24 +84,24 @@ export default function Graph(props) {
       label.push("Planeado");
       labelRutas.push(label);
       label = [];
-      capacidadesCarga.push(ruta.Volumen_carga_maxima);
-      metrosLibres.push(100 - mt3_embarcados);
+      volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
+      metrosLibres.push(volumenMaxRuta - mt3_embarcados);
     })
 
     let sucursales = [];
     planRutasList?.map((ruta) => {
-      if(ruta.id_viaje_act !== null) {
+      if (ruta.id_viaje_act !== null) {
         if (ruta.catalogoGuiasEmbarcadas !== null) {
           mt3_embarcados = ruta.catalogoGuiasEmbarcadas.reduce((total, guia) => total + guia.volumen, 0);
           //obtener sucursales de las guias embarcadas
           sucursales = ruta.catalogoGuiasEmbarcadas.reduce((result, guia) => {
             const { sucursal_ubicacion_id, sucursal_ubicacion } = guia;
             const existent = result.find((item) => item.id === sucursal_ubicacion_id);
-    
+
             if (!existent) {
               result.push({ id: sucursal_ubicacion_id, nombre: sucursal_ubicacion });
             }
-    
+
             return result;
           }, []);
         } else {
@@ -111,21 +112,22 @@ export default function Graph(props) {
         label.push("Embarcado");
         labelRutas.push(label);
         label = [];
-        capacidadesCarga.push(ruta.Volumen_carga_maxima);
-        metrosLibres.push(100 - mt3_embarcados);
+        //capacidadesCarga.push(ruta.Volumen_carga_maxima);
+        volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
+        metrosLibres.push(volumenMaxRuta - mt3_embarcados);
       }
     })
 
     let todasSucursales;
     let sucSinRepetir;
-    if(sucursales.length > 0) {
+    if (sucursales.length > 0) {
       //obtnener todas las sucursales y que no se repitan
       todasSucursales = [...catalogoSucursales, ...sucursales]
       sucSinRepetir = Array.from(new Set(todasSucursales.map(JSON.stringify))).map(JSON.parse);
     } else {
-      sucSinRepetir =  [...catalogoSucursales];
+      sucSinRepetir = [...catalogoSucursales];
     }
-   
+
     const ConstruirEjeY = () => {
       const dataSetConstruido = [];
       let dataEjeY = [];
@@ -169,7 +171,8 @@ export default function Graph(props) {
 
       return dataSetConstruido;
     }
-    const maximoEjeX = 100
+    let totalVolMaxGrafica = Math.max(...capacidadesCarga);
+    let maximoEjeX = 10 + Math.max(...capacidadesCarga)
 
     let myoptions = {
       responsive: true,
@@ -196,7 +199,23 @@ export default function Graph(props) {
           beginAtZero: false, // Asegura que el eje X no empiece en 0
           min: 0, // Establece el mínimo del eje X en 100
           max: maximoEjeX,
-
+          grid: {
+            //Cambia el color de la linea de la grafica a rojo cuando se sobrepasa el volumen
+            color: function (context) {
+              if (totalVolMaxGrafica > volumenMaxRuta) {
+                if (context.tick.value === volumenMaxRuta) {
+                  return "red"
+                }
+              }
+              return "#e7e7ea"
+            },
+            lineWidth: function (context) {
+              if (context.tick.value === volumenMaxRuta) {
+                return 3
+              }
+              return 1
+            }
+          },
         },
         y: {
           stacked: true,
@@ -220,6 +239,13 @@ export default function Graph(props) {
             options={myoptions}
           />
         </div>
+        {
+          totalVolMaxGrafica > volumenMaxRuta ?
+            <div class="alert alert-danger mt-2 fs-5" role="alert">
+              <i class="bi bi-exclamation-triangle-fill"></i> Sobrepasaste el límite del volumen
+            </div>
+            : <></>
+        }
 
       </>
     )
