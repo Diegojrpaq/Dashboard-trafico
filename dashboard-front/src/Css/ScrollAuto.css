@@ -1,0 +1,13 @@
+#scrolling-element {
+    animation: scroll 90s linear infinite;
+  }
+  
+  @keyframes scroll {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-40%);
+    }
+  }
+  

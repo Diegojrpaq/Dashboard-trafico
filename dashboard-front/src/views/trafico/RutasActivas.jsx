@@ -8,6 +8,7 @@ import { ConvertirFecha } from '../../utileria/utils'
 import { diferenciaFechas } from '../../utileria/utils'
 import { globalData } from '../../App'
 import { urlapi } from '../../utileria/config'
+import '../../Css/ScrollAuto.css'
 
 export default function RutasActivas() {
 
@@ -76,10 +77,12 @@ export default function RutasActivas() {
     }
   }, [navigate, indexAct, idDestinos, btnSwitch])
 
+  const totalViajes = viajesActivos?.length;
+
   if (viajesActivos != null) {
     return (
       <>
-        <div className="col-12 col-md-12  p-1">
+        <div id={totalViajes > 6 ? "scrolling-element" : ""} className="col-12 col-md-12  p-1">
           <div className="col-item shadow p-3 mb-4 mx-0 rounded">
             <GraficaRutasActivas viajesList={viajesActivos} catalogoDestinoFinal={catalogoDestinoFinal} />
 
