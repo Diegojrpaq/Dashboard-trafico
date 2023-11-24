@@ -3,7 +3,7 @@ import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import {formatearFecha, CalcularAnchoBarra, limpiado_de_viajes} from '../../utileria/utils'
+import { formatearFecha, CalcularAnchoBarra, limpiado_de_viajes } from '../../utileria/utils'
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -32,7 +32,7 @@ Chartjs.register(
 
 export default function GraficaRutasXLlegar(props) {
     /* Variables de Estilo  */
-  
+
     const viajesList = props.viajesList
     const catalogoDestinoFinal = props.catalogoDestinoFinal
     const colorEspacioLibre = catalogoColores.colores[100].color;
@@ -43,14 +43,14 @@ export default function GraficaRutasXLlegar(props) {
       const colorEspacioLibreBorder='rgb(175,203,246)' */
 
     /* Variables de Estilo  fin */
-       //Configuración de los datalabels
-       const confDataLabels = {
+    //Configuración de los datalabels
+    const confDataLabels = {
         formatter: function (value, context) {
             const index = context.dataIndex
             const nombre = context.dataset.label
             const peso = context.dataset.peso
             const volumen = value.toFixed(2)
-            const val = value/126;
+            const val = value / 126;
             if (val > 0.08) {
                 return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index].toFixed(2) + " Kg"}`
             } else {
@@ -74,8 +74,8 @@ export default function GraficaRutasXLlegar(props) {
 
     /* Ejecucion de la lista si esque existe variables */
     if (props.viajesList != null) {
-        
-      
+
+
 
 
         const listaViajes = props.viajesList
@@ -104,16 +104,16 @@ export default function GraficaRutasXLlegar(props) {
             viaje.Caja && label.push(viaje.Caja)
             labelRutas.push(label)
             label = [];
-            viaje.Volumen_carga_maxima === 0 ? capacidadesCarga.push(mt3_embarcados):capacidadesCarga.push(viaje.Volumen_carga_maxima)
+            viaje.Volumen_carga_maxima === 0 ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(viaje.Volumen_carga_maxima)
             metrosLibres.push(viaje.Volumen_carga_maxima - mt3_embarcados)
-            
-        /*     
-            label.push(viaje.nombre)
-            label.push(viaje.fecha_registro)
-            label.push(viaje.Clave_vehiculo)
-            viaje.Caja && label.push(viaje.Caja)
-            /* label.push(viajeActivo.Volumen_carga_max+' '+'Mt3'); */
-           /* etiquetaNomViajes.push(label) */
+
+            /*     
+                label.push(viaje.nombre)
+                label.push(viaje.fecha_registro)
+                label.push(viaje.Clave_vehiculo)
+                viaje.Caja && label.push(viaje.Caja)
+                /* label.push(viajeActivo.Volumen_carga_max+' '+'Mt3'); */
+            /* etiquetaNomViajes.push(label) */
 
             if (viaje.catalogoGuias !== null) {
                 viaje.catalogoGuias.map((guia) => {
@@ -230,7 +230,7 @@ export default function GraficaRutasXLlegar(props) {
 
 
         let maximoEjeX = 10 + Math.max(...capacidadesCarga)
-       
+
 
         const { porcentajeAnchoBarra, heightGraph } = CalcularAnchoBarra(listaViajes.length)
 

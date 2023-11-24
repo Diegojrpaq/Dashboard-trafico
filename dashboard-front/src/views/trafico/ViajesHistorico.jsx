@@ -7,130 +7,287 @@ import '../../Css/viewViajesHistorico.css';
 import { urlapi } from '../../utileria/config';
 import { Dropdown } from 'primereact/dropdown';
 import { addLocale } from 'primereact/api';
+import SpinnerMain from '../../viewsItems/SpinnerMain'
+import TimeLine from '../../viewsItems/TimeLine';
+
+
 
 export default function ViajesHistorico() {
 
-
+  const [rangoFechas, setRangofechas] = useState(null);
   const [date, setDate] = useState(null);
+  const [infoGlobal, setInfoGlobal] = useState(null);
+  const [destinosList, setDestinosList] = useState(null);
   const [selectedDestino, setselectedDestino] = useState(null);
+  const [viajesList, setViajesList] = useState(null);
   const [selectedViaje, setselectedViaje] = useState(null);
+  const [infoViaje, setInfoViaje] = useState(null)
   const [peticionBackEnd, setPeticionBackend] = useState(null);
-  const [optionDestino, setOptionDestino]= useState(null);
+  const [listParadas, setListParadas] = useState(null)
+
+  const [optionDestino, setOptionDestino] = useState(null);
 
 
-  const peticiones = async () => {
-    const urlApiNextpack = urlapi + '/trafico/get_destinos';
+  const peticion = async () => {
+    const urlApiNextpack = urlapi + '/trafico/get_dateValidation';
     await fetch(urlApiNextpack)
       .then((resp) => {
         return resp.json();
       }).then((data) => {
         if (data) {
-          console.log(data)
-          setOptionDestino(data.Destinos)
+          setRangofechas(data.Rango)
         }
 
       }).catch(
-        () => console.log('Error al cargar los destinos')
+        () => console.log('Error al cargar las fechas')
+      )
+  }
+  const peticionInfoField = async () => {
+    const fechaAConsultar = date && date.toISOString().split('T')[0].replace(/-/g, '')
+    const urlApiNextpack = urlapi + '/trafico/get_infoHistorico/' + fechaAConsultar;
+    await fetch(urlApiNextpack)
+      .then((resp) => {
+        return resp.json();
+      }).then((data) => {
+        if (data) {
+          setInfoGlobal(data.infoSelected)
+        }
+      }).catch(
+        () => console.log('Error al cargar los destinos y viajes')
+      )
+  }
+  const peticionViaje = async () => {
+    const urlApiNextpack = urlapi + '/trafico/get_viajeHistorico/' + selectedViaje.id_viaje;
+    await fetch(urlApiNextpack)
+      .then((resp) => {
+        return resp.json();
+      }).then((data) => {
+        if (data) {
+          
+          setInfoViaje(data.viaje)
+          setPeticionBackend(false)
+          setListParadas(generarParadas(data.viaje.Bitacora))
+        }
+      }).catch(
+        () => console.log('Error al cargar los destinos y viajes')
       )
   }
 
+  const generarParadas = (bitacora) => {
+    const listTemp = [{ id: null, nombre: null }];
+
+    if (bitacora !== null) {
+
+      bitacora.forEach(element => {
+        const existeOrigen = listTemp.some(
+          (destino) => destino.nombre === element.Origen_Salida
+        );
+
+        if (!existeOrigen) {
+          listTemp.push({
+            id: element.Origen_id,
+            nombre: element.Origen_Salida
+          })
+        }
+        const existeDestino = listTemp.some(
+          (destino) => destino.nombre === element.Destino_Llegada
+        );
+
+        if (!existeDestino) {
+          listTemp.push({
+            id: element.Destino_id,
+            nombre: element.Destino_Llegada
+          })
+        }
+
+      });
+      // Elimina el elemento de inicialización
+      listTemp.shift();
+
+      return listTemp;
+    }
+  }
+
+
+
   useEffect(() => {
-    peticiones();
+    peticion();
   }, []);
 
 
-
   useEffect(() => {
-    console.log(date, "Fecha")
+    if (date !== null) {
+      setInfoGlobal(null)
+      setDestinosList(null)
+      setselectedDestino(null)
+      setViajesList(null)
+      setselectedViaje(null)
+      //setInfoViaje(null)
+      peticionInfoField();
+    }
   }, [date]);
 
   useEffect(() => {
-    console.log(selectedDestino, "Destino")
+    if (infoGlobal !== null) {
+      let listaTemporal = [{ id_destino: null, nombre_destino: null }];
+
+      infoGlobal.forEach((elemento) => {
+        const existeDestino = listaTemporal.some(
+          (destino) => destino.nombre_destino === elemento.nombre_destino
+        );
+
+        if (!existeDestino) {
+          listaTemporal.push({
+            id_destino: elemento.id_destino,
+            nombre_destino: elemento.nombre_destino,
+          });
+        }
+      });
+      // Elimina el elemento de inicialización
+      listaTemporal.shift();
+      setDestinosList(listaTemporal)
+    }
+  }, [infoGlobal]);
+
+  useEffect(() => {
+    if (selectedDestino !== null) {
+      const listaTemporal = infoGlobal.filter(destino => destino.nombre_destino === selectedDestino.nombre_destino)
+      setViajesList(listaTemporal)
+    }
   }, [selectedDestino]);
 
   useEffect(() => {
-    console.log(selectedViaje, "Viaje")
-    
-    setPeticionBackend(true);
+    if (selectedViaje !== null) {
+      setPeticionBackend(true)
+      peticionViaje();
+
+    }
   }, [selectedViaje]);
 
-  useEffect(() => {
-    
-  }, [peticionBackEnd]);
 
-  
 
-  const optionViajes = [
-    { name: 'Australia', code: 'AU' },
-    { name: 'Brazil', code: 'BR' },
-    { name: 'China', code: 'CN' },
-    { name: 'Egypt', code: 'EG' },
-    { name: 'France', code: 'FR' },
-    { name: 'Germany', code: 'DE' },
-    { name: 'India', code: 'IN' },
-    { name: 'Japan', code: 'JP' },
-    { name: 'Spain', code: 'ES' },
-    { name: 'United States', code: 'US' }
-  ];
+  if (rangoFechas !== null) {
 
-  const selectedCountryTemplate = (option, props) => {
-    if (option) {
+    // Extraer partes de la cadena de fecha
+    let yearMin = parseInt(rangoFechas.fechaMin.substring(0, 4));
+    let monthMin = parseInt(rangoFechas.fechaMin.substring(4, 6)) - 1; // Restar 1 al mes (ya que los meses en JavaScript se indexan desde 0)
+    let dayMin = parseInt(rangoFechas.fechaMin.substring(6, 8));
+
+    let yearMax = parseInt(rangoFechas.fechaMax.substring(0, 4));
+    let monthMax = parseInt(rangoFechas.fechaMax.substring(4, 6)) - 1;
+    let dayMax = parseInt(rangoFechas.fechaMax.substring(6, 8));
+
+    // Crear objetos de fecha
+    let minDate = new Date(yearMin, monthMin, dayMin);
+    let maxDate = new Date(yearMax, monthMax, dayMax);
+
+
+
+    const selectedCountryTemplate = (option, props) => {
+      if (option) {
+        return (
+          <div className="flex align-items-center">
+            <div>{option.nombre}</div>
+          </div>
+        );
+      }
+      return <span>{props.placeholder}</span>;
+    };
+
+    const countryOptionTemplate = (option) => {
       return (
         <div className="flex align-items-center">
           <div>{option.nombre}</div>
         </div>
       );
-    }
-    return <span>{props.placeholder}</span>;
-  };
+    };
 
-  const countryOptionTemplate = (option) => {
+    addLocale('es', {
+      firstDayOfWeek: 1,
+      showMonthAfterYear: true,
+      dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+      dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+      dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
+      monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+      monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+      today: 'Hoy',
+      clear: 'Limpiar'
+    });
+
+
+
     return (
-      <div className="flex align-items-center">
-        <div>{option.nombre}</div>
-      </div>
-    );
-  };
-
-  addLocale('es', {
-    firstDayOfWeek: 1,
-    showMonthAfterYear: true,
-    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-    dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-    dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
-    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-    today: 'Hoy',
-    clear: 'Limpiar'
-});
-
-
-  return (
-    <>
-      <div className="col-sm-12 col-md-6 col-lg-4 py-3 px-3">
-        <div className="card shadow justify-content-center">
-          <Calendar locale="es" value={date} onChange={(e) => setDate(e.value)} dateFormat="dd/MM/yy" showIcon readOnlyInput  />
+      <>
+        <div className="col-sm-12 col-md-6 col-lg-4 py-3 px-3">
+          <div className="card shadow justify-content-center">
+            <Calendar locale="es" value={date} onChange={(e) => setDate(e.value)} dateFormat="dd/MM/yy" minDate={minDate} maxDate={maxDate} showIcon readOnlyInput />
+          </div>
         </div>
-      </div>
-      <div className="col-sm-12 col-md-6 col-lg-4 py-3 px-3">
+        <div className="col-sm-12 col-md-6 col-lg-4 py-3 px-3">
 
-      <div className="card flex shadow justify-content-center">
-          <Dropdown disabled={date === null}  value={selectedDestino} onChange={(e) => setselectedDestino(e.value)} options={optionDestino} optionLabel="nombre"
-            placeholder="Selecciona un Destino" className="w-full md:w-14rem" filter  />
+          <div className="card flex shadow justify-content-center">
+            <Dropdown disabled={destinosList === null} value={selectedDestino} onChange={(e) => setselectedDestino(e.value)} options={destinosList} optionLabel="nombre_destino"
+              placeholder="Selecciona un Destino" className="w-full md:w-14rem" filter />
+          </div>
         </div>
-      </div>
-      <div className="col-sm-12 col-md-12 col-lg-4 py-3 px-3">
-        <div className="card flex shadow justify-content-center">
-          <Dropdown disabled={selectedDestino === null} value={selectedViaje} onChange={(e) => setselectedViaje(e.value)} options={optionViajes} optionLabel="name"
-            placeholder="Selecciona un Viaje" className="w-full md:w-14rem" filter  />
+        <div className="col-sm-12 col-md-12 col-lg-4 py-3 px-3">
+          <div className="card flex shadow justify-content-center">
+            <Dropdown disabled={viajesList === null} value={selectedViaje} onChange={(e) => setselectedViaje(e.value)} options={viajesList} optionLabel="nombre_viaje"
+              placeholder="Selecciona un Viaje" className="w-full md:w-14rem" filter />
+          </div>
         </div>
-      </div>
+
+        {/* {
+          infoViaje ? <SpinnerMain /> : <LayoutViaje />
+        } */}
+        <LayoutViaje info={infoViaje} peticion={peticionBackEnd} listParadas={listParadas}/>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <SpinnerMain />
+      </>
+    )
+  }
+}
+
+
+function LayoutViaje(props) {
+  const viaje = props.info
+  if (props.peticion === null) {
+    return (
       <div className="col-12 col-md-12  p-1">
         <div className="col-item shadow p-3 mb-4 mx-0 rounded">
           <h1 className='text-black'>Viajes Historico</h1>
+          <div className='timeLineContainer'>
+          </div>
           <h3>Porfavor selecciona fecha y viaje  a visualizar</h3>
         </div>
       </div>
-    </>
-  )
+    )
+  } else if (props.peticion === true) {
+    return (
+      <div className="col-12 col-md-12  p-1">
+        <div className="col-item shadow p-3 mb-4 mx-0 rounded">
+          <SpinnerMain></SpinnerMain>
+        </div>
+      </div>
+    )
+  }
+  else {
+    return (
+      <div className="col-12 col-md-12  p-1">
+        <div className="col-item shadow p-3 mb-4 mx-0 rounded">
+          <TimeLine ListParadas={props.listParadas}></TimeLine>
+          <h1>Grafica</h1>
+          <h1>Tablas</h1>
+        </div>
+      </div>
+    )
+  }
 }
+
+
+
+

@@ -37,7 +37,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Run Chrome",
-            "url": "http://localhost:3000/trafico/viajesxllegar/7",
+            "url": "http://localhost:3000/trafico/viajesHistorico",
             "webRoot": "${workspaceFolder}"
         }
     ],

@@ -1,5 +1,5 @@
 import React from 'react';
-import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
+import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
