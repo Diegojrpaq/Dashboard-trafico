@@ -29,7 +29,7 @@ export default function TablasHistorico(props) {
                                 <div className='container'>
                                     <div className="col fs-5">{parada.nombre}</div>
                                     <div className='row  p-1 mb-2 mt-1'>
-                                        <div className="col fs-5 text-success ">SUBIDO <i class="bi bi-arrow-right-square-fill"></i></div>
+                                        <div className="col fs-5 text-success ">SUBIDO <i className="bi bi-arrow-right-square-fill"></i></div>
                                         <div className="col">Volumen: x</div>
                                         <div className="col">Peso: x</div>
                                     </div>
