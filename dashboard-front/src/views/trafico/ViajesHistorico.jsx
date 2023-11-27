@@ -9,8 +9,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { addLocale } from 'primereact/api';
 import SpinnerMain from '../../viewsItems/SpinnerMain'
 import TimeLine from '../../viewsItems/TimeLine';
-import { Accordion } from 'react-bootstrap';
-import TablaBitacora from '../../viewsItems/tables/TablaBitacora';
+import TablasHistorico from '../../viewsItems/tables/TablasHistorico';
 
 
 
@@ -284,49 +283,7 @@ function LayoutViaje(props) {
         <div className="col-item shadow p-3 mb-4 mx-0 rounded">
           <TimeLine ListParadas={props.listParadas}></TimeLine>
           <h1>Grafica</h1>
-          <Accordion>
-            <Accordion.Item>
-              <Accordion.Header>
-                <div className='container'>
-                  <div className='row fs-5'>
-                    Bitacora
-                  </div>
-                </div>
-              </Accordion.Header>
-              <Accordion.Body>
-                <TablaBitacora info={props.info} />
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-
-          {/* {
-            props?.listParadas?.map((parada, index) => (
-              <Accordion key={index}>
-              <Accordion.Item eventKey={index}>
-                <Accordion.Header>
-                  <div className='container'>
-                    <div className='row'>
-                      <div className="col">{parada.nombre}</div>
-                    </div>
-                  </div>
-                </Accordion.Header>
-                <Accordion.Body>
-                  {
-                    props.info.Bitacora.map((obj, index) => {
-                      console.log(obj.Origen_Salida, parada.nombre , "Compar")
-                      if(obj.Origen_Salida === parada.nombre) {
-                        return (
-                          <TablaBitacora info={props.info.Bitacora[index]}/>
-                        )
-                      }
-                    })
-                  }
-                  
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-            ))
-          } */}
+          <TablasHistorico info={viaje} paradas={props.listParadas} />
         </div>
       </div>
     )
