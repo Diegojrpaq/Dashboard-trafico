@@ -34,7 +34,7 @@ export default function TablasHistorico(props) {
                                         <div className="col">Peso: x</div>
                                     </div>
                                     <div className='row p-1 mb-2 mt-1'>
-                                        <div className="col fs-5 text-danger">BAJADO <i class="bi bi-arrow-left-square-fill"></i></div>
+                                        <div className="col fs-5 text-danger">BAJADO <i className="bi bi-arrow-left-square-fill"></i></div>
                                         <div className="col">Volumen: x</div>
                                         <div className="col">Peso: x</div>
                                     </div>
