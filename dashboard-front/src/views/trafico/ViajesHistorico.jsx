@@ -10,6 +10,7 @@ import { addLocale } from 'primereact/api';
 import SpinnerMain from '../../viewsItems/SpinnerMain'
 import TimeLine from '../../viewsItems/TimeLine';
 import GraficaHistorico from '../../viewsItems/graphs/GraficaHistorico';
+import TablasHistorico from '../../viewsItems/tables/TablasHistorico';
 
 
 
@@ -62,7 +63,7 @@ export default function ViajesHistorico() {
         return resp.json();
       }).then((data) => {
         if (data) {
-          console.log(data)
+          
           setInfoViaje(data.viaje)
           setPeticionBackend(false)
           setListParadas(generarParadas(data.viaje.Bitacora))
@@ -239,7 +240,7 @@ export default function ViajesHistorico() {
         {/* {
           infoViaje ? <SpinnerMain /> : <LayoutViaje />
         } */}
-        <LayoutViaje info={infoViaje} peticion={peticionBackEnd} listParadas={listParadas}/>
+        <LayoutViaje info={infoViaje} peticion={peticionBackEnd} listParadas={listParadas} />
       </>
     )
   } else {
@@ -254,6 +255,7 @@ export default function ViajesHistorico() {
 
 function LayoutViaje(props) {
   const viaje = props.info
+  //console.log(props, "Datos")
   if (props.peticion === null) {
     return (
       <div className="col-12 col-md-12  p-1">
@@ -279,7 +281,7 @@ function LayoutViaje(props) {
       <div className="col-12 col-md-12  p-1">
         <div className="col-item shadow p-3 mb-4 mx-0 rounded">
           <TimeLine ListParadas={props.listParadas}></TimeLine>
-          <GraficaHistorico listParadas={props.listParadas} info={props.info}></GraficaHistorico>
+          <h1>Grafica</h1>
           <h1>Tablas</h1>
         </div>
       </div>
