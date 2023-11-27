@@ -7,7 +7,7 @@ export function CalcularAnchoBarra(cantRutas) {
     } else if (cantRutas >= 7 && cantRutas < 10) {
         porcentajeAnchoBarra = .7
         heightGraph = "1200px"
-    } else if (cantRutas >= 4 && cantRutas < 8 ) {
+    } else if (cantRutas >= 4 && cantRutas < 8) {
         porcentajeAnchoBarra = .8
         heightGraph = "700px"
     } else if (cantRutas === 3) {
@@ -42,20 +42,20 @@ export function diferenciaFechas(fechaRuta) {
     const day = fechaRuta.substring(6, 8);
     const hora = 12;
     const minutos = 0;
-    const segundos = 0; 
+    const segundos = 0;
     const fechaFormateada = new Date(year, month - 1, day, hora, minutos, segundos); // Meses en JavaScript son 0-based (enero es 0)
-    
+
     const diferenciaMilisegundos = fechaActual - fechaFormateada;
     const diferenciaHoras = diferenciaMilisegundos / (1000 * 60 * 60);
 
-    if(diferenciaHoras >= 48 && diferenciaHoras < 72) {
-      return "text-warning"
-    } else if(diferenciaHoras >= 72) {
-      return "text-danger"
+    if (diferenciaHoras >= 48 && diferenciaHoras < 72) {
+        return "text-warning"
+    } else if (diferenciaHoras >= 72) {
+        return "text-danger"
     }
-  }
+}
 
- export function formatearFecha(fechaSinFormato) {
+export function formatearFecha(fechaSinFormato) {
     const año = fechaSinFormato.slice(0, 4);
     const mes = fechaSinFormato.slice(4, 6);
     const día = fechaSinFormato.slice(6, 8);
@@ -68,7 +68,7 @@ export const formattedNumber = (number) => {
     return number.toLocaleString('es-MX', {
         style: 'currency',
         currency: 'MXN'
-      });
+    });
 }
 
 
@@ -110,4 +110,22 @@ console.log(ordenParadaDirectaArray);
             viajes_filtrados.push(viajesActivos[i]);
     }
     return viajes_filtrados;
+}
+
+
+export function guiasFilter(guiasList, idTipoTransaccion, idDestino) {
+    //esta funcion recibira la lista de guias a filtrar mas dos parametro id del destino y
+    //el id de la transaccion con la que se movio en el viaje, regresando una lista igual ya 
+    //filtrada.
+    if (guiasList!=null){
+        let guiasListFiltered = [];
+        let listDestinoFiltered= [];
+        listDestinoFiltered= guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
+        guiasListFiltered = listDestinoFiltered.filter(guia=> guia.idTipoOperacion === idTipoTransaccion);
+
+        return guiasListFiltered;
+
+    }else{
+        console.log("imposible realizar la opracion de filtrado")
+    }
 }
