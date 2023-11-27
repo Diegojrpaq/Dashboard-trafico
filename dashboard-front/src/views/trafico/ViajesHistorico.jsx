@@ -9,6 +9,8 @@ import { Dropdown } from 'primereact/dropdown';
 import { addLocale } from 'primereact/api';
 import SpinnerMain from '../../viewsItems/SpinnerMain'
 import TimeLine from '../../viewsItems/TimeLine';
+import { Accordion } from 'react-bootstrap';
+import TablaBitacora from '../../viewsItems/tables/TablaBitacora';
 
 
 
@@ -63,7 +65,7 @@ export default function ViajesHistorico() {
         return resp.json();
       }).then((data) => {
         if (data) {
-          
+
           setInfoViaje(data.viaje)
           setPeticionBackend(false)
           setListParadas(generarParadas(data.viaje.Bitacora))
@@ -240,7 +242,7 @@ export default function ViajesHistorico() {
         {/* {
           infoViaje ? <SpinnerMain /> : <LayoutViaje />
         } */}
-        <LayoutViaje info={infoViaje} peticion={peticionBackEnd} listParadas={listParadas}/>
+        <LayoutViaje info={infoViaje} peticion={peticionBackEnd} listParadas={listParadas} />
       </>
     )
   } else {
@@ -255,6 +257,7 @@ export default function ViajesHistorico() {
 
 function LayoutViaje(props) {
   const viaje = props.info
+  //console.log(props, "Datos")
   if (props.peticion === null) {
     return (
       <div className="col-12 col-md-12  p-1">
@@ -281,7 +284,49 @@ function LayoutViaje(props) {
         <div className="col-item shadow p-3 mb-4 mx-0 rounded">
           <TimeLine ListParadas={props.listParadas}></TimeLine>
           <h1>Grafica</h1>
-          <h1>Tablas</h1>
+          <Accordion>
+            <Accordion.Item>
+              <Accordion.Header>
+                <div className='container'>
+                  <div className='row fs-5'>
+                    Bitacora
+                  </div>
+                </div>
+              </Accordion.Header>
+              <Accordion.Body>
+                <TablaBitacora info={props.info} />
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+
+          {/* {
+            props?.listParadas?.map((parada, index) => (
+              <Accordion key={index}>
+              <Accordion.Item eventKey={index}>
+                <Accordion.Header>
+                  <div className='container'>
+                    <div className='row'>
+                      <div className="col">{parada.nombre}</div>
+                    </div>
+                  </div>
+                </Accordion.Header>
+                <Accordion.Body>
+                  {
+                    props.info.Bitacora.map((obj, index) => {
+                      console.log(obj.Origen_Salida, parada.nombre , "Compar")
+                      if(obj.Origen_Salida === parada.nombre) {
+                        return (
+                          <TablaBitacora info={props.info.Bitacora[index]}/>
+                        )
+                      }
+                    })
+                  }
+                  
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+            ))
+          } */}
         </div>
       </div>
     )
