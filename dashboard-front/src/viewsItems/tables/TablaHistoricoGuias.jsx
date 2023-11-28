@@ -1,8 +1,12 @@
 import React from 'react'
+import TableViajesActivos from './TableViajesActivos'
 
 export default function TablaHistoricoGuias(props) {
-
-  return (
-    <div>Tabla Historico Guias</div>
-  )
+    console.log(props, 'TablaHistoricoGuias')
+    return (
+        <TableViajesActivos
+            guias={props.guias}
+            infoRuta={props.infoRuta}
+        />
+    )
 }
