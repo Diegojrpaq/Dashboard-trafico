@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
 import { Calendar } from 'primereact/calendar'
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
@@ -67,6 +68,23 @@ export default function ViajesHistorico() {
           setInfoViaje(data.viaje)
           setPeticionBackend(false)
           setListParadas(generarParadas(data.viaje.Bitacora))
+          if (data.viaje.catalogoGuias==null){
+            Swal.fire({
+              title: "¿Registro sin transacciones?",
+              text: "El registro que seleccionaste no cuenta con transacciones de guias embarcadas o desembarcadas",
+              icon: "question",
+              
+            });
+
+            Swal.fire({
+              position: "top-end",
+              icon: "error",
+              tittle: "Ooops...",
+              text: "El viaje cuenta con inconsistencias en carga",
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
         }
       }).catch(
         () => console.log('Error al cargar los destinos y viajes')
@@ -159,6 +177,8 @@ export default function ViajesHistorico() {
   useEffect(() => {
     if (selectedViaje !== null) {
       setPeticionBackend(true)
+      setInfoViaje(null)
+      setListParadas(null)
       peticionViaje();
 
     }
@@ -281,7 +301,7 @@ function LayoutViaje(props) {
       <div className="col-12 col-md-12  p-1">
         <div className="col-item shadow p-3 mb-4 mx-0 rounded">
           <TimeLine ListParadas={props.listParadas}></TimeLine>
-          <GraficaHistorico listParadas={props.listParadas} info={props.info}></GraficaHistorico>
+          <GraficaHistorico listParadas={props.listParadas} info={viaje}></GraficaHistorico>
           <TablasHistorico info={viaje} paradas={props.listParadas}/>
         </div>
       </div>
