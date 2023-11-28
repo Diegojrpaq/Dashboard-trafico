@@ -130,27 +130,17 @@ export function guiasFilter(guiasList, idTipoTransaccion, idDestino) {
     }
 }
 
-// export function guiasFilter(guiasList, idTipoTransaccion, idDestino) {
-//     //esta funcion recibira la lista de guias a filtrar mas dos parametro id del destino y
-//     //el id de la transaccion con la que se movio en el viaje, regresando una lista igual ya 
-//     //filtrada.
-//     if(idDestino) {
-//         if (guiasList!=null){
-//             let guiasListFiltered = [];
-//             let listDestinoFiltered= [];
-//             listDestinoFiltered= guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
-//             guiasListFiltered = listDestinoFiltered.filter(guia=> guia.idTipoOperacion === idTipoTransaccion);
+export function guiasFilterByOrigen(guiasList, idDestino) {
+    //esta funcion recibira la lista de guias a filtrar mas dos parametro id del destino y
+    //el id de la transaccion con la que se movio en el viaje, regresando una lista igual ya 
+    //filtrada.
     
-//             return guiasListFiltered;
+        if (guiasList!=null){
+            let listDestinoFiltered= [];
+            return listDestinoFiltered= guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
     
-//         }else{
-//             console.log("imposible realizar la opracion de filtrado")
-//         }
-//     } else {
-//         let guiasListFiltered = [];
-//         guiasListFiltered = guiasList.filter(guia=> guia.idTipoOperacion === idTipoTransaccion);
-
-//         return guiasListFiltered;
-//     }
-    
-// }
+            
+        } else {
+            console.log("imposible realizar la opracion de filtrado")
+        }
+}
