@@ -129,3 +129,18 @@ export function guiasFilter(guiasList, idTipoTransaccion, idDestino) {
         console.log("imposible realizar la opracion de filtrado")
     }
 }
+
+export function guiasFilterByOrigen(guiasList, idDestino) {
+    //esta funcion recibira la lista de guias a filtrar mas dos parametro id del destino y
+    //el id de la transaccion con la que se movio en el viaje, regresando una lista igual ya 
+    //filtrada.
+    
+        if (guiasList!=null){
+            let listDestinoFiltered= [];
+            return listDestinoFiltered= guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
+    
+            
+        } else {
+            console.log("imposible realizar la opracion de filtrado")
+        }
+}

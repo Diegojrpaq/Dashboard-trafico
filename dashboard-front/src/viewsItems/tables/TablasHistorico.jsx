@@ -2,8 +2,27 @@ import React from 'react'
 import { Accordion } from 'react-bootstrap';
 import TablaBitacora from './TablaBitacora'
 import TablaHistoricoGuias from '../../viewsItems/tables/TablaHistoricoGuias';
+import { guiasFilter, guiasFilterByOrigen } from '../../utileria/utils';
 
 export default function TablasHistorico(props) {
+    const totalVolumen = (guiasFiltradas) => {
+        const sumaVolumen = guiasFiltradas.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento.volumen;
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0);
+        return sumaVolumen;
+    }
+
+    const totalPeso = (guiasFiltradas) => {
+        const sumaPeso = guiasFiltradas.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento.peso;
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0);
+        return sumaPeso;
+    }
+
     return (
         <div>
             <Accordion className='mb-3'>
@@ -27,31 +46,28 @@ export default function TablasHistorico(props) {
                         <Accordion.Item eventKey={index}>
                             <Accordion.Header>
                                 <div className='container'>
-                                    <div className="col fs-5">{parada.nombre}</div>
-                                    <div className='row  p-1 mb-2 mt-1'>
-                                        <div className="col fs-5 text-success ">SUBIDO <i className="bi bi-arrow-right-square-fill"></i></div>
-                                        <div className="col">Volumen: x</div>
-                                        <div className="col">Peso: x</div>
+                                    <div className="col fs-5 border-bottom border-dark mb-2" style={{ width: "200px" }}>{parada.nombre}</div>
+                                    <div className='row  p-1 mb-1 mt-1 fs-5'>
+                                        <div className="col fs-5 text-success ">SUBIDO <i className="bi bi-arrow-right-square-fill mx-2"></i></div>
+                                        <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Total guías: {guiasFilter(props.info.catalogoGuias, 17, parada.id).length}</div>
+                                        <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Volumen: {totalVolumen(guiasFilter(props.info.catalogoGuias, 17, parada.id))} mt3</div>
+                                        <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Peso: {totalPeso(guiasFilter(props.info.catalogoGuias, 17, parada.id))} kg</div>
                                     </div>
-                                    <div className='row p-1 mb-2 mt-1'>
+                                    <div className='row p-1 mb-1 mt-1 fs-5'>
                                         <div className="col fs-5 text-danger">BAJADO <i className="bi bi-arrow-left-square-fill"></i></div>
-                                        <div className="col">Volumen: x</div>
-                                        <div className="col">Peso: x</div>
+                                        <div className="col"><i className="bi bi-arrow-left-square-fill text-danger"></i> Total guías: {guiasFilter(props.info.catalogoGuias, 18, parada.id).length}</div>
+                                        <div className="col"><i className="bi bi-arrow-left-square-fill text-danger"></i> Volumen: {totalVolumen(guiasFilter(props.info.catalogoGuias, 18, parada.id))} mt3</div>
+                                        <div className="col"><i className="bi bi-arrow-left-square-fill text-danger"></i> Peso: {totalPeso(guiasFilter(props.info.catalogoGuias, 18, parada.id))} kg</div>
                                     </div>
                                 </div>
                             </Accordion.Header>
                             <Accordion.Body>
-                                {/* {
-                    props.info.Bitacora.map((obj, index) => {
-                      console.log(obj.Origen_Salida, parada.nombre , "Compar")
-                      if(obj.Origen_Salida === parada.nombre) {
-                        return (
-                          <TablaBitacora info={props.info.Bitacora[index]}/>
-                        )
-                      }
-                    })
-                  } */}
-                                <TablaHistoricoGuias guias={props.info.catalogoGuias} />
+                                {/* <TablaHistoricoGuias 
+                                    guias={props.info.catalogoGuias} 
+                                    guiasSubidas={guiasFilter(props.info.catalogoGuias, 17,parada.id)}
+                                    guiasBajadas={guiasFilter(props.info.catalogoGuias, 18,parada.id)} 
+                                    infoRuta={props.info} /> */}
+                                <TablaHistoricoGuias guias={guiasFilterByOrigen(props.info.catalogoGuias, parada.id)} infoRuta={props.info} />
                             </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>

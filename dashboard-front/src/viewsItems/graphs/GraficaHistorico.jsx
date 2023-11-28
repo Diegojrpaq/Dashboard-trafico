@@ -30,10 +30,7 @@ Chartjs.register(
 
 
 export default function GraficaHistorico(props) {
-    //console.log(props.info)
-    //console.log(guiasFilter(props.info.catalogoGuias, 17 , 1 ), "guias embarcadas en guadalajara");
 
-    //console.log(props.info, "infoviaje")
     if (props.info.catalogoGuias != null) {
         const listParadas = props.listParadas
         const viaje = props.info
