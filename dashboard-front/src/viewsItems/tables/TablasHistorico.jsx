@@ -3,7 +3,6 @@ import { Accordion } from 'react-bootstrap';
 import TablaBitacora from './TablaBitacora'
 import TablaHistoricoGuias from '../../viewsItems/tables/TablaHistoricoGuias';
 import { guiasFilter, guiasFilterByOrigen } from '../../utileria/utils';
-
 export default function TablasHistorico(props) {
     const totalVolumen = (guiasFiltradas) => {
         const sumaVolumen = guiasFiltradas.reduce((acumulador, elemento) => {
@@ -23,6 +22,38 @@ export default function TablasHistorico(props) {
         return sumaPeso;
     }
 
+    const arrAnterior = (arr, item) => {
+        const index = arr.findIndex(obj => obj.id === item);
+        if (index === 0 || index === -1) {
+            return null;
+        }
+        return index - 1;
+    }
+
+    const guiasSubidasAntes = (arrParadas, ubicacionAct, catGuias) => {
+        const index = arrParadas.findIndex(obj => obj.id === ubicacionAct);
+        let destinosAnteriores;
+        let newArr = [];
+        let newArr2 = [];
+        if(index !== 0 && index !== -1) {
+            destinosAnteriores = arrParadas.slice(0, index);
+        } else {
+            return {
+                newArr: null,
+                newArr2: null
+            };
+        }
+        
+        destinosAnteriores.forEach(destino => {
+            newArr = [...newArr, ...guiasFilter(catGuias, 17, destino.id)];
+            newArr2 = [...newArr2, ...guiasFilter(catGuias, 18, destino.id)]
+        });
+        
+        return {
+            newArr,
+            newArr2
+        };
+    }
     return (
         <div>
             <Accordion className='mb-3'>
@@ -43,6 +74,7 @@ export default function TablasHistorico(props) {
             {
                 props?.paradas.map((parada, index) => (
                     <Accordion key={index} className='mb-3'>
+                        
                         <Accordion.Item eventKey={index}>
                             <Accordion.Header>
                                 <div className='container'>
@@ -62,12 +94,19 @@ export default function TablasHistorico(props) {
                                 </div>
                             </Accordion.Header>
                             <Accordion.Body>
-                                {/* <TablaHistoricoGuias 
-                                    guias={props.info.catalogoGuias} 
-                                    guiasSubidas={guiasFilter(props.info.catalogoGuias, 17,parada.id)}
-                                    guiasBajadas={guiasFilter(props.info.catalogoGuias, 18,parada.id)} 
-                                    infoRuta={props.info} /> */}
-                                <TablaHistoricoGuias guias={guiasFilterByOrigen(props.info.catalogoGuias, parada.id)} infoRuta={props.info} />
+                                <TablaHistoricoGuias
+                                    guias={props.info.catalogoGuias}
+                                    guiasSubidas={guiasFilter(props.info.catalogoGuias, 17, parada.id)}
+                                    guiasBajadas={guiasFilter(props.info.catalogoGuias, 18, parada.id)}
+                                    // guiasAnterior={
+                                    //     arrAnterior(props.paradas, parada.id) === null ?
+                                    //     null : 
+                                    //     guiasFilter(props.info.catalogoGuias, 17, props.paradas[arrAnterior(props.paradas, parada.id)].id)
+                                    // }
+                                    guiasAnterior={guiasSubidasAntes(props.paradas, parada.id, props.info.catalogoGuias)}
+                                    idUbicacion={parada.id}
+                                    infoRuta={props.info} />
+                                {/* <TablaHistoricoGuias guias={guiasFilterByOrigen(props.info.catalogoGuias, parada.id)} infoRuta={props.info} /> */}
                             </Accordion.Body>
                         </Accordion.Item>
                     </Accordion>
