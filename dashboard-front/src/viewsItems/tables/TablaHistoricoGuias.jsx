@@ -5,8 +5,67 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 import { formattedNumber } from '../../utileria/utils';
-export default function TableViajesActivos({ guias, guiasSubidas, guiasBajadas, infoRuta }) {
-    console.log(infoRuta, "Info")
+export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas, guiasAnterior, idUbicacion, infoRuta }) {
+    let newCatalogoGuias = [];
+    let guiasTransito = [];
+    let desembarcadas;
+    let guiasCompl;
+    if (guiasSubidas.length > 0 && guiasBajadas.length === 0 && guiasAnterior.newArr === null) {
+        newCatalogoGuias = [...guiasSubidas]
+    } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length === 0) {
+        guiasTransito = [...guiasAnterior.newArr]
+        if (guiasSubidas.length > 0) {
+            if (guiasBajadas.length > 0) {
+                guiasCompl = guiasTransito.map(guia =>
+                    guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
+                        ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
+                        : guia
+                )
+                newCatalogoGuias = [...guiasSubidas, ...guiasCompl]
+            } else {
+                newCatalogoGuias = [...guiasSubidas, ...guiasTransito]
+            }
+        } else {
+            if (guiasBajadas.length > 0) {
+                guiasCompl = guiasTransito.map(guia =>
+                    guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
+                        ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
+                        : guia
+                )
+                newCatalogoGuias = [...guiasCompl]
+            } else {
+                newCatalogoGuias = [...guiasTransito]
+            }
+        }
+    } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length > 0) {
+        guiasTransito = [...guiasAnterior.newArr]
+        if (guiasSubidas.length > 0) {
+            desembarcadas = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
+            if (guiasBajadas.length > 0) {
+                guiasCompl = desembarcadas.map(guia =>
+                    guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
+                        ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
+                        : guia
+                )
+                newCatalogoGuias = [...guiasSubidas, ...guiasCompl]
+            } else {
+                newCatalogoGuias = [...guiasSubidas, ...desembarcadas]
+            }
+        } else {
+            desembarcadas = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
+            if (guiasBajadas.length > 0) {
+                guiasCompl = desembarcadas.map(guia =>
+                    guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
+                        ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
+                        : guia
+                )
+                newCatalogoGuias = [...guiasCompl]
+            } else {
+                newCatalogoGuias = [...desembarcadas]
+            }
+        }
+    }
+
     const dt = useRef(null);
     //funciones para filtrar
     const [filters, setFilters] = useState({
@@ -112,7 +171,7 @@ export default function TableViajesActivos({ guias, guiasSubidas, guiasBajadas, 
         </div>
     );
 
-    const newData = guias.map(guia => ({
+    const newData = newCatalogoGuias.map(guia => ({
         ...guia,
         tipoOperacion: guia.idTipoOperacion,
         fecha_transaccion: guia.fecha_de_transaccion,
@@ -123,73 +182,25 @@ export default function TableViajesActivos({ guias, guiasSubidas, guiasBajadas, 
         subtotal: formattedNumber(guia.subtotal),
     }))
 
-    // console.log(guiasSubidas, "sub")
-    // console.log(guiasBajadas, "baj")
-    // const rowClass = (data) => {
-    //     let styleRow;
-    //     let sub = [];
-        
-    //         if (guiasSubidas.length > 0) {
-    //             guiasSubidas.map((guia, index) => {
-    //                 // console.log(guia.idTipoOperacion,  guia.numGuia,"comp ", guias[index].idTipoOperacion,  guias[index].numGuia)
-    //                 // if (guia.idTipoOperacion === data.idTipoOperacion) {
-    //                 //     sub.push(guia)
-    //                 //     styleRow = {
-    //                 //         'bg-success': true,
-    //                 //         'text-light': true
-    //                 //     }
-    //                 // }
-    //                 return {
-    //                     'bg-success': (guias[index].idTipoOperacion === data.idTipoOperacion && guias[index].numGuia === data.numGuia)
-    //                 }
-    //             })
-                
-    //         }
-            
-        
-    //     // switch (data.tipoOperacion) {
-    //     //     case 17: 
-    //     //     return {
-    //     //         'bg-success': data.tipoOperacion === 17,
-    //     //         'text-light': true
-    //     //     };
-    //     //     break;
-    //     //     case 18: 
-    //     //     return {
-    //     //         'bg-danger': data.tipoOperacion === 18,
-    //     //         'text-light': true
-    //     //     };
-    //     //     break;
-    //     //     default: 
-    //     //     return {
-    //     //         'bg-dark': true,
-    //     //         'text-light': true
-    //     //     };
-    //     // }
+    const rowClass = (data) => {
+        if (data.idTipoOperacion === 17 && idUbicacion === data.ubicacion_transaccion_id) {
+            return {
+                'fw-bold': true,
+                'text-success': true
+            };
+        } else if (data.idTipoOperacion === 17 && idUbicacion !== data.ubicacion_transaccion_id) {
+            return {
+                'fw-bold': true,
+                'text-dark': true
+            };
+        } else if (data.idTipoOperacion === 18) {
+            return {
+                'fw-bold': true,
+                'text-danger': true
+            };
+        }
 
-    // };
-    // const rowClass = (data) => {
-    //     switch (data.tipoOperacion) {
-    //         case 17: 
-    //         return {
-    //             'bg-success': data.tipoOperacion === 17,
-    //             'text-light': true
-    //         };
-    //         break;
-    //         case 18: 
-    //         return {
-    //             'bg-danger': data.tipoOperacion === 18,
-    //             'text-light': true
-    //         };
-    //         break;
-    //         default: 
-    //         return {
-    //             'bg-dark': true,
-    //             'text-light': true
-    //         };
-    //     }
-
-    // };
+    };
 
     return (
         <>
@@ -197,7 +208,7 @@ export default function TableViajesActivos({ guias, guiasSubidas, guiasBajadas, 
                 <DataTable
                     ref={dt}
                     value={newData}
-                    //rowClassName={rowClass}
+                    rowClassName={rowClass}
                     filters={filters}
                     header={header}
                     showGridlines
