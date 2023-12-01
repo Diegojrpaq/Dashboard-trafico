@@ -5,18 +5,26 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 import { formattedNumber } from '../../utileria/utils';
-export default function TableViajesActivos({ guias, guiasSubidas, guiasBajadas, guiasAnterior, idUbicacion, infoRuta }) {
+export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas, guiasAnterior, idUbicacion, infoRuta }) {
     let newCatalogoGuias = [];
     let guiasTransito = [];
     let desembarcadas;
     let guiasCompl;
     if (guiasSubidas.length > 0 && guiasBajadas.length === 0 && guiasAnterior.newArr === null) {
         newCatalogoGuias = [...guiasSubidas]
-    }
-    else if (guiasAnterior.newArr.length > 0 && guiasAnterior.newArr2.length === 0) {
+    } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length === 0) {
         guiasTransito = [...guiasAnterior.newArr]
         if (guiasSubidas.length > 0) {
-            newCatalogoGuias = [...guiasSubidas, ...guiasTransito]
+            if (guiasBajadas.length > 0) {
+                guiasCompl = guiasTransito.map(guia =>
+                    guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
+                        ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
+                        : guia
+                )
+                newCatalogoGuias = [...guiasSubidas, ...guiasCompl]
+            } else {
+                newCatalogoGuias = [...guiasSubidas, ...guiasTransito]
+            }
         } else {
             if (guiasBajadas.length > 0) {
                 guiasCompl = guiasTransito.map(guia =>
@@ -29,7 +37,7 @@ export default function TableViajesActivos({ guias, guiasSubidas, guiasBajadas, 
                 newCatalogoGuias = [...guiasTransito]
             }
         }
-    } else if (guiasAnterior.newArr.length > 0 && guiasAnterior.newArr2.length > 0) {
+    } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length > 0) {
         guiasTransito = [...guiasAnterior.newArr]
         if (guiasSubidas.length > 0) {
             desembarcadas = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
@@ -175,28 +183,10 @@ export default function TableViajesActivos({ guias, guiasSubidas, guiasBajadas, 
     }))
 
     const rowClass = (data) => {
-        //console.log(data, "Color<<<<<")
-        // if (data.idTipoOperacion === 17 && idUbicacion === data.ubicacion_transaccion_id) {
-        //     return {
-        //         'bg-success': true,
-        //         'text-light': true
-        //     };
-        // } else if (data.idTipoOperacion === 17 && idUbicacion !== data.ubicacion_transaccion_id) {
-        //     return {
-        //         'bg-dark': true,
-        //         'text-light': true
-        //     };
-        // } else if (data.idTipoOperacion === 18) {
-        //     return {
-        //         'bg-danger': true,
-        //         'text-light': true
-        //     };
-        // }
         if (data.idTipoOperacion === 17 && idUbicacion === data.ubicacion_transaccion_id) {
             return {
                 'fw-bold': true,
                 'text-success': true
-                
             };
         } else if (data.idTipoOperacion === 17 && idUbicacion !== data.ubicacion_transaccion_id) {
             return {
