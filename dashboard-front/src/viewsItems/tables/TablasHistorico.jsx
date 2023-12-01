@@ -25,7 +25,7 @@ export default function TablasHistorico(props) {
 
     return (
         <div>
-            <Accordion className='mb-3'>
+            <Accordion className='mb-3'/*  defaultActiveKey="1" */>
                 <Accordion.Item>
                     <Accordion.Header>
                         <div className='container'>
