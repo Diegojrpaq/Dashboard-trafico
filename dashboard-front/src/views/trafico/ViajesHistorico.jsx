@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Swal from 'sweetalert2'
 import { Calendar } from 'primereact/calendar'
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
@@ -63,10 +64,18 @@ export default function ViajesHistorico() {
         return resp.json();
       }).then((data) => {
         if (data) {
-          
+
           setInfoViaje(data.viaje)
           setPeticionBackend(false)
           setListParadas(generarParadas(data.viaje.Bitacora))
+          if (data.viaje.catalogoGuias == null) {
+            Swal.fire({
+              title: "¿Registro sin transacciones?",
+              text: "El registro que seleccionaste no cuenta con transacciones de guias embarcadas o desembarcadas",
+              icon: "question",
+
+            });
+          }
         }
       }).catch(
         () => console.log('Error al cargar los destinos y viajes')
@@ -77,7 +86,6 @@ export default function ViajesHistorico() {
     const listTemp = [{ id: null, nombre: null }];
 
     if (bitacora !== null) {
-
       bitacora.forEach(element => {
         const existeOrigen = listTemp.some(
           (destino) => destino.nombre === element.Origen_Salida
@@ -103,6 +111,14 @@ export default function ViajesHistorico() {
       });
       // Elimina el elemento de inicialización
       listTemp.shift();
+     /*  listTemp.forEach((elemnt)=>{
+        bitacora.forEach((elemntbitacora)=>{
+          if(elemnt.id == elemntbitacora.Origen_id){
+            const horaSalida= elemntbitacora.HoraSalida;
+            const fechaSalida= elemntbitacora.ForaSalida;
+          }
+        })
+      }) */
 
       return listTemp;
     }
@@ -159,6 +175,8 @@ export default function ViajesHistorico() {
   useEffect(() => {
     if (selectedViaje !== null) {
       setPeticionBackend(true)
+      setInfoViaje(null)
+      setListParadas(null)
       peticionViaje();
 
     }
@@ -227,7 +245,7 @@ export default function ViajesHistorico() {
 
           <div className="card flex shadow justify-content-center">
             <Dropdown disabled={destinosList === null} value={selectedDestino} onChange={(e) => setselectedDestino(e.value)} options={destinosList} optionLabel="nombre_destino"
-              placeholder="Selecciona un Destino" className="w-full md:w-14rem" filter />
+              placeholder="Selecciona el Origen" className="w-full md:w-14rem" filter />
           </div>
         </div>
         <div className="col-sm-12 col-md-12 col-lg-4 py-3 px-3">
@@ -281,8 +299,8 @@ function LayoutViaje(props) {
       <div className="col-12 col-md-12  p-1">
         <div className="col-item shadow p-3 mb-4 mx-0 rounded">
           <TimeLine ListParadas={props.listParadas}></TimeLine>
-          <GraficaHistorico listParadas={props.listParadas} info={props.info}></GraficaHistorico>
-          <TablasHistorico info={viaje} paradas={props.listParadas}/>
+          <GraficaHistorico listParadas={props.listParadas} info={viaje}></GraficaHistorico>
+          <TablasHistorico info={viaje} paradas={props.listParadas} />
         </div>
       </div>
     )

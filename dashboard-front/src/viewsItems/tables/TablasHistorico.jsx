@@ -4,6 +4,7 @@ import TablaBitacora from './TablaBitacora'
 import TablaHistoricoGuias from '../../viewsItems/tables/TablaHistoricoGuias';
 import { guiasFilter, guiasFilterByOrigen } from '../../utileria/utils';
 export default function TablasHistorico(props) {
+
     if(props.info.catalogoGuias != null) {
         const totalVolumen = (guiasFiltradas) => {
             const sumaVolumen = guiasFiltradas.reduce((acumulador, elemento) => {
