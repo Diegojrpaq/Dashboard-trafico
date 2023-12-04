@@ -11,6 +11,10 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
     let desembarcadas;
     let guiasCompl;
     let arrAddProp;
+    console.log(guias, "Guias")
+    console.log(guiasSubidas, "subAct")
+    console.log(guiasBajadas, "BajAct")
+    console.log(guiasAnterior, "CargaAntes")
     function addNewProp (arr) {
         const arrProp = arr.map(item => {
             if(item.idTipoOperacion === 17 && item.ubicacion_transaccion_id === idUbicacion) {
@@ -33,18 +37,14 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
         })
         return arrProp;
     }
+
+    // else if (guiasSubidas.length > 0 && guiasBajadas.length > 0 && guiasAnterior.newArr === null) {
+    //     arrAddProp = addNewProp(guiasSubidas)
+    //     const bajadasAct = addNewProp(guiasBajadas)
+    //     newCatalogoGuias = [...arrAddProp, ...bajadasAct]
+    // } 
     if (guiasSubidas.length > 0 && guiasBajadas.length === 0 && guiasAnterior.newArr === null) {
-        // arrAddProp = guiasSubidas.map(guia => {
-        //     if(guia.idTipoOperacion === 17 && guia.ubicacion_transaccion_id === idUbicacion) {
-        //         return {
-        //             ...guia,
-        //             operacion: "Embarque"
-        //         }
-        //     }
-        //     return guia;
-        // })
         arrAddProp = addNewProp(guiasSubidas)
-        //newCatalogoGuias = [...guiasSubidas]
         newCatalogoGuias = [...arrAddProp]
     } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length === 0) {
         guiasTransito = [...guiasAnterior.newArr]
@@ -53,21 +53,6 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
             const transito = addNewProp(guiasTransito)
             const desembarcadas = addNewProp(guiasBajadas)
             
-            if (guiasBajadas.length > 0) {
-                guiasCompl = transito.map(guia =>
-                    desembarcadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
-                        ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
-                        : guia
-                )
-                newCatalogoGuias = [...embarcadas, ...guiasCompl]
-                //newCatalogoGuias = [...guiasSubidas, ...guiasCompl]
-            } else {
-                newCatalogoGuias = [...embarcadas, ...transito]
-                //newCatalogoGuias = [...guiasSubidas, ...guiasTransito]
-            }
-        } else {
-            const transito = addNewProp(guiasTransito)
-            const desembarcadas = addNewProp(guiasBajadas)
             if (guiasBajadas.length > 0) {
                 // guiasCompl = transito.map(guia =>
                 //     desembarcadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
@@ -79,16 +64,26 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
                             guiaBajada.numGuia === guia.numGuia
                         )
                 )
+                newCatalogoGuias = [...embarcadas, ...guiasCompl, ...desembarcadas]
+            } else {
+                newCatalogoGuias = [...embarcadas, ...transito]
+            }
+        } else {
+            const transito = addNewProp(guiasTransito)
+            const desembarcadas = addNewProp(guiasBajadas)
+            if (guiasBajadas.length > 0) {
+                guiasCompl = transito.filter(guia =>
+                    !desembarcadas.some(guiaBajada => 
+                            guiaBajada.numGuia === guia.numGuia
+                        )
+                )
                 newCatalogoGuias = [...guiasCompl, ...desembarcadas]
             } else {
                 newCatalogoGuias = [...transito]
-                //newCatalogoGuias = [...guiasTransito]
             }
         }
     } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length > 0) {
         guiasTransito = [...guiasAnterior.newArr]
-        //const transito = addNewProp(guiasTransito, "Transito")
-        
         if (guiasSubidas.length > 0) {
             const embarcadas = addNewProp(guiasSubidas)
             const desembarcadasAntes = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
@@ -113,21 +108,6 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
         } else {
             const transitoSubAntes = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
             if (guiasBajadas.length > 0) {
-                
-                // guiasCompl = desembarcadas.map(guia =>
-                //     guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
-                //         ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
-                //         : guia
-                // )
-                // guiasCompl = transitoSubAntes.map(guia =>
-                //     guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
-                //         ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
-                //         : guia
-                // )
-                // const transito = addNewProp(guiasCompl, "Transito")
-                // const desembarcadasActual = addNewProp(guiasCompl, "Desembarcada")
-                
-                // newCatalogoGuias = [...desembarcadasActual]
                 const desembarcadasActual = addNewProp(guiasBajadas)
                 guiasCompl = transitoSubAntes.map(guia =>
                     guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
