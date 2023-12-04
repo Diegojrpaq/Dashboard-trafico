@@ -43,7 +43,6 @@ export default function GraficaHistorico(props) {
         const labels = [];
         let mt3Transito = 0;
 
-        //console.log(listParadas, "lista de paradas")
         listParadas.forEach((parada) => {
             const listGuiasEmbarca = guiasFilter(viaje.catalogoGuias, 17, parada.id)
             const mt3Embarcados = listGuiasEmbarca.reduce((total, guia) => total + guia.volumen, 0);
@@ -57,9 +56,6 @@ export default function GraficaHistorico(props) {
             labels.push(parada.nombre)
             mt3Transito = (mt3Transito + mt3Embarcados)
         })
-        //console.log(metrosLibres, "Libre")
-        //console.log(metrosEmbarcados, "Embarcados")
-        //console.log(metrosDesembarcados, "Desmbarcado")
 
         const confDataLabels = {
             formatter: function (value, context) {
@@ -126,34 +122,6 @@ export default function GraficaHistorico(props) {
                     borderWidth: 2,
                     datalabels: confDataLabels,
                 })
-            /* sucSinRepetir?.map((sucursalFinal, index) => {
-                planRutasList.map((ruta) => {
-                    const guiasXsucursal = ruta.catalogoGuiasPlaneadas.filter(guia => guia.sucursal_ubicacion_id === sucursalFinal.id);
-                    const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
-                    const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
-                    dataEjeY.push(volumenXsucursal);
-                    pesoXsucursal.push(pesoGuia.toFixed(2));
-
-                    if (ruta.catalogoGuiasEmbarcadas != null) {
-                        const guiasXsucursal = ruta.catalogoGuiasEmbarcadas.filter(guia => guia.sucursal_ubicacion_id === sucursalFinal.id);
-                        const volumenXsucursal = guiasXsucursal.reduce((total, guia) => total + guia.volumen, 0);
-                        const pesoGuia = guiasXsucursal.reduce((total, guia) => total + guia.peso, 0);
-                        dataEjeY.push(volumenXsucursal);
-                        pesoXsucursal.push(pesoGuia);
-                    }
-                })
-                dataSetConstruido.push({
-                    label: sucursalFinal.nombre,
-                    data: dataEjeY,
-                    backgroundColor: colores[index].color,
-                    borderColor: coloresBorder[index].color,
-                    borderWidth: 2,
-                    datalabels: confDataLabels,
-                    peso: pesoXsucursal
-                })
-                dataEjeY = [];
-                pesoXsucursal = [];
-            }) */
 
             return dataSetConstruido;
         }
@@ -184,7 +152,7 @@ export default function GraficaHistorico(props) {
                     stacked: true,
                     beginAtZero: false, // Asegura que el eje X no empiece en 0
                     min: 0, // Establece el mínimo del eje X en 100
-                    max: viaje.Volumen_carga_maxima+4,
+                    max: viaje.Volumen_carga_maxima + 4,
 
                 },
                 y: {
@@ -203,9 +171,7 @@ export default function GraficaHistorico(props) {
         };
 
         listParadas.forEach((destinoParada) => {
-            /*  console.log(destinoParada.nombre)
-             console.log(guiasFilter(props.info.catalogoGuias, 17, destinoParada.id), "guias embarcadas")
-             console.log(guiasFilter(props.info.catalogoGuias, 18, destinoParada.id), "guias desembarcadas") */
+
         })
         return (
             <>
