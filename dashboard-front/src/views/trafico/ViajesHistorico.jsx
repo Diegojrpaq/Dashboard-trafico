@@ -298,7 +298,7 @@ function LayoutViaje(props) {
     return (
       <div className="col-12 col-md-12  p-1">
         <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-          <TimeLine ListParadas={props.listParadas}></TimeLine>
+          <TimeLine ListParadas={props.listParadas} info={viaje}></TimeLine>
           <GraficaHistorico listParadas={props.listParadas} info={viaje}></GraficaHistorico>
           <TablasHistorico info={viaje} paradas={props.listParadas} />
         </div>
