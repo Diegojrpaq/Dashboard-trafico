@@ -10,58 +10,120 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
     let guiasTransito = [];
     let desembarcadas;
     let guiasCompl;
+    let arrAddProp;
+    console.log(guias, "Guias")
+    console.log(guiasSubidas, "subAct")
+    console.log(guiasBajadas, "BajAct")
+    console.log(guiasAnterior, "CargaAntes")
+    function addNewProp (arr) {
+        const arrProp = arr.map(item => {
+            if(item.idTipoOperacion === 17 && item.ubicacion_transaccion_id === idUbicacion) {
+                return {
+                    ...item,
+                    operacion: "Embarcada"
+                }
+            } else if(item.idTipoOperacion === 17 && item.ubicacion_transaccion_id !== idUbicacion) {
+                return {
+                    ...item,
+                    operacion: "Transito"
+                }
+            } else if(item.idTipoOperacion === 18 && item.ubicacion_transaccion_id === idUbicacion) {
+                return {
+                    ...item,
+                    operacion: "Desembarcada"
+                }
+            }
+            return item;
+        })
+        return arrProp;
+    }
+
+    // else if (guiasSubidas.length > 0 && guiasBajadas.length > 0 && guiasAnterior.newArr === null) {
+    //     arrAddProp = addNewProp(guiasSubidas)
+    //     const bajadasAct = addNewProp(guiasBajadas)
+    //     newCatalogoGuias = [...arrAddProp, ...bajadasAct]
+    // } 
     if (guiasSubidas.length > 0 && guiasBajadas.length === 0 && guiasAnterior.newArr === null) {
-        newCatalogoGuias = [...guiasSubidas]
+        arrAddProp = addNewProp(guiasSubidas)
+        newCatalogoGuias = [...arrAddProp]
     } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length === 0) {
         guiasTransito = [...guiasAnterior.newArr]
         if (guiasSubidas.length > 0) {
+            const embarcadas = addNewProp(guiasSubidas)
+            const transito = addNewProp(guiasTransito)
+            const desembarcadas = addNewProp(guiasBajadas)
+            
             if (guiasBajadas.length > 0) {
-                guiasCompl = guiasTransito.map(guia =>
-                    guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
-                        ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
-                        : guia
+                // guiasCompl = transito.map(guia =>
+                //     desembarcadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
+                //         ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
+                //         : guia
+                // )
+                guiasCompl = transito.filter(guia =>
+                    !desembarcadas.some(guiaBajada => 
+                            guiaBajada.numGuia === guia.numGuia
+                        )
                 )
-                newCatalogoGuias = [...guiasSubidas, ...guiasCompl]
+                newCatalogoGuias = [...embarcadas, ...guiasCompl, ...desembarcadas]
             } else {
-                newCatalogoGuias = [...guiasSubidas, ...guiasTransito]
+                newCatalogoGuias = [...embarcadas, ...transito]
             }
         } else {
+            const transito = addNewProp(guiasTransito)
+            const desembarcadas = addNewProp(guiasBajadas)
             if (guiasBajadas.length > 0) {
-                guiasCompl = guiasTransito.map(guia =>
-                    guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
-                        ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
-                        : guia
+                guiasCompl = transito.filter(guia =>
+                    !desembarcadas.some(guiaBajada => 
+                            guiaBajada.numGuia === guia.numGuia
+                        )
                 )
-                newCatalogoGuias = [...guiasCompl]
+                newCatalogoGuias = [...guiasCompl, ...desembarcadas]
             } else {
-                newCatalogoGuias = [...guiasTransito]
+                newCatalogoGuias = [...transito]
             }
         }
     } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length > 0) {
         guiasTransito = [...guiasAnterior.newArr]
         if (guiasSubidas.length > 0) {
-            desembarcadas = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
+            const embarcadas = addNewProp(guiasSubidas)
+            const desembarcadasAntes = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
             if (guiasBajadas.length > 0) {
-                guiasCompl = desembarcadas.map(guia =>
+                const desembarcadasActual = addNewProp(guiasBajadas)
+                guiasCompl = desembarcadasAntes.map(guia =>
                     guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
                         ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
                         : guia
                 )
-                newCatalogoGuias = [...guiasSubidas, ...guiasCompl]
+                const guias2 = guiasCompl.filter(guia =>
+                    !desembarcadasActual.some(guiaBajada => 
+                            guiaBajada.numGuia === guia.numGuia
+                        )
+                )
+                const transito = addNewProp(guias2)
+                newCatalogoGuias = [...embarcadas, ...transito, ...desembarcadasActual]
             } else {
-                newCatalogoGuias = [...guiasSubidas, ...desembarcadas]
+                const transito = addNewProp(desembarcadasAntes)
+                newCatalogoGuias = [...embarcadas, ...transito]
             }
         } else {
-            desembarcadas = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
+            const transitoSubAntes = guiasTransito.filter(guia => !guiasAnterior.newArr2.some(guiaBajada => guiaBajada.numGuia === guia.numGuia));
             if (guiasBajadas.length > 0) {
-                guiasCompl = desembarcadas.map(guia =>
+                const desembarcadasActual = addNewProp(guiasBajadas)
+                guiasCompl = transitoSubAntes.map(guia =>
                     guiasBajadas.some(guiaBajada => guiaBajada.numGuia === guia.numGuia)
                         ? guiasBajadas.find(newObj => newObj.numGuia === guia.numGuia)
                         : guia
                 )
-                newCatalogoGuias = [...guiasCompl]
+                const guias2 = guiasCompl.filter(guia =>
+                    !desembarcadasActual.some(guiaBajada => 
+                            guiaBajada.numGuia === guia.numGuia
+                        )
+                )
+                const transito = addNewProp(guias2)
+                newCatalogoGuias = [...transito, ...desembarcadasActual]
             } else {
-                newCatalogoGuias = [...desembarcadas]
+                const transitoActual = addNewProp(transitoSubAntes)
+                newCatalogoGuias = [...transitoActual]
             }
         }
     }
@@ -88,7 +150,8 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
     //Columnas de la tabla
     const cols = [
         { field: "numGuia", header: "Numero Guía" },
-        { field: 'tipoOperacion', header: 'Tipo Operación' },
+        // { field: 'tipoOperacion', header: 'Tipo Operación' },
+        { field: 'operacion', header: 'Operación' },
         { field: 'ubicacion_transaccion', header: 'Ubicación transacción' },
         { field: 'fecha_transaccion', header: 'Fecha' },
         // { field: 'origen_cotizacion', header: 'Origen' },
