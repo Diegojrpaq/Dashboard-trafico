@@ -1,8 +1,32 @@
-.navbar{
-    margin-left: 220px !important;
-    margin-top: 0px ;
-    background: #1c2c3fe7 !important;  
+@import 'App.css';
+
+.navbar {
+    margin-left: 220px;
+    margin-top: 0px;
+    background: #1c2c3fe7 !important;
 }
-.btn{
-    margin-right: 10px ;
+
+.toggle-navbar {
+    /* margin-left: 220px !important; */
+    margin-top: 0px;
+    background: #1c2c3fe7 !important;
+    height: 69.6px;
+    transition: transform .3s
+}
+
+.btn {
+    margin-right: 10px;
+}
+
+.spanUser{
+    color: var(--Color-Font-primary) !important;
+    font-size: "14px";
+    font-weight: "500";
+    margin-bottom: "3px";
+    border-bottom: 1px solid  var( --Color-secondary);
+}
+.spanPuesto{
+    color: var(--Color-Font-primary);
+     font-size: 13px; 
+     margin-top: 3px 
 }

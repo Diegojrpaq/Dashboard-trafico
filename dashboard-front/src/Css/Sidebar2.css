@@ -1,104 +1,122 @@
 /* Inicio Importaciones */
 @import 'App.css';
 /* Fin Importaciones */
-   
-   
-   
-   /* Estilo para el sidebar fijo */
-    .sidebar {
-        height: 100%;
-        margin: 0px;
-        /* Abarca todo el alto de la pantalla */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 220px;
-        /* Ancho del sidebar */
-        background-color:var(--Color-navbar-back);
-        background: var(--Color-Back-primary);
-        padding: 0px;
-        color: var(--Color-Font-primary);
-        overflow-y:auto;
-        /* font-family: 'Roboto','Poppins', sans-serif; */
-    }
 
-    .sidebar-header{
-      justify-content: center;
-      padding: 20px;
-    }
 
-    .sidebar-header h3{
-      justify-content: center;
-    }
 
-    .img-fluid{
-      padding-bottom: 15px;
-      border-bottom: var(--Color-secondary) solid 2px ;
-    }
+/* Estilo para el sidebar fijo */
+.sidebar {
+  height: 100%;
+  margin: 0px;
+  /* Abarca todo el alto de la pantalla */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  /* Ancho del sidebar */
+  background-color: var(--Color-navbar-back);
+  background: var(--Color-Back-primary);
+  padding: 0px;
+  color: var(--Color-Font-primary);
+  overflow-y: auto;
+  z-index: 1000;
+  transition: left 0.3s, opacity 0.3s;
+  /* font-family: 'Roboto','Poppins', sans-serif; */
+}
 
-    .btn-collapse, .btn-collapse a{
-      border: none;
-      color: var(--Color-Font-gray) !important;
-      text-decoration: none !important;
-    }
+.sidebar-hidden {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  /* Inicialmente, el sidebar está fuera de la pantalla */
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  transition: left 0.3s, opacity 0.3s;
+  /* Aplicamos una transición suave */
+  opacity: 0;
+  /* Inicialmente, el sidebar es invisible */
+  z-index: 1000;
+}
 
-    .headerlist{
-      background: rgba(255, 255, 255, 0);
-      margin: 0px;
-      padding: 10px;
-      transition: background 0.2s ease;
-      /* transition: color 0.2s ease; */
-    
-    }
-    .headerlist:hover, .list li:hover{
-      background: var(--Color-Back-tertiary);
-      color: white;
-      /* color: var(--Color-secondary); */
-    }
-    .headerlist:active, .list li:active{
-      background: var(--Color-Back-tertiary);
-      color: white;
-      /* color: var(--Color-secondary); */
-    }
-    .headerlist:visited, .list li:visited{
-      background: var(--Color-Back-tertiary);
-      color: white;
-      /* color: var(--Color-secondary); */
-    }
-    
+.sidebar-header {
+  justify-content: center;
+  padding: 20px;
+}
 
-    .headerlist p {
-      font-size: 17px;
-      margin-bottom: 0px;
-    }
+.sidebar-header h3 {
+  justify-content: center;
+}
 
-    .list ul{
-      list-style: none;
-      padding: 0 !important;
-    }
+.img-fluid {
+  padding-bottom: 15px;
+  border-bottom: var(--Color-secondary) solid 2px;
+}
 
-    .list li{
-      padding: .5rem;
-      margin-bottom: 2px;
-    }
-    
+.btn-collapse,
+.btn-collapse a {
+  border: none;
+  color: var(--Color-Font-gray) !important;
+  text-decoration: none !important;
+}
 
-    /* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
+.headerlist {
+  background: rgba(255, 255, 255, 0);
+  margin: 0px;
+  padding: 10px;
+  transition: background 0.2s ease;
+  /* transition: color 0.2s ease; */
+
+}
+
+.headerlist:hover,
+.list li:hover {
+  background: var(--Color-Back-tertiary);
+  color: white;
+  /* color: var(--Color-secondary); */
+}
+
+.li-blue:hover {
+  background: var(blue) !important;
+  color: white;
+  /* color: var(--Color-secondary); */
+}
+
+.headerlist p {
+  font-size: 17px;
+  margin-bottom: 0px;
+}
+
+.list ul {
+  list-style: none;
+  padding: 0 !important;
+}
+
+.list li {
+  padding: .5rem;
+  margin-bottom: 2px;
+}
+
+
+/* Estilos para el scrollbar en navegadores webkit (como Chrome y Safari) */
 .sidebar::-webkit-scrollbar {
-    width: 4px; /* Ancho del scrollbar vertical */
-  }
-  
-  .sidebar::-webkit-scrollbar-track {
-    background: var(--Color-back) /* Color de fondo del track */
-  }
-  
-  .sidebar::-webkit-scrollbar-thumb {
-    background: var(--Color-secondary); /* Color del thumb (la parte arrastrable) */
-    border-radius:  3px; /* Bordes redondeados para el thumb */
-  }
-  
-  .sidebar::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color del thumb en hover */
-  }
-  
-  
+  width: 4px;
+  /* Ancho del scrollbar vertical */
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: var(--Color-back)
+    /* Color de fondo del track */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--Color-secondary);
+  /* Color del thumb (la parte arrastrable) */
+  border-radius: 3px;
+  /* Bordes redondeados para el thumb */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Color del thumb en hover */
+}

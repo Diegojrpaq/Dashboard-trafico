@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { globalData } from '../App';
 
 export default function SHeaderList(props) {
+    const { setRutaActual } = useContext(globalData)
+    const handleClic = () => {
+        setRutaActual(props.title)
+    }
     return (
         <>
-            <div className='headerlist'>
+            <div onClick={handleClic} className='headerlist my-2'>
                 <a
                     href={'#' + props.idcollapse}
                     className='btn-collapse d-flex bd-highlight'
@@ -11,7 +16,7 @@ export default function SHeaderList(props) {
                     role="button"
 
                     aria-controls={props.idcollapse}>
-                    <i className={props.icon+' bd.highlight mx-2'} ></i>
+                    <i className={props.icon + ' bd.highlight mx-2'} ></i>
                     <p className='bd.highlight'>{props.title}</p>
                     <i className="bi bi-chevron-right bd.highlight ms-auto"></i>
 
