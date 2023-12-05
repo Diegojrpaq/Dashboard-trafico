@@ -1,5 +1,5 @@
 import React from 'react';
-import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
+import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -9,12 +9,12 @@ export default function TablaArbol({ guias }) {
     // Calcular la suma del peso y volumen por sucursal
     const sumaPesoVolumenPorSucursal = guias?.reduce((result, guia) => {
         const { sucursal_ubicacion,
-                peso,
-                volumen, 
-                flete, 
-                monto_seguro,
-                subtotal, 
-                origen } = guia;
+            peso,
+            volumen,
+            flete,
+            monto_seguro,
+            subtotal,
+            origen } = guia;
         if (!result[sucursal_ubicacion]) {
             result[sucursal_ubicacion] = {
                 totalPeso: 0,
@@ -81,17 +81,17 @@ export default function TablaArbol({ guias }) {
     ]
 
     const rowClassName = (node) => {
-      return {
-          'p-treetable-footer': (node.children),
-          // 'p-highlight': (node.children)
-      };
-  }
+        return {
+            'p-treetable-footer': (node.children),
+            // 'p-highlight': (node.children)
+        };
+    }
 
     return (
         <div className="card table-responsive">
-            <TreeTable 
-                value={dataGuias} 
-                rowClassName={rowClassName} 
+            <TreeTable
+                value={dataGuias}
+                rowClassName={rowClassName}
                 showGridlines
                 stripedRows
                 tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}

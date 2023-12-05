@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
 import { routes_primary } from './routes';
 import { Spinner } from 'react-bootstrap';
 import { urlapi } from './utileria/config';
+import { Swal } from 'sweetalert2';
 
 
 
@@ -25,18 +26,18 @@ function App() {
 
 
   /*  const urlApiNextpack = 'http://localhost/trafico/get_data'; */
-  
+
 
   useEffect(() => {
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const tokenUser = urlParams.get('id'); 
-    //const tokenUser = 649;
-  
+
+    /*   const urlParams = new URLSearchParams(window.location.search);
+      const tokenUser = urlParams.get('id');  */
+    const tokenUser = 649;
+
 
     const peticionSidebar = async (tokenUser) => {
       /* const urlApiNextpackSidebar = '/trafico/get_destinos/' + tokenUser; */
-      const urlApiNextpackSidebar = urlapi+'/trafico/get_destinos/' + tokenUser;
+      const urlApiNextpackSidebar = urlapi + '/trafico/get_destinos/' + tokenUser;
       await fetch(urlApiNextpackSidebar)
         .then((resp) => {
           return resp.json();
@@ -50,13 +51,14 @@ function App() {
             // 'Se recibio la informacion correctamente Nextpack',
             //'success'
             //) 
+            
 
           }
         }).catch(
           () => console.log('Error al cargar los destinos')
         )
     }
-    
+
     const peticiones = async (tokenUser) => {
       const urlApiNextpack = urlapi + '/trafico/get_session_user/' + tokenUser;
       await fetch(urlApiNextpack)
@@ -67,25 +69,21 @@ function App() {
           if (data) {
             setSessionUser(data)
             setTokenUser(tokenUser)
-           
-            //     Swal.fire(
-            //   'Good job!',
-            // 'Se recibio la informacion correctamente Nextpack',
-            //'success'
-            //) 
+
+
 
           }
-        
 
-         
+
+
         }).catch(
           () => console.log('Error al cargar los destinos')
         )
     }
     tokenUser ? peticiones(tokenUser) : window.location.href = 'http://216.250.126.250/jrpaqueteria';
     tokenUser ? peticionSidebar(tokenUser) : console.log('cargando...')
-    
-    
+
+
 
 
   }, []);
@@ -156,18 +154,18 @@ function App() {
      setRenderInicial(infoupdate)
     } */
   if (sessionUserState !== null && destinosListState !== null) {
- 
+
     return (
       <>
-        <globalData.Provider value={{ 
-          destinosListState, 
-          sessionUserState, 
-          setDestinosList, 
-          rutaActual, 
-          setRutaActual, 
-          btnSwitch, 
-          setBtnSwitch, 
-          toggleSidebar, 
+        <globalData.Provider value={{
+          destinosListState,
+          sessionUserState,
+          setDestinosList,
+          rutaActual,
+          setRutaActual,
+          btnSwitch,
+          setBtnSwitch,
+          toggleSidebar,
           setToggleSidebar,
           destinosListXllegar
         }}>
@@ -199,14 +197,14 @@ function App() {
   } else {
     return (
       <>
-     
+
         <div className="container-fluid">
           <div className="row align-items-center justify-content-center">
             <div className="col-2">
-            <Spinner className='Spinner-Graph'></Spinner>
+              <Spinner className='Spinner-Graph'></Spinner>
             </div>
           </div>
-        
+
         </div>
       </>
     )
