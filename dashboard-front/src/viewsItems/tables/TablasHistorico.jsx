@@ -118,11 +118,11 @@ export default function TablasHistorico(props) {
                                 <Accordion.Item eventKey={100}>
                                     <Accordion.Header>
                                         <div className='container'>
-                                            <div className="col fs-5 border-bottom border-dark mb-2" style={{ width: "200px" }}>Guias Error</div>
+                                            <div className="col fs-5 border-bottom border-dark mb-3" style={{ width: "200px" }}>Guías Error <i className="bi bi-x-square-fill text-danger"></i></div>
                                             <div className='row  p-1 mb-1 mt-1 fs-5'>
-                                                <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Total guías: {viajeError.guiasError.length}</div>
-                                                <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Volumen: {totalVolumen(viajeError.guiasError)} mt3</div>
-                                                <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Peso: {totalPeso(viajeError.guiasError)} kg</div>
+                                                <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Total guías: {viajeError.guiasError.length}</div>
+                                                <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Volumen: {totalVolumen(viajeError.guiasError)} mt3</div>
+                                                <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Peso: {totalPeso(viajeError.guiasError)} kg</div>
                                             </div>
                                         </div>
                                     </Accordion.Header>

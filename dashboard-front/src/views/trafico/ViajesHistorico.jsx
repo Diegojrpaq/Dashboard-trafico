@@ -81,7 +81,7 @@ export default function ViajesHistorico() {
             Swal.fire({
               icon: "error",
               title: "Inconsistencia en registro de viaje",
-              text: "Las transacciones registradas de este viaje, no coinciden con el registro de la bitacora, consulta el detalle de las inconsistencias en la parte inferior.",
+              text: "Las transacciones registradas de este viaje, no coinciden con el registro de la bitacora, consulta el detalle de las inconsistencias en la parte inferior 'Guías Error'.",
             });
           }
         }
