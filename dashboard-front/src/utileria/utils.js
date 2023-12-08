@@ -144,3 +144,19 @@ export function guiasFilterByOrigen(guiasList, idDestino) {
             console.log("imposible realizar la opracion de filtrado")
         }
 }
+
+export const bitacoraVSembarcadas = (arrParadas, catalogoGuias) => {
+    const tieneError = catalogoGuias.some(guia => !arrParadas.some(parada => parada.id === guia.ubicacion_transaccion_id))
+    if (tieneError) {
+        const guiasError = catalogoGuias.filter(guia => !arrParadas.some(parada => parada.id === guia.ubicacion_transaccion_id))
+        return {
+            guiasError,
+            error: true
+        }
+    } else {
+        return {
+            guiasError: null,
+            error: false
+        }
+    }
+}
