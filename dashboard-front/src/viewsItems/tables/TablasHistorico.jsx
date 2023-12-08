@@ -2,10 +2,10 @@ import React from 'react'
 import { Accordion } from 'react-bootstrap';
 import TablaBitacora from './TablaBitacora'
 import TablaHistoricoGuias from '../../viewsItems/tables/TablaHistoricoGuias';
-import { guiasFilter, guiasFilterByOrigen } from '../../utileria/utils';
+import { guiasFilter, bitacoraVSembarcadas } from '../../utileria/utils';
+import TablaErrorViaje from './TablaErrorViaje';
 export default function TablasHistorico(props) {
-
-    if(props.info.catalogoGuias != null) {
+    if (props.info.catalogoGuias != null) {
         const totalVolumen = (guiasFiltradas) => {
             const sumaVolumen = guiasFiltradas.reduce((acumulador, elemento) => {
                 const suma = acumulador + elemento.volumen;
@@ -14,7 +14,7 @@ export default function TablasHistorico(props) {
             }, 0);
             return sumaVolumen;
         }
-    
+
         const totalPeso = (guiasFiltradas) => {
             const sumaPeso = guiasFiltradas.reduce((acumulador, elemento) => {
                 const suma = acumulador + elemento.peso;
@@ -23,7 +23,7 @@ export default function TablasHistorico(props) {
             }, 0);
             return sumaPeso;
         }
-    
+
         const arrAnterior = (arr, item) => {
             const index = arr.findIndex(obj => obj.id === item);
             if (index === 0 || index === -1) {
@@ -31,13 +31,13 @@ export default function TablasHistorico(props) {
             }
             return index - 1;
         }
-    
+
         const guiasSubidasAntes = (arrParadas, ubicacionAct, catGuias) => {
             const index = arrParadas.findIndex(obj => obj.id === ubicacionAct);
             let destinosAnteriores;
             let newArr = [];
             let newArr2 = [];
-            if(index !== 0 && index !== -1) {
+            if (index !== 0 && index !== -1) {
                 destinosAnteriores = arrParadas.slice(0, index);
             } else {
                 return {
@@ -45,17 +45,20 @@ export default function TablasHistorico(props) {
                     newArr2: null
                 };
             }
-            
+
             destinosAnteriores.forEach(destino => {
                 newArr = [...newArr, ...guiasFilter(catGuias, 17, destino.id)];
                 newArr2 = [...newArr2, ...guiasFilter(catGuias, 18, destino.id)]
             });
-            
+
             return {
                 newArr,
                 newArr2
             };
         }
+
+        const viajeError = bitacoraVSembarcadas(props.paradas, props.info.catalogoGuias);
+
         return (
             <div>
                 <Accordion className='mb-3'>
@@ -72,11 +75,9 @@ export default function TablasHistorico(props) {
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
-    
                 {
                     props?.paradas.map((parada, index) => (
                         <Accordion key={index} className='mb-3'>
-                            
                             <Accordion.Item eventKey={index}>
                                 <Accordion.Header>
                                     <div className='container'>
@@ -108,7 +109,35 @@ export default function TablasHistorico(props) {
                         </Accordion>
                     ))
                 }
-            </div>
+
+
+                {
+                    viajeError.error === true ?
+                        <>
+                            < Accordion key={1000} className='mb-3'>
+                                <Accordion.Item eventKey={100}>
+                                    <Accordion.Header>
+                                        <div className='container'>
+                                            <div className="col fs-5 border-bottom border-dark mb-3" style={{ width: "200px" }}>Guías Error <i className="bi bi-x-square-fill text-danger"></i></div>
+                                            <div className='row  p-1 mb-1 mt-1 fs-5'>
+                                                <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Total guías: {viajeError.guiasError.length}</div>
+                                                <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Volumen: {totalVolumen(viajeError.guiasError)} mt3</div>
+                                                <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Peso: {totalPeso(viajeError.guiasError)} kg</div>
+                                            </div>
+                                        </div>
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        <TablaErrorViaje
+                                            guias={viajeError.guiasError}
+                                            infoRuta={props.info}
+                                        />
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            </Accordion>
+                        </>
+                        : <></>
+                }
+            </div >
         )
     } else {
         <></>

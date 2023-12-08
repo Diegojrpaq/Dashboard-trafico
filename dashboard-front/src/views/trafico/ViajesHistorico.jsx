@@ -12,6 +12,7 @@ import SpinnerMain from '../../viewsItems/SpinnerMain'
 import TimeLine from '../../viewsItems/TimeLine';
 import GraficaHistorico from '../../viewsItems/graphs/GraficaHistorico';
 import TablasHistorico from '../../viewsItems/tables/TablasHistorico';
+import { bitacoraVSembarcadas } from '../../utileria/utils';
 
 
 
@@ -27,7 +28,6 @@ export default function ViajesHistorico() {
   const [infoViaje, setInfoViaje] = useState(null)
   const [peticionBackEnd, setPeticionBackend] = useState(null);
   const [listParadas, setListParadas] = useState(null)
-
 
   const peticion = async () => {
     const urlApiNextpack = urlapi + '/trafico/get_dateValidation';
@@ -76,6 +76,14 @@ export default function ViajesHistorico() {
 
             });
           }
+          const viajeError = bitacoraVSembarcadas(generarParadas(data.viaje.Bitacora), data.viaje.catalogoGuias)
+          if (viajeError.error) {
+            Swal.fire({
+              icon: "error",
+              title: "Inconsistencia en registro de viaje",
+              text: "Las transacciones registradas de este viaje, no coinciden con el registro de la bitacora, consulta el detalle de las inconsistencias en la parte inferior 'Guías Error'.",
+            });
+          }
         }
       }).catch(
         () => console.log('Error al cargar los destinos y viajes')
@@ -111,14 +119,14 @@ export default function ViajesHistorico() {
       });
       // Elimina el elemento de inicialización
       listTemp.shift();
-     /*  listTemp.forEach((elemnt)=>{
-        bitacora.forEach((elemntbitacora)=>{
-          if(elemnt.id == elemntbitacora.Origen_id){
-            const horaSalida= elemntbitacora.HoraSalida;
-            const fechaSalida= elemntbitacora.ForaSalida;
-          }
-        })
-      }) */
+      /*  listTemp.forEach((elemnt)=>{
+         bitacora.forEach((elemntbitacora)=>{
+           if(elemnt.id == elemntbitacora.Origen_id){
+             const horaSalida= elemntbitacora.HoraSalida;
+             const fechaSalida= elemntbitacora.ForaSalida;
+           }
+         })
+       }) */
 
       return listTemp;
     }
@@ -273,7 +281,6 @@ export default function ViajesHistorico() {
 
 function LayoutViaje(props) {
   const viaje = props.info
-  //console.log(props, "Datos")
   if (props.peticion === null) {
     return (
       <div className="col-12 col-md-12  p-1">
