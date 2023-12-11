@@ -7,6 +7,7 @@ import { urlapi } from '../../utileria/config';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import TablaReporteViajesFecha from '../../viewsItems/tables/TablaReporteViajesFecha';
+import ViajesHistorico from './ViajesHistorico';
 export default function ReporteViajesPorFecha() {
     const [rangoFechas, setRangofechas] = useState(null);
     const [fechaState, setFechaState] = useState(null);
@@ -95,7 +96,16 @@ export default function ReporteViajesPorFecha() {
             <>
                 <div className="col-sm-12 col-md-6 col-lg-4 py-3 px-3">
                     <div className="card shadow justify-content-center">
-                        <Calendar locale="es" value={fechaState} onChange={(e) => setFechaState(e.value)} dateFormat="dd/MM/yy" minDate={minDate} maxDate={maxDate} showIcon readOnlyInput />
+                        <Calendar
+                            locale="es"
+                            value={fechaState} 
+                            onChange={(e) => setFechaState(e.value)} 
+                            dateFormat="dd/MM/yy" 
+                            minDate={minDate} 
+                            maxDate={maxDate} 
+                            showIcon 
+                            readOnlyInput 
+                        />
                     </div>
                 </div>
                 {
@@ -133,6 +143,7 @@ function LayoutViaje(props) {
                     <div className="col-item shadow p-3 mb-4 mx-0 rounded">
                         <TablaReporteViajesFecha viajes={viajes} fecha={fecha} />
                     </div>
+                    {/* <ViajesHistorico /> */}
                 </div>
                     :
                     <div className="col-12 col-md-12  p-1">

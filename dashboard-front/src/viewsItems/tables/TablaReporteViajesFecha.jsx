@@ -2,12 +2,40 @@ import React, { useRef, useState } from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { DataTable } from 'primereact/datatable';
+import { ColumnGroup } from 'primereact/columngroup';
+import { Row } from 'primereact/row';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 import { formattedNumber, formatearFecha } from '../../utileria/utils';
 export default function TablaReporteViajesFecha({ viajes, fecha }) {
     const totalViajes = viajes?.length;
     const fechaSeleccionada = formatearFecha(fecha)
+        //Sumas para el apartado de totales
+        const sumaVolumen = viajes.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento.volumenTotal;
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0);
+        const sumaPeso = viajes.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento.pesoTotal;
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0);
+        const sumaFlete = viajes.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento.fleteTotal;
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0);
+        const sumaMonto = viajes.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento.montoSeguroTotal;
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0);
+        const sumaSubtotal = viajes.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento.subtotalTotal;
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0);
     const dt = useRef(null);
     //funciones para filtrar
     const [filters, setFilters] = useState({
@@ -108,10 +136,23 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
         </div>
     );
 
+    const footerGroup = (
+        <ColumnGroup>
+            <Row>
+                <Column footer="Totales" colSpan={3} footerStyle={{ textAlign: 'right' }} />
+                <Column footer={`${sumaVolumen} mt3`} />
+                <Column footer={`${sumaPeso} Kg`} />
+                <Column footer={formattedNumber(sumaFlete)} />
+                <Column footer={formattedNumber(sumaMonto)} />
+                <Column footer={formattedNumber(sumaSubtotal)} />
+            </Row>
+        </ColumnGroup>
+    );
+
     const newData = viajes?.map(viaje => ({
         ...viaje,
-        volumenTotal: `${viaje.volumenTotal} mt3`,
-        pesoTotal: `${viaje.pesoTotal} kg`,
+        volumenTotal: `${viaje.volumenTotal.toFixed(2)} mt3`,
+        pesoTotal: `${viaje.pesoTotal.toFixed(2)} kg`,
         fleteTotal: `${formattedNumber(viaje.fleteTotal)}`,
         montoSeguroTotal: `${formattedNumber(viaje.montoSeguroTotal)}`,
         subtotalTotal: `${formattedNumber(viaje.subtotalTotal)}`,
@@ -130,6 +171,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
                                 value={newData}
                                 filters={filters}
                                 header={header}
+                                footerColumnGroup={footerGroup} 
                                 showGridlines
                                 stripedRows
                                 sortMode='multiple'
