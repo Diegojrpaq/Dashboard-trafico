@@ -6,6 +6,19 @@ import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 import { formattedNumber } from '../../utileria/utils';
 export default function TablaErrorViaje({guias, infoRuta}) {
+    function addNewProp (arr) {
+        const arrProp = arr.map(item => {
+            if(item.idTipoOperacion === 17) {
+                return {
+                    ...item,
+                    operacion: "Embarcada"
+                }
+            }
+
+            return item;
+        })
+        return arrProp;
+    }
     const dt = useRef(null);
     //funciones para filtrar
     const [filters, setFilters] = useState({
@@ -28,7 +41,9 @@ export default function TablaErrorViaje({guias, infoRuta}) {
     //Columnas de la tabla
     const cols = [
         { field: "numGuia", header: "Numero Guía" },
-        { field: 'tipoOperacion', header: 'Tipo Operación' },
+        // { field: 'tipoOperacion', header: 'Tipo Operación' },
+        { field: 'operacion', header: 'Operación' },
+        { field: 'ubicacion_transaccion_id', header: 'Id Ubicación' },
         { field: 'ubicacion_transaccion', header: 'Ubicación transacción' },
         { field: 'fecha_transaccion', header: 'Fecha' },
         { field: 'origen_cotizacion', header: 'Origen' },
@@ -111,7 +126,7 @@ export default function TablaErrorViaje({guias, infoRuta}) {
         </div>
     );
 
-    const newData = guias.map(guia => ({
+    const data = guias.map(guia => ({
         ...guia,
         tipoOperacion: guia.idTipoOperacion,
         fecha_transaccion: guia.fecha_de_transaccion,
@@ -121,6 +136,8 @@ export default function TablaErrorViaje({guias, infoRuta}) {
         monto_seguro: formattedNumber(guia.monto_seguro),
         subtotal: formattedNumber(guia.subtotal),
     }))
+    const newData = addNewProp(data);
+    console.log(data, "PropNew")
   return (
     <div className="card">
                 <DataTable
