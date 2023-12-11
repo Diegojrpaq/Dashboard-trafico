@@ -3,39 +3,11 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { ColumnGroup } from 'primereact/columngroup';
-import { Row } from 'primereact/row';
 import { FilterMatchMode } from 'primereact/api';
-import { formattedNumber } from '../../utileria/utils';
-export default function TablaReporteViajesFecha({ viajes, infoRuta }) {
-
-    //Sumas para el apartado de totales
-    const sumaVolumen = viajes.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.volumen;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-    const sumaPeso = viajes.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.peso;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-    const sumaFlete = viajes.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.flete;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-    const sumaMonto = viajes.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.monto_seguro;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-    const sumaSubtotal = viajes.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.subtotal;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-
+import { formattedNumber, formatearFecha } from '../../utileria/utils';
+export default function TablaReporteViajesFecha({ viajes, fecha }) {
+    const totalViajes = viajes?.length;
+    const fechaSeleccionada = formatearFecha(fecha)
     const dt = useRef(null);
     //funciones para filtrar
     const [filters, setFilters] = useState({
@@ -57,17 +29,17 @@ export default function TablaReporteViajesFecha({ viajes, infoRuta }) {
 
     //Columnas de la tabla
     const cols = [
-        { field: "numViaje", header: "Numero Viaje" },
-        { field: 'nomViaje', header: 'Nombre Viaje' },
-        { field: 'totalGuias', header: 'Total Guias' },
-        { field: 'volumen', header: 'Volumen' },
-        { field: 'peso', header: 'Peso' },
-        { field: 'flete', header: 'Flete' },
-        { field: 'monto_seguro', header: 'Monto seguro' },
-        { field: 'subtotal', header: 'Subtotal' }
+        { field: "idViaje", header: "Numero Viaje" },
+        { field: 'nombre', header: 'Nombre Viaje' },
+        { field: 'cantidadGuias', header: 'Total Guías' },
+        { field: 'volumenTotal', header: 'Volumen' },
+        { field: 'pesoTotal', header: 'Peso' },
+        { field: 'fleteTotal', header: 'Flete' },
+        { field: 'montoSeguroTotal', header: 'Monto seguro' },
+        { field: 'subtotalTotal', header: 'Subtotal' }
     ];
 
-    const nombreArchivo = `${infoRuta.nombreRuta}-${infoRuta.fecha}`;
+    const nombreArchivo = `${"Reporte"}-${fechaSeleccionada}`;
     const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
     //exportar en CSV
     const exportCSV = (selectionOnly) => {
@@ -135,50 +107,44 @@ export default function TablaReporteViajesFecha({ viajes, infoRuta }) {
             </div>
         </div>
     );
-    //Footer de la tabla, contiene los totales
-    // const footerGroup = (
-    //     <ColumnGroup>
-    //         <Row>
-    //             <Column footer="Totales" colSpan={3} footerStyle={{ textAlign: 'right' }} />
-    //             <Column footer={`${sumaVolumen} mt3`} />
-    //             <Column footer={`${sumaPeso} Kg`} />
-    //             <Column footer={formattedNumber(sumaFlete)} />
-    //             <Column footer={formattedNumber(sumaMonto)} />
-    //             <Column footer={formattedNumber(sumaSubtotal)} />
-    //         </Row>
-    //     </ColumnGroup>
-    // );
 
-    const newData = viajes.map(viaje => ({
+    const newData = viajes?.map(viaje => ({
         ...viaje,
-        volumen: `${viaje.volumen} mt3`,
-        peso: `${viaje.peso} kg`,
-        flete: formattedNumber(viaje.flete),
-        monto_seguro: formattedNumber(viaje.monto_seguro),
-        subtotal: formattedNumber(viaje.subtotal),
+        volumenTotal: `${viaje.volumenTotal} mt3`,
+        pesoTotal: `${viaje.pesoTotal} kg`,
+        fleteTotal: `${formattedNumber(viaje.fleteTotal)}`,
+        montoSeguroTotal: `${formattedNumber(viaje.montoSeguroTotal)}`,
+        subtotalTotal: `${formattedNumber(viaje.subtotalTotal)}`,
     }))
     return (
         <>
-            <div className="card">
-                <DataTable 
-                    ref={dt}
-                    value={newData} 
-                    filters={filters} 
-                    header={header} 
-                    // footerColumnGroup={footerGroup} 
-                    showGridlines 
-                    stripedRows 
-                    sortMode='multiple' 
-                    tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}                 
-                    emptyMessage="No se encontraron resultados"
-                >
-                    {
-                        cols.map((col, index) => (
-                            <Column key={index} field={col.field} header={col.header} sortable></Column>
-                        ))
-                    }
-                </DataTable>
-            </div>
+            {
+                viajes ?
+                    <>
+                        <div className='d-flex align-items-center'>
+                            <h3>Total de viajes: {totalViajes}</h3>
+                        </div>
+                        <div className="card">
+                            <DataTable
+                                ref={dt}
+                                value={newData}
+                                filters={filters}
+                                header={header}
+                                showGridlines
+                                stripedRows
+                                sortMode='multiple'
+                                tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}
+                                emptyMessage="No se encontraron resultados"
+                            >
+                                {
+                                    cols.map((col, index) => (
+                                        <Column key={index} field={col.field} header={col.header} sortable></Column>
+                                    ))
+                                }
+                            </DataTable>
+                        </div></>
+                    : <h3>No existen viajes en esta fecha, selecciona otra fecha</h3>
+            }
         </>
     )
 }
