@@ -26,20 +26,20 @@ export default function TimeLine(props) {
             />
             <div className="row">
                 <div className='col-12 col-md-5'>
-                    <h3>
+                    <h4>
                         Viaje: {viaje.nombre}
-                    </h3>
-                    <h3 className='mt-2'>
+                    </h4>
+                    <h4 className='mt-2'>
                         Num viaje: {viaje.id}
-                    </h3>
+                    </h4>
                 </div>
                 <div className='col-12 col-md-6'>
-                    <h3>
+                    <h4>
                         Tracto: {viaje.Clave_vehiculo}
-                    </h3>
+                    </h4>
                     
                     {viaje.idCaja > 0 ? (
-        <h3 className='mt-2'>Caja: {viaje.idCaja}</h3>
+        <h4 className='mt-2'>Caja: {viaje.Caja}</h4>
       ) : null}
                     
                 </div>
