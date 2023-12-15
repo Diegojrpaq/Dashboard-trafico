@@ -29,6 +29,7 @@ const Rutaprueba = React.lazy(()=> import('./Componentes/GraficaBarrasPruebaToph
 const planRutas = React.lazy(()=> import('./views/trafico/PlaneacionRutas'))
 const viajesHistorico = React.lazy(()=> import('./views/trafico/ViajesHistorico'))
 const reporteViajesPorFecha = React.lazy(()=> import('./views/trafico/ReporteViajesPorFecha'))
+const reporteRutaPorLapso = React.lazy(()=> import('./views/trafico/ReporteRutaPorLapso'))
 
 //Arreglo de rutas
 const routes_secondary = [
@@ -40,6 +41,7 @@ const routes_secondary = [
     {path: '/trafico/planeacion/:idSucursal/:idRuta', name: 'Planeacion', element: planRutas},
     {path: '/trafico/viajesHistorico', name: 'viajeHistorico', element: viajesHistorico},
     {path: '/trafico/reporteViajes', name: 'reporteViajesPorFecha', element: reporteViajesPorFecha},
+    {path: '/trafico/reporteRuta', name: 'reporteRutaPorLapso', element: reporteRutaPorLapso},
 ]
 //-------------------------------------Fin segundo menu de rutas--------------------------------
 

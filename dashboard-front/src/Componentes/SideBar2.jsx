@@ -109,6 +109,7 @@ export default function SideBar2() {
           <SListItem icon='bi bi-geo-alt mx-1'>CD. Obregon</SListItem> */}
           <SListItem icon='bi bi-geo-alt mx-2' url={'/trafico/viajesHistorico'}>Historico</SListItem>
           <SListItem icon='bi bi-file-earmark-spreadsheet mx-2' url={'/trafico/reporteViajes'}>Reporte Viajes Historico</SListItem>
+          <SListItem icon='bi bi-file-earmark-spreadsheet mx-2' url={'/trafico/reporteRuta'}>Analisis Rutas</SListItem>
         </SHeaderList>
         
 
