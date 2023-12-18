@@ -7,6 +7,7 @@ import { globalData } from '../../App'
 import { urlapi } from '../../utileria/config';
 import TablaArbol from '../../viewsItems/tables/TablaArbol';
 
+
 export default function PlaneacionRutas() {
     const { idSucursal, idRuta } = useParams();
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function PlaneacionRutas() {
                 return resp.json();
             }).then((data) => {
                 if (data) {
-                    //console.log(data)
+                    console.log(data)
                     setPlanRuta(data)
                 }
             }).catch(
