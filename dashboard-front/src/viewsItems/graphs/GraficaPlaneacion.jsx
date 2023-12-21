@@ -46,7 +46,7 @@ export default function Graph(props) {
         const peso = context.dataset.peso
         const volumen = value?.toFixed(2)
         const val = value / 100;
-        if (val > 0.1) {
+        if (val > 0.08) {
           return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
         } else {
           return ""
