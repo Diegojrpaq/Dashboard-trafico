@@ -8,14 +8,13 @@ import { urlapi } from '../../utileria/config';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import TablaReporteViajesFecha from '../../viewsItems/tables/TablaReporteViajesFecha';
-import ViajesHistorico from './ViajesHistorico';
 export default function ReporteRutaPorLapso() {
     const [rangoFechas, setRangofechas] = useState(null);
     const [fechaState, setFechaState] = useState(null);
     const [peticionBackEnd, setPeticionBackend] = useState(false);
     const [viajesData, setViajesData] = useState(null);
     const [selectedViaje, setselectedViaje] = useState(null);
-    const [dataGuias, setDataGuias] = useState(null);
+    const [dataViajes, setDataViajes] = useState(null);
 
     const peticion = async () => {
         const urlApiNextpack = urlapi + '/trafico/get_dateValidation';
@@ -31,7 +30,7 @@ export default function ReporteRutaPorLapso() {
                 () => console.log('Error al cargar las fechas')
             )
     }
-    console.log(fechaState, "fechas")
+    //console.log(fechaState, "fechas")
 
     const data = async () => {
         if (fechaState !== null) {
@@ -47,16 +46,15 @@ export default function ReporteRutaPorLapso() {
                 const day2 = segundaFecha.getDate().toString().padStart(2, '0');
                 const fechaFin = year2 + month2 + day2;
                 const idRuta = selectedViaje?.id;
-                console.log(fechaInicio, fechaFin, idRuta, "fechas2")
                 const urlApiNextpack = `${urlapi}/trafico/get_rutaRango/${fechaInicio}/${fechaFin}/${idRuta}`;
                 await fetch(urlApiNextpack)
                     .then((resp) => {
                         return resp.json();
                     }).then((data) => {
                         if (data) {
-                            console.log(data, "data fetch")
+                            //console.log(data, "data fetch")
                             setPeticionBackend(true)
-                            setDataGuias(data)
+                            setDataViajes(data)
                         }
 
                     }).catch(
@@ -71,15 +69,12 @@ export default function ReporteRutaPorLapso() {
     }, [])
 
         const peticionInfoViajes = async () => {
-        const fechaAConsultar = fechaState && fechaState;
-        console.log("Entro a fechas infoV")
         const urlApiNextpack = urlapi + '/trafico/get_rutasForaneas';
         await fetch(urlApiNextpack)
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
                 if (data) {
-                    //setPeticionBackend(true)
                     setViajesData(data)
                 }
             }).catch(
@@ -87,10 +82,9 @@ export default function ReporteRutaPorLapso() {
             )
     }
     useEffect(() => {
-        //setPeticionBackend(false)
         setselectedViaje(null)
         setViajesData(null)
-        setDataGuias(null)
+        setDataViajes(null)
         if (fechaState !== null) {
             if(fechaState[1] !== null) {
                 peticionInfoViajes();
@@ -99,7 +93,7 @@ export default function ReporteRutaPorLapso() {
     }, [fechaState])
 
     useEffect(() => {
-        setDataGuias(null)
+        setDataViajes(null)
         setPeticionBackend(false)
         data();
     }, [selectedViaje])
@@ -161,7 +155,7 @@ export default function ReporteRutaPorLapso() {
                     </div>
                 </div>
                 {
-                    fechaState && selectedViaje ? <LayoutViaje dataGuias={dataGuias?.catalogoInfo} fecha={fechaSelec} peticion={peticionBackEnd} />
+                    fechaState && selectedViaje ? <LayoutViaje dataGuias={dataViajes?.viajes} fecha={fechaSelec} peticion={peticionBackEnd} />
                         :
                         <>
                             <div className="col-12 col-md-12  p-1">
@@ -186,17 +180,15 @@ export default function ReporteRutaPorLapso() {
 }
 
 function LayoutViaje(props) {
-    const guias = props.dataGuias;
+    const viajes = props.dataGuias;
     const fecha = props.fecha;
     return (
         <>
             {
                 props.peticion ? <div className="col-12 col-md-12  p-1">
                     <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-                        {/*  <TablaReporteViajesFecha viajes={viajes} fecha={fecha} /> */}
-                        <h5>Mostrando datos... {guias[0].numGuia}</h5>
+                        <TablaReporteViajesFecha viajes={viajes} fecha={fecha} />
                     </div>
-                    {/* <ViajesHistorico /> */}
                 </div>
                     :
                     <div className="col-12 col-md-12  p-1">
