@@ -152,7 +152,7 @@ export default function GraficaHistorico(props) {
                     stacked: true,
                     beginAtZero: false, // Asegura que el eje X no empiece en 0
                     min: 0, // Establece el mínimo del eje X en 100
-                    max: viaje.Volumen_carga_maxima + 4,
+                    max: viaje.Volumen_carga_maxima > 0 ?  viaje.Volumen_carga_maxima + 4: 100,
 
                 },
                 y: {
