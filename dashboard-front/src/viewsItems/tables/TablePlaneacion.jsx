@@ -4,29 +4,35 @@ import 'primereact/resources/primereact.css';
 import { Table } from 'react-bootstrap';
 import { formattedNumber } from '../../utileria/utils';
 
-export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas }) {
+export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guiasPlaneadasClientes }) {
+  let guiasClientes = [];
+  if(guiasPlaneadasClientes !== null) {
+    guiasClientes = [...guiasPlaneadasClientes]
+  }
+
   //Sumas para el apartado de totales de lo planeado
-  const sumaVolumenPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
+  const guiasTotales = [...guiasPlaneadas, ...guiasClientes]
+  const sumaVolumenPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.volumen;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
-  const sumaPesoPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
+  const sumaPesoPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.peso;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
-  const sumaFletePlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
+  const sumaFletePlaneado = guiasTotales?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.flete;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
-  const sumaMontoPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
+  const sumaMontoPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.monto_seguro;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
   }, 0);
-  const sumaSubtotalPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
+  const sumaSubtotalPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
     const suma = acumulador + elemento.subtotal;
     const totalRedondeado = Number(suma.toFixed(2));
     return totalRedondeado;
