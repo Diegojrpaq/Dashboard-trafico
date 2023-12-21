@@ -22,7 +22,7 @@ export default function PlaneacionRutas() {
                 return resp.json();
             }).then((data) => {
                 if (data) {
-                    console.log(data)
+                    //console.log(data)
                     setPlanRuta(data)
                 }
             }).catch(
@@ -101,6 +101,7 @@ export default function PlaneacionRutas() {
                                 <Accordion.Body>
                                     <TablePlaneacion
                                         guiasPlaneadas={planRuta?.rutas[0]?.catalogoGuiasPlaneadas}
+                                        guiasPlaneadasClientes={planRuta?.rutas[0]?.catalogoGuiasPlaneadasClientes}
                                         guiasEmbarcadas={planRuta?.rutas[0]?.catalogoGuiasEmbarcadas}
                                     />
                                 </Accordion.Body>
@@ -110,6 +111,7 @@ export default function PlaneacionRutas() {
                                 <Accordion.Body>
                                     <TablaArbol 
                                         guias={planRuta?.rutas[0]?.catalogoGuiasPlaneadas}
+                                        guiasClientes={planRuta?.rutas[0]?.catalogoGuiasPlaneadasClientes}
                                     />
                                 </Accordion.Body>
                             </Accordion.Item>

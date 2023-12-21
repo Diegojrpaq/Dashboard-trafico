@@ -5,7 +5,8 @@ import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
 import { ConvertirFecha, formattedNumber } from '../../utileria/utils';
 
-export default function TablaArbol({ guias }) {
+export default function TablaArbol({ guias, guiasClientes }) {
+    let newData;
     // Calcular la suma del peso y volumen por sucursal
     const sumaPesoVolumenPorSucursal = guias?.reduce((result, guia) => {
         const { sucursal_ubicacion,
@@ -67,6 +68,74 @@ export default function TablaArbol({ guias }) {
         };
     });
 
+    if (guiasClientes !== null && guiasClientes !== undefined) {
+        // Calcular la suma del peso y volumen por cliente
+        const sumaPesoVolumenPorCliente = guiasClientes?.reduce((result, guia) => {
+            const {
+                clienteOrigen,
+                peso,
+                volumen,
+                flete,
+                monto_seguro,
+                subtotal,
+                origen } = guia;
+            if (!result[clienteOrigen]) {
+                result[clienteOrigen] = {
+                    totalPeso: 0,
+                    totalVolumen: 0,
+                    totalFlete: 0,
+                    totalSeguro: 0,
+                    totalSub: 0
+                };
+            }
+
+            result[clienteOrigen].totalPeso += peso;
+            result[clienteOrigen].totalVolumen += volumen;
+            result[clienteOrigen].totalFlete += flete;
+            result[clienteOrigen].totalSeguro += monto_seguro;
+            result[clienteOrigen].totalSub += subtotal;
+            result[clienteOrigen].origen = origen;
+            return result;
+        }, {});
+
+        // Construir la estructura dataGuiasClientes con los totales
+        const dataGuiasClientes = Object.keys(sumaPesoVolumenPorCliente).map((sucursal, index) => {
+            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen } = sumaPesoVolumenPorCliente[sucursal];
+            return {
+                key: index + 100,
+                data: {
+                    sucursal,
+                    origen,
+                    peso: `${totalPeso.toFixed(2)} kg`,
+                    volumen: `${totalVolumen.toFixed(2)} mt3`,
+                    flete: formattedNumber(totalFlete),
+                    seguro: formattedNumber(totalSeguro),
+                    subtotal: formattedNumber(totalSub)
+                },
+                children: guiasClientes
+                    .filter((guia) => guia.clienteOrigen === sucursal)
+                    .map((guia, childIndex) => ({
+                        key: `${index + 100}-${childIndex + 100}`,
+                        data: {
+                            numG: guia.numGuia,
+                            origen: guia.sucursal_principal,
+                            destino: guia.sucursal_destino,
+                            fecha: ConvertirFecha(guia.fecha_registro),
+                            peso: `${guia.peso.toFixed(2)} kg`,
+                            volumen: `${guia.volumen.toFixed(2)} mt3`,
+                            flete: formattedNumber(guia.flete),
+                            seguro: formattedNumber(guia.monto_seguro),
+                            subtotal: formattedNumber(guia.subtotal)
+                        },
+                    })),
+            };
+        });
+
+        newData = [...dataGuias, ...dataGuiasClientes];
+    } else {
+        newData = [...dataGuias]
+    }
+
     const columns = [
         { field: 'sucursal', header: 'Sucursal', expander: true },
         { field: 'numG', header: 'Num-Guía' },
@@ -90,7 +159,7 @@ export default function TablaArbol({ guias }) {
     return (
         <div className="card table-responsive">
             <TreeTable
-                value={dataGuias}
+                value={newData}
                 rowClassName={rowClassName}
                 showGridlines
                 stripedRows
