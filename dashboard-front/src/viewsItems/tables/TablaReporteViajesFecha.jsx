@@ -11,27 +11,27 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
     const totalViajes = viajes?.length;
     const fechaSeleccionada = formatearFecha(fecha)
         //Sumas para el apartado de totales
-        const sumaVolumen = viajes.reduce((acumulador, elemento) => {
+        const sumaVolumen = viajes?.reduce((acumulador, elemento) => {
             const suma = acumulador + elemento.volumenTotal;
             const totalRedondeado = Number(suma.toFixed(2));
             return totalRedondeado;
         }, 0);
-        const sumaPeso = viajes.reduce((acumulador, elemento) => {
+        const sumaPeso = viajes?.reduce((acumulador, elemento) => {
             const suma = acumulador + elemento.pesoTotal;
             const totalRedondeado = Number(suma.toFixed(2));
             return totalRedondeado;
         }, 0);
-        const sumaFlete = viajes.reduce((acumulador, elemento) => {
+        const sumaFlete = viajes?.reduce((acumulador, elemento) => {
             const suma = acumulador + elemento.fleteTotal;
             const totalRedondeado = Number(suma.toFixed(2));
             return totalRedondeado;
         }, 0);
-        const sumaMonto = viajes.reduce((acumulador, elemento) => {
+        const sumaMonto = viajes?.reduce((acumulador, elemento) => {
             const suma = acumulador + elemento.montoSeguroTotal;
             const totalRedondeado = Number(suma.toFixed(2));
             return totalRedondeado;
         }, 0);
-        const sumaSubtotal = viajes.reduce((acumulador, elemento) => {
+        const sumaSubtotal = viajes?.reduce((acumulador, elemento) => {
             const suma = acumulador + elemento.subtotalTotal;
             const totalRedondeado = Number(suma.toFixed(2));
             return totalRedondeado;
