@@ -15,7 +15,7 @@ export default function ReporteRutaPorLapso() {
     const [viajesData, setViajesData] = useState(null);
     const [selectedViaje, setselectedViaje] = useState(null);
     const [dataViajes, setDataViajes] = useState(null);
-
+    const [fechas, setFechas] = useState(null);
     const peticion = async () => {
         const urlApiNextpack = urlapi + '/trafico/get_dateValidation';
         await fetch(urlApiNextpack)
@@ -45,6 +45,7 @@ export default function ReporteRutaPorLapso() {
                 const month2 = (segundaFecha.getMonth() + 1).toString().padStart(2, '0');
                 const day2 = segundaFecha.getDate().toString().padStart(2, '0');
                 const fechaFin = year2 + month2 + day2;
+                setFechas([fechaInicio, fechaFin])
                 const idRuta = selectedViaje?.id;
                 const urlApiNextpack = `${urlapi}/trafico/get_rutaRango/${fechaInicio}/${fechaFin}/${idRuta}`;
                 await fetch(urlApiNextpack)
@@ -68,7 +69,7 @@ export default function ReporteRutaPorLapso() {
         peticion();
     }, [])
 
-        const peticionInfoViajes = async () => {
+    const peticionInfoViajes = async () => {
         const urlApiNextpack = urlapi + '/trafico/get_rutasForaneas';
         await fetch(urlApiNextpack)
             .then((resp) => {
@@ -86,7 +87,7 @@ export default function ReporteRutaPorLapso() {
         setViajesData(null)
         setDataViajes(null)
         if (fechaState !== null) {
-            if(fechaState[1] !== null) {
+            if (fechaState[1] !== null) {
                 peticionInfoViajes();
             }
         }
@@ -98,7 +99,7 @@ export default function ReporteRutaPorLapso() {
         data();
     }, [selectedViaje])
 
-    
+
     addLocale('es', {
         firstDayOfWeek: 1,
         showMonthAfterYear: true,
@@ -114,7 +115,7 @@ export default function ReporteRutaPorLapso() {
     let maxDate;
     let fechaSelec = fechaState && fechaState
     let list;
-    if(viajesData?.Rutas) {
+    if (viajesData?.Rutas) {
         list = viajesData?.Rutas;
     }
     if (rangoFechas !== null) {
@@ -130,7 +131,7 @@ export default function ReporteRutaPorLapso() {
         // Crear objetos de fecha
         minDate = new Date(yearMin, monthMin, dayMin);
         maxDate = new Date(yearMax, monthMax, dayMax);
-       
+
         return (
             <>
                 <div className="col-sm-12 col-md-6 col-lg-4 py-3 px-3">
@@ -155,7 +156,7 @@ export default function ReporteRutaPorLapso() {
                     </div>
                 </div>
                 {
-                    fechaState && selectedViaje ? <LayoutViaje dataGuias={dataViajes?.viajes} fecha={fechaSelec} peticion={peticionBackEnd} />
+                    fechaState && selectedViaje ? <LayoutViaje dataGuias={dataViajes?.viajes} fechas={fechas} peticion={peticionBackEnd} />
                         :
                         <>
                             <div className="col-12 col-md-12  p-1">
@@ -181,13 +182,13 @@ export default function ReporteRutaPorLapso() {
 
 function LayoutViaje(props) {
     const viajes = props.dataGuias;
-    const fecha = props.fecha;
+    const fechas = props.fechas;
     return (
         <>
             {
                 props.peticion ? <div className="col-12 col-md-12  p-1">
                     <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-                        <TablaReporteViajesFecha viajes={viajes} fecha={fecha} />
+                        <TablaReporteViajesFecha viajes={viajes} fecha={fechas} />
                     </div>
                 </div>
                     :

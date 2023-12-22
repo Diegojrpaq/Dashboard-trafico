@@ -56,19 +56,22 @@ export function diferenciaFechas(fechaRuta) {
 }
 
 export function formatearFecha(fechaSinFormato) {
-    const año = fechaSinFormato.slice(0, 4);
-    const mes = fechaSinFormato.slice(4, 6);
-    const día = fechaSinFormato.slice(6, 8);
-
-    return `${día}/${mes}/${año}`;
+    if (fechaSinFormato !== undefined && fechaSinFormato !== null) {
+        const año = fechaSinFormato.slice(0, 4);
+        const mes = fechaSinFormato.slice(4, 6);
+        const día = fechaSinFormato.slice(6, 8);
+        return `${día}/${mes}/${año}`;
+    }
 }
 
 //Formatea un valor numerico a formato de dinero
 export const formattedNumber = (number) => {
-    return number.toLocaleString('es-MX', {
-        style: 'currency',
-        currency: 'MXN'
-    });
+    if (number !== undefined && number !== null) {
+        return number.toLocaleString('es-MX', {
+            style: 'currency',
+            currency: 'MXN'
+        });
+    }
 }
 
 
@@ -117,15 +120,15 @@ export function guiasFilter(guiasList, idTipoTransaccion, idDestino) {
     //esta funcion recibira la lista de guias a filtrar mas dos parametro id del destino y
     //el id de la transaccion con la que se movio en el viaje, regresando una lista igual ya 
     //filtrada.
-    if (guiasList!=null){
+    if (guiasList != null) {
         let guiasListFiltered = [];
-        let listDestinoFiltered= [];
-        listDestinoFiltered= guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
-        guiasListFiltered = listDestinoFiltered.filter(guia=> guia.idTipoOperacion === idTipoTransaccion);
+        let listDestinoFiltered = [];
+        listDestinoFiltered = guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
+        guiasListFiltered = listDestinoFiltered.filter(guia => guia.idTipoOperacion === idTipoTransaccion);
 
         return guiasListFiltered;
 
-    }else{
+    } else {
         console.log("imposible realizar la opracion de filtrado")
     }
 }
@@ -134,15 +137,15 @@ export function guiasFilterByOrigen(guiasList, idDestino) {
     //esta funcion recibira la lista de guias a filtrar mas dos parametro id del destino y
     //el id de la transaccion con la que se movio en el viaje, regresando una lista igual ya 
     //filtrada.
-    
-        if (guiasList!=null){
-            let listDestinoFiltered= [];
-            return listDestinoFiltered= guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
-    
-            
-        } else {
-            console.log("imposible realizar la opracion de filtrado")
-        }
+
+    if (guiasList != null) {
+        let listDestinoFiltered = [];
+        return listDestinoFiltered = guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
+
+
+    } else {
+        console.log("imposible realizar la opracion de filtrado")
+    }
 }
 
 export const bitacoraVSembarcadas = (arrParadas, catalogoGuias) => {
