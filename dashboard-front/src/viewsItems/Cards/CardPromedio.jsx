@@ -17,7 +17,7 @@ export default function CardPromedio({ title, suma, signo, totalViajes }) {
     sumaFormatted = formattedCantidad(suma);
     return (
         <>
-            <Card border="primary my-2" style={{ width: '16rem', height: '140px' }}>
+            <Card border="primary my-2" style={{ width: '16rem', height: 'auto' }}>
                 <Card.Header className='text-light fs-5' style={{ backgroundColor: "rgb(49 64 81)" }}>{title}</Card.Header>
                 <Card.Body>
                     {/* <Card.Title className='fs-5'><span className='badge bg-dark'>Promedio:</span> <span className='badge bg-success fs-6 text-center'>{signo === "$" ? signo + promFormatted : promFormatted + " " + signo}</span></Card.Title>

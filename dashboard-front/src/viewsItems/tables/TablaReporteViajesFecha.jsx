@@ -66,6 +66,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
     const cols = [
         { field: "idViaje", header: "Numero Viaje" },
         { field: 'nombre', header: 'Nombre Viaje' },
+        { field: 'fechaRegistro', header: 'Fecha' },
         { field: 'cantidadGuias', header: 'Total Guías' },
         { field: 'volumenTotal', header: 'Volumen' },
         { field: 'pesoTotal', header: 'Peso' },
@@ -158,6 +159,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
 
     const newData = viajes?.map(viaje => ({
         ...viaje,
+        fechaRegistro: formatearFecha(viaje.fechaRegistro),
         volumenTotal: `${viaje.volumenTotal.toFixed(2)} mt3`,
         pesoTotal: `${viaje.pesoTotal.toFixed(2)} kg`,
         fleteTotal: `${formattedNumber(viaje.fleteTotal)}`,
