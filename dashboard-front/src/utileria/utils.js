@@ -65,10 +65,12 @@ export function formatearFecha(fechaSinFormato) {
 
 //Formatea un valor numerico a formato de dinero
 export const formattedNumber = (number) => {
-    return number.toLocaleString('es-MX', {
-        style: 'currency',
-        currency: 'MXN'
-    });
+    if(number !== undefined && number !== null) {
+        return number.toLocaleString('es-MX', {
+            style: 'currency',
+            currency: 'MXN'
+        });
+    }
 }
 
 

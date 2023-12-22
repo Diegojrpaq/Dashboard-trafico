@@ -7,35 +7,42 @@ import { Row } from 'primereact/row';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 import { formattedNumber, formatearFecha } from '../../utileria/utils';
+import ContainerCards from '../../viewsItems/Cards/ContainerCards';
 export default function TablaReporteViajesFecha({ viajes, fecha }) {
     const totalViajes = viajes?.length;
-    const fechaSeleccionada = formatearFecha(fecha)
-        //Sumas para el apartado de totales
-        const sumaVolumen = viajes?.reduce((acumulador, elemento) => {
-            const suma = acumulador + elemento.volumenTotal;
-            const totalRedondeado = Number(suma.toFixed(2));
-            return totalRedondeado;
-        }, 0);
-        const sumaPeso = viajes?.reduce((acumulador, elemento) => {
-            const suma = acumulador + elemento.pesoTotal;
-            const totalRedondeado = Number(suma.toFixed(2));
-            return totalRedondeado;
-        }, 0);
-        const sumaFlete = viajes?.reduce((acumulador, elemento) => {
-            const suma = acumulador + elemento.fleteTotal;
-            const totalRedondeado = Number(suma.toFixed(2));
-            return totalRedondeado;
-        }, 0);
-        const sumaMonto = viajes?.reduce((acumulador, elemento) => {
-            const suma = acumulador + elemento.montoSeguroTotal;
-            const totalRedondeado = Number(suma.toFixed(2));
-            return totalRedondeado;
-        }, 0);
-        const sumaSubtotal = viajes?.reduce((acumulador, elemento) => {
-            const suma = acumulador + elemento.subtotalTotal;
-            const totalRedondeado = Number(suma.toFixed(2));
-            return totalRedondeado;
-        }, 0);
+    const fecha1 = formatearFecha(fecha[0])
+    const fecha2 = formatearFecha(fecha[1])
+    //Sumas para el apartado de totales
+    const sumaVolumen = viajes?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.volumenTotal;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0);
+    const sumaPeso = viajes?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.pesoTotal;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0);
+    const sumaFlete = viajes?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.fleteTotal;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0);
+    const sumaMonto = viajes?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.montoSeguroTotal;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0);
+    const sumaSubtotal = viajes?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.subtotalTotal;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0);
+    const sumaGuias = viajes?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.cantidadGuias;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0);
     const dt = useRef(null);
     //funciones para filtrar
     const [filters, setFilters] = useState({
@@ -67,7 +74,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
         { field: 'subtotalTotal', header: 'Subtotal' }
     ];
 
-    const nombreArchivo = `${"Reporte"}-${fechaSeleccionada}`;
+    const nombreArchivo = `${"Reporte"}-${fecha1}-${fecha2}`;
     const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
     //exportar en CSV
     const exportCSV = (selectionOnly) => {
@@ -157,21 +164,53 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
         montoSeguroTotal: `${formattedNumber(viaje.montoSeguroTotal)}`,
         subtotalTotal: `${formattedNumber(viaje.subtotalTotal)}`,
     }))
+
+    const sumas = [
+        {
+            nombre: "Volumen",
+            suma: sumaVolumen,
+            signo: "mt3"
+        },
+        {
+            nombre: "Peso",
+            suma: sumaPeso,
+            signo: "kg"
+        },
+        {
+            nombre: "Flete",
+            suma: sumaFlete,
+            signo: "$"
+        },
+        {
+            nombre: "Monto seguro",
+            suma: sumaMonto,
+            signo: "$"
+        },
+        {
+            nombre: "Subtotal",
+            suma: sumaSubtotal,
+            signo: "$"
+        }
+    ]
+
     return (
         <>
+
             {
                 viajes ?
                     <>
-                        <div className='d-flex align-items-center'>
-                            <h3>Total de viajes: {totalViajes}</h3>
+                        <div className=''>
+                            <h3 className='badge bg-secondary fs-4'>Total de viajes: {totalViajes}</h3>
+                            <h3 className='badge bg-secondary fs-4 mx-md-3'>Total de guías: {sumaGuias}</h3>
                         </div>
+                        <ContainerCards sumas={sumas} totalViajes={totalViajes} totalGuias={sumaGuias} />
                         <div className="card">
                             <DataTable
                                 ref={dt}
                                 value={newData}
                                 filters={filters}
                                 header={header}
-                                footerColumnGroup={footerGroup} 
+                                footerColumnGroup={footerGroup}
                                 showGridlines
                                 stripedRows
                                 sortMode='multiple'
