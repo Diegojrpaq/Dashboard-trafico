@@ -147,7 +147,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
     const footerGroup = (
         <ColumnGroup>
             <Row>
-                <Column footer="Totales" colSpan={3} footerStyle={{ textAlign: 'right' }} />
+                <Column footer="Totales" colSpan={4} footerStyle={{ textAlign: 'right' }} />
                 <Column footer={`${sumaVolumen} mt3`} />
                 <Column footer={`${sumaPeso} Kg`} />
                 <Column footer={formattedNumber(sumaFlete)} />
