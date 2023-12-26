@@ -124,9 +124,9 @@ export default function RutasActivas() {
                           <div className='container'>
                             <div className='row'>
                               <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>{ruta.nombre}</div>
-                              <div className='col'>Vehículo: {ruta.Clave_vehiculo}</div>
-                              <div className='col'>Fecha: {fecha}</div>
-                              <div className='col'>Total guías: 0</div>
+                              <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Vehículo: {ruta.Clave_vehiculo}</div>
+                              <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Fecha: {fecha}</div>
+                              <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Total guías: 0</div>
                             </div>
                           </div>
                         </Accordion.Header>
