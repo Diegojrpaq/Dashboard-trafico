@@ -37,7 +37,7 @@ export default function Graph(props) {
   const coloresBorder = catalogoColores.coloresBorder;
   const nombreRuta = props.planRuta?.rutas[0]?.nombre
 
-  if (catalogoClientes !== null) {
+  if (catalogoClientes !== null && planRutasList[0].catalogoGuiasPlaneadasClientes !== null) {
     //Configuración de los datalabels
     const confDataLabels = {
       formatter: function (value, context) {
