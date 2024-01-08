@@ -35,7 +35,9 @@ export default function Graph(props) {
   const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
   const colores = catalogoColores.colores
   const coloresBorder = catalogoColores.coloresBorder;
-  const nombreRuta = props.planRuta?.rutas[0]?.nombre
+  const nombreRuta = props.planRuta?.rutas[0]?.nombre;
+  //const volumenMaxRuta = props.planRuta?.rutas[0]?.volumenMaxRuta;
+  const volumenMaxRuta = 100;
 
   if (catalogoClientes !== null && planRutasList[0].catalogoGuiasPlaneadasClientes !== null) {
     //Configuración de los datalabels
@@ -86,8 +88,8 @@ export default function Graph(props) {
         label.push("Planeado");
         labelRutas.push(label);
         label = [];
-        capacidadesCarga.push(ruta.Volumen_carga_maxima);
-        metrosLibres.push(100 - mt3_embarcados);
+        volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
+        metrosLibres.push(volumenMaxRuta - mt3_embarcados);
       })
 
       let sucursales = [];
@@ -114,8 +116,8 @@ export default function Graph(props) {
           label.push("Embarcado");
           labelRutas.push(label);
           label = [];
-          capacidadesCarga.push(ruta.Volumen_carga_maxima);
-          metrosLibres.push(100 - mt3_embarcados);
+          volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
+          metrosLibres.push(volumenMaxRuta - mt3_embarcados);
         }
       })
 
@@ -195,7 +197,14 @@ export default function Graph(props) {
 
         return dataSetConstruido;
       }
-      const maximoEjeX = 100
+
+      let totalVolMaxGrafica = Math.max(...capacidadesCarga);
+      let maximoEjeX;
+      if (totalVolMaxGrafica > volumenMaxRuta) {
+        maximoEjeX = 3 + Math.max(...capacidadesCarga)
+      } else {
+        maximoEjeX = Math.max(...capacidadesCarga)
+      }
 
       let myoptions = {
         responsive: true,
@@ -222,7 +231,23 @@ export default function Graph(props) {
             beginAtZero: false, // Asegura que el eje X no empiece en 0
             min: 0, // Establece el mínimo del eje X en 100
             max: maximoEjeX,
-
+            grid: {
+              //Cambia el color de la linea de la grafica a rojo cuando se sobrepasa el volumen
+              color: function (context) {
+                if (totalVolMaxGrafica > volumenMaxRuta) {
+                  if (context.tick.value === volumenMaxRuta) {
+                    return "red"
+                  }
+                }
+                return "#e7e7ea"
+              },
+              lineWidth: function (context) {
+                if (context.tick.value === volumenMaxRuta && totalVolMaxGrafica > volumenMaxRuta) {
+                  return 3
+                }
+                return 1
+              }
+            },
           },
           y: {
             stacked: true,
@@ -246,7 +271,13 @@ export default function Graph(props) {
               options={myoptions}
             />
           </div>
-
+          {
+            totalVolMaxGrafica > volumenMaxRuta ?
+              <div class="alert alert-danger mt-2 fs-5" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i> Sobrepasaste el límite del volumen
+              </div>
+              : <></>
+          }
         </>
       )
     } else {
@@ -301,8 +332,8 @@ export default function Graph(props) {
         label.push("Planeado");
         labelRutas.push(label);
         label = [];
-        capacidadesCarga.push(ruta.Volumen_carga_maxima);
-        metrosLibres.push(100 - mt3_embarcados);
+        volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
+        metrosLibres.push(volumenMaxRuta - mt3_embarcados);
       })
 
       let sucursales = [];
@@ -329,8 +360,8 @@ export default function Graph(props) {
           label.push("Embarcado");
           labelRutas.push(label);
           label = [];
-          capacidadesCarga.push(ruta.Volumen_carga_maxima);
-          metrosLibres.push(100 - mt3_embarcados);
+          volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
+          metrosLibres.push(volumenMaxRuta - mt3_embarcados);
         }
       })
 
@@ -387,7 +418,14 @@ export default function Graph(props) {
 
         return dataSetConstruido;
       }
-      const maximoEjeX = 100
+
+      let totalVolMaxGrafica = Math.max(...capacidadesCarga);
+      let maximoEjeX;
+      if (totalVolMaxGrafica > volumenMaxRuta) {
+        maximoEjeX = 3 + Math.max(...capacidadesCarga)
+      } else {
+        maximoEjeX = Math.max(...capacidadesCarga)
+      }
 
       let myoptions = {
         responsive: true,
@@ -414,7 +452,23 @@ export default function Graph(props) {
             beginAtZero: false, // Asegura que el eje X no empiece en 0
             min: 0, // Establece el mínimo del eje X en 100
             max: maximoEjeX,
-
+            grid: {
+              //Cambia el color de la linea de la grafica a rojo cuando se sobrepasa el volumen
+              color: function (context) {
+                if (totalVolMaxGrafica > volumenMaxRuta) {
+                  if (context.tick.value === volumenMaxRuta) {
+                    return "red"
+                  }
+                }
+                return "#e7e7ea"
+              },
+              lineWidth: function (context) {
+                if (context.tick.value === volumenMaxRuta && totalVolMaxGrafica > volumenMaxRuta) {
+                  return 3
+                }
+                return 1
+              }
+            },
           },
           y: {
             stacked: true,
@@ -438,7 +492,13 @@ export default function Graph(props) {
               options={myoptions}
             />
           </div>
-
+          {
+            totalVolMaxGrafica > volumenMaxRuta ?
+              <div class="alert alert-danger mt-2 fs-5" role="alert">
+                <i class="bi bi-exclamation-triangle-fill"></i> Sobrepasaste el límite del volumen
+              </div>
+              : <></>
+          }
         </>
       )
     } else {

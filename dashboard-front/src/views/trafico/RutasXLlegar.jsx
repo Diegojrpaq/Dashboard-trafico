@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useMemo} from 'react'
+import React, { useEffect, useState, useContext, useMemo } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import GraficaRutasXLlegar from '../../viewsItems/graphs/GraficaRutasXLlegar'
 import TableViajesActivos from '../../viewsItems/tables/TableViajesActivos'
@@ -9,6 +9,7 @@ import { diferenciaFechas } from '../../utileria/utils'
 import { urlapi } from '../../utileria/config'
 import { limpiado_de_viajes } from '../../utileria/utils'
 import { globalData } from '../../App'
+import HeaderAccordion from '../../viewsItems/HeaderAccordion'
 
 export default function RutasXLlegar() {
 
@@ -94,14 +95,13 @@ export default function RutasXLlegar() {
                       <Accordion key={index}>
                         <Accordion.Item eventKey={index}>
                           <Accordion.Header>
-                            <div className='container'>
-                              <div className='row'>
-                                <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>{ruta.nombre}</div>
-                                <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Vehículo: {ruta.Clave_vehiculo}</div>
-                                <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Fecha: {fecha}</div>
-                                <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>Total guías: {totalGuias}</div>
-                              </div>
-                            </div>
+                            <HeaderAccordion
+                              fecha_registro={ruta?.fecha_registro}
+                              nombre={ruta.nombre}
+                              Clave_vehiculo={ruta.Clave_vehiculo}
+                              fecha={fecha}
+                              totalGuias={totalGuias}
+                            />
                           </Accordion.Header>
                           <Accordion.Body>
                             <TableViajesActivos
@@ -117,14 +117,13 @@ export default function RutasXLlegar() {
                       <Accordion key={index}>
                         <Accordion.Item eventKey={index}>
                           <Accordion.Header>
-                            <div className='container'>
-                              <div className='row'>
-                                <div className={`col ${diferenciaFechas(ruta?.fecha_registro)}`}>{ruta.nombre}</div>
-                                <div className='col'>Vehículo: {ruta.Clave_vehiculo}</div>
-                                <div className='col'>Fecha: {fecha}</div>
-                                <div className='col'>Total guías: 0</div>
-                              </div>
-                            </div>
+                            <HeaderAccordion
+                              fecha_registro={ruta?.fecha_registro}
+                              nombre={ruta.nombre}
+                              Clave_vehiculo={ruta.Clave_vehiculo}
+                              fecha={fecha}
+                              totalGuias={totalGuias}
+                            />
                           </Accordion.Header>
                           <Accordion.Body>
                             <h6>No hay guías en este viaje</h6>
