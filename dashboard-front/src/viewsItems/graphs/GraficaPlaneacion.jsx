@@ -273,8 +273,8 @@ export default function Graph(props) {
           </div>
           {
             totalVolMaxGrafica > volumenMaxRuta ?
-              <div class="alert alert-danger mt-2 fs-5" role="alert">
-                <i class="bi bi-exclamation-triangle-fill"></i> Sobrepasaste el límite del volumen
+              <div className="alert alert-danger mt-2 fs-5" role="alert">
+                <i className="bi bi-exclamation-triangle-fill"></i> Sobrepasaste el límite del volumen
               </div>
               : <></>
           }
@@ -494,8 +494,8 @@ export default function Graph(props) {
           </div>
           {
             totalVolMaxGrafica > volumenMaxRuta ?
-              <div class="alert alert-danger mt-2 fs-5" role="alert">
-                <i class="bi bi-exclamation-triangle-fill"></i> Sobrepasaste el límite del volumen
+              <div className="alert alert-danger mt-2 fs-5" role="alert">
+                <i className="bi bi-exclamation-triangle-fill"></i> Sobrepasaste el límite del volumen
               </div>
               : <></>
           }
