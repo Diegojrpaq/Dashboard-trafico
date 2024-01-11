@@ -38,36 +38,36 @@ export default function Graph(props) {
   const nombreRuta = props.planRuta?.rutas[0]?.nombre;
   //const volumenMaxRuta = props.planRuta?.rutas[0]?.volumenMaxRuta;
   const volumenMaxRuta = 100;
-
-  if (catalogoClientes !== null && planRutasList[0].catalogoGuiasPlaneadasClientes !== null) {
-    //Configuración de los datalabels
-    const confDataLabels = {
-      formatter: function (value, context) {
-        const index = context.dataIndex
-        const nombre = context.dataset.label
-        const peso = context.dataset.peso
-        const volumen = value?.toFixed(2)
-        const val = value / 100;
-        if (val > 0.08) {
-          return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
-        } else {
-          return ""
-        }
-      },
-      align: 'center',
-      display: 'auto',
-      rotation: 0,
-      labels: {
-        title: {
-          color: '#3c3c3d',
-          font: {
-            family: 'Poppins',
-            weight: 'bold',
-            size: 13
-          }
+  //Configuración de los datalabels
+  const confDataLabels = {
+    formatter: function (value, context) {
+      const index = context.dataIndex
+      const nombre = context.dataset.label
+      const peso = context.dataset.peso
+      const volumen = value?.toFixed(2)
+      const val = value / 100;
+      if (val > 0.08) {
+        return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
+      } else {
+        return ""
+      }
+    },
+    align: 'center',
+    display: 'auto',
+    rotation: 0,
+    labels: {
+      title: {
+        color: '#3c3c3d',
+        font: {
+          family: 'Poppins',
+          weight: 'bold',
+          size: 13
         }
       }
     }
+  }
+
+  if (catalogoClientes !== null && planRutasList[0].catalogoGuiasPlaneadasClientes !== null) {
 
     if (planRutasList !== 0) {
       const labelRutas = [];
@@ -185,8 +185,8 @@ export default function Graph(props) {
           dataSetConstruido.push({
             label: cliente.nombre,
             data: dataEjeY,
-            backgroundColor: colores[index].color,
-            borderColor: coloresBorder[index].color,
+            backgroundColor: colores[index+20].color,
+            borderColor: coloresBorder[index+20].color,
             borderWidth: 2,
             datalabels: confDataLabels,
             peso: pesoXsucursal
@@ -285,35 +285,6 @@ export default function Graph(props) {
     }
   } else {
     //No hay clientes
-    //Configuración de los datalabels
-    const confDataLabels = {
-      formatter: function (value, context) {
-        const index = context.dataIndex
-        const nombre = context.dataset.label
-        const peso = context.dataset.peso
-        const volumen = value?.toFixed(2)
-        const val = value / 100;
-        if (val > 0.08) {
-          return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
-        } else {
-          return ""
-        }
-      },
-      align: 'center',
-      display: 'auto',
-      rotation: 0,
-      labels: {
-        title: {
-          color: '#3c3c3d',
-          font: {
-            family: 'Poppins',
-            weight: 'bold',
-            size: 13
-          }
-        }
-      }
-    }
-
     if (planRutasList !== 0) {
       const labelRutas = [];
       const capacidadesCarga = [];
