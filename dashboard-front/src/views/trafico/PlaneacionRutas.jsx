@@ -7,6 +7,7 @@ import { globalData } from '../../App'
 import { urlapi } from '../../utileria/config';
 import TablaArbol from '../../viewsItems/tables/TablaArbol';
 
+
 export default function PlaneacionRutas() {
     const { idSucursal, idRuta } = useParams();
     const navigate = useNavigate();
@@ -100,6 +101,7 @@ export default function PlaneacionRutas() {
                                 <Accordion.Body>
                                     <TablePlaneacion
                                         guiasPlaneadas={planRuta?.rutas[0]?.catalogoGuiasPlaneadas}
+                                        guiasPlaneadasClientes={planRuta?.rutas[0]?.catalogoGuiasPlaneadasClientes}
                                         guiasEmbarcadas={planRuta?.rutas[0]?.catalogoGuiasEmbarcadas}
                                     />
                                 </Accordion.Body>
@@ -109,6 +111,7 @@ export default function PlaneacionRutas() {
                                 <Accordion.Body>
                                     <TablaArbol 
                                         guias={planRuta?.rutas[0]?.catalogoGuiasPlaneadas}
+                                        guiasClientes={planRuta?.rutas[0]?.catalogoGuiasPlaneadasClientes}
                                     />
                                 </Accordion.Body>
                             </Accordion.Item>

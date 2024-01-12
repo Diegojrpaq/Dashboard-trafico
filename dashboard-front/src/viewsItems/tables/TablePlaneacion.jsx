@@ -4,33 +4,45 @@ import 'primereact/resources/primereact.css';
 import { Table } from 'react-bootstrap';
 import { formattedNumber } from '../../utileria/utils';
 
-export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas }) {
-  //Sumas para el apartado de totales de lo planeado
-  const sumaVolumenPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
-    const suma = acumulador + elemento.volumen;
-    const totalRedondeado = Number(suma.toFixed(2));
-    return totalRedondeado;
-  }, 0);
-  const sumaPesoPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
-    const suma = acumulador + elemento.peso;
-    const totalRedondeado = Number(suma.toFixed(2));
-    return totalRedondeado;
-  }, 0);
-  const sumaFletePlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
-    const suma = acumulador + elemento.flete;
-    const totalRedondeado = Number(suma.toFixed(2));
-    return totalRedondeado;
-  }, 0);
-  const sumaMontoPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
-    const suma = acumulador + elemento.monto_seguro;
-    const totalRedondeado = Number(suma.toFixed(2));
-    return totalRedondeado;
-  }, 0);
-  const sumaSubtotalPlaneado = guiasPlaneadas?.reduce((acumulador, elemento) => {
-    const suma = acumulador + elemento.subtotal;
-    const totalRedondeado = Number(suma.toFixed(2));
-    return totalRedondeado;
-  }, 0);
+export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guiasPlaneadasClientes }) {
+  let guiasClientes = [];
+  if (guiasPlaneadasClientes !== null) {
+    guiasClientes = [...guiasPlaneadasClientes]
+  }
+  let sumaVolumenPlaneado;
+  let sumaPesoPlaneado;
+  let sumaFletePlaneado;
+  let sumaMontoPlaneado;
+  let sumaSubtotalPlaneado;
+  if (guiasPlaneadas !== null) {
+    //Sumas para el apartado de totales de lo planeado
+    const guiasTotales = [...guiasPlaneadas, ...guiasClientes]
+    sumaVolumenPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.volumen;
+      const totalRedondeado = Number(suma.toFixed(2));
+      return totalRedondeado;
+    }, 0);
+    sumaPesoPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.peso;
+      const totalRedondeado = Number(suma.toFixed(2));
+      return totalRedondeado;
+    }, 0);
+    sumaFletePlaneado = guiasTotales?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.flete;
+      const totalRedondeado = Number(suma.toFixed(2));
+      return totalRedondeado;
+    }, 0);
+    sumaMontoPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.monto_seguro;
+      const totalRedondeado = Number(suma.toFixed(2));
+      return totalRedondeado;
+    }, 0);
+    sumaSubtotalPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.subtotal;
+      const totalRedondeado = Number(suma.toFixed(2));
+      return totalRedondeado;
+    }, 0);
+  }
 
   //Suma para los totales de lo embarcado
   let sumaVolumenEmbarcado;
@@ -82,11 +94,11 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas }) {
         <tbody>
           <tr>
             <td>Planeado</td>
-            <td>{sumaPesoPlaneado} kg.</td>
-            <td>{sumaVolumenPlaneado} mt3</td>
-            <td>{formattedNumber(sumaFletePlaneado)}</td>
-            <td>{formattedNumber(sumaMontoPlaneado)}</td>
-            <td>{formattedNumber(sumaSubtotalPlaneado)}</td>
+            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? 0 : sumaPesoPlaneado} kg.</td>
+            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? 0 : sumaVolumenPlaneado} mt3</td>
+            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaFletePlaneado)}</td>
+            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaMontoPlaneado)}</td>
+            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaSubtotalPlaneado)}</td>
           </tr>
         </tbody>
         <thead>
