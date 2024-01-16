@@ -201,7 +201,8 @@ export default function Graph(props) {
       let totalVolMaxGrafica = Math.max(...capacidadesCarga);
       let maximoEjeX;
       if (totalVolMaxGrafica > volumenMaxRuta) {
-        maximoEjeX = 3 + Math.max(...capacidadesCarga)
+        const redondear = 3 + Math.max(...capacidadesCarga);
+        maximoEjeX = Math.round(redondear);
       } else {
         maximoEjeX = Math.max(...capacidadesCarga)
       }
@@ -393,7 +394,8 @@ export default function Graph(props) {
       let totalVolMaxGrafica = Math.max(...capacidadesCarga);
       let maximoEjeX;
       if (totalVolMaxGrafica > volumenMaxRuta) {
-        maximoEjeX = 3 + Math.max(...capacidadesCarga)
+        const redondear = 3 + Math.max(...capacidadesCarga);
+        maximoEjeX = Math.round(redondear);
       } else {
         maximoEjeX = Math.max(...capacidadesCarga)
       }
