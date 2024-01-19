@@ -43,7 +43,7 @@ export default function GraficaRutasActivas(props) {
     const catalogoDestinoFinal = props.catalogoDestinoFinal
     const colorEspacioLibre = catalogoColores.colores[100].color;
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
-    
+    console.log(props, "Activas")
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
     /* Variables de Estilo fin */
@@ -96,6 +96,7 @@ export default function GraficaRutasActivas(props) {
             /*  labelRutas[index] = viaje.nombre+ " " + viaje.capacidad_mt3+" Mt3 "+ viaje.fecha_registro; */
             label.push(viaje.nombre)
             label.push(formatearFecha(viaje.fecha_registro))
+            label.push(`Viaje: ${viaje.id}`)
             label.push(viaje.Clave_vehiculo)
             viaje.Caja && label.push(viaje.Caja)
             labelRutas.push(label)

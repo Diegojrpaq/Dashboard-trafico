@@ -39,6 +39,7 @@ export default function GraficaRutasXLlegar(props) {
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
+    console.log(props, "llegar")
     /*   const colorEspacioLibre='rgb(175,203,246,.2)'
       const colorEspacioLibreBorder='rgb(175,203,246)' */
 
@@ -100,6 +101,7 @@ export default function GraficaRutasXLlegar(props) {
             }
             label.push(viaje.nombre)
             label.push(formatearFecha(viaje.fecha_registro))
+            label.push(`Viaje: ${viaje.id}`)
             label.push(viaje.Clave_vehiculo)
             viaje.Caja && label.push(viaje.Caja)
             labelRutas.push(label)

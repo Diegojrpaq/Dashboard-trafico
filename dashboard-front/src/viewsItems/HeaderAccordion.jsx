@@ -9,6 +9,9 @@ export default function HeaderAccordion(props) {
                     {props.nombre}
                 </div>
                 <div className={`col ${diferenciaFechas(props?.fecha_registro)}`}>
+                    N° Viaje: {props.numViaje}
+                </div>
+                <div className={`col ${diferenciaFechas(props?.fecha_registro)}`}>
                     Vehículo: {props.Clave_vehiculo}
                 </div>
                 <div className={`col ${diferenciaFechas(props?.fecha_registro)}`}>

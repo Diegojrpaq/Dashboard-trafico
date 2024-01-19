@@ -36,6 +36,7 @@ export default function Graph(props) {
   const colores = catalogoColores.colores
   const coloresBorder = catalogoColores.coloresBorder;
   const nombreRuta = props.planRuta?.rutas[0]?.nombre;
+  const numViaje = props.planRuta?.rutas[0]?.id_viaje_act;
   //const volumenMaxRuta = props.planRuta?.rutas[0]?.volumenMaxRuta;
   const volumenMaxRuta = 100;
   //Configuración de los datalabels
@@ -114,6 +115,7 @@ export default function Graph(props) {
           }
 
           label.push("Embarcado");
+          label.push(`Viaje: ${numViaje}`)
           labelRutas.push(label);
           label = [];
           volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
@@ -219,7 +221,7 @@ export default function Graph(props) {
           },
           title: {
             display: true,
-            text: `Ruta: ${nombreRuta}`,
+            text: `Ruta: ${nombreRuta} ${numViaje ? " \nViaje: " + numViaje : ""}`,
             font: {
               size: 25
             }
@@ -330,6 +332,7 @@ export default function Graph(props) {
           }
 
           label.push("Embarcado");
+          label.push(`Viaje: ${numViaje}`)
           labelRutas.push(label);
           label = [];
           volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
@@ -412,7 +415,7 @@ export default function Graph(props) {
           },
           title: {
             display: true,
-            text: `Ruta: ${nombreRuta}`,
+            text: `Ruta: ${nombreRuta} ${numViaje ? " \nViaje: " + numViaje : ""}`,
             font: {
               size: 25
             }
