@@ -6,7 +6,7 @@ import { Column } from 'primereact/column';
 import { ColumnGroup } from 'primereact/columngroup';
 import { Row } from 'primereact/row';
 import { FilterMatchMode } from 'primereact/api';
-import { formattedNumber } from '../../utileria/utils';
+import { formattedNumber, formattedCantidad } from '../../utileria/utils';
 export default function TableViajesActivos({ guias, infoRuta }) {
 
     //Sumas para el apartado de totales
@@ -141,7 +141,7 @@ export default function TableViajesActivos({ guias, infoRuta }) {
             <Row>
                 <Column footer="Totales" colSpan={3} footerStyle={{ textAlign: 'right' }} />
                 <Column footer={`${sumaVolumen} mt3`} />
-                <Column footer={`${sumaPeso} Kg`} />
+                <Column footer={`${formattedCantidad(sumaPeso)} Kg`} />
                 <Column footer={formattedNumber(sumaFlete)} />
                 <Column footer={formattedNumber(sumaMonto)} />
                 <Column footer={formattedNumber(sumaSubtotal)} />
@@ -151,8 +151,8 @@ export default function TableViajesActivos({ guias, infoRuta }) {
 
     const newData = guias.map(guia => ({
         ...guia,
-        volumen: `${guia.volumen} mt3`,
-        peso: `${guia.peso} kg`,
+        volumen: `${formattedCantidad(guia.volumen)} mt3`,
+        peso: `${formattedCantidad(guia.peso)} kg`,
         flete: formattedNumber(guia.flete),
         monto_seguro: formattedNumber(guia.monto_seguro),
         subtotal: formattedNumber(guia.subtotal),

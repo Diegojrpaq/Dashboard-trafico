@@ -1,7 +1,7 @@
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
-import { CalcularAnchoBarra } from '../../utileria/utils';
+import { CalcularAnchoBarra, formattedCantidad } from '../../utileria/utils';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {
     Chart as Chartjs,
@@ -57,7 +57,7 @@ export default function GraficaRutasActivas(props) {
             const volumen = value.toFixed(2)
             const val = value/126;
             if (val > 0.08) {
-                return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index].toFixed(2) + " Kg"}`
+                return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + formattedCantidad(peso[index]) + " Kg"}`
             } else {
                 return ""
             }

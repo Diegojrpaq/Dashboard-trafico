@@ -2,6 +2,7 @@ import React from 'react';
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { formattedCantidad } from '../../utileria/utils';
 import {
   Chart as Chartjs,
   CategoryScale,
@@ -48,7 +49,7 @@ export default function Graph(props) {
       const volumen = value?.toFixed(2)
       const val = value / 100;
       if (val > 0.08) {
-        return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
+        return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + formattedCantidad(peso[index]) + " Kg"}`
       } else {
         return ""
       }

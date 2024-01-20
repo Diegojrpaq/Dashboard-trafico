@@ -3,7 +3,7 @@ import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
-import { ConvertirFecha, formattedNumber } from '../../utileria/utils';
+import { ConvertirFecha, formattedNumber, formattedCantidad } from '../../utileria/utils';
 
 export default function TablaArbol({ guias, guiasClientes }) {
     let newData;
@@ -47,7 +47,7 @@ export default function TablaArbol({ guias, guiasClientes }) {
                     sucursal,
                     cantG: totalGuias,
                     //origen,
-                    peso: `${totalPeso.toFixed(2)} kg`,
+                    peso: `${formattedCantidad(totalPeso)} kg`,
                     volumen: `${totalVolumen.toFixed(2)} mt3`,
                     flete: formattedNumber(totalFlete),
                     seguro: formattedNumber(totalSeguro),
@@ -62,7 +62,7 @@ export default function TablaArbol({ guias, guiasClientes }) {
                             origen: guia.sucursal_principal,
                             destino: guia.sucursal_destino,
                             fecha: ConvertirFecha(guia.fecha_registro),
-                            peso: `${guia.peso.toFixed(2)} kg`,
+                            peso: `${formattedCantidad(guia.peso)} kg`,
                             volumen: `${guia.volumen.toFixed(2)} mt3`,
                             flete: formattedNumber(guia.flete),
                             seguro: formattedNumber(guia.monto_seguro),

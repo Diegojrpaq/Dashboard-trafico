@@ -2,7 +2,7 @@ import React from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { Table } from 'react-bootstrap';
-import { formattedNumber } from '../../utileria/utils';
+import { formattedNumber, formattedCantidad } from '../../utileria/utils';
 
 export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guiasPlaneadasClientes }) {
   let guiasClientes = [];
@@ -94,8 +94,8 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
         <tbody>
           <tr>
             <td>Planeado</td>
-            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? 0 : sumaPesoPlaneado} kg.</td>
-            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? 0 : sumaVolumenPlaneado} mt3</td>
+            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? 0 : formattedCantidad(sumaPesoPlaneado)} kg.</td>
+            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? 0 : formattedCantidad(sumaVolumenPlaneado)} mt3</td>
             <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaFletePlaneado)}</td>
             <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaMontoPlaneado)}</td>
             <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaSubtotalPlaneado)}</td>
@@ -114,8 +114,8 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
         <tbody>
           <tr>
             <td>Embarcado</td>
-            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaPesoEmbarcado} kg.</td>
-            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : sumaVolumenEmbarcado} mt3</td>
+            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : formattedCantidad(sumaPesoEmbarcado)} kg.</td>
+            <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? 0 : formattedCantidad(sumaVolumenEmbarcado)} mt3</td>
             <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? "$0" : formattedNumber(sumaFleteEmbarcado)}</td>
             <td>{guiasEmbarcadas === null ? "$0" : formattedNumber(sumaMontoEmbarcado)}</td>
             <td>{guiasEmbarcadas === null ? "$0" : formattedNumber(sumaSubtotalEmbarcado)}</td>

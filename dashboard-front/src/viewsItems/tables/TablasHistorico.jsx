@@ -2,7 +2,7 @@ import React from 'react'
 import { Accordion } from 'react-bootstrap';
 import TablaBitacora from './TablaBitacora'
 import TablaHistoricoGuias from '../../viewsItems/tables/TablaHistoricoGuias';
-import { guiasFilter, bitacoraVSembarcadas } from '../../utileria/utils';
+import { guiasFilter, bitacoraVSembarcadas, formattedCantidad } from '../../utileria/utils';
 import TablaErrorViaje from './TablaErrorViaje';
 export default function TablasHistorico(props) {
     if (props.info.catalogoGuias != null) {
@@ -21,7 +21,7 @@ export default function TablasHistorico(props) {
                 const totalRedondeado = Number(suma.toFixed(2));
                 return totalRedondeado;
             }, 0);
-            return sumaPeso;
+            return formattedCantidad(sumaPeso);
         }
 
         const arrAnterior = (arr, item) => {
