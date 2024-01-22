@@ -27,7 +27,8 @@ export default function ViajesHistorico() {
   const [selectedViaje, setselectedViaje] = useState(null);
   const [infoViaje, setInfoViaje] = useState(null)
   const [peticionBackEnd, setPeticionBackend] = useState(null);
-  const [listParadas, setListParadas] = useState(null)
+  const [listParadas, setListParadas] = useState(null);
+  const [numViaje, setNumViaje] = useState("");
 
   const peticion = async () => {
     const urlApiNextpack = urlapi + '/trafico/get_dateValidation';
@@ -133,6 +134,48 @@ export default function ViajesHistorico() {
   }
 
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setPeticionBackend(true)
+    if(numViaje.length > 0 && (/^\d{0,5}$/.test(numViaje))) {
+      const urlApiNextpack = urlapi + '/trafico/get_viajeHistorico/' + numViaje;
+      await fetch(urlApiNextpack)
+        .then((resp) => {
+          //setNumViaje("")
+          return resp.json();
+        }).then((data) => {
+          if (data) {
+            setInfoViaje(data.viaje)
+            setPeticionBackend(false)
+            setListParadas(generarParadas(data.viaje.Bitacora))
+            if (data.viaje.catalogoGuias == null) {
+              Swal.fire({
+                title: "¿Registro sin transacciones?",
+                text: "El registro que seleccionaste no cuenta con transacciones de guias embarcadas o desembarcadas",
+                icon: "question",
+              });
+            }
+            const viajeError = bitacoraVSembarcadas(generarParadas(data.viaje.Bitacora), data.viaje.catalogoGuias)
+            if (viajeError.error) {
+              Swal.fire({
+                icon: "error",
+                title: "Inconsistencia en registro de viaje",
+                text: "Las transacciones registradas de este viaje, no coinciden con el registro de la bitacora, consulta el detalle de las inconsistencias en la parte inferior 'Guías Error'.",
+              });
+            }
+          }
+        }).catch(
+          () => console.log('Error al cargar los destinos y viajes')
+        )
+    } else {
+      setPeticionBackend(null)
+      Swal.fire({
+        icon: "error",
+        title: "Error!!",
+        text: "Has dejado vacío el campo o contiene letras, por favor digita un número de viaje válido",
+      });
+    }
+  }
 
   useEffect(() => {
     peticion();
@@ -263,6 +306,22 @@ export default function ViajesHistorico() {
           </div>
         </div>
 
+        <form className="d-md-flex justify-content-end" onSubmit={handleSubmit}>
+          <div className='mx-2'>
+            <input 
+              type="text" id='numViaje'
+              maxLength={5}
+              minLength={5}
+              className='form-control shadow my-2'
+              placeholder='Número de viaje'
+              value={numViaje}
+              onChange={(e) => setNumViaje(e.target.value)}
+            />
+          </div>
+          <div className="d-flex justify-content-center mt-0">
+            <button type="submit" className="btn my-2 shadow" style={{backgroundColor: "#6366f1", color: "white"}}>Buscar viaje</button>
+          </div>
+        </form>
         {/* {
           infoViaje ? <SpinnerMain /> : <LayoutViaje />
         } */}
