@@ -37,7 +37,14 @@ export default function Graph(props) {
   const colores = catalogoColores.colores
   const coloresBorder = catalogoColores.coloresBorder;
   const nombreRuta = props.planRuta?.rutas[0]?.nombre;
-  const numViaje = props.planRuta?.rutas[0]?.id_viaje_act;
+  let numViaje;
+  //const datos =  [{ id_viaje_act: 58841, name: "fr" }, { id_viaje_act: 58898, name: "Gh" }];
+  //Si hay más de un viaje en esa ruta
+  if (planRutasList.length > 1) {
+    numViaje = planRutasList.map(ruta => ruta.id_viaje_act)
+  } else {
+    numViaje = props.planRuta?.rutas[0]?.id_viaje_act;
+  }
   //const volumenMaxRuta = props.planRuta?.rutas[0]?.volumenMaxRuta;
   const volumenMaxRuta = 100;
   //Configuración de los datalabels
@@ -116,7 +123,7 @@ export default function Graph(props) {
           }
 
           label.push("Embarcado");
-          label.push(`Viaje: ${numViaje}`)
+          label.push(`Viaje: ${ruta.id_viaje_act}`)
           labelRutas.push(label);
           label = [];
           volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
@@ -188,8 +195,8 @@ export default function Graph(props) {
           dataSetConstruido.push({
             label: cliente.nombre,
             data: dataEjeY,
-            backgroundColor: colores[index+20].color,
-            borderColor: coloresBorder[index+20].color,
+            backgroundColor: colores[index + 20].color,
+            borderColor: coloresBorder[index + 20].color,
             borderWidth: 2,
             datalabels: confDataLabels,
             peso: pesoXsucursal
@@ -333,7 +340,7 @@ export default function Graph(props) {
           }
 
           label.push("Embarcado");
-          label.push(`Viaje: ${numViaje}`)
+          label.push(`Viaje: ${ruta.id_viaje_act}`)
           labelRutas.push(label);
           label = [];
           volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
