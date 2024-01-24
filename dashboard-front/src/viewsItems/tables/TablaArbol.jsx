@@ -62,6 +62,7 @@ export default function TablaArbol({ guias, guiasClientes }) {
                             origen: guia.sucursal_principal,
                             destino: guia.sucursal_destino,
                             fecha: ConvertirFecha(guia.fecha_registro),
+                            suc_ubi: guia.sucursal_ubicacion,
                             peso: `${formattedCantidad(guia.peso)} kg`,
                             volumen: `${guia.volumen.toFixed(2)} mt3`,
                             flete: formattedNumber(guia.flete),
@@ -117,8 +118,8 @@ export default function TablaArbol({ guias, guiasClientes }) {
                     sucursal,
                     cantG: totalGuias,
                     //origen,
-                    peso: `${totalPeso.toFixed(2)} kg`,
-                    volumen: `${totalVolumen.toFixed(2)} mt3`,
+                    peso: `${formattedCantidad(totalPeso)} kg`,
+                    volumen: `${formattedCantidad(totalVolumen)} mt3`,
                     flete: formattedNumber(totalFlete),
                     seguro: formattedNumber(totalSeguro),
                     subtotal: formattedNumber(totalSub)
@@ -132,8 +133,9 @@ export default function TablaArbol({ guias, guiasClientes }) {
                             origen: guia.sucursal_principal,
                             destino: guia.sucursal_destino,
                             fecha: ConvertirFecha(guia.fecha_registro),
-                            peso: `${guia.peso.toFixed(2)} kg`,
-                            volumen: `${guia.volumen.toFixed(2)} mt3`,
+                            suc_ubi: guia.sucursal_ubicacion,
+                            peso: `${formattedCantidad(guia.peso)} kg`,
+                            volumen: `${formattedCantidad(guia.volumen)} mt3`,
                             flete: formattedNumber(guia.flete),
                             seguro: formattedNumber(guia.monto_seguro),
                             subtotal: formattedNumber(guia.subtotal),
@@ -155,13 +157,14 @@ export default function TablaArbol({ guias, guiasClientes }) {
         { field: 'origen', header: 'Origen' },
         { field: 'destino', header: 'Destino' },
         { field: 'fecha', header: 'Fecha' },
+        { field: 'suc_ubi', header: 'Suc. Ubic.' },
         { field: 'peso', header: 'Peso' },
         { field: 'volumen', header: 'Volumen' },
         { field: 'flete', header: 'Flete' },
         { field: 'seguro', header: 'Seguro' },
         { field: 'subtotal', header: 'Subtotal' },
-        { field: 'empaque', header: 'Empaque' },
-        { field: 'cantidad', header: 'Cantidad' }
+        // { field: 'empaque', header: 'Empaque' },
+        { field: 'cantidad', header: 'Num. Items' }
     ]
 
     const rowClassName = (node) => {

@@ -167,9 +167,9 @@ export const bitacoraVSembarcadas = (arrParadas, catalogoGuias) => {
 export function formattedCantidad(num) {
     let numFormatted;
     if (num >= 1000) {
-        numFormatted = num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        numFormatted = num?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     } else {
-        numFormatted = num.toFixed(2);
+        numFormatted = num?.toFixed(2);
     }
     return numFormatted;
 }

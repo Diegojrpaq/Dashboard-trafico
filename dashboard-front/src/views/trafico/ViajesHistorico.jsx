@@ -137,11 +137,14 @@ export default function ViajesHistorico() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setPeticionBackend(true)
+    setDate(null)
+    setselectedDestino(null)
+    setselectedViaje(null)
     if(numViaje.length > 0 && (/^\d{0,5}$/.test(numViaje))) {
       const urlApiNextpack = urlapi + '/trafico/get_viajeHistorico/' + numViaje;
       await fetch(urlApiNextpack)
         .then((resp) => {
-          //setNumViaje("")
+          setNumViaje("")
           return resp.json();
         }).then((data) => {
           if (data) {
@@ -168,6 +171,7 @@ export default function ViajesHistorico() {
           () => console.log('Error al cargar los destinos y viajes')
         )
     } else {
+      setNumViaje("")
       setPeticionBackend(null)
       Swal.fire({
         icon: "error",

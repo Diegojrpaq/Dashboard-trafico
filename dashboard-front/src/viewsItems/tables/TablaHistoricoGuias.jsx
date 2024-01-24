@@ -158,8 +158,8 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
         { field: 'flete', header: 'Flete' },
         { field: 'monto_seguro', header: 'Monto seguro' },
         { field: 'subtotal', header: 'Subtotal' },
-        { field: 'Empaque', header: 'Empaque' },
-        { field: 'cantidad_caja', header: 'Cantidad' },
+        // { field: 'Empaque', header: 'Empaque' },
+        { field: 'cantidad_caja', header: 'Num. Items' },
     ];
 
     const nombreArchivo = `${infoRuta.nombre}-${infoRuta.fecha_registro}`;
