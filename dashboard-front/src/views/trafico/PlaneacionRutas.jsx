@@ -12,8 +12,8 @@ export default function PlaneacionRutas() {
     const { idSucursal, idRuta } = useParams();
     const navigate = useNavigate();
     const [planRuta, setPlanRuta] = useState(null);
-    const { destinosListState, btnSwitch } = useContext(globalData);
-    const destinosList = destinosListState;
+    const { destinosListState, btnSwitch, destinosPlanRuta } = useContext(globalData);
+    const destinosList = destinosPlanRuta;
     const timer = 300000 // Duración de 1min, para 5 min son 300,000
     const peticiones = async (id) => {
         const urlApiNextpack = urlapi + '/trafico/get_planRuta/' + id;
