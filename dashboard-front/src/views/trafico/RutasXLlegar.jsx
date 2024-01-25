@@ -101,6 +101,7 @@ export default function RutasXLlegar() {
                               Clave_vehiculo={ruta.Clave_vehiculo}
                               fecha={fecha}
                               totalGuias={totalGuias}
+                              numViaje={ruta.id}
                             />
                           </Accordion.Header>
                           <Accordion.Body>
@@ -123,6 +124,7 @@ export default function RutasXLlegar() {
                               Clave_vehiculo={ruta.Clave_vehiculo}
                               fecha={fecha}
                               totalGuias={totalGuias}
+                              numViaje={ruta.id}
                             />
                           </Accordion.Header>
                           <Accordion.Body>

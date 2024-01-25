@@ -3,7 +3,7 @@ import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import React from 'react';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { formatearFecha, CalcularAnchoBarra, limpiado_de_viajes } from '../../utileria/utils'
+import { formatearFecha, CalcularAnchoBarra, limpiado_de_viajes, formattedCantidad } from '../../utileria/utils'
 import {
     Chart as Chartjs,
     CategoryScale,
@@ -39,6 +39,7 @@ export default function GraficaRutasXLlegar(props) {
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
+    console.log(props, "llegar")
     /*   const colorEspacioLibre='rgb(175,203,246,.2)'
       const colorEspacioLibreBorder='rgb(175,203,246)' */
 
@@ -52,7 +53,7 @@ export default function GraficaRutasXLlegar(props) {
             const volumen = value.toFixed(2)
             const val = value / 126;
             if (val > 0.08) {
-                return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index].toFixed(2) + " Kg"}`
+                return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + formattedCantidad(peso[index]) + " Kg"}`
             } else {
                 return ""
             }
@@ -100,6 +101,7 @@ export default function GraficaRutasXLlegar(props) {
             }
             label.push(viaje.nombre)
             label.push(formatearFecha(viaje.fecha_registro))
+            label.push(`Viaje: ${viaje.id}`)
             label.push(viaje.Clave_vehiculo)
             viaje.Caja && label.push(viaje.Caja)
             labelRutas.push(label)

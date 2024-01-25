@@ -7,7 +7,7 @@ import SListItem from './SListItem';
 
 
 export default function SideBar2() {
-  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar } = useContext(globalData);
+  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar, destinosPlanRuta } = useContext(globalData);
   const destinosList = destinosListState;
   const destinosXllegar = destinosListXllegar;
   let permisos = [];
@@ -16,7 +16,7 @@ export default function SideBar2() {
   }
   let destinosConRutas = [];
   let sucursalesConRutas = [];
-  destinosList.map((destino) => {
+  destinosPlanRuta.map((destino) => {
     //Obtener los destinos que sus sucursales tengan rutas configuradas
     for (let i = 0; i < destino.sucursales.length; i++) {
       const sucursal = destino.sucursales[i];

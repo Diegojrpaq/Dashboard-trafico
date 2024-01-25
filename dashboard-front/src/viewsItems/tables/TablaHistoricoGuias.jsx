@@ -4,17 +4,14 @@ import 'primereact/resources/primereact.css';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
-import { formattedNumber } from '../../utileria/utils';
+import { formattedCantidad, formattedNumber } from '../../utileria/utils';
 export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas, guiasAnterior, idUbicacion, infoRuta }) {
     let newCatalogoGuias = [];
     let guiasTransito = [];
     let desembarcadas;
     let guiasCompl;
     let arrAddProp;
-    console.log(guias, "Guias")
-    console.log(guiasSubidas, "subAct")
-    console.log(guiasBajadas, "BajAct")
-    console.log(guiasAnterior, "CargaAntes")
+
     function addNewProp (arr) {
         const arrProp = arr.map(item => {
             if(item.idTipoOperacion === 17 && item.ubicacion_transaccion_id === idUbicacion) {
@@ -161,8 +158,8 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
         { field: 'flete', header: 'Flete' },
         { field: 'monto_seguro', header: 'Monto seguro' },
         { field: 'subtotal', header: 'Subtotal' },
-        { field: 'Empaque', header: 'Empaque' },
-        { field: 'cantidad_caja', header: 'Cantidad' },
+        // { field: 'Empaque', header: 'Empaque' },
+        { field: 'cantidad_caja', header: 'Num. Items' },
     ];
 
     const nombreArchivo = `${infoRuta.nombre}-${infoRuta.fecha_registro}`;
@@ -238,8 +235,8 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
         ...guia,
         tipoOperacion: guia.idTipoOperacion,
         fecha_transaccion: guia.fecha_de_transaccion,
-        volumen: `${guia.volumen} mt3`,
-        peso: `${guia.peso} kg`,
+        volumen: `${formattedCantidad(guia.volumen)} mt3`,
+        peso: `${formattedCantidad(guia.peso)} kg`,
         flete: formattedNumber(guia.flete),
         monto_seguro: formattedNumber(guia.monto_seguro),
         subtotal: formattedNumber(guia.subtotal),

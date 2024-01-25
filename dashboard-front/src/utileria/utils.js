@@ -163,3 +163,15 @@ export const bitacoraVSembarcadas = (arrParadas, catalogoGuias) => {
         }
     }
 }
+
+export function formattedCantidad(num) {
+    //Convertir a entero
+    const number = Number(num);
+    let numFormatted;
+    if (number >= 1000) {
+        numFormatted = number?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    } else {
+        numFormatted = number?.toFixed(2);
+    }
+    return numFormatted;
+}

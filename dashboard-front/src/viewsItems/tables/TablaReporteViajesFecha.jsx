@@ -6,7 +6,7 @@ import { ColumnGroup } from 'primereact/columngroup';
 import { Row } from 'primereact/row';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
-import { formattedNumber, formatearFecha } from '../../utileria/utils';
+import { formattedNumber, formatearFecha, formattedCantidad } from '../../utileria/utils';
 import ContainerCards from '../../viewsItems/Cards/ContainerCards';
 export default function TablaReporteViajesFecha({ viajes, fecha }) {
     const totalViajes = viajes?.length;
@@ -148,8 +148,8 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
         <ColumnGroup>
             <Row>
                 <Column footer="Totales" colSpan={4} footerStyle={{ textAlign: 'right' }} />
-                <Column footer={`${sumaVolumen} mt3`} />
-                <Column footer={`${sumaPeso} Kg`} />
+                <Column footer={`${formattedCantidad(sumaVolumen)} mt3`} />
+                <Column footer={`${formattedCantidad(sumaPeso)} Kg`} />
                 <Column footer={formattedNumber(sumaFlete)} />
                 <Column footer={formattedNumber(sumaMonto)} />
                 <Column footer={formattedNumber(sumaSubtotal)} />
@@ -161,7 +161,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
         ...viaje,
         fechaRegistro: formatearFecha(viaje.fechaRegistro),
         volumenTotal: `${viaje.volumenTotal.toFixed(2)} mt3`,
-        pesoTotal: `${viaje.pesoTotal.toFixed(2)} kg`,
+        pesoTotal: `${formattedCantidad(viaje.pesoTotal)} kg`,
         fleteTotal: `${formattedNumber(viaje.fleteTotal)}`,
         montoSeguroTotal: `${formattedNumber(viaje.montoSeguroTotal)}`,
         subtotalTotal: `${formattedNumber(viaje.subtotalTotal)}`,
@@ -203,7 +203,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
                     <>
                         <div className=''>
                             <h3 className='badge bg-secondary fs-4'>Total de viajes: {totalViajes}</h3>
-                            <h3 className='badge bg-secondary fs-4 mx-md-3'>Total de guías: {sumaGuias}</h3>
+                            <h3 className='badge bg-secondary fs-4 mx-md-3'>Total de guías: {sumaGuias.toLocaleString('en')}</h3>
                         </div>
                         <ContainerCards sumas={sumas} totalViajes={totalViajes} totalGuias={sumaGuias} />
                         <div className="card">
