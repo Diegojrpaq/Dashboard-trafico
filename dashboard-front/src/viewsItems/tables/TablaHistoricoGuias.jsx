@@ -35,12 +35,11 @@ export default function TableHistoricoGuias({ guias, guiasSubidas, guiasBajadas,
         return arrProp;
     }
 
-    // else if (guiasSubidas.length > 0 && guiasBajadas.length > 0 && guiasAnterior.newArr === null) {
-    //     arrAddProp = addNewProp(guiasSubidas)
-    //     const bajadasAct = addNewProp(guiasBajadas)
-    //     newCatalogoGuias = [...arrAddProp, ...bajadasAct]
-    // } 
-    if (guiasSubidas.length > 0 && guiasBajadas.length === 0 && guiasAnterior.newArr === null) {
+    if (guiasSubidas.length > 0 && guiasBajadas.length > 0 && guiasAnterior.newArr === null) {
+        arrAddProp = addNewProp(guiasSubidas)
+        const bajadasAct = addNewProp(guiasBajadas)
+        newCatalogoGuias = [...arrAddProp, ...bajadasAct]
+    } else if (guiasSubidas.length > 0 && guiasBajadas.length === 0 && guiasAnterior.newArr === null) {
         arrAddProp = addNewProp(guiasSubidas)
         newCatalogoGuias = [...arrAddProp]
     } else if (guiasAnterior.newArr?.length > 0 && guiasAnterior.newArr2?.length === 0) {
