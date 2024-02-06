@@ -39,7 +39,7 @@ export default function GraficaRutasXLlegar(props) {
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
-    console.log(props, "llegar")
+    //console.log(props, "llegar")
     /*   const colorEspacioLibre='rgb(175,203,246,.2)'
       const colorEspacioLibreBorder='rgb(175,203,246)' */
 

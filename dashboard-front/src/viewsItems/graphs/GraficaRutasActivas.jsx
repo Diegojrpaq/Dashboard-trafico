@@ -43,7 +43,7 @@ export default function GraficaRutasActivas(props) {
     const catalogoDestinoFinal = props.catalogoDestinoFinal
     const colorEspacioLibre = catalogoColores.colores[100].color;
     const colorEspacioLibreBorder = catalogoColores.coloresBorder[100].color;
-    console.log(props, "Activas")
+    //console.log(props, "Activas")
     const colores = catalogoColores.colores
     const coloresBorder = catalogoColores.coloresBorder;
     /* Variables de Estilo fin */
