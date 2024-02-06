@@ -181,7 +181,7 @@ export default function TablaArbol({ guias, guiasClientes }) {
                 rowClassName={rowClassName}
                 showGridlines
                 stripedRows
-                tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}
+                tableStyle={{ minWidth: '100rem', fontFamily: "Poppins" }}
             >
                 {
                     columns.map((col, i) => (
