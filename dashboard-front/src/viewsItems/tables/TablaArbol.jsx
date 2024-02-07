@@ -17,7 +17,8 @@ export default function TablaArbol({ guias, guiasClientes }) {
                 flete,
                 monto_seguro,
                 subtotal,
-                origen } = guia;
+                origen,
+                cantidad_caja } = guia;
             if (!result[sucursal_ubicacion]) {
                 result[sucursal_ubicacion] = {
                     totalPeso: 0,
@@ -25,7 +26,8 @@ export default function TablaArbol({ guias, guiasClientes }) {
                     totalFlete: 0,
                     totalSeguro: 0,
                     totalSub: 0,
-                    totalGuias: 0
+                    totalGuias: 0,
+                    totalItemsSuc: 0,
                 };
             }
 
@@ -36,11 +38,12 @@ export default function TablaArbol({ guias, guiasClientes }) {
             result[sucursal_ubicacion].totalSub += subtotal;
             result[sucursal_ubicacion].origen = origen;
             result[sucursal_ubicacion].totalGuias += 1;
+            result[sucursal_ubicacion].totalItemsSuc += cantidad_caja;
             return result;
         }, {});
         // Construir la estructura dataGuias con los totales
         const dataGuias = Object.keys(sumaPesoVolumenPorSucursal).map((sucursal, index) => {
-            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen, totalGuias } = sumaPesoVolumenPorSucursal[sucursal];
+            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen, totalGuias, totalItemsSuc } = sumaPesoVolumenPorSucursal[sucursal];
             return {
                 key: index,
                 data: {
@@ -51,7 +54,8 @@ export default function TablaArbol({ guias, guiasClientes }) {
                     volumen: `${totalVolumen.toFixed(2)} mt3`,
                     flete: formattedNumber(totalFlete),
                     seguro: formattedNumber(totalSeguro),
-                    subtotal: formattedNumber(totalSub)
+                    subtotal: formattedNumber(totalSub),
+                    cantidad: totalItemsSuc,
                 },
                 children: guias
                     .filter((guia) => guia.sucursal_ubicacion === sucursal)
@@ -87,7 +91,8 @@ export default function TablaArbol({ guias, guiasClientes }) {
                 flete,
                 monto_seguro,
                 subtotal,
-                origen } = guia;
+                origen,
+                cantidad_caja } = guia;
             if (!result[clienteOrigen]) {
                 result[clienteOrigen] = {
                     totalPeso: 0,
@@ -95,7 +100,8 @@ export default function TablaArbol({ guias, guiasClientes }) {
                     totalFlete: 0,
                     totalSeguro: 0,
                     totalSub: 0,
-                    totalGuias: 0
+                    totalGuias: 0,
+                    totalItemsSuc: 0,
                 };
             }
 
@@ -106,12 +112,13 @@ export default function TablaArbol({ guias, guiasClientes }) {
             result[clienteOrigen].totalSub += subtotal;
             result[clienteOrigen].origen = origen;
             result[clienteOrigen].totalGuias += 1;
+            result[clienteOrigen].totalItemsSuc += cantidad_caja;
             return result;
         }, {});
 
         // Construir la estructura dataGuiasClientes con los totales
         const dataGuiasClientes = Object.keys(sumaPesoVolumenPorCliente).map((sucursal, index) => {
-            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen, totalGuias } = sumaPesoVolumenPorCliente[sucursal];
+            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen, totalGuias, totalItemsSuc } = sumaPesoVolumenPorCliente[sucursal];
             return {
                 key: index + 100,
                 data: {
@@ -122,7 +129,8 @@ export default function TablaArbol({ guias, guiasClientes }) {
                     volumen: `${formattedCantidad(totalVolumen)} mt3`,
                     flete: formattedNumber(totalFlete),
                     seguro: formattedNumber(totalSeguro),
-                    subtotal: formattedNumber(totalSub)
+                    subtotal: formattedNumber(totalSub),
+                    cantidad: totalItemsSuc,
                 },
                 children: guiasClientes
                     .filter((guia) => guia.clienteOrigen === sucursal)

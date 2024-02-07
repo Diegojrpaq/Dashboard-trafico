@@ -14,6 +14,7 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
   let sumaFletePlaneado;
   let sumaMontoPlaneado;
   let sumaSubtotalPlaneado;
+  let sumaItemsPlaneado;
   if (guiasPlaneadas !== null) {
     //Sumas para el apartado de totales de lo planeado
     const guiasTotales = [...guiasPlaneadas, ...guiasClientes]
@@ -42,6 +43,11 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
       const totalRedondeado = Number(suma.toFixed(2));
       return totalRedondeado;
     }, 0);
+    sumaItemsPlaneado = guiasTotales?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.cantidad_caja;
+      const totalRedondeado = Number(suma.toFixed(2));
+      return totalRedondeado;
+    }, 0);
   }
 
   //Suma para los totales de lo embarcado
@@ -50,6 +56,7 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
   let sumaFleteEmbarcado;
   let sumaMontoEmbarcado;
   let sumaSubtotalEmbarcado;
+  let sumaItemsEmbarcado;
   if (guiasEmbarcadas != null) {
     sumaVolumenEmbarcado = guiasEmbarcadas?.reduce((acumulador, elemento) => {
       const suma = acumulador + elemento.volumen;
@@ -76,6 +83,11 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
       const totalRedondeado = Number(suma.toFixed(2));
       return totalRedondeado;
     }, 0);
+    sumaItemsEmbarcado = guiasEmbarcadas?.reduce((acumulador, elemento) => {
+      const suma = acumulador + elemento.cantidad_caja;
+      const totalRedondeado = Number(suma.toFixed(2));
+      return totalRedondeado;
+    }, 0);
   }
 
   return (
@@ -84,11 +96,12 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
         <thead>
           <tr>
             <th></th>
-            <th>Peso Planeado</th>
-            <th>Volumen Planeado</th>
-            <th>Flete Planeado</th>
+            <th>Peso</th>
+            <th>Volumen</th>
+            <th>Flete</th>
             <th>Seguro</th>
             <th>Subtotal</th>
+            <th>Num. Items</th>
           </tr>
         </thead>
         <tbody>
@@ -99,16 +112,18 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
             <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaFletePlaneado)}</td>
             <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaMontoPlaneado)}</td>
             <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "$0" : formattedNumber(sumaSubtotalPlaneado)}</td>
+            <td>{guiasPlaneadas === null || guiasPlaneadas === 0 ? "0" : sumaItemsPlaneado}</td>
           </tr>
         </tbody>
         <thead>
           <tr>
             <th></th>
-            <th>Peso Embarcada</th>
-            <th>Volumen Embarcada</th>
-            <th>Flete Embarcada</th>
+            <th>Peso</th>
+            <th>Volumen</th>
+            <th>Flete</th>
             <th>Seguro</th>
             <th>Subtotal</th>
+            <th>Num. Items</th>
           </tr>
         </thead>
         <tbody>
@@ -119,6 +134,7 @@ export default function TablePlaneacion({ guiasPlaneadas, guiasEmbarcadas, guias
             <td>{guiasEmbarcadas === null || guiasEmbarcadas === 0 ? "$0" : formattedNumber(sumaFleteEmbarcado)}</td>
             <td>{guiasEmbarcadas === null ? "$0" : formattedNumber(sumaMontoEmbarcado)}</td>
             <td>{guiasEmbarcadas === null ? "$0" : formattedNumber(sumaSubtotalEmbarcado)}</td>
+            <td>{guiasEmbarcadas === null ? "0" : sumaItemsEmbarcado}</td>
           </tr>
         </tbody>
       </Table>
