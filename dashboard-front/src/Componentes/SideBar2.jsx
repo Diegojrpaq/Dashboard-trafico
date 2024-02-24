@@ -75,6 +75,21 @@ export default function SideBar2() {
 
           {
             permisos.includes(32) ?
+              <SHeaderList title="Planeación Llegadas" icon='bi bi-geo-alt-fill' key={5} idcollapse='5'>
+                {
+                  destinosList && destinosList.map((destino) => {
+                    return (
+                      <SListItem icon='bi bi-geo-alt mx-1' key={destino.id + destino.nombre} url={'/trafico/planeacionLlegadas/' + destino.id}>{destino.nombre}</SListItem>
+                    )
+                  })
+                }
+              </SHeaderList>
+              : <></>
+          }
+
+
+          {
+            permisos.includes(32) ?
               <SHeaderList title="Viajes Activos" icon='bi bi-geo-alt-fill' key={3} idcollapse='3'>
                 {
                   destinosList && destinosList.map((destino) => {
@@ -100,7 +115,7 @@ export default function SideBar2() {
               </SHeaderList>
               : <></>
           }
-         
+
           {
             permisos.includes(34) ?
               <SListItem icon='bi bi-geo-alt mx-2' url={'/trafico/viajesHistorico'}>Histórico</SListItem>
