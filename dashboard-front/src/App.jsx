@@ -23,7 +23,7 @@ function App() {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [destinosListXllegar, setDestinosListXllegar] = useState(null);
   const [destinosPlanRuta, setDestinosPlanRuta] = useState(null);
-
+  const [destPlanLlegada, setDestPlanLlegada] = useState(null);
 
 
     const urlApiNextpack = 'http://localhost/trafico/get_data'; 
@@ -44,17 +44,9 @@ function App() {
           return resp.json();
         }).then((data) => {
           if (data) {
-
             setDestinosList(data.Destinos)
             setDestinosListXllegar(data.DestinosXllegar)
             setDestinosPlanRuta(data.DestinosPlanRuta)
-            //     Swal.fire(
-            //   'Good job!',
-            // 'Se recibio la informacion correctamente Nextpack',
-            //'success'
-            //) 
-            
-
           }
         }).catch(
           () => console.log('Error al cargar los destinos')
@@ -71,22 +63,28 @@ function App() {
           if (data) {
             setSessionUser(data)
             setTokenUser(tokenUser)
-
-
-
           }
-
-
-
         }).catch(
           () => console.log('Error al cargar los destinos')
         )
     }
+
+    const peticionDestinosPlanLlegada = async () => {
+      const urlApiNextpack = "http://192.168.10.211/trafico/get_destinosPlanLlegada";
+      await fetch(urlApiNextpack)
+        .then((resp) => {
+          return resp.json();
+        }).then((data) => {
+          if (data) {
+            setDestPlanLlegada(data);
+          }
+        }).catch(
+          () => console.log('Error al cargar los destinos plan llegada')
+        )
+    }
     tokenUser ? peticiones(tokenUser) : window.location.href = 'http://216.250.126.250/jrpaqueteria';
     tokenUser ? peticionSidebar(tokenUser) : console.log('cargando...')
-
-
-
+    tokenUser ? peticionDestinosPlanLlegada() : console.log("Cargando destinos plan llegada");
 
   }, []);
 
@@ -170,7 +168,8 @@ function App() {
           toggleSidebar,
           setToggleSidebar,
           destinosListXllegar,
-          destinosPlanRuta
+          destinosPlanRuta,
+          destPlanLlegada
         }}>
           <BrowserRouter>
             <Suspense>
