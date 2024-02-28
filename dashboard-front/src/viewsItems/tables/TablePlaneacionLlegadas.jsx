@@ -6,37 +6,9 @@ import { Column } from 'primereact/column';
 import { ColumnGroup } from 'primereact/columngroup';
 import { Row } from 'primereact/row';
 import { FilterMatchMode } from 'primereact/api';
-import { formattedNumber, formattedCantidad } from '../../utileria/utils';
+import { formattedNumber, formattedCantidad, formatearFecha } from '../../utileria/utils';
 
-export default function TablePlaneacionLlegadas({ guias }) {
-
-    //Sumas para el apartado de totales
-    const sumaVolumen = guias.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.volumen;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-    const sumaPeso = guias.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.peso;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-    const sumaFlete = guias.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.flete;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-    const sumaMonto = guias.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.monto_seguro;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-    const sumaSubtotal = guias.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.subtotal;
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0);
-
+export default function TablePlaneacionLlegadas({ guias, nombreDestino, volumenTotal, pesoTotal, fleteTotal, montoSeguroTotal, subtotalTotal }) {
     const dt = useRef(null);
     //funciones para filtrar
     const [filters, setFilters] = useState({
@@ -59,8 +31,9 @@ export default function TablePlaneacionLlegadas({ guias }) {
     //Columnas de la tabla
     const cols = [
         { field: "numGuia", header: "Numero Guía" },
+        { field: 'fecha_registro', header: 'Fecha' },
         { field: 'origen', header: 'Origen' },
-        { field: 'destino', header: 'Destino' },
+        { field: 'destino_final', header: 'Destino' },
         { field: 'volumen', header: 'Volumen' },
         { field: 'peso', header: 'Peso' },
         { field: 'flete', header: 'Flete' },
@@ -86,7 +59,7 @@ export default function TablePlaneacionLlegadas({ guias }) {
     // ]
 
 
-    const nombreArchivo = `archivo`;
+    const nombreArchivo = `guiasXllegarDe${nombreDestino}`;
     const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
     //exportar en CSV
     const exportCSV = (selectionOnly) => {
@@ -158,18 +131,19 @@ export default function TablePlaneacionLlegadas({ guias }) {
     const footerGroup = (
         <ColumnGroup>
             <Row>
-                <Column footer="Totales" colSpan={3} footerStyle={{ textAlign: 'right' }} />
-                <Column footer={`${sumaVolumen} mt3`} />
-                <Column footer={`${formattedCantidad(sumaPeso)} Kg`} />
-                <Column footer={formattedNumber(sumaFlete)} />
-                <Column footer={formattedNumber(sumaMonto)} />
-                <Column footer={formattedNumber(sumaSubtotal)} />
+                <Column footer="Totales" colSpan={4} footerStyle={{ textAlign: 'right' }} />
+                <Column footer={`${volumenTotal} mt3`} />
+                <Column footer={`${pesoTotal} Kg`} />
+                <Column footer={formattedNumber(fleteTotal)} />
+                <Column footer={formattedNumber(montoSeguroTotal)} />
+                <Column footer={formattedNumber(subtotalTotal)} />
             </Row>
         </ColumnGroup>
     );
 
     const newData = guias.map(guia => ({
         ...guia,
+        fecha_registro: formatearFecha(guia.fecha_registro),
         volumen: `${formattedCantidad(guia.volumen)} mt3`,
         peso: `${formattedCantidad(guia.peso)} kg`,
         flete: formattedNumber(guia.flete),

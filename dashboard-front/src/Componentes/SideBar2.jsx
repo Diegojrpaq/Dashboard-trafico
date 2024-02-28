@@ -75,7 +75,7 @@ export default function SideBar2() {
 
           {
             permisos.includes(32) ?
-              <SHeaderList title="Planeación Llegadas" icon='bi bi-geo-alt-fill' key={5} idcollapse='5'>
+              <SHeaderList title="Planeación Llegadas" icon='bi bi-clipboard2-check-fill' key={5} idcollapse='5'>
                 {
                   destinosList && destinosList.map((destino) => {
                     return (
