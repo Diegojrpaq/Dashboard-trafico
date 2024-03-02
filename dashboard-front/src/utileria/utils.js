@@ -178,10 +178,12 @@ export function formattedCantidad(num) {
 
 //Función para sacar la suma de una propiedad en especifico. Ejemplo: (peso, volumen, subtotal, flete)
 export const totales = (arr, propSumar) => {
-    const total = arr.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento[propSumar];
-        const totalRedondeado = Number(suma.toFixed(2));
-        return totalRedondeado;
-    }, 0)
-    return total;
+    if(arr?.length > 0 || arr !== null) {
+        const total = arr?.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento[propSumar];
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0)
+        return total;
+    }
 }

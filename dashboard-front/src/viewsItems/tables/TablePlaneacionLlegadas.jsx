@@ -29,34 +29,34 @@ export default function TablePlaneacionLlegadas({ guias, nombreDestino, volumenT
     };
 
     //Columnas de la tabla
-    const cols = [
-        { field: "numGuia", header: "Numero Guía" },
-        { field: 'fecha_registro', header: 'Fecha' },
+    // const cols = [
+    //     { field: "numGuia", header: "Numero Guía" },
+    //     { field: 'fecha_registro', header: 'Fecha' },
+    //     { field: 'origen', header: 'Origen' },
+    //     { field: 'destino_final', header: 'Destino' },
+    //     { field: 'volumen', header: 'Volumen' },
+    //     { field: 'peso', header: 'Peso' },
+    //     { field: 'flete', header: 'Flete' },
+    //     { field: 'monto_seguro', header: 'Monto seguro' },
+    //     { field: 'subtotal', header: 'Subtotal' }
+    // ];
+
+        const cols = [
+        { field: 'numGuia', header: 'Num-Guía' },
+        { field: 'sucursal_principal', header: 'Sucursal' },
+        //{ field: 'canti', header: 'Cant. Guías' },
         { field: 'origen', header: 'Origen' },
         { field: 'destino_final', header: 'Destino' },
-        { field: 'volumen', header: 'Volumen' },
+        { field: 'fecha_registro', header: 'Fecha' },
+        { field: 'sucursal_ubicacion', header: 'Suc. Ubic.' },
         { field: 'peso', header: 'Peso' },
+        { field: 'volumen', header: 'Volumen' },
         { field: 'flete', header: 'Flete' },
-        { field: 'monto_seguro', header: 'Monto seguro' },
-        { field: 'subtotal', header: 'Subtotal' }
-    ];
-
-    //     const columns = [
-    //     { field: 'sucursal', header: 'Sucursal', expander: true },
-    //     { field: 'numG', header: 'Num-Guía' },
-    //     { field: 'cantG', header: 'Cant. Guías' },
-    //     { field: 'origen', header: 'Origen' },
-    //     { field: 'destino', header: 'Destino' },
-    //     { field: 'fecha', header: 'Fecha' },
-    //     { field: 'suc_ubi', header: 'Suc. Ubic.' },
-    //     { field: 'peso', header: 'Peso' },
-    //     { field: 'volumen', header: 'Volumen' },
-    //     { field: 'flete', header: 'Flete' },
-    //     { field: 'seguro', header: 'Seguro' },
-    //     { field: 'subtotal', header: 'Subtotal' },
-    //     // { field: 'empaque', header: 'Empaque' },
-    //     { field: 'cantidad', header: 'Num. Items' }
-    // ]
+        { field: 'monto_seguro', header: 'Seguro' },
+        { field: 'subtotal', header: 'Subtotal' },
+        // { field: 'empaque', header: 'Empaque' },
+        { field: 'cantidad_caja', header: 'Num. Items' }
+    ]
 
 
     const nombreArchivo = `guiasXllegarDe${nombreDestino}`;
@@ -131,7 +131,7 @@ export default function TablePlaneacionLlegadas({ guias, nombreDestino, volumenT
     const footerGroup = (
         <ColumnGroup>
             <Row>
-                <Column footer="Totales" colSpan={4} footerStyle={{ textAlign: 'right' }} />
+                <Column footer="Totales" colSpan={7} footerStyle={{ textAlign: 'right', fontSize: "20px" }} />
                 <Column footer={`${volumenTotal} mt3`} />
                 <Column footer={`${pesoTotal} Kg`} />
                 <Column footer={formattedNumber(fleteTotal)} />
@@ -143,7 +143,7 @@ export default function TablePlaneacionLlegadas({ guias, nombreDestino, volumenT
 
     const newData = guias.map(guia => ({
         ...guia,
-        fecha_registro: formatearFecha(guia.fecha_registro),
+        fecha_registro: guia.fecha_registro,
         volumen: `${formattedCantidad(guia.volumen)} mt3`,
         peso: `${formattedCantidad(guia.peso)} kg`,
         flete: formattedNumber(guia.flete),
