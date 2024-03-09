@@ -49,13 +49,13 @@ export default function TablePlaneacionLlegadas({ guias, nombreDestino, volumenT
         { field: 'destino_final', header: 'Destino' },
         { field: 'fecha_registro', header: 'Fecha' },
         { field: 'sucursal_ubicacion', header: 'Suc. Ubic.' },
-        { field: 'peso', header: 'Peso' },
+        { field: 'cantidad_caja', header: 'Num. Items' },
         { field: 'volumen', header: 'Volumen' },
+        { field: 'peso', header: 'Peso' },
         { field: 'flete', header: 'Flete' },
         { field: 'monto_seguro', header: 'Seguro' },
         { field: 'subtotal', header: 'Subtotal' },
         // { field: 'empaque', header: 'Empaque' },
-        { field: 'cantidad_caja', header: 'Num. Items' }
     ]
 
 

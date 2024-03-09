@@ -10,26 +10,30 @@ import ContainerTotales from '../../viewsItems/Cards/CardsTotalesPlaneacionLlega
 
 export default function PlaneacionLlegadas() {
     const { idDestino } = useParams();
-    const { destPlanLlegada } = useContext(globalData);
+    const { destPlanLlegada, destinosListXllegar } = useContext(globalData);
     const [guiasXllegar, setGuiasXllegar] = useState(null);
-    const [destinosConfigurados, setDestinosConfigurados] = useState(null);
-    let nombreDestino;
+    //const [destinosConfigurados, setDestinosConfigurados] = useState(null);
+    const [nameDestino, setNameDestino] = useState(null);
 
-    destPlanLlegada?.Destinos?.forEach((destino) => {
-        if (destino.id === Number(idDestino)) {
-            nombreDestino = destino.nombre;
-        }
-    })
+    function getNameDestino(idDestino) {
+        let nombreDestino;
+        destinosListXllegar?.forEach((destino) => {
+            if (destino.id === Number(idDestino)) {
+                nombreDestino = destino.nombre;
+            }
+        })
+        return nombreDestino;
+    }
 
     const peticiones = async (id) => {
-        //const urlApiNextpack = urlapi + '/trafico/get_viajeActivo/' + id;
-        const urlApiNextpack = "http://192.168.10.211/trafico/get_planLlegada/" + id;
+        const urlApiNextpack = urlapi + '/trafico/get_planLlegada/' + id;
         await fetch(urlApiNextpack)
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
                 if (data.catalogoGuiasPlaneadas !== null) {
                     setGuiasXllegar(data.catalogoGuiasPlaneadas);
+                    setNameDestino(getNameDestino(id));
                     //setDestinosConfigurados(data.DestinosConfigurados)
                 } else {
                     setGuiasXllegar([])
@@ -51,11 +55,15 @@ export default function PlaneacionLlegadas() {
 
     if (guiasXllegar !== null) {
         if (guiasXllegar.length > 0) {
-            const volumenTotal = totales(guiasXllegar, "volumen");
-            const pesoTotal = formattedCantidad(totales(guiasXllegar, "peso"));
-            const fleteTotal = formattedCantidad(totales(guiasXllegar, "flete"));
-            const montoSeguroTotal = formattedCantidad(totales(guiasXllegar, "monto_seguro"));
-            const subtotalTotal = formattedCantidad(totales(guiasXllegar, "subtotal"));
+            //Crear array sin guias repetidas
+            const guiasSinRepetir = Array.from(new Set(guiasXllegar.map(guia => guia.numGuia))).map(numGuia => {
+                return guiasXllegar.find(guia => guia.numGuia === numGuia);
+            });
+            const volumenTotal = totales(guiasSinRepetir, "volumen");
+            const pesoTotal = formattedCantidad(totales(guiasSinRepetir, "peso"));
+            const fleteTotal = formattedCantidad(totales(guiasSinRepetir, "flete"));
+            const montoSeguroTotal = formattedCantidad(totales(guiasSinRepetir, "monto_seguro"));
+            const subtotalTotal = formattedCantidad(totales(guiasSinRepetir, "subtotal"));
             const sumas = [
                 {
                     nombre: "Volumen",
@@ -86,8 +94,8 @@ export default function PlaneacionLlegadas() {
 
             const destinosSinRepetir = new Set();
             const dataDestinos = [];
-
-            guiasXllegar?.forEach((guia) => {
+            //Separar las guias por el origen que vienen
+            guiasSinRepetir?.forEach((guia) => {
                 const idDestino = guia.viaje_ubicacion_id;
                 //Verificamos si el destino ya esta en el set de destinos
                 if (!destinosSinRepetir.has(idDestino)) {
@@ -95,7 +103,7 @@ export default function PlaneacionLlegadas() {
                     dataDestinos.push({
                         id: idDestino,
                         nombre: guia.ubicacionDestino,
-                        guias: guiasXllegar.filter(guia => (guia.viaje_ubicacion_id === idDestino && guia.destino_id === idDestino))
+                        guias: guiasSinRepetir.filter(guia => (guia.viaje_ubicacion_id === idDestino))
                     });
                 }
             });
@@ -103,32 +111,32 @@ export default function PlaneacionLlegadas() {
                 <>
                     <div className="col-12 col-md-12  p-1">
                         <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-                            <h2>Planeación de Llegadas {nombreDestino}</h2>
-                            <div>
+                            <h2>Planeación de Llegadas {nameDestino}</h2>
+                            {/* <div>
                                 <ContainerTotales sumas={sumas} />
-                            </div>
+                            </div> */}
                             <Accordion key={100} className='mb-4'>
                                 <Accordion.Item eventKey={100}>
                                     <Accordion.Header>
                                         <HeaderLLegadas
                                             nombre={"Total en general"}
-                                            guias={guiasXllegar}
+                                            guias={guiasSinRepetir}
                                         />
                                     </Accordion.Header>
                                     <Accordion.Body>
                                         <TablePlaneacionLlegadas
-                                            guias={guiasXllegar}
+                                            guias={guiasSinRepetir}
                                             nombreDestino={"todosLosDestinos"}
-                                            volumenTotal={totales(guiasXllegar, "volumen")}
-                                            pesoTotal={formattedCantidad(totales(guiasXllegar, "peso"))}
-                                            fleteTotal={totales(guiasXllegar, "flete")}
-                                            montoSeguroTotal={totales(guiasXllegar, "monto_seguro")}
-                                            subtotalTotal={totales(guiasXllegar, "subtotal")}
+                                            volumenTotal={totales(guiasSinRepetir, "volumen")}
+                                            pesoTotal={formattedCantidad(totales(guiasSinRepetir, "peso"))}
+                                            fleteTotal={totales(guiasSinRepetir, "flete")}
+                                            montoSeguroTotal={totales(guiasSinRepetir, "monto_seguro")}
+                                            subtotalTotal={totales(guiasSinRepetir, "subtotal")}
                                         />
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
-                            <h3>Detalle por Destino</h3>
+                            <h3>Detalle por Origen</h3>
                             {
                                 dataDestinos.map((destino, i) => (
                                     <Accordion key={i} className=''>
@@ -186,9 +194,11 @@ function HeaderLLegadas(props) {
                 {props.nombre}
             </div>
             <div className='row align-items-center mt-2' style={{ fontSize: "1.1rem" }}>
-                <div className='col'>Cantidad de Guías: {props.guias.length}</div>
+                <div className='col'>Total Guías: {props.guias.length}</div>
                 <div className='col'>Peso: {formattedCantidad(totales(props.guias, "peso"))} kg</div>
                 <div className='col'>Volumen: {totales(props.guias, "volumen")} mt3</div>
+                <div className='col'>Flete: ${formattedCantidad(totales(props.guias, "flete"))}</div>
+                <div className='col'>Monto Seg: ${formattedCantidad(totales(props.guias, "monto_seguro"))}</div>
                 <div className='col'>Subtotal: ${formattedCantidad(totales(props.guias, "subtotal"))}</div>
             </div>
         </div>

@@ -78,7 +78,7 @@ export default function SideBar2() {
             permisos.includes(32) ?
               <SHeaderList title="Planeación Llegadas" icon='bi bi-clipboard2-check-fill' key={5} idcollapse='5'>
                 {
-                  destinosPlanLlegada && destinosPlanLlegada.map((destino) => {
+                 destinosXllegar && destinosXllegar.map((destino) => {
                     return (
                       <SListItem icon='bi bi-geo-alt mx-1' key={destino.id + destino.nombre} url={'/trafico/planeacionLlegadas/' + destino.id}>{destino.nombre}</SListItem>
                     )
