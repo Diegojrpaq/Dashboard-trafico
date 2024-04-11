@@ -70,7 +70,7 @@ function App() {
     }
 
     const peticionDestinosPlanLlegada = async () => {
-      const urlApiNextpack = "http://192.168.10.211/trafico/get_destinosPlanLlegada";
+      const urlApiNextpack = urlapi + "/trafico/get_destinosPlanLlegada";
       await fetch(urlApiNextpack)
         .then((resp) => {
           return resp.json();
