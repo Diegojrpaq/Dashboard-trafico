@@ -53,7 +53,7 @@ export default function NewView() {
         <>
             {
                 destinosRutas.map((destino, i) => (
-                    <Accordion className=''>
+                    <Accordion key={i} className=''>
                         <Accordion.Item eventKey={1}>
                             <Accordion.Header onClick={() => onClicAccordion("Clic Accordion")}>
                                 <Header
@@ -65,8 +65,8 @@ export default function NewView() {
                             </Accordion.Header>
                             <Accordion.Body>
                                 {
-                                    destino.rutas.map((ruta) => (
-                                        <Accordion>
+                                    destino.rutas.map((ruta, i) => (
+                                        <Accordion key={i}>
                                             <Accordion.Item eventKey='1.1'>
                                                 <Accordion.Header onClick={() => onClicAccordion(`Clic Accordion ruta: ${ruta.id_ruta}`)}>
                                                     <Header
