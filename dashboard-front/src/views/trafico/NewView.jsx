@@ -1,14 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Accordion from 'react-bootstrap/Accordion';
 import { globalData } from '../../App';
 import { urlapi } from '../../utileria/config';
+import AccordionDestinos from '../../viewsItems/AccordionDestinos';
 
 export default function NewView() {
     const { destinosPlanRuta } = useContext(globalData);
     const [destinosList, setDestinosList] = useState([]);
-    const peticionSidebar = async () => {
+    const peticionSidebar = async (id) => {
         /* const urlApiNextpackSidebar = '/trafico/get_destinos/' + tokenUser; */
-        const urlApiNextpackSidebar = urlapi + '/trafico/get_destinos';
+        //const urlApiNextpackSidebar = urlapi + '/trafico/get_destinos';
+        const urlApiNextpackSidebar = "http://192.168.10.113/trafico/get_planxDestino/" + id
         await fetch(urlApiNextpackSidebar)
             .then((resp) => {
                 return resp.json();
@@ -19,9 +21,13 @@ export default function NewView() {
                     return data
                 }
             }).catch(
-                () => console.log('Error al cargar los destinos')
+                () => console.log('Error los datos del destino: ' + id)
             )
     }
+
+    // useEffect(() => {
+    //     //peticionSidebar()
+    // }, [])
 
     //Obtener los destinos que su sucural tiene al menos una ruta configurada
     const destinosConRutasConfiguradas = destinosPlanRuta.filter(destino => {
@@ -52,42 +58,45 @@ export default function NewView() {
     return (
         <>
             {
-                destinosRutas.map((destino, i) => (
-                    <Accordion key={i} className=''>
-                        <Accordion.Item eventKey={1}>
-                            <Accordion.Header onClick={() => onClicAccordion("Clic Accordion")}>
-                                <Header
-                                    nombre={destino.nombre}
-                                    peso="47"
-                                    flete={2111}
-                                    subtotal="1220"
-                                />
-                            </Accordion.Header>
-                            <Accordion.Body>
-                                {
-                                    destino.rutas.map((ruta, i) => (
-                                        <Accordion key={i}>
-                                            <Accordion.Item eventKey='1.1'>
-                                                <Accordion.Header onClick={() => onClicAccordion(`Clic Accordion ruta: ${ruta.id_ruta}`)}>
-                                                    <Header
-                                                        nombre={ruta.nombre_ruta}
-                                                        peso="89"
-                                                        flete={908}
-                                                        subtotal="220"
-                                                        paddingSize={1}
-                                                    />
-                                                </Accordion.Header>
-                                                <Accordion.Body>
-                                                    Detalles
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </Accordion>
-                                    ))
-                                }
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
-                ))
+                destinosRutas.map((destino, i) => {
+                    return (
+                        <AccordionDestinos key={i} idDestino={destino.id} nombreDestino={destino.nombre} />
+                        // <Accordion key={i} className=''>
+                        //     <Accordion.Item eventKey={1}>
+                        //         <Accordion.Header onClick={() => onClicAccordion("Clic Accordion")}>
+                        //             <Header
+                        //                 nombre={destino.nombre}
+                        //                 peso="47"
+                        //                 flete={2111}
+                        //                 subtotal="1220"
+                        //             />
+                        //         </Accordion.Header>
+                        //         <Accordion.Body>
+                        //             {
+                        //                 destino.rutas.map((ruta, i) => (
+                        //                     <Accordion key={i}>
+                        //                         <Accordion.Item eventKey='1.1'>
+                        //                             <Accordion.Header onClick={() => onClicAccordion(`Clic Accordion ruta: ${ruta.id_ruta}`)}>
+                        //                                 <Header
+                        //                                     nombre={ruta.nombre_ruta}
+                        //                                     peso="89"
+                        //                                     flete={908}
+                        //                                     subtotal="220"
+                        //                                     paddingSize={1}
+                        //                                 />
+                        //                             </Accordion.Header>
+                        //                             <Accordion.Body>
+                        //                                 Detalles
+                        //                             </Accordion.Body>
+                        //                         </Accordion.Item>
+                        //                     </Accordion>
+                        //                 ))
+                        //             }
+                        //         </Accordion.Body>
+                        //     </Accordion.Item>
+                        // </Accordion>
+                    )
+                })
             }
         </>
     );
