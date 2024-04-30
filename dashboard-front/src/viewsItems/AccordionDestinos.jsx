@@ -1,24 +1,23 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Accordion from 'react-bootstrap/Accordion';
 import { Spinner } from 'react-bootstrap'
 import { formattedCantidad } from '../utileria/utils';
-import TableViajesActivos from './tables/TableViajesActivos';
 import { urlapi } from '../utileria/config';
-export default function AccordionDestinos({idDestino, nombreDestino}) {
+import TableAccordionDestinos from './tables/TableAccordionDestinos';
+export default function AccordionDestinos({ idDestino, nombreDestino }) {
     const [destinosList, setDestinosList] = useState([]);
     const [guiasXruta, setGuiasXruta] = useState([]);
     const [clicAccordion, setClicAccordion] = useState(false);
-    //console.log(idDestino, "ID", nombreDestino)
+    const [peticionRutaState, setPeticionRutaState] = useState(false);
     const peticionDataDestinos = async (id) => {
-        const urlApiNextpackSidebar = urlapi + "/trafico/get_planxDestino/" + id
+        const urlApiNextpackSidebar = urlapi + "/trafico/get_planxDestino/" + id;
         //const urlApiNextpackSidebar = "http://192.168.10.113/trafico/get_planxDestino/" + id
         await fetch(urlApiNextpackSidebar)
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
                 if (data) {
-                    setDestinosList(data?.Destino)
-                    //console.log(data, "DATA")
+                    setDestinosList(data?.Destino);
                     return data
                 }
             }).catch(
@@ -27,65 +26,65 @@ export default function AccordionDestinos({idDestino, nombreDestino}) {
     }
 
     const peticionXruta = async (id) => {
-        const urlApiNextpackSidebar = urlapi + "/trafico/get_planRuta/" + id
+        const urlApiNextpackSidebar = urlapi + "/trafico/get_planRuta/" + id;
         await fetch(urlApiNextpackSidebar)
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
-                if (data) {
-                    setGuiasXruta(data?.rutas[0]?.catalogoGuiasPlaneadas)
-                    console.log(data.rutas[0].catalogoGuiasPlaneadas, "DATA Ruta")
+                if (data?.rutas[0]?.catalogoGuiasPlaneadas !== null) {
+                    setGuiasXruta(data?.rutas[0]?.catalogoGuiasPlaneadas);
                     return data
+                } else {
+                    setPeticionRutaState(true);
                 }
             }).catch(
-                () => console.log('Error los datos del destino: ' + id)
+                () => console.log('Error los datos de la ruta: ' + id)
             )
     }
     useEffect(() => {
-        peticionDataDestinos(idDestino)
+        peticionDataDestinos(idDestino);
     }, [idDestino])
 
     function onClicAccordion(idRuta) {
-        setGuiasXruta([])
-        if(clicAccordion) {
-            console.log(idRuta)
-            peticionXruta(idRuta)
+        if (!clicAccordion) {
+            setPeticionRutaState(false);
+            setGuiasXruta([]);
+            peticionXruta(idRuta);
         }
         setClicAccordion(!clicAccordion);
     }
-    //console.log(destinosList?.ruta, "DESTINOS", destinosList?.length)
+
     function sumarPropiedad(array, propiedad) {
         return array.reduce((suma, elemento) => {
             return suma + elemento.Totales.reduce((subtotal, total) => subtotal + total[propiedad], 0);
         }, 0);
     }
 
-    if(destinosList?.length !== 0 && destinosList?.ruta?.lenght !== 0) {
+    if (destinosList?.length !== 0 && destinosList?.ruta?.lenght !== 0) {
         let sumaVolumen;
         let sumaPeso;
-        let  sumaFlete;
+        let sumaFlete;
         let sumaMontoSeg;
         let sumaSubtotal;
         let sumaGuias;
         let sumaCajas;
-        if(destinosList?.ruta === undefined) {
+        if (destinosList?.ruta === undefined) {
             return <></>
         }
-        console.log(destinosList?.ruta)
         const rutas = destinosList?.ruta;
-       // const totalRedondeado = Number(suma.toFixed(2));
-        sumaVolumen = Number(sumarPropiedad(rutas, 'volumen').toFixed(2))
+        sumaVolumen = Number(sumarPropiedad(rutas, 'volumen').toFixed(2));
         sumaPeso = sumarPropiedad(rutas, 'peso').toFixed(2);
         sumaFlete = sumarPropiedad(rutas, 'flete');
         sumaMontoSeg = sumarPropiedad(rutas, 'montoSeguro');
         sumaSubtotal = sumarPropiedad(rutas, 'subtotal');
         sumaGuias = sumarPropiedad(rutas, 'cantidadGuias');
         sumaCajas = sumarPropiedad(rutas, 'cantidadCajas');
-        console.log(sumaVolumen, sumaGuias, "Sumas", nombreDestino)
+        const fechaActual = new Date().toLocaleDateString();
+        console.log(rutas, "Rutas")
         return (
-            <Accordion key={idDestino} className=''>
-                <Accordion.Item eventKey={1}>
-                    <Accordion.Header onClick={() => onClicAccordion("Clic Accordion")}>
+            <Accordion key={idDestino}>
+                <Accordion.Item eventKey={idDestino}>
+                    <Accordion.Header>
                         <Header
                             nombre={nombreDestino}
                             volumen={sumaVolumen}
@@ -101,7 +100,7 @@ export default function AccordionDestinos({idDestino, nombreDestino}) {
                         {
                             destinosList?.ruta?.map((ruta, i) => (
                                 <Accordion key={i}>
-                                    <Accordion.Item eventKey='1.1'>
+                                    <Accordion.Item eventKey={ruta.idRuta}>
                                         <Accordion.Header onClick={() => onClicAccordion(ruta.idRuta)}>
                                             <Header
                                                 nombre={ruta?.nombre}
@@ -117,14 +116,20 @@ export default function AccordionDestinos({idDestino, nombreDestino}) {
                                         </Accordion.Header>
                                         <Accordion.Body>
                                             {
-                                                guiasXruta?.length > 0 ?  
-                                                <TableViajesActivos
-                                                guias={guiasXruta}
-                                                infoRuta={ruta.nombre}
-                                               />
-                                               : <Spinner />
+                                                peticionRutaState ?
+                                                    <h3>No hay datos</h3>
+                                                    :
+                                                    guiasXruta?.length > 0 ?
+                                                        <TableAccordionDestinos
+                                                            guias={guiasXruta}
+                                                            infoRuta={{
+                                                                nombreRuta: ruta.nombre,
+                                                                fecha: fechaActual
+                                                            }}
+                                                        />
+                                                        :
+                                                        <Spinner />
                                             }
-                                           
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
@@ -137,11 +142,11 @@ export default function AccordionDestinos({idDestino, nombreDestino}) {
     } else {
         return (
             <div className='d-flex column m-2 justify-content-center'>
-                <Spinner className='Spinner-Graph'/>
+                <Spinner className='Spinner-Graph' />
             </div>
         )
     }
-    
+
 }
 
 function Header({ nombre, volumen, peso, flete, seguro, subtotal, guias, cajas, paddingSize }) {
