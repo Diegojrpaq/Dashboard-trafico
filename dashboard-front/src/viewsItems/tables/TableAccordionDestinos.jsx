@@ -10,28 +10,33 @@ import { formattedNumber, formattedCantidad } from '../../utileria/utils';
 export default function TableAccordionDestinos({ guias, infoRuta }) {
 
     //Sumas para el apartado de totales
-    const sumaVolumen = guias.reduce((acumulador, elemento) => {
+    const sumaVolumen = guias?.reduce((acumulador, elemento) => {
         const suma = acumulador + elemento.volumen;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaPeso = guias.reduce((acumulador, elemento) => {
+    const sumaPeso = guias?.reduce((acumulador, elemento) => {
         const suma = acumulador + elemento.peso;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaFlete = guias.reduce((acumulador, elemento) => {
+    const sumaFlete = guias?.reduce((acumulador, elemento) => {
         const suma = acumulador + elemento.flete;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaMonto = guias.reduce((acumulador, elemento) => {
+    const sumaMonto = guias?.reduce((acumulador, elemento) => {
         const suma = acumulador + elemento.monto_seguro;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaSubtotal = guias.reduce((acumulador, elemento) => {
+    const sumaSubtotal = guias?.reduce((acumulador, elemento) => {
         const suma = acumulador + elemento.subtotal;
+        const totalRedondeado = Number(suma.toFixed(2));
+        return totalRedondeado;
+    }, 0);
+    const sumaItems = guias?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.cantidad_caja;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
@@ -58,15 +63,14 @@ export default function TableAccordionDestinos({ guias, infoRuta }) {
     //Columnas de la tabla
     const cols = [
         { field: "numGuia", header: "Numero Guía" },
-        // { field: 'origen', header: 'Origen' },
-        // { field: 'destino', header: 'Destino' },
         { field: 'sucursal_principal', header: 'Suc. origen' },
         { field: 'sucursal_destino', header: 'Suc. destino' },
         { field: 'volumen', header: 'Volumen' },
         { field: 'peso', header: 'Peso' },
         { field: 'flete', header: 'Flete' },
         { field: 'monto_seguro', header: 'Monto seguro' },
-        { field: 'subtotal', header: 'Subtotal' }
+        { field: 'subtotal', header: 'Subtotal' },
+        { field: 'cantidad_caja', header: 'Items'}
     ];
 
     const nombreArchivo = `${infoRuta.nombreRuta}-${infoRuta.fecha}`;
@@ -147,6 +151,7 @@ export default function TableAccordionDestinos({ guias, infoRuta }) {
                 <Column footer={formattedNumber(sumaFlete)} />
                 <Column footer={formattedNumber(sumaMonto)} />
                 <Column footer={formattedNumber(sumaSubtotal)} />
+                <Column footer={sumaItems} />
             </Row>
         </ColumnGroup>
     );
@@ -167,7 +172,7 @@ export default function TableAccordionDestinos({ guias, infoRuta }) {
                     ref={dt}
                     value={newData} 
                     filters={filters} 
-                    header={header} 
+                    header={header}
                     footerColumnGroup={footerGroup} 
                     showGridlines 
                     stripedRows 

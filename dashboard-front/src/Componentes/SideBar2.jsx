@@ -105,7 +105,7 @@ export default function SideBar2() {
 
           {
             permisos.includes(32) ?
-              <SListItem icon='bi bi-geo-alt mx-1' url={'/trafico/newView/'}>New View</SListItem>
+              <SListItem icon='bi bi-clipboard2-data mx-1' url={'/trafico/newView/'}>Resumen Planeación Rutas</SListItem>
               : <></>
           }
 
