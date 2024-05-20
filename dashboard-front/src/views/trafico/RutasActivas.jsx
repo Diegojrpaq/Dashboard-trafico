@@ -105,6 +105,7 @@ export default function RutasActivas() {
                             Clave_vehiculo={ruta.Clave_vehiculo}
                             fecha={fecha}
                             totalGuias={totalGuias}
+                            numViaje={ruta.id}
                           />
                         </Accordion.Header>
                         <Accordion.Body>
@@ -127,6 +128,7 @@ export default function RutasActivas() {
                             Clave_vehiculo={ruta.Clave_vehiculo}
                             fecha={fecha}
                             totalGuias={totalGuias}
+                            numViaje={ruta.id}
                           />
                         </Accordion.Header>
                         <Accordion.Body>

@@ -2,47 +2,45 @@ import React, { useRef, useState } from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
 import { ColumnGroup } from 'primereact/columngroup';
 import { Row } from 'primereact/row';
-import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
-import { formattedNumber, formatearFecha, formattedCantidad } from '../../utileria/utils';
-import ContainerCards from '../../viewsItems/Cards/ContainerCards';
-export default function TablaReporteViajesFecha({ viajes, fecha }) {
-    const totalViajes = viajes?.length;
-    const fecha1 = formatearFecha(fecha[0])
-    const fecha2 = formatearFecha(fecha[1])
+import { formattedNumber, formattedCantidad } from '../../utileria/utils';
+export default function TableAccordionDestinos({ guias, infoRuta }) {
+
     //Sumas para el apartado de totales
-    const sumaVolumen = viajes?.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.volumenTotal;
+    const sumaVolumen = guias?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.volumen;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaPeso = viajes?.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.pesoTotal;
+    const sumaPeso = guias?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.peso;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaFlete = viajes?.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.fleteTotal;
+    const sumaFlete = guias?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.flete;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaMonto = viajes?.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.montoSeguroTotal;
+    const sumaMonto = guias?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.monto_seguro;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaSubtotal = viajes?.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.subtotalTotal;
+    const sumaSubtotal = guias?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.subtotal;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
-    const sumaGuias = viajes?.reduce((acumulador, elemento) => {
-        const suma = acumulador + elemento.cantidadGuias;
+    const sumaItems = guias?.reduce((acumulador, elemento) => {
+        const suma = acumulador + elemento.cantidad_caja;
         const totalRedondeado = Number(suma.toFixed(2));
         return totalRedondeado;
     }, 0);
+
     const dt = useRef(null);
     //funciones para filtrar
     const [filters, setFilters] = useState({
@@ -64,18 +62,18 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
 
     //Columnas de la tabla
     const cols = [
-        { field: "idViaje", header: "Numero Viaje" },
-        { field: 'nombre', header: 'Nombre Viaje' },
-        { field: 'fechaRegistro', header: 'Fecha' },
-        { field: 'cantidadGuias', header: 'Total Guías' },
-        { field: 'volumenTotal', header: 'Volumen' },
-        { field: 'pesoTotal', header: 'Peso' },
-        { field: 'fleteTotal', header: 'Flete' },
-        { field: 'montoSeguroTotal', header: 'Monto seguro' },
-        { field: 'subtotalTotal', header: 'Subtotal' }
+        { field: "numGuia", header: "Numero Guía" },
+        { field: 'sucursal_principal', header: 'Suc. origen' },
+        { field: 'sucursal_destino', header: 'Suc. destino' },
+        { field: 'volumen', header: 'Volumen' },
+        { field: 'peso', header: 'Peso' },
+        { field: 'flete', header: 'Flete' },
+        { field: 'monto_seguro', header: 'Monto seguro' },
+        { field: 'subtotal', header: 'Subtotal' },
+        { field: 'cantidad_caja', header: 'Items'}
     ];
 
-    const nombreArchivo = `${"Reporte"}-${fecha1}-${fecha2}`;
+    const nombreArchivo = `${infoRuta.nombreRuta}-${infoRuta.fecha}`;
     const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
     //exportar en CSV
     const exportCSV = (selectionOnly) => {
@@ -87,7 +85,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
             import('jspdf-autotable').then(() => {
                 const doc = new jsPDF.default(0, 0);
 
-                doc.autoTable(exportColumns, viajes);
+                doc.autoTable(exportColumns, guias);
                 doc.save(`${nombreArchivo}.pdf`);
             });
         });
@@ -95,7 +93,7 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
     //exportar en Excel
     const exportExcel = () => {
         import('xlsx').then((xlsx) => {
-            const worksheet = xlsx.utils.json_to_sheet(viajes);
+            const worksheet = xlsx.utils.json_to_sheet(guias);
             const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
             const excelBuffer = xlsx.write(workbook, {
                 bookType: 'xlsx',
@@ -143,91 +141,52 @@ export default function TablaReporteViajesFecha({ viajes, fecha }) {
             </div>
         </div>
     );
-
+    //Footer de la tabla, contiene los totales
     const footerGroup = (
         <ColumnGroup>
             <Row>
-                <Column footer="Totales" colSpan={4} footerStyle={{ textAlign: 'right' }} />
-                <Column footer={`${formattedCantidad(sumaVolumen)} mt3`} />
+                <Column footer="Totales" colSpan={3} footerStyle={{ textAlign: 'right' }} />
+                <Column footer={`${sumaVolumen} mt3`} />
                 <Column footer={`${formattedCantidad(sumaPeso)} Kg`} />
                 <Column footer={formattedNumber(sumaFlete)} />
                 <Column footer={formattedNumber(sumaMonto)} />
                 <Column footer={formattedNumber(sumaSubtotal)} />
+                <Column footer={sumaItems} />
             </Row>
         </ColumnGroup>
     );
 
-    const newData = viajes?.map(viaje => ({
-        ...viaje,
-        fechaRegistro: formatearFecha(viaje.fechaRegistro),
-        volumenTotal: `${viaje.volumenTotal.toFixed(2)} mt3`,
-        pesoTotal: `${formattedCantidad(viaje.pesoTotal)} kg`,
-        fleteTotal: `${formattedNumber(viaje.fleteTotal)}`,
-        montoSeguroTotal: `${formattedNumber(viaje.montoSeguroTotal)}`,
-        subtotalTotal: `${formattedNumber(viaje.subtotalTotal)}`,
+    const newData = guias.map(guia => ({
+        ...guia,
+        // destino: guia.sucursal_destino,
+        volumen: `${formattedCantidad(guia.volumen)} mt3`,
+        peso: `${formattedCantidad(guia.peso)} kg`,
+        flete: formattedNumber(guia.flete),
+        monto_seguro: formattedNumber(guia.monto_seguro),
+        subtotal: formattedNumber(guia.subtotal),
     }))
-
-    const sumas = [
-        {
-            nombre: "Volumen",
-            suma: sumaVolumen,
-            signo: "mt3"
-        },
-        {
-            nombre: "Peso",
-            suma: sumaPeso,
-            signo: "kg"
-        },
-        {
-            nombre: "Flete",
-            suma: sumaFlete,
-            signo: "$"
-        },
-        {
-            nombre: "Monto seguro",
-            suma: sumaMonto,
-            signo: "$"
-        },
-        {
-            nombre: "Subtotal",
-            suma: sumaSubtotal,
-            signo: "$"
-        }
-    ]
-
     return (
         <>
-
-            {
-                viajes ?
-                    <>
-                        <div className=''>
-                            <h3 className='badge bg-secondary fs-4'>Total de viajes: {totalViajes}</h3>
-                            <h3 className='badge bg-secondary fs-4 mx-md-3'>Total de guías: {sumaGuias.toLocaleString('en')}</h3>
-                        </div>
-                        <ContainerCards sumas={sumas} totalViajes={totalViajes} totalGuias={sumaGuias} />
-                        <div className="card">
-                            <DataTable
-                                ref={dt}
-                                value={newData}
-                                filters={filters}
-                                header={header}
-                                footerColumnGroup={footerGroup}
-                                showGridlines
-                                stripedRows
-                                sortMode='multiple'
-                                tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}
-                                emptyMessage="No se encontraron resultados"
-                            >
-                                {
-                                    cols.map((col, index) => (
-                                        <Column key={index} field={col.field} header={col.header} sortable></Column>
-                                    ))
-                                }
-                            </DataTable>
-                        </div></>
-                    : <h3>No existen viajes en esta fecha, selecciona otra fecha</h3>
-            }
+            <div className="card">
+                <DataTable 
+                    ref={dt}
+                    value={newData} 
+                    filters={filters} 
+                    header={header}
+                    footerColumnGroup={footerGroup} 
+                    showGridlines 
+                    stripedRows 
+                    sortMode='multiple' 
+                    tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}                 
+                    emptyMessage="No se encontraron resultados"
+                >
+                    {
+                        cols.map((col, index) => (
+                            <Column key={index} field={col.field} header={col.header} sortable></Column>
+                        ))
+                    }
+                </DataTable>
+            </div>
         </>
     )
 }

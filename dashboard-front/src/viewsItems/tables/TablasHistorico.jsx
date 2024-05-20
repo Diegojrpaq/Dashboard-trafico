@@ -2,7 +2,7 @@ import React from 'react'
 import { Accordion } from 'react-bootstrap';
 import TablaBitacora from './TablaBitacora'
 import TablaHistoricoGuias from '../../viewsItems/tables/TablaHistoricoGuias';
-import { guiasFilter, bitacoraVSembarcadas } from '../../utileria/utils';
+import { guiasFilter, bitacoraVSembarcadas, formattedCantidad, formattedNumber } from '../../utileria/utils';
 import TablaErrorViaje from './TablaErrorViaje';
 export default function TablasHistorico(props) {
     if (props.info.catalogoGuias != null) {
@@ -21,7 +21,16 @@ export default function TablasHistorico(props) {
                 const totalRedondeado = Number(suma.toFixed(2));
                 return totalRedondeado;
             }, 0);
-            return sumaPeso;
+            return formattedCantidad(sumaPeso);
+        }
+
+        const totalSubtotal = (guiasFiltradas) => {
+            const sumaTotal = guiasFiltradas.reduce((acumulador, elemento) => {
+                const suma = acumulador + elemento.subtotal;
+                const totalRedondeado = Number(suma.toFixed(2));
+                return totalRedondeado;
+            }, 0);
+            return formattedNumber(sumaTotal);
         }
 
         const arrAnterior = (arr, item) => {
@@ -87,12 +96,14 @@ export default function TablasHistorico(props) {
                                             <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Total guías: {guiasFilter(props.info.catalogoGuias, 17, parada.id).length}</div>
                                             <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Volumen: {totalVolumen(guiasFilter(props.info.catalogoGuias, 17, parada.id))} mt3</div>
                                             <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Peso: {totalPeso(guiasFilter(props.info.catalogoGuias, 17, parada.id))} kg</div>
+                                            <div className="col"><i className="bi bi-arrow-right-square-fill text-success"></i> Subtotal: {totalSubtotal(guiasFilter(props.info.catalogoGuias, 17, parada.id))}</div>
                                         </div>
                                         <div className='row p-1 mb-1 mt-1 fs-5'>
                                             <div className="col fs-5 text-danger">BAJADO <i className="bi bi-arrow-left-square-fill"></i></div>
                                             <div className="col"><i className="bi bi-arrow-left-square-fill text-danger"></i> Total guías: {guiasFilter(props.info.catalogoGuias, 18, parada.id).length}</div>
                                             <div className="col"><i className="bi bi-arrow-left-square-fill text-danger"></i> Volumen: {totalVolumen(guiasFilter(props.info.catalogoGuias, 18, parada.id))} mt3</div>
                                             <div className="col"><i className="bi bi-arrow-left-square-fill text-danger"></i> Peso: {totalPeso(guiasFilter(props.info.catalogoGuias, 18, parada.id))} kg</div>
+                                            <div className="col"><i className="bi bi-arrow-left-square-fill text-danger"></i> Subtotal: {totalSubtotal(guiasFilter(props.info.catalogoGuias, 18, parada.id))}</div>
                                         </div>
                                     </div>
                                 </Accordion.Header>
@@ -123,6 +134,7 @@ export default function TablasHistorico(props) {
                                                 <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Total guías: {viajeError.guiasError.length}</div>
                                                 <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Volumen: {totalVolumen(viajeError.guiasError)} mt3</div>
                                                 <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Peso: {totalPeso(viajeError.guiasError)} kg</div>
+                                                <div className="col"><i className="bi bi-x-square-fill text-danger"></i> Subtotal: {totalSubtotal(viajeError.guiasError)}</div>
                                             </div>
                                         </div>
                                     </Accordion.Header>

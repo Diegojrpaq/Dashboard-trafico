@@ -3,7 +3,7 @@ import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
-import { ConvertirFecha, formattedNumber } from '../../utileria/utils';
+import { ConvertirFecha, formattedNumber, formattedCantidad } from '../../utileria/utils';
 
 export default function TablaArbol({ guias, guiasClientes }) {
     let newData;
@@ -17,14 +17,17 @@ export default function TablaArbol({ guias, guiasClientes }) {
                 flete,
                 monto_seguro,
                 subtotal,
-                origen } = guia;
+                origen,
+                cantidad_caja } = guia;
             if (!result[sucursal_ubicacion]) {
                 result[sucursal_ubicacion] = {
                     totalPeso: 0,
                     totalVolumen: 0,
                     totalFlete: 0,
                     totalSeguro: 0,
-                    totalSub: 0
+                    totalSub: 0,
+                    totalGuias: 0,
+                    totalItemsSuc: 0,
                 };
             }
 
@@ -34,21 +37,25 @@ export default function TablaArbol({ guias, guiasClientes }) {
             result[sucursal_ubicacion].totalSeguro += monto_seguro;
             result[sucursal_ubicacion].totalSub += subtotal;
             result[sucursal_ubicacion].origen = origen;
+            result[sucursal_ubicacion].totalGuias += 1;
+            result[sucursal_ubicacion].totalItemsSuc += cantidad_caja;
             return result;
         }, {});
         // Construir la estructura dataGuias con los totales
         const dataGuias = Object.keys(sumaPesoVolumenPorSucursal).map((sucursal, index) => {
-            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen } = sumaPesoVolumenPorSucursal[sucursal];
+            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen, totalGuias, totalItemsSuc } = sumaPesoVolumenPorSucursal[sucursal];
             return {
                 key: index,
                 data: {
                     sucursal,
-                    origen,
-                    peso: `${totalPeso.toFixed(2)} kg`,
+                    cantG: totalGuias,
+                    //origen,
+                    peso: `${formattedCantidad(totalPeso)} kg`,
                     volumen: `${totalVolumen.toFixed(2)} mt3`,
                     flete: formattedNumber(totalFlete),
                     seguro: formattedNumber(totalSeguro),
-                    subtotal: formattedNumber(totalSub)
+                    subtotal: formattedNumber(totalSub),
+                    cantidad: totalItemsSuc,
                 },
                 children: guias
                     .filter((guia) => guia.sucursal_ubicacion === sucursal)
@@ -59,11 +66,14 @@ export default function TablaArbol({ guias, guiasClientes }) {
                             origen: guia.sucursal_principal,
                             destino: guia.sucursal_destino,
                             fecha: ConvertirFecha(guia.fecha_registro),
-                            peso: `${guia.peso.toFixed(2)} kg`,
+                            suc_ubi: guia.sucursal_ubicacion,
+                            peso: `${formattedCantidad(guia.peso)} kg`,
                             volumen: `${guia.volumen.toFixed(2)} mt3`,
                             flete: formattedNumber(guia.flete),
                             seguro: formattedNumber(guia.monto_seguro),
-                            subtotal: formattedNumber(guia.subtotal)
+                            subtotal: formattedNumber(guia.subtotal),
+                            empaque: guia.Empaque,
+                            cantidad: guia.cantidad_caja
                         },
                     })),
             };
@@ -81,14 +91,17 @@ export default function TablaArbol({ guias, guiasClientes }) {
                 flete,
                 monto_seguro,
                 subtotal,
-                origen } = guia;
+                origen,
+                cantidad_caja } = guia;
             if (!result[clienteOrigen]) {
                 result[clienteOrigen] = {
                     totalPeso: 0,
                     totalVolumen: 0,
                     totalFlete: 0,
                     totalSeguro: 0,
-                    totalSub: 0
+                    totalSub: 0,
+                    totalGuias: 0,
+                    totalItemsSuc: 0,
                 };
             }
 
@@ -98,22 +111,26 @@ export default function TablaArbol({ guias, guiasClientes }) {
             result[clienteOrigen].totalSeguro += monto_seguro;
             result[clienteOrigen].totalSub += subtotal;
             result[clienteOrigen].origen = origen;
+            result[clienteOrigen].totalGuias += 1;
+            result[clienteOrigen].totalItemsSuc += cantidad_caja;
             return result;
         }, {});
 
         // Construir la estructura dataGuiasClientes con los totales
         const dataGuiasClientes = Object.keys(sumaPesoVolumenPorCliente).map((sucursal, index) => {
-            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen } = sumaPesoVolumenPorCliente[sucursal];
+            const { totalPeso, totalVolumen, totalFlete, totalSeguro, totalSub, origen, totalGuias, totalItemsSuc } = sumaPesoVolumenPorCliente[sucursal];
             return {
                 key: index + 100,
                 data: {
                     sucursal,
-                    origen,
-                    peso: `${totalPeso.toFixed(2)} kg`,
-                    volumen: `${totalVolumen.toFixed(2)} mt3`,
+                    cantG: totalGuias,
+                    //origen,
+                    peso: `${formattedCantidad(totalPeso)} kg`,
+                    volumen: `${formattedCantidad(totalVolumen)} mt3`,
                     flete: formattedNumber(totalFlete),
                     seguro: formattedNumber(totalSeguro),
-                    subtotal: formattedNumber(totalSub)
+                    subtotal: formattedNumber(totalSub),
+                    cantidad: totalItemsSuc,
                 },
                 children: guiasClientes
                     .filter((guia) => guia.clienteOrigen === sucursal)
@@ -124,11 +141,14 @@ export default function TablaArbol({ guias, guiasClientes }) {
                             origen: guia.sucursal_principal,
                             destino: guia.sucursal_destino,
                             fecha: ConvertirFecha(guia.fecha_registro),
-                            peso: `${guia.peso.toFixed(2)} kg`,
-                            volumen: `${guia.volumen.toFixed(2)} mt3`,
+                            suc_ubi: guia.sucursal_ubicacion,
+                            peso: `${formattedCantidad(guia.peso)} kg`,
+                            volumen: `${formattedCantidad(guia.volumen)} mt3`,
                             flete: formattedNumber(guia.flete),
                             seguro: formattedNumber(guia.monto_seguro),
-                            subtotal: formattedNumber(guia.subtotal)
+                            subtotal: formattedNumber(guia.subtotal),
+                            empaque: guia.Empaque,
+                            cantidad: guia.cantidad_caja
                         },
                     })),
             };
@@ -141,14 +161,18 @@ export default function TablaArbol({ guias, guiasClientes }) {
     const columns = [
         { field: 'sucursal', header: 'Sucursal', expander: true },
         { field: 'numG', header: 'Num-Guía' },
+        { field: 'cantG', header: 'Cant. Guías' },
         { field: 'origen', header: 'Origen' },
         { field: 'destino', header: 'Destino' },
         { field: 'fecha', header: 'Fecha' },
+        { field: 'suc_ubi', header: 'Suc. Ubic.' },
         { field: 'peso', header: 'Peso' },
         { field: 'volumen', header: 'Volumen' },
         { field: 'flete', header: 'Flete' },
         { field: 'seguro', header: 'Seguro' },
-        { field: 'subtotal', header: 'Subtotal' }
+        { field: 'subtotal', header: 'Subtotal' },
+        // { field: 'empaque', header: 'Empaque' },
+        { field: 'cantidad', header: 'Num. Items' }
     ]
 
     const rowClassName = (node) => {
@@ -165,7 +189,7 @@ export default function TablaArbol({ guias, guiasClientes }) {
                 rowClassName={rowClassName}
                 showGridlines
                 stripedRows
-                tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}
+                tableStyle={{ minWidth: '100rem', fontFamily: "Poppins" }}
             >
                 {
                     columns.map((col, i) => (

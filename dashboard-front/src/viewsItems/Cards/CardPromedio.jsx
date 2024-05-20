@@ -1,18 +1,10 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
+import { formattedCantidad } from '../../utileria/utils';
 export default function CardPromedio({ title, suma, signo, totalViajes }) {
     const promedio = suma / totalViajes;
     let promFormatted;
     let sumaFormatted;
-    function formattedCantidad(num) {
-        let numFormatted;
-        if (num >= 1000) {
-            numFormatted = num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        } else {
-            numFormatted = num.toFixed(2);
-        }
-        return numFormatted;
-    }
     promFormatted = formattedCantidad(promedio);
     sumaFormatted = formattedCantidad(suma);
     return (

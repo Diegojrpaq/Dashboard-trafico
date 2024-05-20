@@ -1,24 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { ColumnGroup } from 'primereact/columngroup';
+import { Row } from 'primereact/row';
 import { FilterMatchMode } from 'primereact/api';
-import { formattedNumber } from '../../utileria/utils';
-export default function TablaErrorViaje({guias, infoRuta}) {
-    function addNewProp (arr) {
-        const arrProp = arr.map(item => {
-            if(item.idTipoOperacion === 17) {
-                return {
-                    ...item,
-                    operacion: "Embarcada"
-                }
-            }
+import { formattedNumber, formattedCantidad, formatearFecha } from '../../utileria/utils';
 
-            return item;
-        })
-        return arrProp;
-    }
+export default function TablePlaneacionLlegadas({ guias, nombreDestino, volumenTotal, pesoTotal, fleteTotal, montoSeguroTotal, subtotalTotal }) {
     const dt = useRef(null);
     //funciones para filtrar
     const [filters, setFilters] = useState({
@@ -39,25 +29,37 @@ export default function TablaErrorViaje({guias, infoRuta}) {
     };
 
     //Columnas de la tabla
-    const cols = [
-        { field: "numGuia", header: "Numero Guía" },
-        // { field: 'tipoOperacion', header: 'Tipo Operación' },
-        { field: 'operacion', header: 'Operación' },
-        { field: 'ubicacion_transaccion_id', header: 'Id Ubicación' },
-        { field: 'ubicacion_transaccion', header: 'Ubicación transacción' },
-        { field: 'fecha_transaccion', header: 'Fecha' },
-        { field: 'origen_cotizacion', header: 'Origen' },
-        { field: 'destino_cotizacion', header: 'Destino' },
+    // const cols = [
+    //     { field: "numGuia", header: "Numero Guía" },
+    //     { field: 'fecha_registro', header: 'Fecha' },
+    //     { field: 'origen', header: 'Origen' },
+    //     { field: 'destino_final', header: 'Destino' },
+    //     { field: 'volumen', header: 'Volumen' },
+    //     { field: 'peso', header: 'Peso' },
+    //     { field: 'flete', header: 'Flete' },
+    //     { field: 'monto_seguro', header: 'Monto seguro' },
+    //     { field: 'subtotal', header: 'Subtotal' }
+    // ];
+
+        const cols = [
+        { field: 'numGuia', header: 'Num-Guía' },
+        { field: 'sucursal_principal', header: 'Sucursal' },
+        //{ field: 'canti', header: 'Cant. Guías' },
+        { field: 'origen', header: 'Origen' },
+        { field: 'destino_final', header: 'Destino' },
+        { field: 'fecha_registro', header: 'Fecha' },
+        { field: 'sucursal_ubicacion', header: 'Suc. Ubic.' },
+        { field: 'cantidad_caja', header: 'Num. Items' },
         { field: 'volumen', header: 'Volumen' },
         { field: 'peso', header: 'Peso' },
         { field: 'flete', header: 'Flete' },
-        { field: 'monto_seguro', header: 'Monto seguro' },
+        { field: 'monto_seguro', header: 'Seguro' },
         { field: 'subtotal', header: 'Subtotal' },
-        // { field: 'Empaque', header: 'Empaque' },
-        { field: 'cantidad_caja', header: 'Num. Items' },
-    ];
+        // { field: 'empaque', header: 'Empaque' },
+    ]
 
-    const nombreArchivo = `${infoRuta.nombre}-${infoRuta.fecha_registro}`;
+
+    const nombreArchivo = `guiasXllegarDe${nombreDestino}`;
     const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
     //exportar en CSV
     const exportCSV = (selectionOnly) => {
@@ -125,38 +127,49 @@ export default function TablaErrorViaje({guias, infoRuta}) {
             </div>
         </div>
     );
+    //Footer de la tabla, contiene los totales
+    const footerGroup = (
+        <ColumnGroup>
+            <Row>
+                <Column footer="Totales" colSpan={7} footerStyle={{ textAlign: 'right', fontSize: "20px" }} />
+                <Column footer={`${volumenTotal} mt3`} />
+                <Column footer={`${pesoTotal} Kg`} />
+                <Column footer={formattedNumber(fleteTotal)} />
+                <Column footer={formattedNumber(montoSeguroTotal)} />
+                <Column footer={formattedNumber(subtotalTotal)} />
+            </Row>
+        </ColumnGroup>
+    );
 
-    const data = guias.map(guia => ({
+    const newData = guias.map(guia => ({
         ...guia,
-        tipoOperacion: guia.idTipoOperacion,
-        fecha_transaccion: guia.fecha_de_transaccion,
-        volumen: `${guia.volumen} mt3`,
-        peso: `${guia.peso} kg`,
+        fecha_registro: guia.fecha_registro,
+        volumen: `${formattedCantidad(guia.volumen)} mt3`,
+        peso: `${formattedCantidad(guia.peso)} kg`,
         flete: formattedNumber(guia.flete),
         monto_seguro: formattedNumber(guia.monto_seguro),
         subtotal: formattedNumber(guia.subtotal),
     }))
-    const newData = addNewProp(data);
-    console.log(data, "PropNew")
-  return (
-    <div className="card">
-                <DataTable
-                    ref={dt}
-                    value={newData}
-                    filters={filters}
-                    header={header}
-                    showGridlines
-                    stripedRows
-                    sortMode='multiple'
-                    tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}
-                    emptyMessage="No se encontraron resultados"
-                >
-                    {
-                        cols.map((col, index) => (
-                            <Column key={index} field={col.field} header={col.header} sortable></Column>
-                        ))
-                    }
-                </DataTable>
-            </div>
-  )
+    return (
+        <div className="card">
+            <DataTable
+                ref={dt}
+                value={newData}
+                filters={filters}
+                header={header}
+                footerColumnGroup={footerGroup}
+                showGridlines
+                stripedRows
+                sortMode='multiple'
+                tableStyle={{ minWidth: '50rem', fontFamily: "Poppins" }}
+                emptyMessage="No se encontraron resultados"
+            >
+                {
+                    cols.map((col, index) => (
+                        <Column key={index} field={col.field} header={col.header} sortable></Column>
+                    ))
+                }
+            </DataTable>
+        </div>
+    )
 }

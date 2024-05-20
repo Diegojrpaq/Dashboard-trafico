@@ -163,3 +163,27 @@ export const bitacoraVSembarcadas = (arrParadas, catalogoGuias) => {
         }
     }
 }
+
+export function formattedCantidad(num) {
+    //Convertir a entero
+    const number = Number(num);
+    let numFormatted;
+    if (number >= 1000) {
+        numFormatted = number?.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    } else {
+        numFormatted = number?.toFixed(2);
+    }
+    return numFormatted;
+}
+
+//Función para sacar la suma de una propiedad en especifico. Ejemplo: (peso, volumen, subtotal, flete)
+export const totales = (arr, propSumar) => {
+    if(arr?.length > 0 || arr !== null) {
+        const total = arr?.reduce((acumulador, elemento) => {
+            const suma = acumulador + elemento[propSumar];
+            const totalRedondeado = Number(suma.toFixed(2));
+            return totalRedondeado;
+        }, 0)
+        return total;
+    }
+}

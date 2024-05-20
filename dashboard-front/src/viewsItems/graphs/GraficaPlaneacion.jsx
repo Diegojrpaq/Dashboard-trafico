@@ -2,6 +2,7 @@ import React from 'react';
 import catalogoColores from '../../Data/CatalogoColores.json'
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { formattedCantidad } from '../../utileria/utils';
 import {
   Chart as Chartjs,
   CategoryScale,
@@ -36,6 +37,14 @@ export default function Graph(props) {
   const colores = catalogoColores.colores
   const coloresBorder = catalogoColores.coloresBorder;
   const nombreRuta = props.planRuta?.rutas[0]?.nombre;
+  let numViaje;
+  //const datos =  [{ id_viaje_act: 58841, name: "fr" }, { id_viaje_act: 58898, name: "Gh" }];
+  //Si hay más de un viaje en esa ruta
+  if (planRutasList.length > 1) {
+    numViaje = planRutasList.map(ruta => ruta.id_viaje_act)
+  } else {
+    numViaje = props.planRuta?.rutas[0]?.id_viaje_act;
+  }
   //const volumenMaxRuta = props.planRuta?.rutas[0]?.volumenMaxRuta;
   const volumenMaxRuta = 100;
   //Configuración de los datalabels
@@ -47,7 +56,7 @@ export default function Graph(props) {
       const volumen = value?.toFixed(2)
       const val = value / 100;
       if (val > 0.08) {
-        return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + peso[index] + " Kg"}`
+        return `${nombre}\n${volumen} mt3 ${peso === undefined ? "" : "\n" + formattedCantidad(peso[index]) + " Kg"}`
       } else {
         return ""
       }
@@ -114,6 +123,7 @@ export default function Graph(props) {
           }
 
           label.push("Embarcado");
+          label.push(`Viaje: ${ruta.id_viaje_act}`)
           labelRutas.push(label);
           label = [];
           volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
@@ -185,8 +195,8 @@ export default function Graph(props) {
           dataSetConstruido.push({
             label: cliente.nombre,
             data: dataEjeY,
-            backgroundColor: colores[index+20].color,
-            borderColor: coloresBorder[index+20].color,
+            backgroundColor: colores[index + 20].color,
+            borderColor: coloresBorder[index + 20].color,
             borderWidth: 2,
             datalabels: confDataLabels,
             peso: pesoXsucursal
@@ -201,7 +211,8 @@ export default function Graph(props) {
       let totalVolMaxGrafica = Math.max(...capacidadesCarga);
       let maximoEjeX;
       if (totalVolMaxGrafica > volumenMaxRuta) {
-        maximoEjeX = 3 + Math.max(...capacidadesCarga)
+        const redondear = 3 + Math.max(...capacidadesCarga);
+        maximoEjeX = Math.round(redondear);
       } else {
         maximoEjeX = Math.max(...capacidadesCarga)
       }
@@ -218,7 +229,7 @@ export default function Graph(props) {
           },
           title: {
             display: true,
-            text: `Ruta: ${nombreRuta}`,
+            text: `Ruta: ${nombreRuta} ${numViaje ? " \nViaje: " + numViaje : ""}`,
             font: {
               size: 25
             }
@@ -329,6 +340,7 @@ export default function Graph(props) {
           }
 
           label.push("Embarcado");
+          label.push(`Viaje: ${ruta.id_viaje_act}`)
           labelRutas.push(label);
           label = [];
           volumenMaxRuta === 0 || volumenMaxRuta < mt3_embarcados ? capacidadesCarga.push(mt3_embarcados) : capacidadesCarga.push(volumenMaxRuta)
@@ -393,7 +405,8 @@ export default function Graph(props) {
       let totalVolMaxGrafica = Math.max(...capacidadesCarga);
       let maximoEjeX;
       if (totalVolMaxGrafica > volumenMaxRuta) {
-        maximoEjeX = 3 + Math.max(...capacidadesCarga)
+        const redondear = 3 + Math.max(...capacidadesCarga);
+        maximoEjeX = Math.round(redondear);
       } else {
         maximoEjeX = Math.max(...capacidadesCarga)
       }
@@ -410,7 +423,7 @@ export default function Graph(props) {
           },
           title: {
             display: true,
-            text: `Ruta: ${nombreRuta}`,
+            text: `Ruta: ${nombreRuta} ${numViaje ? " \nViaje: " + numViaje : ""}`,
             font: {
               size: 25
             }

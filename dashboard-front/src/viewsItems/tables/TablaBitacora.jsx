@@ -2,6 +2,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { formattedCantidad } from '../../utileria/utils';
 
 export default function TablaBitacora(props) {
   const cols = [
@@ -21,11 +22,11 @@ export default function TablaBitacora(props) {
     origen_salida: registro.Origen_Salida,
     fecha_salida: registro.FechaSalida,
     hora_salida: registro.HoraSalida,
-    kmSalida: registro.KMSalida,
+    kmSalida: formattedCantidad(registro.KMSalida),
     destino_llegada: registro.Destino_Llegada,
     fecha_llegada: registro.FechaLlegada,
     hora_llegada: registro.HoraLlegada,
-    kmLlegada: registro.KMLlegada,
+    kmLlegada: formattedCantidad(registro.KMLlegada),
     selloPosterior: registro.SelloPosterior,
     selloLateral: registro.SelloLateral,
   }))
