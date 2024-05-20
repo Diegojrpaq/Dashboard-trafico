@@ -7,9 +7,10 @@ import SListItem from './SListItem';
 
 
 export default function SideBar2() {
-  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar, destinosPlanRuta } = useContext(globalData);
+  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar, destinosPlanRuta, destPlanLlegada } = useContext(globalData);
   const destinosList = destinosListState;
   const destinosXllegar = destinosListXllegar;
+  const destinosPlanLlegada = destPlanLlegada.Destinos;
   let permisos = [];
   if (sessionUserState.User.permisos != null) { // Si el usuario tiene permisos que se agreguen al arreglo permisos
     permisos = [...sessionUserState.User.permisos];
@@ -75,6 +76,21 @@ export default function SideBar2() {
 
           {
             permisos.includes(32) ?
+              <SHeaderList title="Planeación Llegadas" icon='bi bi-clipboard2-check-fill' key={5} idcollapse='5'>
+                {
+                  destinosXllegar && destinosXllegar.map((destino) => {
+                    return (
+                      <SListItem icon='bi bi-geo-alt mx-1' key={destino.id + destino.nombre} url={'/trafico/planeacionLlegadas/' + destino.id}>{destino.nombre}</SListItem>
+                    )
+                  })
+                }
+              </SHeaderList>
+              : <></>
+          }
+
+
+          {
+            permisos.includes(32) ?
               <SHeaderList title="Viajes Activos" icon='bi bi-geo-alt-fill' key={3} idcollapse='3'>
                 {
                   destinosList && destinosList.map((destino) => {
@@ -84,6 +100,12 @@ export default function SideBar2() {
                   })
                 }
               </SHeaderList>
+              : <></>
+          }
+
+          {
+            permisos.includes(32) ?
+              <SListItem icon='bi bi-clipboard2-data mx-1' url={'/trafico/newView/'}>Resumen Planeación Rutas</SListItem>
               : <></>
           }
 
@@ -100,7 +122,7 @@ export default function SideBar2() {
               </SHeaderList>
               : <></>
           }
-         
+
           {
             permisos.includes(34) ?
               <SListItem icon='bi bi-geo-alt mx-2' url={'/trafico/viajesHistorico'}>Histórico</SListItem>
