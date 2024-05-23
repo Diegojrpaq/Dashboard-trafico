@@ -6,6 +6,7 @@ import { urlapi } from '../utileria/config';
 import TableAccordionDestinos from './tables/TableAccordionDestinos';
 import TableSkeleton from './tables/TableSkeleton';
 import TablePorRegion from './tables/TablePorRegion';
+import TableTotalPorDestino from './tables/TableTotalPorDestino';
 export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
     const [destinosList, setDestinosList] = useState([]);
     const [guiasXruta, setGuiasXruta] = useState([]);
@@ -13,9 +14,9 @@ export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
     const [peticionRutaState, setPeticionRutaState] = useState(false);
     const [primerPeticion, setPrimerPeticion] = useState(false);
     const peticionDataDestinos = async (id) => {
-        const urlApiNextpackSidebar = urlapi + "/trafico/get_planxDestino/" + id;
+        const urlApiGetPlanXdestino = urlapi + "/trafico/get_planxDestino/" + id;
         //const urlApiNextpackSidebar = "http://192.168.10.113/trafico/get_planxDestino/" + id;
-        await fetch(urlApiNextpackSidebar)
+        await fetch(urlApiGetPlanXdestino)
             .then((resp) => {
                 setPrimerPeticion(true)
                 return resp.json();
@@ -30,9 +31,9 @@ export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
     }
 
     const peticionListRuta = async (idsRutas) => {
-        const urlApiNextpackSidebar = urlapi + "/trafico/get_planRutaAcumulado/" + idsRutas;
+        const urlApiGetPlanRutaAcumulado = urlapi + "/trafico/get_planRutaAcumulado/" + idsRutas;
         //const urlApiNextpackSidebar = "http://192.168.10.113/trafico/get_planRutaAcumulado/" + idsRutas;
-        await fetch(urlApiNextpackSidebar)
+        await fetch(urlApiGetPlanRutaAcumulado)
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
@@ -162,6 +163,19 @@ export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
                                                 enSucursal={region.totalInHouse}
                                                 transbordo={region.totalTransbordo}
                                             />
+
+                                            {
+                                                peticionRutaState ?
+                                                    <h3 className='m-2'>No hay datos</h3>
+                                                    :
+                                                    guiasXruta?.length > 0 ?
+                                                        <TableTotalPorDestino guias={guiasXruta} />
+                                                        :
+                                                        <div className='mb-3'>
+                                                            <TableSkeleton cols={cols} />
+                                                        </div>
+                                            }
+
                                             {
                                                 peticionRutaState ?
                                                     <h3 className='m-2'>No hay datos</h3>
