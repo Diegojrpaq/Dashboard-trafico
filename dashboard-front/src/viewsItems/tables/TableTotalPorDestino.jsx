@@ -14,8 +14,8 @@ export default function TableTotalPorDestino({ guias }) {
         { field: 'flete', header: 'Flete' },
         { field: 'monto_seguro', header: 'Seguro' },
         { field: 'subtotal', header: 'Subtotal' },
+        { field: 'cantidad_caja', header: 'Items' },
         { field: 'guias', header: 'Guias' },
-        { field: 'cantidad_caja', header: 'Items' }
     ];
 
     const map = new Map();
