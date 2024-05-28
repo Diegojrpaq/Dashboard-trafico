@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { globalData } from '../../App';
 import AccordionDestinosRegion from '../../viewsItems/AccordionDestinosRegion';
 
-export default function NewView() {
+export default function ResumenPlaneacionRutas() {
     const { destinosPlanRuta } = useContext(globalData);
 
     //Obtener los destinos que su sucural tiene al menos una ruta configurada

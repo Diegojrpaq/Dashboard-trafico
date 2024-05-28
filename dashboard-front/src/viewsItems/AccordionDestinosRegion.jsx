@@ -3,19 +3,13 @@ import Accordion from 'react-bootstrap/Accordion';
 import { Skeleton } from 'primereact/skeleton';
 import { formattedCantidad } from '../utileria/utils';
 import { urlapi } from '../utileria/config';
-import TableAccordionDestinos from './tables/TableAccordionDestinos';
-import TableSkeleton from './tables/TableSkeleton';
-import TablePorRegion from './tables/TablePorRegion';
+import SubAccordionRegion from './SubAccordionRegion';
 export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
     const [destinosList, setDestinosList] = useState([]);
-    const [guiasXruta, setGuiasXruta] = useState([]);
-    const [clicAccordion, setClicAccordion] = useState(false);
-    const [peticionRutaState, setPeticionRutaState] = useState(false);
     const [primerPeticion, setPrimerPeticion] = useState(false);
     const peticionDataDestinos = async (id) => {
-        const urlApiNextpackSidebar = urlapi + "/trafico/get_planxDestino/" + id;
-        //const urlApiNextpackSidebar = "http://192.168.10.113/trafico/get_planxDestino/" + id;
-        await fetch(urlApiNextpackSidebar)
+        const urlApiGetPlanXdestino = urlapi + "/trafico/get_planxDestino/" + id;
+        await fetch(urlApiGetPlanXdestino)
             .then((resp) => {
                 setPrimerPeticion(true)
                 return resp.json();
@@ -29,52 +23,10 @@ export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
             )
     }
 
-    const peticionListRuta = async (idsRutas) => {
-        const urlApiNextpackSidebar = urlapi + "/trafico/get_planRutaAcumulado/" + idsRutas;
-        //const urlApiNextpackSidebar = "http://192.168.10.113/trafico/get_planRutaAcumulado/" + idsRutas;
-        await fetch(urlApiNextpackSidebar)
-            .then((resp) => {
-                return resp.json();
-            }).then((data) => {
-                if (data?.rutas?.catalogoGuiasPlaneadas !== undefined) {
-                    setGuiasXruta(data?.rutas?.catalogoGuiasPlaneadas);
-                    return data
-                } else {
-                    setPeticionRutaState(true);
-                }
-            }).catch(
-                () => {
-                    setPeticionRutaState(true);
-                    console.log('Error los datos de la ruta: ' + idsRutas)
-                }
-            )
-    }
     useEffect(() => {
         peticionDataDestinos(idDestino);
     }, [idDestino])
 
-    function onClicAccordion(idRuta) {
-        const strLimpio = limpiarString(idRuta, "0");
-        if (!clicAccordion) {
-            setPeticionRutaState(false);
-            setGuiasXruta([]);
-            peticionListRuta(strLimpio);
-        }
-        setClicAccordion(!clicAccordion);
-    }
-    function limpiarString(str, charDelete) {
-        if (typeof str === 'string') {
-            let partesStr = str?.split(',');
-            if (partesStr[partesStr.length - 1] === charDelete) {
-                partesStr.pop();
-            }
-
-            let cadenaLimpia = partesStr.join(',');
-            return cadenaLimpia;
-        } else {
-            return str;
-        }
-    }
     function sumarPropiedad(array, propiedad, propiedad2) {
         return array?.reduce((suma, elemento) => {
             return suma + elemento[propiedad][propiedad2]
@@ -104,19 +56,6 @@ export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
         sumaItems = sumarPropiedad(regiones, 'total', 'cantidadCajas');
         sumaGuiasTransbordo = sumarPropiedad(regiones, 'totalTransbordo', 'cantidadGuias');
         sumaGuiasSucursal = sumarPropiedad(regiones, 'totalInHouse', 'cantidadGuias');
-        const fechaActual = new Date().toLocaleDateString();
-        //Columnas de la tabla
-        const cols = [
-            { field: "numGuia", header: "Numero Guía" },
-            { field: 'sucursal_principal', header: 'Suc. origen' },
-            { field: 'sucursal_destino', header: 'Suc. destino' },
-            { field: 'volumen', header: 'Volumen' },
-            { field: 'peso', header: 'Peso' },
-            { field: 'flete', header: 'Flete' },
-            { field: 'monto_seguro', header: 'Monto seguro' },
-            { field: 'subtotal', header: 'Subtotal' },
-            { field: 'cantidad_caja', header: 'Items' }
-        ];
 
         return (
             <Accordion key={idDestino} style={{ margin: "7px 0" }}>
@@ -139,47 +78,22 @@ export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
                     <Accordion.Body>
                         {
                             destinosList?.map((region, i) => (
-                                <Accordion key={i}>
-                                    <Accordion.Item eventKey={i}>
-                                        <Accordion.Header onClick={() => onClicAccordion(region.listIdRutas)}>
-                                            <Header
-                                                nombre={region?.nombre}
-                                                volumen={region.total.volumen}
-                                                peso={region.total.peso}
-                                                flete={region.total.flete}
-                                                seguro={region.total.montoSeguro}
-                                                subtotal={region.total.subtotal}
-                                                guias={region.total.cantidadGuias}
-                                                items={region.total.cantidadCajas}
-                                                guiasTransbordo={region.totalTransbordo.cantidadGuias}
-                                                guiasSucursal={region.totalInHouse.cantidadGuias}
-                                                paddingSize={1}
-                                                backgroundBadge={"#838c96"}
-                                            />
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                            <TablePorRegion
-                                                enSucursal={region.totalInHouse}
-                                                transbordo={region.totalTransbordo}
-                                            />
-                                            {
-                                                peticionRutaState ?
-                                                    <h3 className='m-2'>No hay datos</h3>
-                                                    :
-                                                    guiasXruta?.length > 0 ?
-                                                        <TableAccordionDestinos
-                                                            guias={guiasXruta}
-                                                            infoRuta={{
-                                                                nombreRuta: region.nombre,
-                                                                fecha: fechaActual
-                                                            }}
-                                                        />
-                                                        :
-                                                        <TableSkeleton cols={cols} />
-                                            }
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
+                                <SubAccordionRegion
+                                    keyId={i}
+                                    idsRutas={region.listIdRutas}
+                                    nombre={region?.nombre}
+                                    volumen={region.total.volumen}
+                                    peso={region.total.peso}
+                                    flete={region.total.flete}
+                                    montoSeguro={region.total.montoSeguro}
+                                    subtotal={region.total.subtotal}
+                                    cantidadGuias={region.total.cantidadGuias}
+                                    cantidadCajas={region.total.cantidadCajas}
+                                    guiasTransbordo={region.totalTransbordo.cantidadGuias}
+                                    guiasSucursal={region.totalInHouse.cantidadGuias}
+                                    totalInHouse={region.totalInHouse}
+                                    totalTransbordo={region.totalTransbordo}
+                                />
                             ))
                         }
                     </Accordion.Body>
@@ -216,7 +130,7 @@ export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
 
 }
 
-function Header({ nombre, volumen, peso, flete, seguro, subtotal, guias, items, guiasTransbordo, guiasSucursal, paddingSize, backgroundBadge }) {
+export function Header({ nombre, volumen, peso, flete, seguro, subtotal, guias, items, guiasTransbordo, guiasSucursal, paddingSize, backgroundBadge }) {
     const padd = paddingSize ? paddingSize : '2';
     return (
         <div className={`container p-${padd}`}>

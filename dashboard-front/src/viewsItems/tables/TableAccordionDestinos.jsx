@@ -63,8 +63,8 @@ export default function TableAccordionDestinos({ guias, infoRuta }) {
     //Columnas de la tabla
     const cols = [
         { field: "numGuia", header: "Numero Guía" },
-        { field: 'sucursal_principal', header: 'Suc. origen' },
-        { field: 'sucursal_destino', header: 'Suc. destino' },
+        { field: 'origen', header: 'Origen' },
+        { field: 'destino_final', header: 'Destino' },
         { field: 'volumen', header: 'Volumen' },
         { field: 'peso', header: 'Peso' },
         { field: 'flete', header: 'Flete' },
