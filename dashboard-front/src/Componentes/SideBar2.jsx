@@ -44,6 +44,13 @@ export default function SideBar2() {
           <h3>Dashboard</h3>
         </div>
         <SHeaderList title="Trafico" icon='bi bi-globe-americas' idcollapse='1'>
+          
+          {
+            permisos.includes(31) ?
+              <SListItem icon='bi bi-clipboard2-data mx-1' url={'/trafico/ResumenPlaneacion/'}>Resumen Planeación Rutas</SListItem>
+              : <></>
+          }
+
           {
             permisos?.includes(31) ?
               <SHeaderList title="Planeacion de Rutas" icon='bi bi-map' key={2} idcollapse='2'>
@@ -74,7 +81,7 @@ export default function SideBar2() {
               <></>
           }
 
-          {
+          {/* {
             permisos.includes(32) ?
               <SHeaderList title="Planeación Llegadas" icon='bi bi-clipboard2-check-fill' key={5} idcollapse='5'>
                 {
@@ -86,7 +93,7 @@ export default function SideBar2() {
                 }
               </SHeaderList>
               : <></>
-          }
+          } */}
 
 
           {
@@ -100,12 +107,6 @@ export default function SideBar2() {
                   })
                 }
               </SHeaderList>
-              : <></>
-          }
-
-          {
-            permisos.includes(32) ?
-              <SListItem icon='bi bi-clipboard2-data mx-1' url={'/trafico/newView/'}>Resumen Planeación Rutas</SListItem>
               : <></>
           }
 
