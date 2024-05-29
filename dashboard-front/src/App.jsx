@@ -26,14 +26,14 @@ function App() {
   const [destPlanLlegada, setDestPlanLlegada] = useState(null);
 
 
-    const urlApiNextpack = 'http://localhost/trafico/get_data'; 
+  //const urlApiNextpack = 'http://localhost/trafico/get_data';
 
 
   useEffect(() => {
 
-      /* const urlParams = new URLSearchParams(window.location.search);
-      const tokenUser = urlParams.get('id');   */
-   const tokenUser = 649;
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenUser = urlParams.get('id');
+    //const tokenUser = 649;
 
 
     const peticionSidebar = async (tokenUser) => {
