@@ -44,7 +44,7 @@ export default function SideBar2() {
           <h3>Dashboard</h3>
         </div>
         <SHeaderList title="Trafico" icon='bi bi-globe-americas' idcollapse='1'>
-          
+
           {
             permisos.includes(31) ?
               <SListItem icon='bi bi-clipboard2-data mx-1' url={'/trafico/ResumenPlaneacion/'}>Resumen Planeación Rutas</SListItem>
@@ -81,7 +81,7 @@ export default function SideBar2() {
               <></>
           }
 
-          {/* {
+          {
             permisos.includes(32) ?
               <SHeaderList title="Planeación Llegadas" icon='bi bi-clipboard2-check-fill' key={5} idcollapse='5'>
                 {
@@ -93,7 +93,21 @@ export default function SideBar2() {
                 }
               </SHeaderList>
               : <></>
-          } */}
+          }
+
+          {
+            permisos.includes(32) ?
+              <SHeaderList title="Plan Llegada Grafo" icon='bi bi-clipboard2-check-fill' key={6} idcollapse='6'>
+                {
+                  destinosXllegar && destinosXllegar.map((destino) => {
+                    return (
+                      <SListItem icon='bi bi-geo-alt mx-1' key={destino.id + destino.nombre} url={'/trafico/planLlegadaGrafo/' + destino.id}>{destino.nombre}</SListItem>
+                    )
+                  })
+                }
+              </SHeaderList>
+              : <></>
+          }
 
 
           {
