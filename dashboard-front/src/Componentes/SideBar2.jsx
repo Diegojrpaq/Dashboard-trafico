@@ -95,7 +95,7 @@ export default function SideBar2() {
               : <></>
           }
 
-          {
+          {/* {
             permisos.includes(32) ?
               <SHeaderList title="Plan Llegada Grafo" icon='bi bi-clipboard2-check-fill' key={6} idcollapse='6'>
                 {
@@ -107,7 +107,7 @@ export default function SideBar2() {
                 }
               </SHeaderList>
               : <></>
-          }
+          } */}
 
 
           {
