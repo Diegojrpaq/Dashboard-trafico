@@ -79,6 +79,7 @@ export default function AccordionDestinosRegion({ idDestino, nombreDestino }) {
                         {
                             destinosList?.map((region, i) => (
                                 <SubAccordionRegion
+                                    key={i}
                                     keyId={i}
                                     idsRutas={region.listIdRutas}
                                     nombre={region?.nombre}

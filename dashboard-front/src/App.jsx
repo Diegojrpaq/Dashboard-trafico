@@ -24,10 +24,7 @@ function App() {
   const [destinosListXllegar, setDestinosListXllegar] = useState(null);
   const [destinosPlanRuta, setDestinosPlanRuta] = useState(null);
   const [destPlanLlegada, setDestPlanLlegada] = useState(null);
-
-
-  //const urlApiNextpack = 'http://localhost/trafico/get_data';
-
+  const [destConfigLlegadas, setDestConfigLlegadas] = useState(null);
 
   useEffect(() => {
 
@@ -37,7 +34,6 @@ function App() {
 
 
     const peticionSidebar = async (tokenUser) => {
-      /* const urlApiNextpackSidebar = '/trafico/get_destinos/' + tokenUser; */
       const urlApiNextpackSidebar = urlapi + '/trafico/get_destinos/' + tokenUser;
       await fetch(urlApiNextpackSidebar)
         .then((resp) => {
@@ -47,6 +43,7 @@ function App() {
             setDestinosList(data.Destinos)
             setDestinosListXllegar(data.DestinosXllegar)
             setDestinosPlanRuta(data.DestinosPlanRuta)
+            setDestConfigLlegadas(data.DestinosConfiguracionLlegadas)
           }
         }).catch(
           () => console.log('Error al cargar los destinos')
@@ -88,71 +85,6 @@ function App() {
 
   }, []);
 
-
-
-
-  /*   //Este es el use efect original donde se genera la peticion sobre de todos los datos 
-    //correspondientes al json data2.json y pasar por props cada uno de los destinos a la seccion 
-    useEffect(() => {
-      const peticiones = async () => {
-        await fetch(urlApiNextpack)
-          .then((resp) => {
-            return resp.json();
-          }).then((data) => {
-            setDataLogistic(data)
-            if (data) {
-              console.log(data)
-              //     Swal.fire(
-                //   'Good job!',
-                  // 'Se recibio la informacion correctamente Nextpack',
-                   //'success'
-                 //) 
-  
-            }
-          }).catch(
-            () => console.log('Error al cargar el rastreo ')
-          )
-      }
-  
-      peticiones();
-  
-    }, []); */
-
-
-  //------------------------------------------------------------------
-
-  /* 
-  //rezgurdo de la funcion que ya tenemos para cargar los datos 
-
-  useEffect(() => {
-     
-    setDataLogistic(Data)
-
-    if(dataLogisticContext){
-     const destinos = dataLogisticContext.destinos;
-     const arrayIdsDestinos = destinos.map((destino, index )=>{
-       return Object.assign({id:destino.id, isSelected:false})
-     })
-
-     setArrayRenderizado(arrayIdsDestinos);
-    }
-
-   }, [Data]); */
-
-  /* 
-     useEffect(() => {
-  
-      const setData = async () => {
-  
-      }
-  
-      setDataLogistic(Data)
-  
-    }, []);  */
-
-  /*   const  updateRender=(infoupdate)=>{
-     setRenderInicial(infoupdate)
-    } */
   if (sessionUserState !== null && destinosListState !== null) {
 
     return (
@@ -169,7 +101,8 @@ function App() {
           setToggleSidebar,
           destinosListXllegar,
           destinosPlanRuta,
-          destPlanLlegada
+          destPlanLlegada,
+          destConfigLlegadas
         }}>
           <BrowserRouter>
             <Suspense>

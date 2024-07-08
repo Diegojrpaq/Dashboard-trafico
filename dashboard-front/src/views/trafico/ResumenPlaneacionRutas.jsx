@@ -27,7 +27,9 @@ export default function ResumenPlaneacionRutas() {
             {
                 destinosRutas.map((destino, i) => {
                     return (
-                        <AccordionDestinosRegion key={i} idDestino={destino.id} nombreDestino={destino.nombre} />
+                        <div key={i}>
+                            <AccordionDestinosRegion idDestino={destino.id} nombreDestino={destino.nombre} />
+                        </div>
                     )
                 })
             }

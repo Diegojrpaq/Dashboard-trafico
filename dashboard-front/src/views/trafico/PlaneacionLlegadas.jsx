@@ -6,11 +6,10 @@ import { globalData } from '../../App';
 import SpinnerMain from '../../viewsItems/SpinnerMain';
 import TablePlaneacionLlegadas from '../../viewsItems/tables/TablePlaneacionLlegadas';
 import { formattedCantidad, totales } from '../../utileria/utils';
-import ContainerTotales from '../../viewsItems/Cards/CardsTotalesPlaneacionLlegadas/ContainerTotales';
 
 export default function PlaneacionLlegadas() {
     const { idDestino } = useParams();
-    const { destPlanLlegada, destinosListXllegar } = useContext(globalData);
+    const { destinosListXllegar } = useContext(globalData);
     const [guiasXllegar, setGuiasXllegar] = useState(null);
     //const [destinosConfigurados, setDestinosConfigurados] = useState(null);
     const [nameDestino, setNameDestino] = useState(null);
@@ -26,7 +25,7 @@ export default function PlaneacionLlegadas() {
     }
 
     const peticiones = async (id) => {
-        const urlApiNextpack = urlapi + '/trafico/get_planLlegada/' + id;
+        const urlApiNextpack = urlapi + '/trafico/get_planGrafo/' + id;
         await fetch(urlApiNextpack)
             .then((resp) => {
                 return resp.json();
@@ -59,38 +58,6 @@ export default function PlaneacionLlegadas() {
             const guiasSinRepetir = Array.from(new Set(guiasXllegar.map(guia => guia.numGuia))).map(numGuia => {
                 return guiasXllegar.find(guia => guia.numGuia === numGuia);
             });
-            const volumenTotal = totales(guiasSinRepetir, "volumen");
-            const pesoTotal = formattedCantidad(totales(guiasSinRepetir, "peso"));
-            const fleteTotal = formattedCantidad(totales(guiasSinRepetir, "flete"));
-            const montoSeguroTotal = formattedCantidad(totales(guiasSinRepetir, "monto_seguro"));
-            const subtotalTotal = formattedCantidad(totales(guiasSinRepetir, "subtotal"));
-            const sumas = [
-                {
-                    nombre: "Volumen",
-                    suma: volumenTotal,
-                    signo: "mt3"
-                },
-                {
-                    nombre: "Peso",
-                    suma: pesoTotal,
-                    signo: "kg"
-                },
-                {
-                    nombre: "Flete",
-                    suma: fleteTotal,
-                    signo: "$"
-                },
-                {
-                    nombre: "Monto seguro",
-                    suma: montoSeguroTotal,
-                    signo: "$"
-                },
-                {
-                    nombre: "Subtotal",
-                    suma: subtotalTotal,
-                    signo: "$"
-                }
-            ];
 
             const destinosSinRepetir = new Set();
             const dataDestinos = [];

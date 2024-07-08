@@ -6,13 +6,11 @@ import { globalData } from '../../App';
 import SpinnerMain from '../../viewsItems/SpinnerMain';
 import TablePlaneacionLlegadas from '../../viewsItems/tables/TablePlaneacionLlegadas';
 import { formattedCantidad, totales } from '../../utileria/utils';
-import ContainerTotales from '../../viewsItems/Cards/CardsTotalesPlaneacionLlegadas/ContainerTotales';
 
 export default function PlanLlegadaGrafo() {
     const { idDestino } = useParams();
-    const { destPlanLlegada, destinosListXllegar } = useContext(globalData);
+    const { destinosListXllegar } = useContext(globalData);
     const [guiasXllegar, setGuiasXllegar] = useState(null);
-    //const [destinosConfigurados, setDestinosConfigurados] = useState(null);
     const [nameDestino, setNameDestino] = useState(null);
 
     function getNameDestino(idDestino) {
@@ -59,54 +57,9 @@ export default function PlanLlegadaGrafo() {
             const guiasSinRepetir = Array.from(new Set(guiasXllegar.map(guia => guia.numGuia))).map(numGuia => {
                 return guiasXllegar.find(guia => guia.numGuia === numGuia);
             });
-            const volumenTotal = totales(guiasSinRepetir, "volumen");
-            const pesoTotal = formattedCantidad(totales(guiasSinRepetir, "peso"));
-            const fleteTotal = formattedCantidad(totales(guiasSinRepetir, "flete"));
-            const montoSeguroTotal = formattedCantidad(totales(guiasSinRepetir, "monto_seguro"));
-            const subtotalTotal = formattedCantidad(totales(guiasSinRepetir, "subtotal"));
-            const sumas = [
-                {
-                    nombre: "Volumen",
-                    suma: volumenTotal,
-                    signo: "mt3"
-                },
-                {
-                    nombre: "Peso",
-                    suma: pesoTotal,
-                    signo: "kg"
-                },
-                {
-                    nombre: "Flete",
-                    suma: fleteTotal,
-                    signo: "$"
-                },
-                {
-                    nombre: "Monto seguro",
-                    suma: montoSeguroTotal,
-                    signo: "$"
-                },
-                {
-                    nombre: "Subtotal",
-                    suma: subtotalTotal,
-                    signo: "$"
-                }
-            ];
 
             const destinosSinRepetir = new Set();
             const dataDestinos = [];
-            //Separar las guias por el origen que vienen
-            // guiasSinRepetir?.forEach((guia) => {
-            //     const idDestino = guia.viaje_ubicacion_id;
-            //     //Verificamos si el destino ya esta en el set de destinos
-            //     if (!destinosSinRepetir.has(idDestino)) {
-            //         destinosSinRepetir.add(idDestino);
-            //         dataDestinos.push({
-            //             id: idDestino,
-            //             nombre: guia.ubicacionDestino,
-            //             guias: guiasSinRepetir.filter(guia => (guia.viaje_ubicacion_id === idDestino))
-            //         });
-            //     }
-            // });
 
             guiasSinRepetir?.forEach((guia) => {
                 const idDestino = guia.destino_id;
@@ -149,7 +102,7 @@ export default function PlanLlegadaGrafo() {
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
-                            <h3>Detalle por Origen</h3>
+                            <h3>Carga por recibir acumulada por destino a enviar</h3>
                             {
                                 dataDestinos.map((destino, i) => (
                                     <Accordion key={i} className=''>
