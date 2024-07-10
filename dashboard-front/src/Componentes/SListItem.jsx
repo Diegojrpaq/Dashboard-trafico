@@ -1,17 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function SListItem(props) {
+    const navigate = useNavigate();
+    const onClick = () => {
+        navigate(props.url)
+    }
     return (
         <>
-            <li>
-            <i className={props.icon}></i>
-                {/* <a href={props.url} className=' btn-collapse'>
-                    {props.children}
-                </a> */}
-                <Link to={props.url} className=' btn-collapse'>{props.children}</Link>
+            <li onClick={onClick} className='li-sub'>
+                <i className={props.icon}></i>
+                {props.children}
             </li>
-
         </>
     )
 }

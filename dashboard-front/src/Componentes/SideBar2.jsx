@@ -7,10 +7,9 @@ import SListItem from './SListItem';
 
 
 export default function SideBar2() {
-  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar, destinosPlanRuta, destPlanLlegada } = useContext(globalData);
+  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar, destinosPlanRuta, destConfigLlegadas } = useContext(globalData);
   const destinosList = destinosListState;
   const destinosXllegar = destinosListXllegar;
-  const destinosPlanLlegada = destPlanLlegada.Destinos;
   let permisos = [];
   if (sessionUserState.User.permisos != null) { // Si el usuario tiene permisos que se agreguen al arreglo permisos
     permisos = [...sessionUserState.User.permisos];
@@ -44,7 +43,7 @@ export default function SideBar2() {
           <h3>Dashboard</h3>
         </div>
         <SHeaderList title="Trafico" icon='bi bi-globe-americas' idcollapse='1'>
-          
+
           {
             permisos.includes(31) ?
               <SListItem icon='bi bi-clipboard2-data mx-1' url={'/trafico/ResumenPlaneacion/'}>Resumen Planeación Rutas</SListItem>
@@ -81,11 +80,11 @@ export default function SideBar2() {
               <></>
           }
 
-          {/* {
+          {
             permisos.includes(32) ?
-              <SHeaderList title="Planeación Llegadas" icon='bi bi-clipboard2-check-fill' key={5} idcollapse='5'>
+              <SHeaderList title="Plan Llegada Destinos Por Recibir" icon='bi bi-clipboard2-check-fill' key={5} idcollapse='5'>
                 {
-                  destinosXllegar && destinosXllegar.map((destino) => {
+                  destConfigLlegadas && destConfigLlegadas.map((destino) => {
                     return (
                       <SListItem icon='bi bi-geo-alt mx-1' key={destino.id + destino.nombre} url={'/trafico/planeacionLlegadas/' + destino.id}>{destino.nombre}</SListItem>
                     )
@@ -93,7 +92,22 @@ export default function SideBar2() {
                 }
               </SHeaderList>
               : <></>
-          } */}
+          }
+
+          {
+            //Plan Grafo
+            permisos.includes(32) ?
+              <SHeaderList title="Plan Llegada Destinos Para Enviar" icon='bi bi-clipboard2-check-fill' key={6} idcollapse='6'>
+                {
+                  destConfigLlegadas && destConfigLlegadas.map((destino) => {
+                    return (
+                      <SListItem icon='bi bi-geo-alt mx-1' key={destino.id + destino.nombre} url={'/trafico/planLlegadaGrafo/' + destino.id}>{destino.nombre}</SListItem>
+                    )
+                  })
+                }
+              </SHeaderList>
+              : <></>
+          }
 
 
           {

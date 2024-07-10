@@ -7,11 +7,10 @@ import SpinnerMain from '../../viewsItems/SpinnerMain';
 import TablePlaneacionLlegadas from '../../viewsItems/tables/TablePlaneacionLlegadas';
 import { formattedCantidad, totales } from '../../utileria/utils';
 
-export default function PlaneacionLlegadas() {
+export default function PlanLlegadaGrafo() {
     const { idDestino } = useParams();
     const { destinosListXllegar } = useContext(globalData);
     const [guiasXllegar, setGuiasXllegar] = useState(null);
-    //const [destinosConfigurados, setDestinosConfigurados] = useState(null);
     const [nameDestino, setNameDestino] = useState(null);
 
     function getNameDestino(idDestino) {
@@ -61,16 +60,16 @@ export default function PlaneacionLlegadas() {
 
             const destinosSinRepetir = new Set();
             const dataDestinos = [];
-            //Separar las guias por el origen que vienen
+
             guiasSinRepetir?.forEach((guia) => {
-                const idDestino = guia.viaje_ubicacion_id;
+                const idDestino = guia.destino_id;
                 //Verificamos si el destino ya esta en el set de destinos
                 if (!destinosSinRepetir.has(idDestino)) {
                     destinosSinRepetir.add(idDestino);
                     dataDestinos.push({
                         id: idDestino,
-                        nombre: guia.ubicacionDestino,
-                        guias: guiasSinRepetir.filter(guia => (guia.viaje_ubicacion_id === idDestino))
+                        nombre: guia.destino_final,
+                        guias: guiasSinRepetir.filter(guia => (guia.destino_id === idDestino))
                     });
                 }
             });
@@ -103,7 +102,7 @@ export default function PlaneacionLlegadas() {
                                     </Accordion.Body>
                                 </Accordion.Item>
                             </Accordion>
-                            <h3>Detalle por Origen</h3>
+                            <h3>Carga por recibir acumulada por destino a enviar</h3>
                             {
                                 dataDestinos.map((destino, i) => (
                                     <Accordion key={i} className=''>
