@@ -82,6 +82,10 @@
   /* color: var(--Color-secondary); */
 }
 
+.li-sub:hover {
+  cursor: pointer;
+}
+
 .headerlist p {
   font-size: 17px;
   margin-bottom: 0px;

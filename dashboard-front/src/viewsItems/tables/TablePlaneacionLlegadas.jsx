@@ -6,7 +6,7 @@ import { Column } from 'primereact/column';
 import { ColumnGroup } from 'primereact/columngroup';
 import { Row } from 'primereact/row';
 import { FilterMatchMode } from 'primereact/api';
-import { formattedNumber, formattedCantidad, formatearFecha } from '../../utileria/utils';
+import { formattedNumber, formattedCantidad } from '../../utileria/utils';
 
 export default function TablePlaneacionLlegadas({ guias, nombreDestino, volumenTotal, pesoTotal, fleteTotal, montoSeguroTotal, subtotalTotal }) {
     const dt = useRef(null);
@@ -29,26 +29,15 @@ export default function TablePlaneacionLlegadas({ guias, nombreDestino, volumenT
     };
 
     //Columnas de la tabla
-    // const cols = [
-    //     { field: "numGuia", header: "Numero Guía" },
-    //     { field: 'fecha_registro', header: 'Fecha' },
-    //     { field: 'origen', header: 'Origen' },
-    //     { field: 'destino_final', header: 'Destino' },
-    //     { field: 'volumen', header: 'Volumen' },
-    //     { field: 'peso', header: 'Peso' },
-    //     { field: 'flete', header: 'Flete' },
-    //     { field: 'monto_seguro', header: 'Monto seguro' },
-    //     { field: 'subtotal', header: 'Subtotal' }
-    // ];
-
-        const cols = [
+    const cols = [
         { field: 'numGuia', header: 'Num-Guía' },
         { field: 'sucursal_principal', header: 'Sucursal' },
         //{ field: 'canti', header: 'Cant. Guías' },
         { field: 'origen', header: 'Origen' },
         { field: 'destino_final', header: 'Destino' },
         { field: 'fecha_registro', header: 'Fecha' },
-        { field: 'sucursal_ubicacion', header: 'Suc. Ubic.' },
+        // { field: 'sucursal_ubicacion', header: 'Suc. Ubic.' },
+        { field: 'ubicacionDestino', header: 'Ubic. Destino' },
         { field: 'cantidad_caja', header: 'Num. Items' },
         { field: 'volumen', header: 'Volumen' },
         { field: 'peso', header: 'Peso' },
