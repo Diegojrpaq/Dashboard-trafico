@@ -35,6 +35,14 @@ const resumenPlaneacionRutas = React.lazy(()=> import ('./views/trafico/ResumenP
 const planLlegadaGrafo = React.lazy(()=> import('./views/trafico/PlanLlegadaGrafo'))
 //const planeacionLlegadas = React.lazy(()=> import('./views/trafico/PlanLlegadaGrafo'))
 
+
+/*---------------------------- juego de rutas de incidencias -------------------------------------- */
+const DashboardIncidencias = React.lazy(()=>import('./views/Incidencias/DashboardIncidencias'))
+const Tablero = React.lazy(()=>import('./views/Incidencias/Tablero'))
+const Incidencias = React.lazy(()=>import('./views/Incidencias/Incidencias'))
+const Configuraciones = React.lazy(()=>import('./views/Incidencias/Configuraciones'))
+/*---------------------------- Fin juego de rutas de incidencias -------------------------------------- */
+
 //Arreglo de rutas
 const routes_secondary = [
    /*  {path: '/trafico/:id', name: 'Hola', element: Grafica}, */
@@ -49,6 +57,14 @@ const routes_secondary = [
     {path: '/trafico/planeacionLlegadas/:idDestino', name: 'Planeacion_Llegadas', element: planeacionLlegadas},
     {path: '/trafico/ResumenPlaneacion/', name: 'Resumen_Planeacion', element: resumenPlaneacionRutas},
     {path: '/trafico/planLlegadaGrafo/:idDestino', name: 'Plan_Grafo', element: planLlegadaGrafo},
+    
+    /* rutas y elemntos para incidencias  */
+    {path: '/incidencias/Dashboard', name: 'DashboardInci', element: DashboardIncidencias},
+    {path: '/incidencias/Tablero', name: 'Tablero', element: Tablero},
+    {path: '/incidencias/Incidencias', name: 'Incidencias', element: Incidencias},
+    {path: '/incidencias/Configuraciones', name: 'Configuraciones', element: Configuraciones},
+    /* rutas y elemntos para incidencias  */
+    
 ]
 //-------------------------------------Fin segundo menu de rutas--------------------------------
 

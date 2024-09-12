@@ -1,0 +1,11 @@
+h3{
+    color: black;
+}
+
+.card-box{
+    width: auto;
+    height: 100%;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+}

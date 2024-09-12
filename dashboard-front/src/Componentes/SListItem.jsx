@@ -8,7 +8,7 @@ export default function SListItem(props) {
     }
     return (
         <>
-            <li onClick={onClick} className='li-sub'>
+            <li onClick={onClick} className='li-sub mt-5 h5'>
                 <i className={props.icon}></i>
                 {props.children}
             </li>

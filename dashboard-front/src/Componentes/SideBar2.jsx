@@ -7,7 +7,7 @@ import SListItem from './SListItem';
 
 
 export default function SideBar2() {
-  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar, destinosPlanRuta, destConfigLlegadas } = useContext(globalData);
+  const { destinosListState, toggleSidebar, sessionUserState, destinosListXllegar, destinosPlanRuta, destConfigLlegadas, userData } = useContext(globalData);
   const destinosList = destinosListState;
   const destinosXllegar = destinosListXllegar;
   let permisos = [];
@@ -40,16 +40,31 @@ export default function SideBar2() {
         {/*  <!-- Contenido del sidebar --> */}
         <div className="sidebar-header">
           <img src={Logo} alt="" className='img-fluid mb-4' />
-          <h3>Dashboard</h3>
+          <div className='col-3 d-none d-lg-flex flex-column justify-content-center align-items-end'>
+            <div className='row'>
+              <div className='col-1 d-flex justify-content-center align-items-center'>
+                <i className="bi bi-person-circle fs-2 text-light"></i>
+              </div>
+              <div className='col d-none d-lg-flex flex-column justify-content-center align-items-start'>
+                <span className='spanUser' style={{ "color": "white" }}>
+                  {userData ? userData.nombre : ""}
+                </span>
+                <span className='spanPuesto'>
+                  {userData ? userData.puesto : ""}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-        <SHeaderList title="Trafico" icon='bi bi-globe-americas' idcollapse='1'>
+        <SHeaderList title="Incidencias" icon='bi bi-clipboard2-data' idcollapse='1'>
 
-          {
-            permisos.includes(31) ?
-              <SListItem icon='bi bi-clipboard2-data mx-1' url={'/trafico/ResumenPlaneacion/'}>Resumen Planeación Rutas</SListItem>
-              : <></>
-          }
-
+          
+              <SListItem icon='bi bi-bar-chart me-4' url={'/incidencias/Dashboard'}>DashBoard</SListItem>
+              <SListItem icon='bi bi-columns-gap me-4' url={'/incidencias/Tablero'}>Tablero de Incidencias</SListItem>
+              <SListItem icon='bi bi-graph-up-arrow me-4' url={'/incidencias/Incidencias'}>Incidencias</SListItem>
+              <SListItem icon='bi bi-gear-wide-connected me-4' url={'/incidencias/Configuraciones'}>Configuracion</SListItem>
+              
+{/* 
           {
             permisos?.includes(31) ?
               <SHeaderList title="Planeacion de Rutas" icon='bi bi-map' key={2} idcollapse='2'>
@@ -78,9 +93,9 @@ export default function SideBar2() {
               </SHeaderList>
               :
               <></>
-          }
+          } */}
 
-          {
+        {/*   {
             permisos.includes(32) ?
               <SHeaderList title="Plan Llegada Destinos Por Recibir" icon='bi bi-clipboard2-check-fill' key={5} idcollapse='5'>
                 {
@@ -152,7 +167,7 @@ export default function SideBar2() {
             permisos.includes(37) ?
               <SListItem icon='bi bi-file-earmark-spreadsheet mx-2' url={'/trafico/reporteRuta'}>Análisis Rutas</SListItem>
               : <></>
-          }
+          } */}
         </SHeaderList>
       </div>
     </>

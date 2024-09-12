@@ -16,8 +16,8 @@ export default function SHeaderList(props) {
                     role="button"
 
                     aria-controls={props.idcollapse}>
-                    <i className={props.icon + ' bd.highlight mx-2'} ></i>
-                    <p className='bd.highlight'>{props.title}</p>
+                    <i className={props.icon + ' bd.highlight me-4 h4'} ></i>
+                    <p className='bd.highlight h3'>{props.title}</p>
                     <i className="bi bi-chevron-right bd.highlight ms-auto"></i>
 
                 </a>

@@ -28,9 +28,9 @@ function App() {
 
   useEffect(() => {
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const tokenUser = urlParams.get('id');
-    //const tokenUser = 649;
+    /* const urlParams = new URLSearchParams(window.location.search);
+    const tokenUser = urlParams.get('id'); */
+    const tokenUser = 649;
 
 
     const peticionSidebar = async (tokenUser) => {

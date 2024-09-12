@@ -6,7 +6,8 @@
 
 :root {
     --Color-secondary: #E9B756;
-    --Color-Back-primary: #1C2C3F;
+    --Color-Back-primary: #314b64;
+    --Color-Back-contrast-primary: #303c54;
     --Color-Back-opcional: #405189;
     --Color-Back-tertiary: #4743A1;
     --Color-Back-gray: #F3F3F9;
@@ -17,6 +18,8 @@
     --color: rgb(114, 176, 228, 0.5);
     --Color-Primereact-primary: #6366f1;
     --Color-Primereact-primary-hover:#4338CA;
+    --Color-Background-navbar-primary:  #1c2c3fe7;
+    --Color-Background-navbar-secundary:  #303c54;
 }
 
 body {
