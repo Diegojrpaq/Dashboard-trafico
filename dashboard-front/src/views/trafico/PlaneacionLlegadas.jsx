@@ -6,6 +6,7 @@ import { globalData } from '../../App';
 import SpinnerMain from '../../viewsItems/SpinnerMain';
 import TablePlaneacionLlegadas from '../../viewsItems/tables/TablePlaneacionLlegadas';
 import { formattedCantidad, totales } from '../../utileria/utils';
+import { guiasFilterByUbicationOrigin } from '../../utileria/utils';
 
 export default function PlaneacionLlegadas() {
     const { idDestino } = useParams();
@@ -13,6 +14,7 @@ export default function PlaneacionLlegadas() {
     const [guiasXllegar, setGuiasXllegar] = useState(null);
     //const [destinosConfigurados, setDestinosConfigurados] = useState(null);
     const [nameDestino, setNameDestino] = useState(null);
+    const idDestinoInt = idDestino;
 
     function getNameDestino(idDestino) {
         let nombreDestino;
@@ -88,8 +90,10 @@ export default function PlaneacionLlegadas() {
                                         <HeaderLLegadas
                                             nombre={"Total en general"}
                                             guias={guiasSinRepetir}
+                                            idDestino={idDestino}
                                         />
                                     </Accordion.Header>
+                                    <p>hello word</p>
                                     <Accordion.Body>
                                         <TablePlaneacionLlegadas
                                             guias={guiasSinRepetir}
@@ -112,6 +116,7 @@ export default function PlaneacionLlegadas() {
                                                 <HeaderLLegadas
                                                     nombre={destino.nombre}
                                                     guias={destino.guias}
+                                                    idDestino={idDestino}
                                                 />
                                             </Accordion.Header>
                                             <Accordion.Body>
@@ -129,7 +134,7 @@ export default function PlaneacionLlegadas() {
                                     </Accordion>
                                 ))
                             }
-                        </div>
+                         </div>
                     </div>
                 </>
             )
@@ -146,6 +151,8 @@ export default function PlaneacionLlegadas() {
 }
 
 function HeaderLLegadas(props) {
+    const listguias = guiasFilterByUbicationOrigin(props.guias, props.nombre, props.idDestino);
+    console.log(listguias)
     return (
         <div className='container mx-0'>
             <div className="badge mt-1"
@@ -158,9 +165,26 @@ function HeaderLLegadas(props) {
                     color: "white"
                 }}
             >
+                {/* {console.log(guiasFilterByUbicationOrigin(props.guias, props.nombre, props.idDestino))} */}
                 {props.nombre}
             </div>
-            <div className='row align-items-center mt-2' style={{ fontSize: "1.1rem" }}>
+            <div className='row align-items-center mt-3' style={{ fontSize: "1.1rem" }}>
+                <div className='col'>Total Guías: {props.guias.length}</div>
+                <div className='col'>Peso: {formattedCantidad(totales(props.guias, "peso"))} kg</div>
+                <div className='col'>Volumen: {totales(props.guias, "volumen")} mt3</div>
+                <div className='col'>Flete: ${formattedCantidad(totales(props.guias, "flete"))}</div>
+                <div className='col'>Monto Seg: ${formattedCantidad(totales(props.guias, "monto_seguro"))}</div>
+                <div className='col'>Subtotal: ${formattedCantidad(totales(props.guias, "subtotal"))}</div>
+            </div>
+            <div className='row align-items-center mt-3 text-success' style={{ fontSize: "1.1rem" }}>
+                <div className='col'>Total Guías: {props.guias.length}</div>
+                <div className='col'>Peso: {formattedCantidad(totales(props.guias, "peso"))} kg</div>
+                <div className='col'>Volumen: {totales(props.guias, "volumen")} mt3</div>
+                <div className='col'>Flete: ${formattedCantidad(totales(props.guias, "flete"))}</div>
+                <div className='col'>Monto Seg: ${formattedCantidad(totales(props.guias, "monto_seguro"))}</div>
+                <div className='col'>Subtotal: ${formattedCantidad(totales(props.guias, "subtotal"))}</div>
+            </div>
+            <div className='row align-items-center mt-3 text-danger' style={{ fontSize: "1.1rem" }}>
                 <div className='col'>Total Guías: {props.guias.length}</div>
                 <div className='col'>Peso: {formattedCantidad(totales(props.guias, "peso"))} kg</div>
                 <div className='col'>Volumen: {totales(props.guias, "volumen")} mt3</div>
