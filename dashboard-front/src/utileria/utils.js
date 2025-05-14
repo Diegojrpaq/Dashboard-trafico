@@ -182,7 +182,7 @@ export const totales = (arr, propSumar) => {
     }
 }
 
-export async function guiasFilterByUbicationOrigin(guiasList, nombreDestino, idDestino) {
+export function guiasFilterByUbicationOrigin(guiasList, nombreDestino, idDestino) {
     if (guiasList != null) {
         const idDestinoNumber = Number(idDestino);
         console.log('primer klista de objetos a filtrar' , guiasList)
@@ -190,7 +190,7 @@ export async function guiasFilterByUbicationOrigin(guiasList, nombreDestino, idD
         let listDestinoWithOutOrigin = [];
          listGuiasforOrigin = guiasList.filter(guia => guia.destino_id === idDestinoNumber);
          listDestinoWithOutOrigin = guiasList.filter(guia => guia.destino_id !== idDestinoNumber);
-        
+        console.log("impresion interna a la funcion",listGuiasforOrigin);
 
         return {
             listGuiasforOrigin,
