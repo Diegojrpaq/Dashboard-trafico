@@ -12,59 +12,9 @@ export default function TablePlaneacionDomicilio({
   guias,
   nombreDestino,
   volumenTotal,
-  pesoTotal /*fleteTotal, montoSeguroTotal, subtotalTotal*/,
+  pesoTotal,
 }) {
   const dt = useRef(null);
-  guias = [
-    {
-      numGuia: "OTE-71992",
-      origen: "MEXICO",
-      destinoFinal: "GUADALAJARA",
-      fechaVenta: "2025-06-23",
-      destinoUbicacion: "MEXICO",
-      sucursalUbicacion: "Oriente",
-      clienteDestino: "MEXHAUS",
-      estatusMovimiento: "en Piso",
-      cotizacionPrincipalVolumen: 1.587,
-      cotizacionPrincipalPeso: 261.0,
-      Items: 1,
-      Descripcion: "1 de TARIMAS  de OBLEAS PARA OSTOMIA 1.587m.",
-      notaIncidencia: "",
-      ruta_domicilio: "Zapopan",
-    },
-    {
-      numGuia: "VTA-12203",
-      origen: "PUERTO VALLARTA",
-      destinoFinal: "GUADALAJARA",
-      fechaVenta: "2025-06-23",
-      destinoUbicacion: "PUERTO VALLARTA",
-      sucursalUbicacion: "Puerto Vallarta",
-      clienteDestino: "ELENA GOMEZ NAVARRO",
-      estatusMovimiento: "en Piso",
-      cotizacionPrincipalVolumen: 0.0,
-      cotizacionPrincipalPeso: 2.0,
-      Items: 0,
-      Descripcion: "1 de PAQUETE de SOBRE MENSAJERIA 0.027m.",
-      notaIncidencia: "",
-      ruta_domicilio: "Zapopan",
-    },
-    {
-      numGuia: "XAL-42240",
-      origen: "MEXICO",
-      destinoFinal: "GUADALAJARA",
-      fechaVenta: "2025-06-23",
-      destinoUbicacion: "MEXICO",
-      sucursalUbicacion: "Xalostoc",
-      clienteDestino: "INTER CHEM BIO",
-      estatusMovimiento: "en Piso",
-      cotizacionPrincipalVolumen: 2.157,
-      cotizacionPrincipalPeso: 268.0,
-      Items: 1,
-      Descripcion: "1 de TARIMAS  de SILICE 2.157m.",
-      notaIncidencia: "",
-      ruta_domicilio: "Cd Granja",
-    },
-  ];
 
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -82,7 +32,6 @@ export default function TablePlaneacionDomicilio({
     setGlobalFilterValue(value);
   };
 
-  // 🔄 Columnas actualizadas
   const cols = [
     { field: "numGuia", header: "Número de Guía" },
     { field: "origen", header: "Origen" },
@@ -92,12 +41,12 @@ export default function TablePlaneacionDomicilio({
     { field: "sucursalUbicacion", header: "Sucursal Ubicación" },
     { field: "clienteDestino", header: "Cliente Destino" },
     { field: "estatusMovimiento", header: "Estatus Movimiento" },
-    { field: "cotizacionPrincipalVolumen", header: "Volumen (m³)" },
+    { field: "volumen", header: "Volumen (m³)" },
     { field: "cotizacionPrincipalPeso", header: "Peso (kg)" },
-    { field: "Items", header: "Items" },
-    { field: "Descripcion", header: "Descripción" },
+    { field: "items", header: "Items" },
+    { field: "descripcion", header: "Descripción" },
     { field: "notaIncidencia", header: "Nota Incidencia" },
-    { field: "ruta_domicilio", header: "Ruta Domicilio" },
+    { field: "rutaDomicilio", header: "Ruta Domicilio" },
   ];
 
   const nombreArchivo = `guiasXllegarDe${nombreDestino}`;
@@ -202,14 +151,13 @@ export default function TablePlaneacionDomicilio({
     </ColumnGroup>
   );
 
-  // Aquí puedes aplicar formateo si lo deseas en volumen/peso (ya lo hacías antes con formattedCantidad)
   const newData = guias.map((guia) => ({
     ...guia,
-    cotizacion_principal_volumen: `${formattedCantidad(
-      guia.cotizacion_principal_volumen
+    cotizacionPrincipalVolumen: `${formattedCantidad(
+      guia.cotizacionPrincipalVolumen
     )} m³`,
-    cotizacion_principal_peso: `${formattedCantidad(
-      guia.cotizacion_principal_peso
+    cotizacionPrincipalPeso: `${formattedCantidad(
+      guia.cotizacionPrincipalPeso
     )} kg`,
   }));
 
@@ -224,7 +172,6 @@ export default function TablePlaneacionDomicilio({
       stripedRows
       sortMode="multiple"
       scrollable
-      scrollHeight="500px"
       tableStyle={{ minWidth: "1500px", fontFamily: "Poppins" }}
       emptyMessage="No se encontraron resultados"
     >

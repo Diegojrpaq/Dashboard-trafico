@@ -3,8 +3,6 @@ import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
 import TablePlaneacionDomicilio from "../../viewsItems/tables/TablePlaneacionDomicilio";
 import { Dropdown } from "primereact/dropdown";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
-import "primereact/resources/primereact.css";
 import { globalData } from "../../App";
 import { urlapi } from "../../utileria/config";
 import { formattedCantidad, totales } from "../../utileria/utils";
@@ -29,12 +27,18 @@ export default function PlaneacionDomicilio() {
       fetch(`${urlapi}/trafico/get_planDomicilio/${selectedDestino.id}`)
         .then((resp) => resp.json())
         .then((data) => {
-          setGuias(data?.catalogoGuiasPlaneadas || []);
+          const arr = Array.isArray(data?.listGuias) ? data.listGuias : [];
+          const guiasMapeadas = arr.map((g) => ({
+            ...g,
+            rutaDomicilio: g.ruta_domicilio ?? g.rutaDomicilio,
+            cotizacionPrincipalVolumen: g.volumen,
+            cotizacionPrincipalPeso: g.peso,
+            Items: g.items,
+            Descripcion: g.descripcion,
+          }));
+          setGuias(guiasMapeadas);
           setLoadingGuias(false);
-        })
-        .catch(() => {
-          setGuias([]);
-          setLoadingGuias(false);
+          console.log("Guias mapeadas:", guiasMapeadas);
         });
     }
   }, [selectedDestino]);
@@ -52,8 +56,8 @@ export default function PlaneacionDomicilio() {
 
   return (
     <div className="container py-4">
-      <div className="col-sm-12 col-md-12 col-lg-4 py-3 px-3">
-        <div className="card flex shadow justify-content-center">
+      <div className="d-flex justify-content-start py-3 px-3">
+        <div className="card shadow p-3" style={{ minWidth: "500px" }}>
           <Dropdown
             value={selectedDestino}
             onChange={(e) => setSelectedDestino(e.value)}
@@ -82,8 +86,9 @@ export default function PlaneacionDomicilio() {
       ) : guias.length > 0 ? (
         <>
           <div className="row mb-4">
+            {/* Volumen */}
             <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
-              <Card border="primary" style={{ width: "100%", height: "auto" }}>
+              <Card border="primary">
                 <Card.Header
                   className="text-light fs-5 text-center"
                   style={{ backgroundColor: "rgb(49 64 81)" }}
@@ -97,8 +102,10 @@ export default function PlaneacionDomicilio() {
                 </Card.Body>
               </Card>
             </div>
+
+            {/* Peso */}
             <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
-              <Card border="primary" style={{ width: "100%", height: "auto" }}>
+              <Card border="primary">
                 <Card.Header
                   className="text-light fs-5 text-center"
                   style={{ backgroundColor: "rgb(49 64 81)" }}
@@ -111,6 +118,40 @@ export default function PlaneacionDomicilio() {
                     <strong>
                       {formattedCantidad(totales(guias, "peso"))} kg
                     </strong>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+
+            {/* Guías Totales */}
+            <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
+              <Card border="primary">
+                <Card.Header
+                  className="text-light fs-5 text-center"
+                  style={{ backgroundColor: "rgb(49 64 81)" }}
+                >
+                  Guías Totales
+                </Card.Header>
+                <Card.Body className="text-center">
+                  <Card.Text>
+                    Total: <strong>{guias.length}</strong>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
+
+            {/* Items Totales */}
+            <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
+              <Card border="primary">
+                <Card.Header
+                  className="text-light fs-5 text-center"
+                  style={{ backgroundColor: "rgb(49 64 81)" }}
+                >
+                  Items Totales
+                </Card.Header>
+                <Card.Body className="text-center">
+                  <Card.Text>
+                    Total: <strong>{totales(guias, "items")}</strong>
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -128,9 +169,6 @@ export default function PlaneacionDomicilio() {
                   nombreDestino={selectedDestino?.nombre || "Destino"}
                   volumenTotal={totales(guias, "volumen")}
                   pesoTotal={formattedCantidad(totales(guias, "peso"))}
-                  fleteTotal={totales(guias, "flete")}
-                  montoSeguroTotal={totales(guias, "monto_seguro")}
-                  subtotalTotal={totales(guias, "subtotal")}
                 />
               </div>
             </div>
