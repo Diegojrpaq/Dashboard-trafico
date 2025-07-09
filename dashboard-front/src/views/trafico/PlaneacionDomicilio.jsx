@@ -31,10 +31,6 @@ export default function PlaneacionDomicilio() {
           const guiasMapeadas = arr.map((g) => ({
             ...g,
             rutaDomicilio: g.ruta_domicilio ?? g.rutaDomicilio,
-            cotizacionPrincipalVolumen: g.volumen,
-            cotizacionPrincipalPeso: g.peso,
-            Items: g.items,
-            Descripcion: g.descripcion,
           }));
           setGuias(guiasMapeadas);
           setLoadingGuias(false);
