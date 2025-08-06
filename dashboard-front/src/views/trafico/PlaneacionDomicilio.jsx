@@ -31,10 +31,6 @@ export default function PlaneacionDomicilio() {
           const guiasMapeadas = arr.map((g) => ({
             ...g,
             rutaDomicilio: g.ruta_domicilio ?? g.rutaDomicilio,
-            cotizacionPrincipalVolumen: g.volumen,
-            cotizacionPrincipalPeso: g.peso,
-            Items: g.items,
-            Descripcion: g.descripcion,
           }));
           setGuias(guiasMapeadas);
           setLoadingGuias(false);
@@ -55,9 +51,16 @@ export default function PlaneacionDomicilio() {
   }
 
   return (
-    <div className="container py-4">
-      <div className="d-flex justify-content-start py-3 px-3">
-        <div className="card shadow p-3" style={{ minWidth: "500px" }}>
+    <div className="">
+
+
+      {selectedDestino && (
+        <div className="col-item shadow p-3 mb-2 mx-0 rounded">
+          <h2>Planeación Domicilio {selectedDestino.nombre}</h2>
+        </div>
+      )}
+      <div className="d-flex justify-content-start w-full">
+        <div className="card shadow-sm p-2 mb-2 px-2" style={{width: '30%'}}>
           <Dropdown
             value={selectedDestino}
             onChange={(e) => setSelectedDestino(e.value)}
@@ -70,12 +73,6 @@ export default function PlaneacionDomicilio() {
         </div>
       </div>
 
-      {selectedDestino && (
-        <div className="col-item shadow p-3 mb-4 mx-0 rounded">
-          <h2>Planeación Domicilio {selectedDestino.nombre}</h2>
-        </div>
-      )}
-
       {loadingGuias ? (
         <div
           className="d-flex justify-content-center align-items-center"
@@ -85,93 +82,88 @@ export default function PlaneacionDomicilio() {
         </div>
       ) : guias.length > 0 ? (
         <>
-          <div className="row mb-4">
-            {/* Volumen */}
-            <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
-              <Card border="primary">
-                <Card.Header
-                  className="text-light fs-5 text-center"
-                  style={{ backgroundColor: "rgb(49 64 81)" }}
-                >
-                  Volumen
-                </Card.Header>
-                <Card.Body className="text-center">
-                  <Card.Text>
-                    Total: <strong>{totales(guias, "volumen")} m³</strong>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
+          <div className="col-item shadow-lg p-3 mb-4 mx-0 rounded">
+            <div className="row mb-4">
+              {/* Volumen */}
+              <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
+                <Card border="primary">
+                  <Card.Header
+                    className="text-light fs-5 text-center"
+                    style={{ backgroundColor: "rgb(49 64 81)" }}
+                  >
+                    Volumen
+                  </Card.Header>
+                  <Card.Body className="text-center">
+                    <Card.Text>
+                      Total: <strong>{totales(guias, "volumen")} m³</strong>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </div>
 
-            {/* Peso */}
-            <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
-              <Card border="primary">
-                <Card.Header
-                  className="text-light fs-5 text-center"
-                  style={{ backgroundColor: "rgb(49 64 81)" }}
-                >
-                  Peso
-                </Card.Header>
-                <Card.Body className="text-center">
-                  <Card.Text>
-                    Total:{" "}
-                    <strong>
-                      {formattedCantidad(totales(guias, "peso"))} kg
-                    </strong>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
+              {/* Peso */}
+              <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
+                <Card border="primary">
+                  <Card.Header
+                    className="text-light fs-5 text-center"
+                    style={{ backgroundColor: "rgb(49 64 81)" }}
+                  >
+                    Peso
+                  </Card.Header>
+                  <Card.Body className="text-center">
+                    <Card.Text>
+                      Total:{" "}
+                      <strong>
+                        {formattedCantidad(totales(guias, "peso"))} kg
+                      </strong>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </div>
 
-            {/* Guías Totales */}
-            <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
-              <Card border="primary">
-                <Card.Header
-                  className="text-light fs-5 text-center"
-                  style={{ backgroundColor: "rgb(49 64 81)" }}
-                >
-                  Guías Totales
-                </Card.Header>
-                <Card.Body className="text-center">
-                  <Card.Text>
-                    Total: <strong>{guias.length}</strong>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
+              {/* Guías Totales */}
+              <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
+                <Card border="primary">
+                  <Card.Header
+                    className="text-light fs-5 text-center"
+                    style={{ backgroundColor: "rgb(49 64 81)" }}
+                  >
+                    Guías Totales
+                  </Card.Header>
+                  <Card.Body className="text-center">
+                    <Card.Text>
+                      Total: <strong>{guias.length}</strong>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </div>
 
-            {/* Items Totales */}
-            <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
-              <Card border="primary">
-                <Card.Header
-                  className="text-light fs-5 text-center"
-                  style={{ backgroundColor: "rgb(49 64 81)" }}
-                >
-                  Items Totales
-                </Card.Header>
-                <Card.Body className="text-center">
-                  <Card.Text>
-                    Total: <strong>{totales(guias, "items")}</strong>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
-          </div>
-
-          <div className="card shadow">
-            <div
-              className="card-body p-0"
-              style={{ overflowX: "auto", width: "100%" }}
-            >
-              <div style={{ minWidth: "1400px" }}>
-                <TablePlaneacionDomicilio
-                  guias={guias}
-                  nombreDestino={selectedDestino?.nombre || "Destino"}
-                  volumenTotal={totales(guias, "volumen")}
-                  pesoTotal={formattedCantidad(totales(guias, "peso"))}
-                />
+              {/* Items Totales */}
+              <div className="col-sm-12 col-md-6 col-lg-3 py-3 px-3">
+                <Card border="primary">
+                  <Card.Header
+                    className="text-light fs-5 text-center"
+                    style={{ backgroundColor: "rgb(49 64 81)" }}
+                  >
+                    Items Totales
+                  </Card.Header>
+                  <Card.Body className="text-center">
+                    <Card.Text>
+                      Total: <strong>{totales(guias, "items")}</strong>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
               </div>
             </div>
+
+
+
+            <TablePlaneacionDomicilio
+              guias={guias}
+              nombreDestino={selectedDestino?.nombre || "Destino"}
+              volumenTotal={totales(guias, "volumen")}
+              pesoTotal={formattedCantidad(totales(guias, "peso"))}
+            />
           </div>
         </>
       ) : (

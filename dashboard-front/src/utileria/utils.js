@@ -134,17 +134,11 @@ export function guiasFilter(guiasList, idTipoTransaccion, idDestino) {
 }
 
 export function guiasFilterByOrigen(guiasList, idDestino) {
-    //esta funcion recibira la lista de guias a filtrar mas dos parametro id del destino y
-    //el id de la transaccion con la que se movio en el viaje, regresando una lista igual ya 
-    //filtrada.
-
     if (guiasList != null) {
         let listDestinoFiltered = [];
         return listDestinoFiltered = guiasList.filter(guia => guia.ubicacion_transaccion_id === idDestino);
-
-
     } else {
-        console.log("imposible realizar la opracion de filtrado")
+        console.log("imposible realizar la operacion de filtrado")
     }
 }
 
@@ -185,5 +179,24 @@ export const totales = (arr, propSumar) => {
             return totalRedondeado;
         }, 0)
         return total;
+    }
+}
+
+export function guiasFilterByUbicationOrigin(guiasList, nombreDestino, idDestino) {
+    if (guiasList != null) {
+        const idDestinoNumber = Number(idDestino);
+        console.log('primer klista de objetos a filtrar' , guiasList)
+        let listGuiasforOrigin = [];
+        let listDestinoWithOutOrigin = [];
+         listGuiasforOrigin = guiasList.filter(guia => guia.destino_id === idDestinoNumber);
+         listDestinoWithOutOrigin = guiasList.filter(guia => guia.destino_id !== idDestinoNumber);
+        console.log("impresion interna a la funcion",listGuiasforOrigin);
+
+        return {
+            listGuiasforOrigin,
+            listDestinoWithOutOrigin
+        };
+    } else {
+        console.log("imposible realizar la operacion de filtrado")
     }
 }
