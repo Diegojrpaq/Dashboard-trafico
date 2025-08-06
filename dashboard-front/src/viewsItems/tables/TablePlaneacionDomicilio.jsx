@@ -5,6 +5,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
+import { MultiSelect } from "primereact/multiselect";
 import { FilterMatchMode } from "primereact/api";
 import { formattedNumber, formattedCantidad } from "../../utileria/utils";
 
@@ -23,16 +24,8 @@ export default function TablePlaneacionDomicilio({
 
   const [globalFilterValue, setGlobalFilterValue] = useState("");
 
-  const onGlobalFilterChange = (e) => {
-    const value = e.target.value;
-    setFilters((prev) => ({
-      ...prev,
-      global: { value, matchMode: FilterMatchMode.CONTAINS },
-    }));
-    setGlobalFilterValue(value);
-  };
-
-  const cols = [
+  // ✅ Definir todas las columnas disponibles
+  const allCols = [
     { field: "numGuia", header: "Número de Guía" },
     { field: "origen", header: "Origen" },
     { field: "destinoFinal", header: "Destino Final" },
@@ -42,15 +35,50 @@ export default function TablePlaneacionDomicilio({
     { field: "clienteDestino", header: "Cliente Destino" },
     { field: "estatusMovimiento", header: "Estatus Movimiento" },
     { field: "volumen", header: "Volumen (m³)" },
-    { field: "cotizacionPrincipalPeso", header: "Peso (kg)" },
+    { field: "peso", header: "Peso (kg)" },
     { field: "items", header: "Items" },
     { field: "descripcion", header: "Descripción" },
     { field: "notaIncidencia", header: "Nota Incidencia" },
     { field: "rutaDomicilio", header: "Ruta Domicilio" },
   ];
 
+  // ✅ Columnas disponibles para el selector (excluye las que no quieres mostrar)
+  const cols = allCols.filter(
+    (col) =>
+      // Excluir columnas específicas del selector
+      !["numGuia"].includes(col.field)
+  );
+
+  // ✅ Estado para columnas visibles (inicialmente todas excepto algunas que pueden ser menos importantes)
+  const [visibleColumns, setVisibleColumns] = useState([
+    { field: "origen", header: "Origen" },
+    { field: "destinoFinal", header: "Destino Final" },
+    { field: "fechaVenta", header: "Fecha Venta" },
+    { field: "destinoUbicacion", header: "Ubicación Actual" },
+    { field: "clienteDestino", header: "Cliente Destino" },
+    { field: "estatusMovimiento", header: "Estatus Movimiento" },
+    { field: "volumen", header: "Volumen (m³)" },
+    { field: "peso", header: "Peso (kg)" },
+    { field: "items", header: "Items" },
+  ]);
+
+  const onGlobalFilterChange = (e) => {
+    const value = e.target.value;
+    setFilters((prev) => ({
+      ...prev,
+      global: { value, matchMode: FilterMatchMode.CONTAINS },
+    }));
+    setGlobalFilterValue(value);
+  };
+
+  // ✅ Función para manejar cambios en la selección de columnas
+  const onColumnToggle = (event) => {
+    const selectedColumns = event.value;
+    setVisibleColumns(selectedColumns);
+  };
+
   const nombreArchivo = `guiasXllegarDe${nombreDestino}`;
-  const exportColumns = cols.map((col) => ({
+  const exportColumns = allCols.map((col) => ({
     title: col.header,
     dataKey: col.field,
   }));
@@ -97,8 +125,18 @@ export default function TablePlaneacionDomicilio({
     color: "white",
   };
 
+  // ✅ Templates para volumen y peso
+  const volumenBodyTemplate = (rowData) => {
+    return `${formattedCantidad(rowData.volumen)} m³`;
+  };
+
+  const pesoBodyTemplate = (rowData) => {
+    return `${formattedCantidad(rowData.peso)} kg`;
+  };
+
+  // ✅ Header actualizado con MultiSelect para toggle de columnas
   const header = (
-    <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <div className="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
       <div className="d-flex justify-content-center align-items-center responsive">
         <span className="d-lg-flex flex-row justify-content-center align-items-center mb-2 mb-md-0">
           <input
@@ -110,61 +148,85 @@ export default function TablePlaneacionDomicilio({
           />
         </span>
       </div>
-      <div
-        className="dropdown d-flex align-items-center justify-content-end"
-        style={{ fontFamily: "Poppins" }}
-      >
-        <button
-          className="dropdown-toggle border-0 rounded px-3 py-1"
-          type="button"
-          data-bs-toggle="dropdown"
-          style={styleDropdown}
+
+      {/* ✅ MultiSelect para seleccionar columnas visibles */}
+      <div className="d-flex align-items-center gap-2">
+        <MultiSelect
+          value={visibleColumns}
+          options={cols}
+          optionLabel="header"
+          onChange={onColumnToggle}
+          placeholder="Seleccionar Columnas"
+          display="chip"
+          className="w-full md:w-20rem"
+          maxSelectedLabels={3}
+          style={{ minWidth: "250px" }}
+        />
+
+        <div
+          className="dropdown d-flex align-items-center justify-content-end"
+          style={{ fontFamily: "Poppins" }}
         >
-          Exportar
-        </button>
-        <ul className="dropdown-menu" style={{ cursor: "pointer" }}>
-          <li className="dropdown-item" onClick={exportExcel}>
-            Excel <i className="bi bi-file-earmark-excel"></i>
-          </li>
-          <li className="dropdown-item" onClick={() => exportCSV(false)}>
-            CSV <i className="bi bi-filetype-csv"></i>
-          </li>
-          <li className="dropdown-item" onClick={exportPdf}>
-            PDF <i className="bi bi-file-earmark-pdf"></i>
-          </li>
-        </ul>
+          <button
+            className="dropdown-toggle border-0 rounded px-3 py-1"
+            type="button"
+            data-bs-toggle="dropdown"
+            style={styleDropdown}
+          >
+            Exportar
+          </button>
+          <ul className="dropdown-menu" style={{ cursor: "pointer" }}>
+            <li className="dropdown-item" onClick={exportExcel}>
+              Excel <i className="bi bi-file-earmark-excel"></i>
+            </li>
+            <li className="dropdown-item" onClick={() => exportCSV(false)}>
+              CSV <i className="bi bi-filetype-csv"></i>
+            </li>
+            <li className="dropdown-item" onClick={exportPdf}>
+              PDF <i className="bi bi-file-earmark-pdf"></i>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
 
+  // ✅ Footer dinámico basado en columnas visibles
   const footerGroup = (
     <ColumnGroup>
       <Row>
         <Column
           footer="Totales"
-          colSpan={8}
+          colSpan={1}
           footerStyle={{ textAlign: "right", fontSize: "20px" }}
         />
-        <Column footer={`${volumenTotal} m³`} />
-        <Column footer={`${pesoTotal} kg`} />
+        {visibleColumns.map((col) => {
+          if (col.field === "volumen") {
+            return (
+              <Column
+                key={col.field}
+                footer={`${formattedCantidad(volumenTotal)} m³`}
+              />
+            );
+          }
+          if (col.field === "peso") {
+            return (
+              <Column
+                key={col.field}
+                footer={`${formattedCantidad(pesoTotal)} kg`}
+              />
+            );
+          }
+          return <Column key={col.field} footer="" />;
+        })}
       </Row>
     </ColumnGroup>
   );
 
-  const newData = guias.map((guia) => ({
-    ...guia,
-    cotizacionPrincipalVolumen: `${formattedCantidad(
-      guia.cotizacionPrincipalVolumen
-    )} m³`,
-    cotizacionPrincipalPeso: `${formattedCantidad(
-      guia.cotizacionPrincipalPeso
-    )} kg`,
-  }));
-
   return (
     <DataTable
       ref={dt}
-      value={newData}
+      value={guias}
       filters={filters}
       header={header}
       footerColumnGroup={footerGroup}
@@ -175,9 +237,48 @@ export default function TablePlaneacionDomicilio({
       tableStyle={{ minWidth: "1500px", fontFamily: "Poppins" }}
       emptyMessage="No se encontraron resultados"
     >
-      {cols.map((col, index) => (
-        <Column key={index} field={col.field} header={col.header} sortable />
-      ))}
+      {/* ✅ Columna fija: Número de Guía siempre visible */}
+      <Column
+        field="numGuia"
+        header="Número de Guía"
+        sortable
+        frozen
+        style={{ minWidth: "150px" }}
+      />
+
+      {/* ✅ Columnas dinámicas basadas en la selección */}
+      {visibleColumns.map((col) => {
+        if (col.field === "volumen") {
+          return (
+            <Column
+              key={col.field}
+              field={col.field}
+              header={col.header}
+              body={volumenBodyTemplate}
+              sortable
+            />
+          );
+        }
+        if (col.field === "peso") {
+          return (
+            <Column
+              key={col.field}
+              field={col.field}
+              header={col.header}
+              body={pesoBodyTemplate}
+              sortable
+            />
+          );
+        }
+        return (
+          <Column
+            key={col.field}
+            field={col.field}
+            header={col.header}
+            sortable
+          />
+        );
+      })}
     </DataTable>
   );
 }

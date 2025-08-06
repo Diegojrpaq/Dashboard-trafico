@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
-import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
 import "primereact/resources/primereact.css";
 import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 import { ColumnGroup } from "primereact/columngroup";
 import { Row } from "primereact/row";
+import { Column } from "primereact/column";
 import { FilterMatchMode } from "primereact/api";
 import {
   formattedNumber,
@@ -12,39 +12,61 @@ import {
   formattedCantidad,
 } from "../../utileria/utils";
 import ContainerCards from "../../viewsItems/Cards/ContainerCards";
-
-export default function TablaReporteViajesFecha({
-  viajes,
-  fecha,
-  mostrarDesglosePorDestino = false,
-}) {
+export default function TablaReporteViajesFecha({ viajes, fecha }) {
+  const totalViajes = viajes?.length;
+  const fecha1 = formatearFecha(fecha[0]);
+  const fecha2 = formatearFecha(fecha[1]);
+  //Sumas para el apartado de totales
+  const sumaVolumen = viajes?.reduce((acumulador, elemento) => {
+    const suma = acumulador + elemento.volumenTotal;
+    const totalRedondeado = Number(suma.toFixed(2));
+    return totalRedondeado;
+  }, 0);
+  const sumaPeso = viajes?.reduce((acumulador, elemento) => {
+    const suma = acumulador + elemento.pesoTotal;
+    const totalRedondeado = Number(suma.toFixed(2));
+    return totalRedondeado;
+  }, 0);
+  const sumaFlete = viajes?.reduce((acumulador, elemento) => {
+    const suma = acumulador + elemento.fleteTotal;
+    const totalRedondeado = Number(suma.toFixed(2));
+    return totalRedondeado;
+  }, 0);
+  const sumaMonto = viajes?.reduce((acumulador, elemento) => {
+    const suma = acumulador + elemento.montoSeguroTotal;
+    const totalRedondeado = Number(suma.toFixed(2));
+    return totalRedondeado;
+  }, 0);
+  const sumaSubtotal = viajes?.reduce((acumulador, elemento) => {
+    const suma = acumulador + elemento.subtotalTotal;
+    const totalRedondeado = Number(suma.toFixed(2));
+    return totalRedondeado;
+  }, 0);
+  const sumaGuias = viajes?.reduce((acumulador, elemento) => {
+    const suma = acumulador + elemento.cantidadGuias;
+    const totalRedondeado = Number(suma.toFixed(2));
+    return totalRedondeado;
+  }, 0);
   const dt = useRef(null);
+  //funciones para filtrar
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     numGuia: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
   });
+
   const [globalFilterValue, setGlobalFilterValue] = useState("");
-  const [expandedRows, setExpandedRows] = useState(null);
 
   const onGlobalFilterChange = (e) => {
     const value = e.target.value;
     let _filters = { ...filters };
+
     _filters["global"].value = value;
+
     setFilters(_filters);
     setGlobalFilterValue(value);
   };
 
-  const totalViajes = viajes?.length;
-  const fecha1 = formatearFecha(fecha[0]);
-  const fecha2 = formatearFecha(fecha[1]);
-
-  const sumaGuias = viajes?.reduce((acc, v) => acc + v.cantidadGuias, 0);
-  const sumaVolumen = viajes?.reduce((acc, v) => acc + v.volumenTotal, 0);
-  const sumaPeso = viajes?.reduce((acc, v) => acc + v.pesoTotal, 0);
-  const sumaFlete = viajes?.reduce((acc, v) => acc + v.fleteTotal, 0);
-  const sumaMonto = viajes?.reduce((acc, v) => acc + v.montoSeguroTotal, 0);
-  const sumaSubtotal = viajes?.reduce((acc, v) => acc + v.subtotalTotal, 0);
-
+  //Columnas de la tabla
   const cols = [
     { field: "idViaje", header: "Numero Viaje" },
     { field: "nombre", header: "Nombre Viaje" },
@@ -57,27 +79,27 @@ export default function TablaReporteViajesFecha({
     { field: "subtotalTotal", header: "Subtotal" },
   ];
 
+  const nombreArchivo = `${"Reporte"}-${fecha1}-${fecha2}`;
   const exportColumns = cols.map((col) => ({
     title: col.header,
     dataKey: col.field,
   }));
-
-  const nombreArchivo = `Reporte-${fecha1}-${fecha2}`;
-
+  //exportar en CSV
   const exportCSV = (selectionOnly) => {
     dt.current.exportCSV({ selectionOnly });
   };
-
+  //exportar en PDF
   const exportPdf = () => {
     import("jspdf").then((jsPDF) => {
       import("jspdf-autotable").then(() => {
         const doc = new jsPDF.default(0, 0);
+
         doc.autoTable(exportColumns, viajes);
         doc.save(`${nombreArchivo}.pdf`);
       });
     });
   };
-
+  //exportar en Excel
   const exportExcel = () => {
     import("xlsx").then((xlsx) => {
       const worksheet = xlsx.utils.json_to_sheet(viajes);
@@ -90,7 +112,6 @@ export default function TablaReporteViajesFecha({
       saveAsExcelFile(excelBuffer, nombreArchivo);
     });
   };
-
   const saveAsExcelFile = (buffer, fileName) => {
     import("file-saver").then((module) => {
       if (module && module.default) {
@@ -100,16 +121,17 @@ export default function TablaReporteViajesFecha({
         const data = new Blob([buffer], {
           type: EXCEL_TYPE,
         });
+
         module.default.saveAs(data, fileName + EXCEL_EXTENSION);
       }
     });
   };
-
+  //Style para boton dropdown
   const styleDropdown = {
     background: "#405189",
     color: "white",
   };
-
+  //Header de la tabla, contiene la barra de búsqueda y el boton de exportar
   const header = (
     <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
       <div className="d-flex justify-content-center align-items-center responsive">
@@ -183,52 +205,32 @@ export default function TablaReporteViajesFecha({
     subtotalTotal: `${formattedNumber(viaje.subtotalTotal)}`,
   }));
 
-  const rowExpansionTemplate = (viaje) => {
-    if (!mostrarDesglosePorDestino) return null;
-
-    return (
-      <div className="p-3 border-top">
-        <h5 className="fw-bold mb-3">
-          Detalle por destino – {viaje.nombre} – {viaje.fechaRegistro}
-        </h5>
-
-        {(viaje.destinos?.length > 0 ? viaje.destinos : ["Destino Mock"]).map(
-          (destino, i) => (
-            <div key={i} className="mb-4 border-top pt-3">
-              <h6 className="fw-bold text-secondary mb-3">
-                {typeof destino === "string"
-                  ? destino
-                  : destino.destinoFinal || "Destino"}
-              </h6>
-              <DataTable
-                value={[viaje]} // Usamos el viaje principal mientras llegan los datos reales por destino
-                showGridlines
-                stripedRows
-                tableStyle={{ fontFamily: "Poppins" }}
-              >
-                <Column field="idViaje" header="Numero Viaje" />
-                <Column field="nombre" header="Nombre Viaje" />
-                <Column field="fechaRegistro" header="Fecha" />
-                <Column field="cantidadGuias" header="Total Guías" />
-                <Column field="volumenTotal" header="Volumen" />
-                <Column field="pesoTotal" header="Peso" />
-                <Column field="fleteTotal" header="Flete" />
-                <Column field="montoSeguroTotal" header="Monto seguro" />
-                <Column field="subtotalTotal" header="Subtotal" />
-              </DataTable>
-            </div>
-          )
-        )}
-      </div>
-    );
-  };
-
   const sumas = [
-    { nombre: "Volumen", suma: sumaVolumen, signo: "mt3" },
-    { nombre: "Peso", suma: sumaPeso, signo: "kg" },
-    { nombre: "Flete", suma: sumaFlete, signo: "$" },
-    { nombre: "Monto seguro", suma: sumaMonto, signo: "$" },
-    { nombre: "Subtotal", suma: sumaSubtotal, signo: "$" },
+    {
+      nombre: "Volumen",
+      suma: sumaVolumen,
+      signo: "mt3",
+    },
+    {
+      nombre: "Peso",
+      suma: sumaPeso,
+      signo: "kg",
+    },
+    {
+      nombre: "Flete",
+      suma: sumaFlete,
+      signo: "$",
+    },
+    {
+      nombre: "Monto seguro",
+      suma: sumaMonto,
+      signo: "$",
+    },
+    {
+      nombre: "Subtotal",
+      suma: sumaSubtotal,
+      signo: "$",
+    },
   ];
 
   return (
@@ -260,22 +262,14 @@ export default function TablaReporteViajesFecha({
               sortMode="multiple"
               tableStyle={{ minWidth: "50rem", fontFamily: "Poppins" }}
               emptyMessage="No se encontraron resultados"
-              {...(mostrarDesglosePorDestino && {
-                expandedRows,
-                onRowToggle: (e) => setExpandedRows(e.data),
-                rowExpansionTemplate,
-              })}
             >
-              {mostrarDesglosePorDestino && (
-                <Column expander style={{ width: "3em" }} />
-              )}
               {cols.map((col, index) => (
                 <Column
                   key={index}
                   field={col.field}
                   header={col.header}
                   sortable
-                />
+                ></Column>
               ))}
             </DataTable>
           </div>
