@@ -171,7 +171,7 @@ export default function SideBar2() {
             )
           }
 
-          {permisos.includes(32) ? (
+          {permisos.includes(49) ? (
             <SListItem
               title="Planeación Domicilio"
               icon="bi bi-truck mx-2"
