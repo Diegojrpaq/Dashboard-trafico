@@ -240,10 +240,6 @@ function LayoutViaje(props) {
               fecha={fechas}
               mostrarDesglosePorDestino={true}
             />
-            <div className="mt-5">
-              <h3 className="fw-bold mb-4 text-dark">Totales por destino</h3>
-              {renderCardsPorDestino()}
-            </div>
           </div>
         </div>
       ) : (
